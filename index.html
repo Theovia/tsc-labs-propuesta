@@ -1,0 +1,2738 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+<title>Eigen Atlas → TSC LABS · Propuesta · Mayo 2026</title>
+<meta name="description" content="Una infraestructura tecnológica completa para que TSC LABS escale como laboratorio, como marca y como plataforma B2B. Cloudflare-native, IVA-compliant, COFEPRIS-aware." />
+<meta name="theme-color" content="#F4F0E8" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS · EIGEN V4
+============================================================ */
+:root {
+  --cream: #F4F0E8;
+  --cream-2: #EFEADC;
+  --cream-3: #E7E1CF;
+  --card: #FBF8EF;
+  --ink: #0A0A0A;
+  --ink-2: #2A2A32;
+  --ink-3: #5A5A62;
+  --ink-4: #8A8A92;
+  --ink-5: #B5B1A3;
+  --line: rgba(10, 10, 10, 0.12);
+  --line-soft: rgba(10, 10, 10, 0.06);
+  --hairline: rgba(10, 10, 10, 0.18);
+  --prussian: #1F3D5C;
+  --prussian-2: #2A4D70;
+  --prussian-soft: rgba(31, 61, 92, 0.08);
+  --prussian-hair: rgba(31, 61, 92, 0.04);
+  --accent: #C9622A;
+  --accent-soft: rgba(201, 98, 42, 0.10);
+  --live: #4A7C3A;
+  --warn: #B8860B;
+
+  --f-display: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+  --f-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --f-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --container: clamp(1.25rem, 5vw, 4.5rem);
+  --max-w: 1340px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+::selection { background: var(--prussian); color: var(--cream); }
+
+.lazy { content-visibility: auto; contain-intrinsic-size: 800px; }
+
+/* ============================================================
+   PAPER GRAIN
+============================================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   NAV / TOPBAR
+============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0.85rem var(--container);
+  background: rgba(244, 240, 232, 0.88);
+  backdrop-filter: saturate(160%) blur(8px);
+  -webkit-backdrop-filter: saturate(160%) blur(8px);
+  border-bottom: 0.5px solid var(--line);
+  font-size: 0.82rem;
+}
+.topbar-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.topbar-logo .mono {
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  position: relative;
+  top: -0.05em;
+}
+.nav-links {
+  display: flex; gap: 1.5rem; align-items: center;
+  font-family: var(--f-mono); font-size: 0.7rem;
+  justify-self: center;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.nav-links a {
+  color: var(--ink-3);
+  transition: color 0.2s var(--ease);
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 100%;
+  height: 0.5px; background: var(--ink);
+  transition: right 0.3s var(--ease);
+}
+.nav-links a:hover::after { right: 0; }
+.nav-meta {
+  justify-self: end;
+  font-family: var(--f-mono); font-size: 0.7rem; color: var(--ink-3);
+  display: flex; align-items: center; gap: 1.1rem;
+}
+.nav-status { display: inline-flex; align-items: center; gap: 0.4rem; }
+.nav-status::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 0 0 rgba(74, 124, 58, 0.5);
+  animation: ping 2s var(--ease) infinite;
+}
+@keyframes ping {
+  0% { box-shadow: 0 0 0 0 rgba(74, 124, 58, 0.5); }
+  100% { box-shadow: 0 0 0 8px rgba(74, 124, 58, 0); }
+}
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .nav { grid-template-columns: 1fr auto; }
+  .nav-meta { font-size: 0.66rem; gap: 0.7rem; }
+}
+
+/* ============================================================
+   CONTAINER & LAYOUT
+============================================================ */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--container);
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.eyebrow-num { color: var(--prussian); font-weight: 500; }
+.eyebrow-accent { color: var(--accent); font-weight: 500; }
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  padding: clamp(3rem, 7vw, 6.5rem) 0 clamp(3rem, 7vw, 7rem);
+  position: relative;
+}
+.hero-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  border-bottom: 0.5px solid var(--line);
+  padding-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.hero-meta-row span:nth-child(2) { color: var(--ink); font-weight: 500; }
+.hero-meta-row .accent { color: var(--accent); }
+
+.hero-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hero-eyebrow .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--prussian); display: inline-block;
+}
+
+.hero-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  max-width: 22ch;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--prussian);
+}
+
+.hero-abstract {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 2rem;
+  max-width: 820px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: 1.5rem;
+  border-top: 0.5px solid var(--line);
+}
+@media (max-width: 700px) {
+  .hero-abstract { grid-template-columns: 1fr; gap: 0.85rem; }
+}
+.hero-abstract-label {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 0.18rem;
+}
+.hero-abstract-body {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.hero-abstract-body sup {
+  font-family: var(--f-mono);
+  font-size: 0.55em;
+  color: var(--prussian);
+  font-weight: 500;
+  margin-left: 1px;
+}
+
+.hero-doc-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.7rem;
+  border: 0.5px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  background: var(--card);
+}
+.hero-doc-stamp::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* HERO STATS */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+}
+@media (max-width: 700px) {
+  .hero-stats { grid-template-columns: 1fr; }
+}
+.hero-stat {
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1rem, 2vw, 1.5rem);
+  border-right: 0.5px solid var(--line);
+  position: relative;
+}
+.hero-stat:last-child { border-right: 0; }
+@media (max-width: 700px) {
+  .hero-stat {
+    border-right: 0;
+    border-bottom: 0.5px solid var(--line);
+  }
+  .hero-stat:last-child { border-bottom: 0; }
+}
+.hero-stat-label {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  display: flex; gap: 0.5rem; align-items: baseline;
+}
+.hero-stat-label .num { color: var(--prussian); font-weight: 500; }
+.hero-stat-value {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.hero-stat-value .unit {
+  font-family: var(--f-mono);
+  font-size: 0.6em;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin-left: 0.25rem;
+  letter-spacing: 0;
+}
+.hero-stat-cap {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  line-height: 1.45;
+}
+
+/* hairline annotations on hero stats */
+.hero-stat::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem; right: 1rem;
+  width: 18px; height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* ============================================================
+   SECTION
+============================================================ */
+.section {
+  padding: clamp(4rem, 9vw, 8rem) 0;
+  border-top: 0.5px solid var(--line);
+  position: relative;
+}
+.section-head {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid var(--line);
+}
+@media (max-width: 880px) {
+  .section-head { grid-template-columns: 1fr; gap: 1rem; }
+}
+.section-head-meta {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.35rem;
+}
+.section-head-num {
+  color: var(--prussian);
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+.section-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--prussian);
+}
+.section-lede {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 60ch;
+  margin-top: 1.25rem;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.05rem;
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s var(--ease);
+}
+.btn-primary { background: var(--ink); color: var(--cream); }
+.btn-primary:hover { background: var(--prussian); }
+.btn-ghost { color: var(--ink-2); border: 0.5px solid var(--hairline); }
+.btn-ghost:hover { background: var(--cream-2); border-color: var(--ink); }
+.btn-arrow { transition: transform 0.2s var(--ease); display: inline-block; }
+.btn:hover .btn-arrow { transform: translateX(2px); }
+
+/* ============================================================
+   §01 · DIAGNÓSTICO
+============================================================ */
+.diag-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 0.5px solid var(--line);
+  border-left: 0.5px solid var(--line);
+}
+@media (max-width: 800px) { .diag-grid { grid-template-columns: 1fr; } }
+.diag-cell {
+  border-right: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+  padding: 1.75rem 1.75rem 2rem;
+  background: var(--card);
+  position: relative;
+  transition: background 0.3s var(--ease);
+}
+.diag-cell:hover { background: var(--cream-2); }
+.diag-cell-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 0.5px solid var(--line-soft);
+}
+.diag-num {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.diag-tag {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  margin-left: auto;
+}
+.diag-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+  max-width: 28ch;
+}
+.diag-body {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+.diag-meta {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 0.5px dashed var(--line);
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.diag-meta strong { color: var(--prussian); font-weight: 500; }
+
+/* ============================================================
+   §02 · FASES
+============================================================ */
+.fase {
+  border-top: 0.5px solid var(--line);
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  position: relative;
+}
+.fase:first-of-type { border-top: 0; }
+.fase-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid var(--line);
+}
+@media (max-width: 800px) {
+  .fase-head { grid-template-columns: 1fr; gap: 0.75rem; align-items: start; }
+}
+.fase-tag {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  display: flex; gap: 0.7rem; align-items: baseline;
+  flex-wrap: wrap;
+}
+.fase-tag .num { color: var(--prussian); font-weight: 500; }
+.fase-tag .duration { color: var(--ink); font-weight: 500; }
+.fase-tag .price { color: var(--accent); font-weight: 500; }
+
+.fase-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 22ch;
+}
+.fase-title em { font-style: italic; font-weight: 400; color: var(--prussian); }
+
+.fase-id {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+.fase-id strong {
+  color: var(--ink);
+  font-weight: 500;
+  display: block;
+  font-size: 0.95rem;
+  letter-spacing: -0.005em;
+  margin-top: 0.25rem;
+}
+
+.fase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+@media (max-width: 880px) { .fase-grid { grid-template-columns: 1fr; } }
+
+.fase-body p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 1rem;
+  max-width: 56ch;
+}
+.fase-body p strong { color: var(--ink); font-weight: 500; }
+.fase-body p em { font-style: italic; color: var(--prussian); }
+
+.fase-side {
+  border: 0.5px solid var(--line);
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fase-side-section {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 0.5px solid var(--line-soft);
+}
+.fase-side-section:last-child { border-bottom: 0; }
+.fase-side-label {
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.fase-side-label .qty {
+  color: var(--prussian);
+  font-weight: 500;
+}
+.fase-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.fase-checklist li {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 0.55rem;
+  align-items: start;
+}
+.fase-checklist li::before {
+  content: '';
+  width: 9px; height: 9px;
+  border: 0.5px solid var(--prussian);
+  background: var(--cream);
+  border-radius: 1px;
+  margin-top: 0.45em;
+  position: relative;
+}
+.fase-checklist li.done::before {
+  background: var(--prussian);
+}
+.fase-checklist li strong { color: var(--ink); font-weight: 500; }
+
+.fase-stack {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+.fase-stack span {
+  display: inline-block;
+  padding: 0.18rem 0.5rem;
+  border: 0.5px solid var(--line);
+  border-radius: 2px;
+  background: var(--cream);
+  margin: 0.18rem 0.18rem 0.18rem 0;
+  color: var(--ink-2);
+}
+.fase-stack span.primary { border-color: var(--prussian); color: var(--prussian); }
+.fase-stack span.accent { border-color: var(--accent); color: var(--accent); }
+
+.fase-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.fase-metric {
+  padding: 0.55rem 0.7rem;
+  border: 0.5px solid var(--line);
+  background: var(--cream);
+  border-radius: 2px;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+.fase-metric strong {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--ink-4);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+
+/* Wave (sub-fase) */
+.fase-waves {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+@media (max-width: 800px) { .fase-waves { grid-template-columns: 1fr; } }
+.fase-wave {
+  border: 0.5px solid var(--line);
+  background: var(--cream);
+  border-radius: 3px;
+  padding: 1rem 1.1rem;
+}
+.fase-wave-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  padding-bottom: 0.55rem;
+  border-bottom: 0.5px solid var(--line-soft);
+  margin-bottom: 0.7rem;
+}
+.fase-wave-head .ola { color: var(--prussian); font-weight: 500; }
+.fase-wave-head .price { color: var(--accent); font-weight: 500; }
+.fase-wave-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 0.98rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.01em;
+}
+.fase-wave-body {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   §03 · RETAINER
+============================================================ */
+.retainer-card {
+  border: 0.5px solid var(--line);
+  background: var(--card);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 800px) { .retainer-card { grid-template-columns: 1fr; } }
+.retainer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--prussian) 0%, var(--accent) 100%);
+}
+.retainer-price {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.retainer-price .unit {
+  font-family: var(--f-mono);
+  font-size: 0.4em;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin-left: 0.4rem;
+}
+.retainer-meta {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.retainer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.retainer-list-head {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid var(--line);
+}
+.retainer-list li {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 0.55rem;
+  align-items: start;
+}
+.retainer-list li::before {
+  content: '+';
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--prussian);
+  font-weight: 500;
+  line-height: 1;
+}
+.retainer-list li.excl::before { content: '−'; color: var(--ink-4); }
+.retainer-list li.excl { color: var(--ink-3); }
+.retainer-list li strong { color: var(--ink); font-weight: 500; }
+
+/* ============================================================
+   §04 · INVERSIÓN
+============================================================ */
+.invest-table-wrap {
+  border: 0.5px solid var(--line);
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.invest-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.invest-table th, .invest-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 0.5px solid var(--line);
+  vertical-align: middle;
+}
+.invest-table th {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--cream-2);
+  border-bottom: 0.5px solid var(--hairline);
+}
+.invest-table tr:last-child td { border-bottom: 0; }
+.invest-table .col-fase {
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  color: var(--prussian);
+  font-weight: 500;
+  width: 12%;
+}
+.invest-table .col-fase-name {
+  font-family: var(--f-display);
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+.invest-table .col-fase-name .meta {
+  display: block;
+  font-family: var(--f-body);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  font-weight: 400;
+  margin-top: 0.2rem;
+  letter-spacing: 0;
+}
+.invest-table .num {
+  font-family: var(--f-mono);
+  text-align: right;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.invest-table .num.accent { color: var(--accent); font-weight: 500; }
+.invest-table tr.total-row {
+  background: var(--cream-3);
+  font-weight: 500;
+}
+.invest-table tr.total-row td {
+  padding-top: 1.25rem; padding-bottom: 1.25rem;
+  border-top: 0.5px solid var(--hairline);
+}
+.invest-table tr.total-row .col-fase-name {
+  font-family: var(--f-display);
+  font-weight: 600;
+}
+.invest-table tr.total-row .num { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 700px) {
+  .invest-table th, .invest-table td { padding: 0.7rem 0.65rem; font-size: 0.82rem; }
+  .invest-table .col-fase-name { font-size: 0.92rem; }
+  .invest-table .col-fase-name .meta { font-size: 0.7rem; }
+  .invest-table .num { font-size: 0.82rem; }
+}
+
+/* totals summary */
+.invest-summary {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 0.5px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+@media (max-width: 700px) { .invest-summary { grid-template-columns: 1fr; } }
+.invest-sum-cell {
+  padding: 1.5rem 1.5rem;
+  border-right: 0.5px solid var(--line);
+  position: relative;
+}
+.invest-sum-cell:last-child { border-right: 0; }
+@media (max-width: 700px) {
+  .invest-sum-cell { border-right: 0; border-bottom: 0.5px solid var(--line); }
+  .invest-sum-cell:last-child { border-bottom: 0; }
+}
+.invest-sum-label {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.invest-sum-value {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 0.45rem;
+}
+.invest-sum-value.accent { color: var(--accent); }
+.invest-sum-value.prussian { color: var(--prussian); }
+.invest-sum-cap {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+.invest-pay {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--prussian-soft);
+  border: 0.5px solid var(--prussian-hair);
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.invest-pay strong { color: var(--prussian); font-weight: 500; }
+
+/* ============================================================
+   §05 · POR QUÉ EIGEN
+============================================================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 0.5px solid var(--line);
+  border-left: 0.5px solid var(--line);
+}
+@media (max-width: 800px) { .why-grid { grid-template-columns: 1fr; } }
+.why-cell {
+  border-right: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+  padding: 1.75rem 1.75rem 2rem;
+  background: var(--card);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  min-height: 280px;
+  transition: background 0.3s var(--ease);
+}
+.why-cell:hover { background: var(--cream-2); }
+.why-num {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.why-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 1.18rem;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 26ch;
+}
+.why-body {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 50ch;
+}
+.why-tags {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.7rem;
+  border-top: 0.5px dashed var(--line);
+}
+.why-tags span {
+  padding: 0.18rem 0.45rem;
+  border: 0.5px solid var(--line);
+  border-radius: 2px;
+}
+
+/* ============================================================
+   §06 · GANTT
+============================================================ */
+.gantt-wrap {
+  border: 0.5px solid var(--line);
+  background: var(--card);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  overflow-x: auto;
+}
+.gantt {
+  display: grid;
+  grid-template-columns: 130px repeat(12, minmax(38px, 1fr));
+  gap: 0;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  position: relative;
+  min-width: 720px;
+}
+.gantt-header {
+  display: contents;
+}
+.gantt-header > div {
+  padding: 0.55rem 0.4rem;
+  text-align: center;
+  border-bottom: 0.5px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gantt-header > div:first-child {
+  text-align: left;
+  color: var(--ink);
+  font-weight: 500;
+}
+.gantt-row {
+  display: contents;
+}
+.gantt-label {
+  padding: 0.85rem 0.6rem;
+  border-bottom: 0.5px solid var(--line-soft);
+  color: var(--ink-2);
+  font-size: 0.74rem;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.gantt-label .num {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 0.5px solid var(--prussian);
+  color: var(--prussian);
+  border-radius: 2px;
+  text-align: center;
+  font-size: 0.62rem;
+  line-height: 19px;
+  font-weight: 500;
+}
+.gantt-cell {
+  border-bottom: 0.5px solid var(--line-soft);
+  border-left: 0.5px dashed var(--line-soft);
+  position: relative;
+  height: 44px;
+}
+.gantt-bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 16px;
+  background: var(--prussian);
+  border-radius: 2px;
+  z-index: 1;
+}
+.gantt-bar.f1 { left: 0; right: calc(100% - (2/12) * 100%); }
+.gantt-bar.f2 { left: calc((1.75/12) * 100%); right: calc(100% - (3.5/12) * 100%); background: var(--prussian-2); }
+.gantt-bar.f3 { left: calc((3/12) * 100%); right: calc(100% - (5/12) * 100%); background: var(--accent); }
+.gantt-bar.f4 { left: calc((4.75/12) * 100%); right: calc(100% - (6.5/12) * 100%); background: var(--prussian); opacity: 0.7; }
+.gantt-bar.f5 { left: calc((6.5/12) * 100%); right: 0; background: linear-gradient(90deg, var(--prussian) 0%, var(--prussian-2) 33%, var(--accent) 66%, var(--accent) 100%); }
+.gantt-bar-label {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  color: var(--cream);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.gantt-row .gantt-cell:first-of-type {
+  border-left: 0.5px solid var(--line);
+}
+.gantt-milestone {
+  margin-top: 1.25rem;
+  padding: 0.95rem 1.1rem;
+  background: var(--cream);
+  border: 0.5px solid var(--accent);
+  border-radius: 3px;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.gantt-milestone::before {
+  content: '◆';
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+.gantt-milestone strong { color: var(--ink); font-weight: 500; }
+.gantt-legend {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+}
+.gantt-legend-item { display: flex; align-items: center; gap: 0.45rem; }
+.gantt-legend-item .sw {
+  width: 14px; height: 8px; border-radius: 1px;
+}
+
+/* ============================================================
+   §07 · SLAs
+============================================================ */
+.sla-table-wrap {
+  border: 0.5px solid var(--line);
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sla-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.sla-table th, .sla-table td {
+  padding: 1.05rem 1.25rem;
+  text-align: left;
+  border-bottom: 0.5px solid var(--line);
+  vertical-align: top;
+}
+.sla-table th {
+  font-family: var(--f-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--cream-2);
+}
+.sla-table tr:last-child td { border-bottom: 0; }
+.sla-table .col-com {
+  width: 35%;
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.sla-table .col-sla {
+  width: 25%;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: var(--prussian);
+  font-weight: 500;
+}
+.sla-table .col-pen {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+@media (max-width: 700px) {
+  .sla-table th, .sla-table td { padding: 0.7rem 0.65rem; font-size: 0.82rem; }
+  .sla-table .col-com { font-size: 0.92rem; }
+  .sla-table .col-sla { font-size: 0.78rem; }
+  .sla-table .col-pen { font-size: 0.82rem; }
+}
+
+/* ============================================================
+   §08 · NEXT STEPS
+============================================================ */
+.next-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 0.5px solid var(--line);
+  border-left: 0.5px solid var(--line);
+  margin-bottom: 2.5rem;
+}
+@media (max-width: 800px) { .next-grid { grid-template-columns: 1fr; } }
+.next-cell {
+  border-right: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+  padding: 1.75rem 1.75rem 2rem;
+  background: var(--card);
+  position: relative;
+}
+.next-step {
+  display: inline-block;
+  width: 32px; height: 32px;
+  border: 0.5px solid var(--prussian);
+  color: var(--prussian);
+  border-radius: 50%;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 31px;
+  margin-bottom: 1rem;
+}
+.next-tag {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+}
+.next-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.015em;
+}
+.next-body {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 36ch;
+}
+
+.cta-card {
+  border: 0.5px solid var(--line);
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 800px) { .cta-card { grid-template-columns: 1fr; } }
+.cta-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle at top right, rgba(201, 98, 42, 0.18), transparent 70%);
+  pointer-events: none;
+}
+.cta-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(244, 240, 232, 0.6);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+.cta-title {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  max-width: 30ch;
+}
+.cta-contact {
+  font-family: var(--f-mono);
+  font-size: 0.82rem;
+  color: rgba(244, 240, 232, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  letter-spacing: 0.02em;
+}
+.cta-contact strong { color: var(--cream); font-weight: 500; }
+.cta-contact .accent { color: var(--accent); }
+.cta-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  z-index: 1;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 3px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s var(--ease);
+  min-width: 240px;
+}
+.cta-btn:hover { background: var(--accent); color: var(--cream); }
+.cta-btn.outline {
+  background: transparent;
+  color: var(--cream);
+  border: 0.5px solid rgba(244, 240, 232, 0.3);
+}
+.cta-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+.cta-btn .arrow { transition: transform 0.2s var(--ease); }
+.cta-btn:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer {
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
+  border-top: 0.5px solid var(--line);
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.5px solid var(--line);
+}
+@media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 1.25rem; } }
+.footer-brand {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.footer-brand .mono {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-left: 0.3rem;
+}
+.footer-col-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.footer-col p {
+  margin-bottom: 0.4rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.footer-col p strong {
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: -0.01em;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.66rem;
+  color: var(--ink-4);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.footer-bottom .stamp {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.35rem 0.6rem;
+  border: 0.5px solid var(--line);
+  border-radius: 2px;
+  background: var(--card);
+}
+.footer-bottom .stamp::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* ============================================================
+   REVEAL ANIMATIONS (CSS-only intersection-driven)
+============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.40s; }
+.reveal-stagger.in > * { opacity: 0; transform: translateY(14px); }
+.reveal-stagger.in > * { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .nav-status::before { animation: none !important; }
+}
+
+/* ============================================================
+   PRINT
+============================================================ */
+@media print {
+  .nav { position: static; }
+  body::before { display: none; }
+  .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+  .section { page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav">
+  <div class="topbar-logo">EIGEN<span class="mono">·ATLAS</span></div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#fases">Fases</a>
+    <a href="#inversion">Inversión</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#siguiente">Next</a>
+  </div>
+  <div class="nav-meta">
+    <span class="nav-status">Sistema operando</span>
+    <span>EIGEN-PROP-TSC-2026/01</span>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-meta-row reveal">
+      <span>Propuesta · v1.0 · MAYO 2026</span>
+      <span>Eigen Atlas → TSC LABS</span>
+      <span class="accent">CONFIDENCIAL</span>
+    </div>
+
+    <div class="hero-eyebrow reveal">
+      <span class="dot"></span>
+      <span>PROPUESTA · EIGEN ATLAS → TSC LABS · MAYO 2026</span>
+    </div>
+
+    <h1 class="hero-title reveal">
+      Una infraestructura tecnológica completa para que TSC LABS escale <em>como laboratorio</em>, <em>como marca</em>, y <em>como plataforma B2B</em>.
+    </h1>
+
+    <div class="hero-abstract reveal">
+      <div class="hero-abstract-label">Resumen</div>
+      <div class="hero-abstract-body">
+        12 meses · 5 fases · una sola arquitectura. <strong>Cloudflare-native</strong>,
+        <strong>IVA-compliant</strong>, <strong>COFEPRIS-aware</strong><sup>1</sup>.
+        Diseñada para que cada hito ofrezca capacidad operacional inmediata,
+        no entregables aislados. Lo que se construye en F1 alimenta a F5.
+      </div>
+    </div>
+
+    <div class="hero-cta-row reveal" style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom: 0;">
+      <span class="hero-doc-stamp">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
+    </div>
+
+    <!-- HERO STATS -->
+    <div class="hero-stats reveal">
+      <div class="hero-stat">
+        <div class="hero-stat-label"><span class="num">01</span><span>Inversión Año 1+2</span></div>
+        <div class="hero-stat-value" data-counter="1.66" data-prefix="$" data-suffix="M" data-decimals="2">$0.00<span class="unit">MXN</span></div>
+        <div class="hero-stat-cap">Setup completo + 12 meses de retainer post-launch.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label"><span class="num">02</span><span>Plan</span></div>
+        <div class="hero-stat-value" data-counter="12" data-suffix="">0<span class="unit">MESES</span></div>
+        <div class="hero-stat-cap">5 fases secuenciales · cada una operacional al cierre.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label"><span class="num">03</span><span>Productos en operación</span></div>
+        <div class="hero-stat-value" data-counter="9">0<span class="unit">SISTEMAS</span></div>
+        <div class="hero-stat-cap">Landings, portales, CRM, dashboards, agentes IA.</div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================================================
+     §01 · DIAGNÓSTICO
+============================================================ -->
+<section class="section lazy" id="diagnostico">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 01</span>
+        <span>Diagnóstico</span>
+        <span>Externo · sin asumir</span>
+      </div>
+      <div>
+        <h2 class="section-title">
+          Lo que vemos <em>desde afuera</em>, sin asumir lo que no podemos ver.
+        </h2>
+        <p class="section-lede">
+          TSC LABS opera con un equipo técnico real, una marca DTC validada (The Skin Club)
+          y un pipeline B2B que ya cerró su primer talento (Nancy). Lo que sigue son los cinco
+          puntos donde la fricción tecnológica empieza a costar tiempo, dinero o riesgo regulatorio.
+          No es un juicio: es el inventario que cualquier laboratorio cosmético en su etapa de escalamiento atravesará.
+        </p>
+      </div>
+    </div>
+
+    <div class="diag-grid reveal-stagger">
+
+      <article class="diag-cell">
+        <header class="diag-cell-head">
+          <span class="diag-num">01</span>
+          <span class="diag-tag">Continuidad · IP</span>
+        </header>
+        <h3 class="diag-title">Fórmulas en Excel y en cabezas humanas.</h3>
+        <p class="diag-body">
+          Un cosmético es, técnicamente, su fórmula. Si la fórmula vive en hojas
+          de cálculo distribuidas o sólo en la memoria del químico, el laboratorio
+          tiene un riesgo de continuidad inadmisible y un techo de escalabilidad
+          implícito. Versionado, sustituciones y referencias cruzadas se vuelven
+          ejercicios de arqueología cada vez que un proveedor cambia un activo.
+        </p>
+        <div class="diag-meta">
+          <span><strong>Riesgo</strong> · continuidad operacional</span>
+          <span>Severity · alta</span>
+        </div>
+      </article>
+
+      <article class="diag-cell">
+        <header class="diag-cell-head">
+          <span class="diag-num">02</span>
+          <span class="diag-tag">Compliance · COFEPRIS</span>
+        </header>
+        <h3 class="diag-title">Sin batch tracking estructurado vs NOM-259.</h3>
+        <p class="diag-body">
+          NOM-259-SSA1-2022 (BPF cosméticos) y NOM-141 (etiquetado) exigen
+          trazabilidad lote→materia prima→producto terminado→cliente.
+          Una auditoría COFEPRIS sin ese rastro digital se resuelve con
+          dias-hombre de revisión de papel. Con el rastro, en minutos.
+        </p>
+        <div class="diag-meta">
+          <span><strong>Riesgo</strong> · regulatorio</span>
+          <span>Trigger · auditoría</span>
+        </div>
+      </article>
+
+      <article class="diag-cell">
+        <header class="diag-cell-head">
+          <span class="diag-num">03</span>
+          <span class="diag-tag">DTC · Skin Club</span>
+        </header>
+        <h3 class="diag-title">Validación demostrada vs Kiehl's, sin pipeline robusto de retención.</h3>
+        <p class="diag-body">
+          The Skin Club ya probó que TSC LABS puede formular para competir
+          con marcas globales en el segmento premium. Pero la primera venta
+          es la mitad del problema. El pipeline DTC actual deja huecos en
+          repurchase, segmentación por tipo de piel y attribution multi-touch
+          que cuestan LTV mes a mes.
+        </p>
+        <div class="diag-meta">
+          <span><strong>Riesgo</strong> · pérdida de margen</span>
+          <span>Métrica · LTV/CAC</span>
+        </div>
+      </article>
+
+      <article class="diag-cell">
+        <header class="diag-cell-head">
+          <span class="diag-num">04</span>
+          <span class="diag-tag">B2B · Talent</span>
+        </header>
+        <h3 class="diag-title">Pipeline talento recién arranca: Nancy es 1/100, sin sistema no replicable.</h3>
+        <p class="diag-body">
+          El cierre con Nancy demuestra el modelo. El siguiente paso no es
+          “conseguir más Nancys” por intuición; es codificar lo que funcionó
+          en un proceso medible: lead capture, qualification, propuesta,
+          milestones de R&D, batch ready, factura. Sin eso, el siguiente
+          talento se trata como caso 1 otra vez.
+        </p>
+        <div class="diag-meta">
+          <span><strong>Riesgo</strong> · proceso no escalable</span>
+          <span>Métrica · time-to-close</span>
+        </div>
+      </article>
+
+      <article class="diag-cell" style="grid-column: 1 / -1;">
+        <header class="diag-cell-head">
+          <span class="diag-num">05</span>
+          <span class="diag-tag">Documentación · COFEPRIS</span>
+        </header>
+        <h3 class="diag-title">Compliance docs dispersos: COFEPRIS, NOMs y lotes en carpetas locales.</h3>
+        <p class="diag-body">
+          Avisos de funcionamiento, fichas técnicas, certificados de análisis,
+          MSDS, etiquetas aprobadas y NOMs aplicables suelen vivir en carpetas
+          de Drive, USBs y correos. Para un laboratorio en escalamiento esto
+          significa que la respuesta a una solicitud de cliente, una auditoría
+          o una recertificación depende de quién recuerde dónde quedó el archivo.
+          La consecuencia es operativa: días que deberían ser horas.
+        </p>
+        <div class="diag-meta">
+          <span><strong>Riesgo</strong> · velocidad de respuesta</span>
+          <span>Solución · vault versionado + búsqueda</span>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     §02 · PROPUESTA · 5 FASES
+============================================================ -->
+<section class="section lazy" id="fases">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 02</span>
+        <span>Propuesta</span>
+        <span>5 fases · 12 meses</span>
+      </div>
+      <div>
+        <h2 class="section-title">
+          Cinco fases. Cada una <em>operacional al cierre</em>.
+        </h2>
+        <p class="section-lede">
+          La arquitectura no es modular en marketing y monolítica en código:
+          es modular de verdad. Cada fase termina con un sistema en producción
+          que TSC LABS puede usar el lunes siguiente. Si en cualquier punto
+          decidiéramos detener el plan, lo entregado quedaría operando solo,
+          sin dependencias huérfanas hacia fases posteriores.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============== FASE 1 ============== -->
+    <article class="fase reveal" id="fase-1">
+      <header class="fase-head">
+        <div>
+          <div class="fase-tag">
+            <span class="num">FASE 01</span>
+            <span class="duration">2 MESES</span>
+            <span class="price">$200K MXN</span>
+          </div>
+          <h3 class="fase-title">Foundation digital · presencia <em>premium</em> + canales operativos.</h3>
+        </div>
+        <div class="fase-id">
+          <span>EIGEN-F1-2026</span>
+          <strong>FOUNDATION</strong>
+        </div>
+      </header>
+
+      <div class="fase-grid">
+        <div class="fase-body">
+          <p>
+            La superficie pública de TSC LABS y de The Skin Club queda al nivel
+            de la calidad que el laboratorio ya demostró en formulación. <strong>Landing
+            premium The Skin Club</strong> con narrativa de marca, tipografía editorial,
+            performance &lt;1.5s LCP móvil y arquitectura DTC lista para feeds, pixels
+            y attribution.
+          </p>
+          <p>
+            En paralelo, el <strong>portal B2B <em>tsc-labs.com.mx</em></strong> consolida
+            los cuatro dossiers en un sólo lugar (cosmética, suplementos alimenticios,
+            terceros y más), con captura de leads, formulario de proyecto y embed de
+            Calendly para agendar exploratorias. Ya no se manda PDF por WhatsApp.
+          </p>
+          <p>
+            <strong>Email infra profesional</strong>: Cloudflare Email Routing + Resend Pro
+            con cuatro prefijos operativos (<em>business@</em>, <em>produccion@</em>,
+            <em>compliance@</em>, <em>rd@</em>), DKIM/SPF/DMARC configurados,
+            templates transaccionales con marca. Y <strong>WhatsApp Business API</strong>
+            con un número oficial y dos flujos iniciales (DTC consulta producto / B2B lead inbound).
+          </p>
+        </div>
+
+        <aside class="fase-side">
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Entregables</span><span class="qty">04 ítems</span></div>
+            <ul class="fase-checklist">
+              <li><strong>Landing premium</strong> The Skin Club rebuild · DTC-grade.</li>
+              <li><strong>Portal B2B</strong> tsc-labs.com.mx · 4 dossiers + lead capture + Calendly.</li>
+              <li><strong>Email infra</strong> · CF Email Routing + Resend Pro · 4 prefijos · DKIM/SPF/DMARC.</li>
+              <li><strong>WhatsApp Business API</strong> · 1 número oficial · 2 flujos.</li>
+            </ul>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Stack</span><span class="qty">CF-NATIVE</span></div>
+            <div class="fase-stack">
+              <span class="primary">CF Workers</span>
+              <span class="primary">CF Pages</span>
+              <span class="primary">Email Routing</span>
+              <span>Resend</span>
+              <span>Stripe</span>
+              <span>MercadoPago</span>
+              <span class="accent">WA Cloud API</span>
+            </div>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Métricas de cierre</span><span class="qty">04 KPIs</span></div>
+            <div class="fase-metrics">
+              <div class="fase-metric"><strong>Landing</strong>Live · LCP &lt;1.5s</div>
+              <div class="fase-metric"><strong>Portal B2B</strong>Live · 4 dossiers</div>
+              <div class="fase-metric"><strong>Email</strong>4 prefijos activos</div>
+              <div class="fase-metric"><strong>WhatsApp</strong>Operando · 2 flujos</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- ============== FASE 2 ============== -->
+    <article class="fase reveal" id="fase-2">
+      <header class="fase-head">
+        <div>
+          <div class="fase-tag">
+            <span class="num">FASE 02</span>
+            <span class="duration">1.5 MESES</span>
+            <span class="price">$140K MXN</span>
+          </div>
+          <h3 class="fase-title">Sales &amp; CRM · convertir <em>Nancy en proceso</em>.</h3>
+        </div>
+        <div class="fase-id">
+          <span>EIGEN-F2-2026</span>
+          <strong>SALES STACK</strong>
+        </div>
+      </header>
+
+      <div class="fase-grid">
+        <div class="fase-body">
+          <p>
+            Cada talento que entre a TSC LABS recibe su <strong>Talent Portal</strong>:
+            login con magic-link, vista del avance de R&amp;D por hito, batch listo para
+            QA, documentos COFEPRIS asociados, link de pago y descarga de factura.
+            Un Durable Object por talento garantiza estado consistente y aislamiento
+            de datos por cliente.
+          </p>
+          <p>
+            El <strong>CRM lead pipeline</strong> codifica el camino que llevó a Nancy:
+            lead inbound → calificación → propuesta → contrato → onboarding. Cada
+            etapa tiene un email automation asociado a milestones reales del laboratorio.
+            <em>El cliente no pregunta cómo va: el sistema le avisa.</em>
+          </p>
+          <p>
+            <strong>Stripe + MercadoPago con factura IVA-compliant por hito</strong>:
+            cada milestone (anticipo, batch piloto, batch final, entrega) genera
+            cobro y CFDI 4.0 automáticamente. Sin esperas. Sin Excel paralelo.
+          </p>
+        </div>
+
+        <aside class="fase-side">
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Entregables</span><span class="qty">04 ítems</span></div>
+            <ul class="fase-checklist">
+              <li><strong>Talent Portal</strong> · magic-link · R&D progress · batch ready · COFEPRIS docs · pago · factura.</li>
+              <li><strong>CRM lead pipeline</strong> · Nancy → siguientes 10 talentos · stages medibles.</li>
+              <li><strong>Email automation</strong> · milestones · transaccional + nurture.</li>
+              <li><strong>Stripe + MP</strong> · CFDI 4.0 por hito · IVA-compliant.</li>
+            </ul>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Stack</span><span class="qty">DO + KV + R2</span></div>
+            <div class="fase-stack">
+              <span class="primary">CF Durable Objects</span>
+              <span class="primary">CF Workers</span>
+              <span>CF KV</span>
+              <span>CF R2</span>
+              <span>Resend templates</span>
+              <span class="accent">Stripe</span>
+              <span class="accent">MercadoPago</span>
+              <span>Magic-link auth</span>
+            </div>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Métricas de cierre</span><span class="qty">03 KPIs</span></div>
+            <div class="fase-metrics">
+              <div class="fase-metric"><strong>Talent Portal</strong>1 funcional end-to-end</div>
+              <div class="fase-metric"><strong>CRM</strong>5 leads activos en pipeline</div>
+              <div class="fase-metric" style="grid-column: 1 / -1;"><strong>Automatización</strong>3 hitos automatizados con email + factura</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- ============== FASE 3 ============== -->
+    <article class="fase reveal" id="fase-3">
+      <header class="fase-head">
+        <div>
+          <div class="fase-tag">
+            <span class="num">FASE 03</span>
+            <span class="duration">2 MESES</span>
+            <span class="price">$220K MXN</span>
+          </div>
+          <h3 class="fase-title">Producción &amp; Compliance · el <em>laboratorio digitalizado</em>.</h3>
+        </div>
+        <div class="fase-id">
+          <span>EIGEN-F3-2026</span>
+          <strong>FORMULA + LOT</strong>
+        </div>
+      </header>
+
+      <div class="fase-grid">
+        <div class="fase-body">
+          <p>
+            <strong>Formula DB</strong>: cada fórmula con versiones (v1.0 → v1.4),
+            lista de ingredientes con CAS y porcentajes, sustitutos pre-validados
+            por proveedor, NOMs aplicables y registros de eficacia. Un cambio de
+            ingrediente deja registro auditable y dispara un check de NOM relevant.
+            La fórmula deja de vivir en una persona.
+          </p>
+          <p>
+            <strong>Batch tracking</strong> end-to-end: lotes de materia prima → lote
+            de producto terminado → fecha de caducidad → cliente final. Cada lote
+            tiene su QA digital (parámetros, fotos, CoA), su inventario reconciliado,
+            y su trazabilidad bidireccional. Una llamada de cliente sobre un lote
+            específico se resuelve en segundos, no en horas de archivero.
+          </p>
+          <p>
+            <strong>Document Vault COFEPRIS</strong>: NOM-259-SSA1-2022 (BPF),
+            NOM-141 (etiquetado), NOM-089 y todos los avisos vigentes en un repositorio
+            buscable, version-controlled, con export PDF compilado para auditoría.
+            Trazabilidad lot→cliente integrada al CRM de la Fase 2.
+          </p>
+        </div>
+
+        <aside class="fase-side">
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Entregables</span><span class="qty">04 ítems</span></div>
+            <ul class="fase-checklist">
+              <li><strong>Formula DB</strong> · versiones · ingredientes · sustitutos · NOMs · eficacia.</li>
+              <li><strong>Batch tracking</strong> · lots · QA digital · caducidad · inventario reconciliado.</li>
+              <li><strong>Document Vault COFEPRIS</strong> · NOM-259/141/089 · buscable · version-controlled · export PDF.</li>
+              <li><strong>Trazabilidad</strong> · lot → cliente integrada al CRM.</li>
+            </ul>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Stack</span><span class="qty">D1 + R2</span></div>
+            <div class="fase-stack">
+              <span class="primary">CF D1</span>
+              <span class="primary">CF R2</span>
+              <span class="primary">CF Workflows</span>
+              <span>CF Pages dashboards</span>
+              <span class="accent">PDF compositor</span>
+              <span>Full-text search</span>
+            </div>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Métricas de cierre</span><span class="qty">03 KPIs</span></div>
+            <div class="fase-metrics">
+              <div class="fase-metric"><strong>Fórmulas</strong>18 migradas</div>
+              <div class="fase-metric"><strong>Lote piloto</strong>1 trackeado end-to-end</div>
+              <div class="fase-metric" style="grid-column: 1 / -1;"><strong>COFEPRIS</strong>100% docs digitalizados y buscables</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- ============== FASE 4 ============== -->
+    <article class="fase reveal" id="fase-4">
+      <header class="fase-head">
+        <div>
+          <div class="fase-tag">
+            <span class="num">FASE 04</span>
+            <span class="duration">1.5 MESES</span>
+            <span class="price">$160K MXN</span>
+          </div>
+          <h3 class="fase-title">Analytics &amp; Intelligence · <em>visibilidad real-time</em> sobre cada peso.</h3>
+        </div>
+        <div class="fase-id">
+          <span>EIGEN-F4-2026</span>
+          <strong>OBSERVABILITY</strong>
+        </div>
+      </header>
+
+      <div class="fase-grid">
+        <div class="fase-body">
+          <p>
+            <strong>Dashboard ejecutivo</strong>: margen real-time por SKU, por canal
+            (DTC, B2B, terceros), por talento, por línea de producto. La pregunta
+            “¿está dejando dinero esta línea?” deja de tener una respuesta intuitiva
+            y empieza a tener una numérica, viva, hoy mismo.
+          </p>
+          <p>
+            <strong>Ad performance unificada</strong>: Meta + TikTok + Google Ads
+            con attribution multi-touch (last-click, linear, time-decay) sobre
+            ventas reales del Skin Club, no sobre Add-To-Carts. <em>El reporte de
+            agencia se vuelve auditable.</em>
+          </p>
+          <p>
+            <strong>LTV / Retention model</strong> por marca y talento: cuál cohort
+            recompra, en qué ventana, con qué SKU como entry point. Y la
+            <strong>margin calculator productivizada</strong>: una versión pública
+            (lead magnet B2B con cálculos demo) y una privada interna con costos
+            reales, listas para cotizaciones rápidas.
+          </p>
+        </div>
+
+        <aside class="fase-side">
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Entregables</span><span class="qty">04 ítems</span></div>
+            <ul class="fase-checklist">
+              <li><strong>Dashboard ejecutivo</strong> · margen real-time por SKU · canal · talento.</li>
+              <li><strong>Ad performance</strong> · Meta + TikTok + Google · multi-touch attribution.</li>
+              <li><strong>LTV / Retention</strong> · modelo predictivo por marca y talento.</li>
+              <li><strong>Margin calculator</strong> · pública (demo) + privada (costos reales).</li>
+            </ul>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Stack</span><span class="qty">ANALYTICS</span></div>
+            <div class="fase-stack">
+              <span class="primary">CF Workers Analytics Engine</span>
+              <span class="primary">CF R2 data lake</span>
+              <span>CF D1</span>
+              <span>Plotly</span>
+              <span>Observable</span>
+              <span class="accent">Meta API</span>
+              <span class="accent">TikTok API</span>
+              <span class="accent">Google Ads API</span>
+            </div>
+          </div>
+
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Métricas de cierre</span><span class="qty">03 KPIs</span></div>
+            <div class="fase-metrics">
+              <div class="fase-metric"><strong>Dashboard</strong>Live · real-time</div>
+              <div class="fase-metric"><strong>Ad platforms</strong>4 conectadas</div>
+              <div class="fase-metric" style="grid-column: 1 / -1;"><strong>Margen</strong>Real-time por SKU/canal/talento</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- ============== FASE 5 ============== -->
+    <article class="fase reveal" id="fase-5">
+      <header class="fase-head">
+        <div>
+          <div class="fase-tag">
+            <span class="num">FASE 05</span>
+            <span class="duration">5 MESES · 3 OLAS</span>
+            <span class="price">$340K MXN</span>
+          </div>
+          <h3 class="fase-title">AI Agents · capacidad <em>multiplicada</em> con presencia operativa.</h3>
+        </div>
+        <div class="fase-id">
+          <span>EIGEN-F5-2026</span>
+          <strong>AGENTS</strong>
+        </div>
+      </header>
+
+      <div class="fase-grid">
+        <div class="fase-body">
+          <p>
+            La Fase 5 no es un solo entregable: son tres olas secuenciales, cada
+            una con SLA y métrica medible. Construidas sobre el framework propietario
+            <strong>Eigen Agents on Cloudflare</strong> (Workers + Durable Objects +
+            Workers AI con Llama 4 / Claude API + servidores MCP). Multi-tenant
+            por diseño: el agente de TSC vive aislado del de cualquier otro cliente Eigen.
+          </p>
+          <p>
+            El orden es deliberado: <strong>primero el chatbot DTC</strong> (mayor
+            volumen, mayor ROI inmediato), <strong>luego el qualifier B2B</strong>
+            (libera al equipo humano), <strong>finalmente compliance + R&amp;D</strong>
+            (riesgo más alto, requiere más data pre-cargada en F3 y F4).
+          </p>
+        </div>
+
+        <aside class="fase-side">
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Stack base</span><span class="qty">EIGEN AGENTS</span></div>
+            <div class="fase-stack">
+              <span class="primary">Eigen Agents framework</span>
+              <span class="primary">CF Workers</span>
+              <span class="primary">CF Durable Objects</span>
+              <span class="primary">CF Workers AI</span>
+              <span class="accent">Llama 4</span>
+              <span class="accent">Claude API</span>
+              <span>MCP servers</span>
+            </div>
+          </div>
+          <div class="fase-side-section">
+            <div class="fase-side-label"><span>Métricas de cierre</span><span class="qty">03 KPIs</span></div>
+            <div class="fase-metrics">
+              <div class="fase-metric"><strong>Agentes</strong>3 en producción</div>
+              <div class="fase-metric"><strong>SLA</strong>99.5% uptime</div>
+              <div class="fase-metric"><strong>Qualification</strong>−70% tiempo</div>
+              <div class="fase-metric"><strong>Alertas</strong>COFEPRIS &lt;24h</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="fase-waves reveal-stagger">
+        <div class="fase-wave">
+          <div class="fase-wave-head">
+            <span class="ola">OLA A · 1.5 MO</span>
+            <span class="price">$100K</span>
+          </div>
+          <h4 class="fase-wave-title">Chatbot DTC The Skin Club</h4>
+          <p class="fase-wave-body">
+            24/7 en sitio + WhatsApp. Match de fórmula por tipo de piel, ingredientes
+            sensibles, rutina recomendada. Atención post-compra (estado pedido,
+            tracking, cambios). Drift de tono detectado y prevenido por post-processors
+            determinísticos.
+          </p>
+        </div>
+        <div class="fase-wave">
+          <div class="fase-wave-head">
+            <span class="ola">OLA B · 1.5 MO</span>
+            <span class="price">$120K</span>
+          </div>
+          <h4 class="fase-wave-title">Lead qualification B2B</h4>
+          <p class="fase-wave-body">
+            Filtra inbound talents desde el portal y WhatsApp. Pregunta lo que un
+            humano preguntaría: volumen, categoría, regulación necesaria, presupuesto.
+            Agenda con Calendly sólo cuando el lead pasa los filtros.
+            Reduce el tiempo del equipo humano de horas a minutos por talento.
+          </p>
+        </div>
+        <div class="fase-wave">
+          <div class="fase-wave-head">
+            <span class="ola">OLA C · 2 MO</span>
+            <span class="price">$120K</span>
+          </div>
+          <h4 class="fase-wave-title">Compliance Monitor + R&amp;D Assistant</h4>
+          <p class="fase-wave-body">
+            Alerta cambios en NOMs y actualizaciones COFEPRIS en menos de 24h
+            con impacto evaluado por SKU. Asistente R&amp;D busca papers, activos
+            emergentes, sustitutos, formulaciones de competencia documentadas.
+            Multiplica al equipo técnico sin contratar.
+          </p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     §03 · RETAINER POST-DEPLOYMENT
+============================================================ -->
+<section class="section lazy" id="retainer">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 03</span>
+        <span>Retainer</span>
+        <span>Post-deployment</span>
+      </div>
+      <div>
+        <h2 class="section-title">Operación continua, no <em>“te entrego y me voy”</em>.</h2>
+        <p class="section-lede">
+          Lo que se construye en 12 meses se mantiene vivo durante los siguientes 12 meses
+          con un retainer mensual fijo. Cubre infraestructura, hotfixes, features menores y
+          soporte directo. Si algo grande aparece (un producto digital nuevo, una integración
+          mayor, un canal adicional), se cotiza aparte: el retainer mantiene el sistema, no construye otro.
+        </p>
+      </div>
+    </div>
+
+    <article class="retainer-card reveal">
+      <div>
+        <div class="retainer-price">$50K<span class="unit">MXN/MES</span></div>
+        <div class="retainer-meta">12 MESES MÍNIMO · POST-LAUNCH</div>
+        <h3 style="font-family: var(--f-display); font-weight: 500; font-size: 1.15rem; line-height: 1.3; color: var(--ink); margin-bottom: 0.85rem; max-width: 32ch; letter-spacing: -0.015em;">
+          Operación predecible para un sistema en producción.
+        </h3>
+        <p style="font-size: 0.94rem; line-height: 1.55; color: var(--ink-2); max-width: 50ch;">
+          Empieza al cierre de la Fase 1 (cuando ya hay infra real corriendo) y se factura
+          mensual. Termina con 30 días de aviso de cualquiera de las dos partes. Sin
+          contratos perpetuos, sin penalizaciones de salida más allá del mes en curso.
+        </p>
+      </div>
+
+      <div>
+        <div class="retainer-list-head">Incluye · Excluye</div>
+        <ul class="retainer-list">
+          <li><strong>Monitoreo infra</strong> · uptime, latencia, errores, alertas 24/7.</li>
+          <li><strong>Hotfix &lt;4h</strong> · respuesta crítica garantizada.</li>
+          <li><strong>2 features chicos / mes</strong> · cambios de copy, ajustes de flujo, tweaks UX.</li>
+          <li><strong>Security patches</strong> · dependencias, CVEs, certificados.</li>
+          <li><strong>Backups</strong> · diarios, retención 90d, recovery test trimestral.</li>
+          <li><strong>Soporte chat directo</strong> · slack/whatsapp con el equipo Eigen.</li>
+          <li class="excl">Productos digitales mayores nuevos · cotización aparte.</li>
+          <li class="excl">Costos de terceros (Stripe, MP, Resend, OpenAI) · pass-through al cliente.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     §04 · INVERSIÓN
+============================================================ -->
+<section class="section lazy" id="inversion">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 04</span>
+        <span>Inversión</span>
+        <span>Total · pagos</span>
+      </div>
+      <div>
+        <h2 class="section-title">El número, sin <em>asteriscos</em>.</h2>
+        <p class="section-lede">
+          Setup completo, retainer del primer año post-launch, total combinado.
+          Pagos por hito: 30% al inicio de cada fase, 70% al cierre con entregables
+          validados. Una sola moneda (MXN), una sola lógica de cobro a lo largo del proyecto.
+        </p>
+      </div>
+    </div>
+
+    <div class="invest-table-wrap reveal">
+      <table class="invest-table">
+        <thead>
+          <tr>
+            <th>Fase</th>
+            <th>Nombre</th>
+            <th class="num">Setup MXN</th>
+            <th class="num">Duración</th>
+            <th class="num">Acumulado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-fase">F · 01</td>
+            <td class="col-fase-name">Foundation digital<span class="meta">Landings · portal B2B · email · WA</span></td>
+            <td class="num accent">$200K</td>
+            <td class="num">2 mo</td>
+            <td class="num">$200K</td>
+          </tr>
+          <tr>
+            <td class="col-fase">F · 02</td>
+            <td class="col-fase-name">Sales &amp; CRM<span class="meta">Talent Portal · pipeline · automation · facturación</span></td>
+            <td class="num accent">$140K</td>
+            <td class="num">1.5 mo</td>
+            <td class="num">$340K</td>
+          </tr>
+          <tr>
+            <td class="col-fase">F · 03</td>
+            <td class="col-fase-name">Producción &amp; Compliance<span class="meta">Formula DB · batch tracking · vault COFEPRIS</span></td>
+            <td class="num accent">$220K</td>
+            <td class="num">2 mo</td>
+            <td class="num">$560K</td>
+          </tr>
+          <tr>
+            <td class="col-fase">F · 04</td>
+            <td class="col-fase-name">Analytics &amp; Intelligence<span class="meta">Dashboard · ads · LTV · margin calculator</span></td>
+            <td class="num accent">$160K</td>
+            <td class="num">1.5 mo</td>
+            <td class="num">$720K</td>
+          </tr>
+          <tr>
+            <td class="col-fase">F · 05</td>
+            <td class="col-fase-name">AI Agents · 3 olas<span class="meta">Chatbot DTC · qualifier B2B · compliance + R&amp;D</span></td>
+            <td class="num accent">$340K</td>
+            <td class="num">5 mo</td>
+            <td class="num">$1,060K</td>
+          </tr>
+          <tr class="total-row">
+            <td class="col-fase">TOTAL</td>
+            <td class="col-fase-name">Setup completo<span class="meta">5 fases · 12 meses</span></td>
+            <td class="num">$1,060K</td>
+            <td class="num">12 mo</td>
+            <td class="num">$1.06M</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="invest-summary reveal-stagger">
+      <div class="invest-sum-cell">
+        <div class="invest-sum-label">Setup total</div>
+        <div class="invest-sum-value">$1.06M<span style="font-family: var(--f-mono); font-size: 0.4em; font-weight: 500; color: var(--ink-3); margin-left: 0.4rem;">MXN</span></div>
+        <div class="invest-sum-cap">5 fases · 12 meses · pagos por hito</div>
+      </div>
+      <div class="invest-sum-cell">
+        <div class="invest-sum-label">Retainer Año 1 post-launch</div>
+        <div class="invest-sum-value prussian">$600K<span style="font-family: var(--f-mono); font-size: 0.4em; font-weight: 500; color: var(--ink-3); margin-left: 0.4rem;">MXN</span></div>
+        <div class="invest-sum-cap">$50K MXN × 12 meses</div>
+      </div>
+      <div class="invest-sum-cell">
+        <div class="invest-sum-label">Total Año 1+2</div>
+        <div class="invest-sum-value accent">$1.66M<span style="font-family: var(--f-mono); font-size: 0.4em; font-weight: 500; color: var(--ink-3); margin-left: 0.4rem;">MXN</span></div>
+        <div class="invest-sum-cap">Setup + retainer · todo incluido</div>
+      </div>
+    </div>
+
+    <div class="invest-pay reveal">
+      <span><strong>Pagos por hito</strong></span>
+      <span>30% al inicio de cada fase</span>
+      <span>+</span>
+      <span>70% al cierre con entregables validados</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     §05 · POR QUÉ EIGEN
+============================================================ -->
+<section class="section lazy" id="por-que">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 05</span>
+        <span>Por qué Eigen</span>
+        <span>Diferenciación</span>
+      </div>
+      <div>
+        <h2 class="section-title">Cuatro razones, sin <em>marketing</em>.</h2>
+        <p class="section-lede">
+          No es una agencia tradicional ni un equipo de freelancers ni un wrapper
+          sobre alguna plataforma SaaS. Es una arquitectura específica, un playbook
+          probado en otros verticales y un equipo que ya construye sobre ella todos los días.
+        </p>
+      </div>
+    </div>
+
+    <div class="why-grid reveal-stagger">
+
+      <article class="why-cell">
+        <div class="why-num">01 · INFRA</div>
+        <div>
+          <h3 class="why-title">Stack Cloudflare nativo · global edge · costo-eficiente vs AWS.</h3>
+          <p class="why-body">
+            Workers, Durable Objects, R2, D1, Workers AI, Workflows.
+            Latencia &lt;50ms desde cualquier ciudad del país, sin servidores
+            que mantener, sin facturas variables que asusten al CFO.
+            Comparado con AWS equivalente: típicamente 30–60% menos costo
+            de infra mensual a este perfil de carga.
+          </p>
+        </div>
+        <div class="why-tags">
+          <span>CF Workers</span><span>Durable Objects</span><span>R2</span><span>D1</span><span>Workers AI</span>
+        </div>
+      </article>
+
+      <article class="why-cell">
+        <div class="why-num">02 · PLAYBOOK</div>
+        <div>
+          <h3 class="why-title">Vertical onboarding playbook probado · TSC LABS en 3 semanas.</h3>
+          <p class="why-body">
+            Dr. Marcos (medical), Cosalá Hotels (hospitality), Farmacia Económica (pharma):
+            cada uno onboardeado con el mismo framework de 6 fases, 3 semanas calendario,
+            1–2 días de dev real con IA. TSC LABS no es el primer cliente; es el primero
+            en biotech cosmético, sí, pero el mecanismo de onboarding es mecánico.
+          </p>
+        </div>
+        <div class="why-tags">
+          <span>6 fases</span><span>3 semanas</span><span>Multi-vertical</span><span>Replicable</span>
+        </div>
+      </article>
+
+      <article class="why-cell">
+        <div class="why-num">03 · IP · AI AGENTS</div>
+        <div>
+          <h3 class="why-title">Framework propietario multi-tenant · DO por cliente · MCP.</h3>
+          <p class="why-body">
+            Eigen Agents corre en Cloudflare con un Durable Object por tenant.
+            Aislamiento de datos por diseño, no por configuración. Servidores
+            MCP propios para integrar herramientas específicas (calendarios,
+            CRMs, documentos COFEPRIS, formularios). El framework no es vendor lock-in:
+            es la diferencia entre agentes que funcionan y agentes que demuestran.
+          </p>
+        </div>
+        <div class="why-tags">
+          <span>Multi-tenant</span><span>DO por cliente</span><span>MCP</span><span>Workers AI</span>
+        </div>
+      </article>
+
+      <article class="why-cell">
+        <div class="why-num">04 · MX-NATIVE</div>
+        <div>
+          <h3 class="why-title">100% México · COFEPRIS-aware · IVA-compliant · ES + EN.</h3>
+          <p class="why-body">
+            CFDI 4.0 nativo, retenciones, addenda, complementos de pago.
+            COFEPRIS y NOMs aplicables conocidos, no buscados. Comunicación
+            en español como default y en inglés cuando aplica. El equipo
+            opera desde Guadalajara y Ciudad de México, en horario local,
+            con WhatsApp como canal directo.
+          </p>
+        </div>
+        <div class="why-tags">
+          <span>CFDI 4.0</span><span>COFEPRIS</span><span>NOMs</span><span>ES+EN</span><span>WA directo</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §06 · GANTT
+============================================================ -->
+<section class="section lazy" id="timeline">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 06</span>
+        <span>Timeline</span>
+        <span>12 meses · Gantt</span>
+      </div>
+      <div>
+        <h2 class="section-title">Doce meses en una <em>sola vista</em>.</h2>
+        <p class="section-lede">
+          Las fases se traslapan deliberadamente: F2 arranca cuando F1 está al 75%
+          y F4 mientras F3 cierra documentación. Los meses 6.5 → 12 los dedica F5
+          a las tres olas de agentes. El mes 12 cierra el ecosistema completo en
+          operación, no “en beta”.
+        </p>
+      </div>
+    </div>
+
+    <div class="gantt-wrap reveal">
+      <div class="gantt">
+        <div class="gantt-header">
+          <div>FASE</div>
+          <div>M1</div><div>M2</div><div>M3</div><div>M4</div><div>M5</div><div>M6</div>
+          <div>M7</div><div>M8</div><div>M9</div><div>M10</div><div>M11</div><div>M12</div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label"><span class="num">01</span>Foundation</div>
+          <div class="gantt-cell"><div class="gantt-bar f1"><span class="gantt-bar-label">F1 · $200K</span></div></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label"><span class="num">02</span>Sales · CRM</div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-cell"><div class="gantt-bar f2"><span class="gantt-bar-label">F2 · $140K</span></div></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label"><span class="num">03</span>Producción</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"><div class="gantt-bar f3"><span class="gantt-bar-label">F3 · $220K</span></div></div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label"><span class="num">04</span>Analytics</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-cell"><div class="gantt-bar f4"><span class="gantt-bar-label">F4 · $160K</span></div></div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label"><span class="num">05</span>AI Agents</div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div>
+          <div class="gantt-cell"><div class="gantt-bar f5"><span class="gantt-bar-label">F5 · $340K · 3 OLAS (A → B → C)</span></div></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+          <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        </div>
+      </div>
+
+      <div class="gantt-legend">
+        <div class="gantt-legend-item"><span class="sw" style="background: var(--prussian);"></span>F1 Foundation</div>
+        <div class="gantt-legend-item"><span class="sw" style="background: var(--prussian-2);"></span>F2 Sales</div>
+        <div class="gantt-legend-item"><span class="sw" style="background: var(--accent);"></span>F3 Producción</div>
+        <div class="gantt-legend-item"><span class="sw" style="background: var(--prussian); opacity: 0.7;"></span>F4 Analytics</div>
+        <div class="gantt-legend-item"><span class="sw" style="background: linear-gradient(90deg, var(--prussian), var(--accent));"></span>F5 Agents · 3 olas</div>
+      </div>
+
+      <div class="gantt-milestone">
+        <strong>Mes 12</strong> · Ecosistema completo en operación · 5 fases cerradas · retainer activo · 3 agentes IA en producción
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     §07 · SLAs
+============================================================ -->
+<section class="section lazy" id="sla">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 07</span>
+        <span>SLAs</span>
+        <span>Compromisos · penalización</span>
+      </div>
+      <div>
+        <h2 class="section-title">Compromisos con <em>consecuencias</em>.</h2>
+        <p class="section-lede">
+          Un SLA sin penalización contractual es un slogan. Acá cada compromiso
+          tiene un mecanismo de auto-corrección: si Eigen falla, el cliente recibe
+          una compensación tangible. La meta no es activar las penalizaciones,
+          es hacerlas innecesarias por construcción.
+        </p>
+      </div>
+    </div>
+
+    <div class="sla-table-wrap reveal">
+      <table class="sla-table">
+        <thead>
+          <tr>
+            <th>Compromiso</th>
+            <th>SLA</th>
+            <th>Penalización</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-com">Uptime infra</td>
+            <td class="col-sla">99.9%</td>
+            <td class="col-pen">1 mes de retainer gratis si baja del umbral en un mes calendario.</td>
+          </tr>
+          <tr>
+            <td class="col-com">Hotfix crítico</td>
+            <td class="col-sla">&lt; 4h</td>
+            <td class="col-pen">Escalación automática a CTO de Eigen · status updates cada hora hasta resolución.</td>
+          </tr>
+          <tr>
+            <td class="col-com">Entrega de hito de fase</td>
+            <td class="col-sla">Fecha pactada</td>
+            <td class="col-pen">−5% del precio de la fase por cada semana de retraso · máximo −20% acumulado.</td>
+          </tr>
+          <tr>
+            <td class="col-com">Confidencialidad</td>
+            <td class="col-sla">NDA + delete-on-request</td>
+            <td class="col-pen">Indemnización contractual prevista en NDA · datos eliminados verificablemente en &lt;72h ante solicitud formal.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §08 · NEXT STEPS
+============================================================ -->
+<section class="section lazy" id="siguiente">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-meta">
+        <span class="section-head-num">§ 08</span>
+        <span>Next steps</span>
+        <span>Cómo arrancamos</span>
+      </div>
+      <div>
+        <h2 class="section-title">Tres pasos · siete días al <em>kickoff</em>.</h2>
+        <p class="section-lede">
+          De propuesta a Fase 1 en una semana, asumiendo decisión interna en TSC.
+          El paso técnico (drafting de NDA + work order) se entrega en menos de
+          48 horas hábiles desde el go-ahead. El kickoff con equipo completo se
+          calendariza al día 7.
+        </p>
+      </div>
+    </div>
+
+    <div class="next-grid reveal-stagger">
+
+      <article class="next-cell">
+        <div class="next-step">01</div>
+        <div class="next-tag">REVISIÓN</div>
+        <h3 class="next-title">Reunión de 60 minutos · repaso + ajustes</h3>
+        <p class="next-body">
+          Recorremos la propuesta sección por sección. Identificamos qué fase
+          empieza, qué entregables se priorizan, qué supuestos hay que validar
+          desde adentro. Sale un acta con cambios pactados.
+        </p>
+      </article>
+
+      <article class="next-cell">
+        <div class="next-step">02</div>
+        <div class="next-tag">CONTRATO</div>
+        <h3 class="next-title">NDA + work order de Fase 1 · drafted en 48h</h3>
+        <p class="next-body">
+          Eigen entrega NDA bilateral, contrato marco y work order específico
+          de la Fase 1 dentro de 48 horas hábiles. Una sola revisión con legal
+          de TSC antes de firma.
+        </p>
+      </article>
+
+      <article class="next-cell">
+        <div class="next-step">03</div>
+        <div class="next-tag">KICKOFF</div>
+        <h3 class="next-title">Fase 1 arranca · 7 días post-firma</h3>
+        <p class="next-body">
+          Equipo Eigen kickoff con TSC: alcance final, accesos, owner por canal,
+          calendarios de revisión, primer entregable parcial al día 14.
+          Comunicación primaria en WhatsApp + Slack compartido.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="cta-card reveal">
+      <div>
+        <div class="cta-eyebrow">CONTACTO DIRECTO · EIGEN ATLAS</div>
+        <h3 class="cta-title">Listos para revisar la propuesta y firmar la Fase 1.</h3>
+        <div class="cta-contact">
+          <span><strong>Raul Chávez</strong> · Founder · Eigen Atlas</span>
+          <span class="accent">rc@eigenatlas.com</span>
+          <span>WhatsApp · 33 3301 6642</span>
+          <span>eigenatlas.com</span>
+        </div>
+      </div>
+      <div class="cta-side">
+        <a href="mailto:rc@eigenatlas.com?subject=TSC%20LABS%20%C2%B7%20Propuesta%20Eigen%20Atlas&body=Hola%20Raul%2C" class="cta-btn">
+          <span>Agendar revisión 60min</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://wa.me/523333016642?text=Hola%20Raul%2C%20vi%20la%20propuesta%20Eigen%20Atlas%20%E2%86%92%20TSC%20LABS%20y%20quiero%20avanzar." class="cta-btn outline">
+          <span>WhatsApp directo</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">EIGEN<span class="mono">·ATLAS</span></div>
+        <p>Sistemas inteligentes en la frontera.</p>
+        <p>Cloudflare-native · Multi-tenant · México.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Documento</div>
+        <p><strong>EIGEN-PROP-TSC-2026/01</strong></p>
+        <p>Propuesta Eigen Atlas → TSC LABS</p>
+        <p>Mayo 2026 · v1.0</p>
+        <p>Propuesta válida 30 días desde emisión.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Contacto</div>
+        <p><strong>Raul Chávez</strong></p>
+        <p>rc@eigenatlas.com</p>
+        <p>WhatsApp · 33 3301 6642</p>
+        <p>eigenatlas.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>CONFIDENCIAL · NO DISTRIBUIR · TSC LABS + EIGEN ATLAS</span>
+      <span class="stamp">EIGEN-PROP-TSC-2026/01 · 30D VÁLIDA</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS · LEAN GSAP (counters + reveal observer)
+============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  // ---------- Reveal observer (CSS-driven) ----------
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  // ---------- Hero stat counters ----------
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el) {
+    var target = parseFloat(el.getAttribute('data-counter')) || 0;
+    var prefix = el.getAttribute('data-prefix') || '';
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var duration = 1500;
+    var unitNode = el.querySelector('.unit');
+    var unitHTML = unitNode ? unitNode.outerHTML : '';
+    var startTime = null;
+
+    if (prefersReduced) {
+      el.innerHTML = prefix + target.toFixed(decimals) + suffix + unitHTML;
+      return;
+    }
+
+    function frame(ts) {
+      if (startTime === null) startTime = ts;
+      var elapsed = ts - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutCubic(progress);
+      var current = target * eased;
+      var rendered = prefix + current.toFixed(decimals) + suffix;
+      el.innerHTML = rendered + unitHTML;
+      if (progress < 1) requestAnimationFrame(frame);
+      else el.innerHTML = prefix + target.toFixed(decimals) + suffix + unitHTML;
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  var counters = document.querySelectorAll('[data-counter]');
+  if ('IntersectionObserver' in window) {
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { counterObserver.observe(el); });
+  } else {
+    counters.forEach(function (el) { animateCounter(el); });
+  }
+
+})();
+</script>
+
+</body>
+</html>
