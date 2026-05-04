@@ -2580,7 +2580,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="phase-prose">
           <p>Las fórmulas migran de Excel a una <strong>Formula DB versionada</strong> con ingredientes, sustitutos, NOMs aplicables y eficacia comprobada. <strong>Batch tracking</strong> con números de lote, registros de QA, fechas de caducidad y reconciliación con inventario, ligado al talent portal correspondiente.</p>
           <p><strong>ERP propio:</strong> control de inventario que descuenta automáticamente con cada producción y cada movimiento de salida, predicción de agotamiento por SKU, alertas de re-stock antes de quedarse sin materia prima, gestión de proveedores con histórico de compras y órdenes de compra generadas semi-automáticamente cuando un insumo cruza el umbral crítico.</p>
-          <p><strong>Document Vault COFEPRIS</strong> — NOM-259-SSA1-2022, NOM-141-SSA1/SCFI-2012, NOM-089-SSA1-1994 — buscable, version-controlled y exportable a PDF para cualquier auditoría. <strong>Trazabilidad lot → cliente final</strong>, audit-trail completo, litigio-ready.</p>
+          <p><strong>Document Vault COFEPRIS</strong> — Aviso de Funcionamiento + designación de Responsable Sanitario + auditorías NOM-259-SSA1-2022 con CAPAs + etiquetado NOM-141-SSA1/SCFI-2012 versionado por SKU + análisis microbiológicos NOM-089-SSA1-1994 por lote producido + lot/batch records + log de quejas y farmacovigilancia cosmética + checklist contra lista de ingredientes prohibidos/restringidos COFEPRIS — todo buscable, version-controlled y exportable a PDF firmado para cualquier auditoría. <strong>Trazabilidad lot → cliente final</strong>, audit-trail completo, litigio-ready.</p>
+          <p class="phase-value-list"><strong>Lo que TSC gana, en concreto:</strong> auditoría COFEPRIS de 3 semanas → 2 días · cualquier inspector pide doc X → exportable a PDF firmado en &lt;60s · ingrediente prohibido sale en lista nueva COFEPRIS → check automático contra todas las fórmulas activas · quejas y farmacovigilancia con audit log unificado, búsqueda &lt;5s · etiquetado NOM-141 versionado: cada cambio de label queda con timestamp y diff.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
@@ -2693,7 +2694,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="bi-frame">
       <div class="bi-intro">
         <h3>El dashboard que TSC LABS lee al <em>año 5</em>.</h3>
-        <p>30+ marcas, 40+ fórmulas, manufactura a escala, exportación USMCA, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics.</p>
+        <p>30+ marcas, 40+ fórmulas, manufactura a escala, retail nacional consolidado, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics.</p>
       </div>
 
       <div class="bi-dashboard">
@@ -2937,7 +2938,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <!-- PANEL B · Margin per channel + cohort retention -->
           <div class="bi-cell">
             <div class="bi-cell-head">
-              <div class="bi-cell-title">Margen por canal · cohort retention<small>F4 · DTC + B2B + Retail + USMCA · % gross margin</small></div>
+              <div class="bi-cell-title">Margen por canal · cohort retention<small>F4 · DTC + B2B + Retail · % gross margin</small></div>
               <span class="bi-cell-tag">MIX</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -2946,7 +2947,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
                 <text x="0" y="22">DTC</text>
                 <text x="0" y="50">B2B · TALENT</text>
                 <text x="0" y="78">RETAIL</text>
-                <text x="0" y="106">EXPORT · USMCA</text>
+                <text x="0" y="106">MAYOREO</text>
               </g>
               <g stroke="rgba(10,10,10,0.06)" stroke-width="1">
                 <line x1="100" y1="10" x2="100" y2="118"/>
@@ -2968,7 +2969,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
                 <rect x="100" y="68" width="152" height="14" fill="#1E40AF" opacity="0.65"/>
                 <rect x="252" y="68" width="148" height="14" fill="#0A0A0A" opacity="0.18"/>
                 <text x="258" y="78" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">38%</text>
-                <!-- Export USMCA · 47% -->
+                <!-- Mayoreo · 47% -->
                 <rect x="100" y="96" width="188" height="14" fill="#1E40AF" opacity="0.85"/>
                 <rect x="288" y="96" width="112" height="14" fill="#0A0A0A" opacity="0.18"/>
                 <text x="294" y="106" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">47%</text>
@@ -3019,7 +3020,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
                 <g transform="translate(380 162)"><rect width="8" height="3" fill="#6E6E70"/><text x="12" y="5" fill="#0A0A0A">2027 Q1</text></g>
               </g>
             </svg>
-            <div class="bi-cell-foot"><strong>Channel mix</strong> · DTC dominante en margen · Retail crece volumen · USMCA upside</div>
+            <div class="bi-cell-foot"><strong>Channel mix</strong> · DTC dominante en margen · Retail crece volumen · mayoreo recurrente</div>
           </div>
 
           <!-- PANEL C · Predictive Inventory (30/60/90-day) -->
@@ -3112,10 +3113,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <!-- Footer summary -->
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.5">
                 <text x="40" y="220">CICLO PROMEDIO · CONCEPT → PROD · 11 MESES</text>
-                <text x="40" y="232" fill="#6E6E70">2 LANZAMIENTOS Q4 2030 · 1 USMCA · 1 EU</text>
+                <text x="40" y="232" fill="#6E6E70">2 LANZAMIENTOS Q4 2030 · 1 LÍNEA HOMBRES · 1 LÍNEA KIDS</text>
               </g>
             </svg>
-            <div class="bi-cell-foot"><strong>Conversion concept→prod 7%</strong> · 2 fórmulas listas para Q4 · 1 export-ready</div>
+            <div class="bi-cell-foot"><strong>Conversion concept→prod 7%</strong> · 2 fórmulas listas para Q4 · 1 línea hombres validada</div>
           </div>
 
           <!-- PANEL E · Agent activity feed -->
@@ -3172,17 +3173,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <!-- PANEL F · Compliance heat map (8 brands × 4 NOMs) -->
           <div class="bi-cell">
             <div class="bi-cell-head">
-              <div class="bi-cell-title">Compliance heat map · NOM × brand<small>F2 · COFEPRIS + FDA + EU · status real-time</small></div>
+              <div class="bi-cell-title">Compliance heat map · NOM × brand<small>F2 · COFEPRIS NOM-259/141/089 + Aviso Funcionamiento · status real-time</small></div>
               <span class="bi-cell-tag live">100%</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Column headers · 4 NOMs + FDA -->
+              <!-- Column headers · 4 NOMs + Aviso Funcionamiento -->
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.4">
                 <text x="180" y="14" text-anchor="middle">NOM-259</text>
                 <text x="240" y="14" text-anchor="middle">NOM-141</text>
                 <text x="300" y="14" text-anchor="middle">NOM-089</text>
                 <text x="360" y="14" text-anchor="middle">NOM-251</text>
-                <text x="420" y="14" text-anchor="middle">FDA·USMCA</text>
+                <text x="420" y="14" text-anchor="middle">AF · COFEPRIS</text>
               </g>
               <!-- Row labels -->
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.3">
@@ -3943,16 +3944,24 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <p class="glossary-def">Protocolo estándar para que agentes IA accedan a herramientas externas (DB, calendarios, APIs). Usado por agentes de outbound, compliance, R&amp;D.</p>
       </div>
       <div class="glossary-cell">
+        <div class="glossary-term">Aviso de Funcionamiento</div>
+        <p class="glossary-def">Registro del establecimiento ante COFEPRIS. Se presenta una sola vez al inicio de operación, vigencia indefinida con actualizaciones cuando cambian datos del establecimiento. TSC LABS lo tiene desde 2021. Cosméticos en MX no requieren trámite a nivel SKU — el AF cubre toda la operación.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">Responsable Sanitario</div>
+        <p class="glossary-def">Persona designada con cédula profesional, responsable ante COFEPRIS de la operación sanitaria del establecimiento cosmético. Designación documentada en el Document Vault.</p>
+      </div>
+      <div class="glossary-cell">
         <div class="glossary-term">NOM-259-SSA1-2022</div>
-        <p class="glossary-def">Buenas Prácticas de Fabricación cosmética en México (sucede a NOM-259-SSA1-2014). Auditable. Document Vault la cumple.</p>
+        <p class="glossary-def">Buenas Prácticas de Fabricación cosmética en México (sucede a NOM-259-SSA1-2014). Auditable periódicamente. Document Vault la cumple con audit reports + CAPAs versionados.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">NOM-141-SSA1/SCFI-2012</div>
-        <p class="glossary-def">Etiquetado de productos cosméticos en MX. Cubre claims, ingredientes, etiquetas.</p>
+        <p class="glossary-def">Etiquetado de productos cosméticos en MX. Cubre claims, ingredientes, etiquetas. Versionado por SKU vigente en el Document Vault con timestamp y diff por cambio.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">NOM-089-SSA1-1994</div>
-        <p class="glossary-def">Métodos para análisis microbiológico de productos cosméticos. Validación de lote.</p>
+        <p class="glossary-def">Métodos para análisis microbiológico de productos cosméticos. Testing por lote producido, resultados archivados contra el lot record correspondiente.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">CFDI 4.0</div>
