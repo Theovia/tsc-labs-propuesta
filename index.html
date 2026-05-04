@@ -142,6 +142,16 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink-soft);
   font-weight:400;
   max-width:720px;
+  margin-bottom:18px;
+}
+.cover-subtitle.cover-subtitle-emph{
+  font-family:'Inter Tight',sans-serif;
+  font-size:17px;
+  color:var(--ink);
+  font-weight:500;
+  letter-spacing:-0.005em;
+  border-left:2px solid var(--accent);
+  padding-left:14px;
   margin-bottom:48px;
 }
 .cover-headline-stats{
@@ -1032,6 +1042,51 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink-soft);
 }
 .gov-prose strong{font-weight:600;color:var(--ink)}
+.gov-card.gov-card-emph{
+  grid-column:span 2;
+  background:var(--ink);
+  color:var(--bg);
+  border-right:1px solid var(--ink);
+  position:relative;
+}
+.gov-card.gov-card-emph::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--accent);
+}
+.gov-card.gov-card-emph .gov-tag{color:var(--accent)}
+.gov-card.gov-card-emph .gov-title{color:var(--bg)}
+.gov-card.gov-card-emph .gov-title em{color:var(--accent)}
+.gov-card.gov-card-emph .gov-prose{color:rgba(250,250,247,0.78)}
+.gov-card.gov-card-emph .gov-prose strong{color:var(--bg)}
+.cto-fractional-list{
+  list-style:none;
+  margin:18px 0 0;
+  padding:18px 0 0;
+  border-top:1px solid rgba(250,250,247,0.18);
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 28px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;
+  line-height:1.55;
+  letter-spacing:0.01em;
+  color:rgba(250,250,247,0.85);
+}
+.cto-fractional-list li{position:relative;padding-left:14px}
+.cto-fractional-list li::before{
+  content:"›";
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:600;
+}
+@media (max-width:780px){
+  .gov-card.gov-card-emph{grid-column:span 1}
+  .cto-fractional-list{grid-template-columns:1fr}
+}
 
 /* === SLA TABLE === */
 .sla-table{
@@ -1376,6 +1431,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
       <h1 class="cover-title">Transformación digital completa: <em>TSC LABS</em> como laboratorio, como marca, como plataforma B2B y como empresa <em>queryable</em>.</h1>
       <p class="cover-subtitle">12 meses · 5 fases · ERP propio · BI ejecutivo · 4 olas de agentes · una sola arquitectura.</p>
+      <p class="cover-subtitle cover-subtitle-emph">Transformación digital y de negocio integral. La tecnología es el vehículo; la transformación es del negocio mismo.</p>
 
       <div class="cover-headline-stats">
         <div class="cover-stat">
@@ -1405,7 +1461,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section" id="diagnostico">
   <div class="section-frame">
     <div class="diag-frame">
-      <div class="diag-eyebrow">§ I · DIAGNÓSTICO</div>
+      <div class="diag-eyebrow">01 / DIAGNÓSTICO</div>
       <h2 class="diag-title">Llamar a las cosas por <em>su nombre</em>.</h2>
       <p class="diag-date">Filed at Guadalajara · Mayo 2026 · Para TSC LABS</p>
 
@@ -1441,11 +1497,13 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section muted" id="tesis">
   <div class="section-frame">
     <div class="tesis-frame">
-      <div class="tesis-eyebrow">§ II · LA TESIS</div>
+      <div class="tesis-eyebrow">02 / LA TESIS</div>
       <h1 class="tesis-headline">Una sola aplicación que <em>opera como TSC LABS</em>.</h1>
-      <p class="tesis-sub">No estamos construyendo cinco productos. Estamos construyendo el <strong>sistema operativo de TSC LABS</strong>.</p>
+      <p class="tesis-sub">No estamos construyendo cinco productos. Estamos construyendo el <strong>sistema operativo de TSC LABS</strong> — la transformación digital y tecnológica integral del laboratorio, la marca y la plataforma B2B.</p>
 
       <div class="tesis-body">
+        <p><strong>Esto es transformación integral, no entrega de software.</strong> Lo que se transforma no es el stack — es el negocio mismo. La tecnología es el vehículo; la transformación es del modelo operativo de TSC LABS. Al cierre de los doce meses, TSC LABS deja de ser una empresa que <em>usa</em> tecnología y pasa a ser una <strong>empresa-aplicación</strong>: cada proceso de negocio vive como código versionado, cada decisión es una query, cada comunicación nace del mismo origen de verdad.</p>
+
         <p>TSC LABS hoy opera con piezas separadas: Excel, carpetas, WhatsApp, Calendly, contadores, USBs. Cada pieza no se habla con la siguiente. Cada decisión de negocio cruza tres herramientas y dos personas antes de convertirse en respuesta.</p>
 
         <p>Nuestra tesis: las cinco fases de este programa <strong>no son entregables aislados</strong>. Son las capas de construcción de <strong>una sola aplicación</strong> que va a operar como TSC LABS. Cada fase añade un sub-sistema que se enchufa al mismo data substrate común — una sola fuente de verdad, un solo audit log, una sola superficie de queries.</p>
@@ -1524,7 +1582,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section" id="fases">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ III<small>FASES</small></div>
+      <div class="section-num">03<small>FASES</small></div>
       <h2 class="section-title">Doce meses, <em>cinco fases</em>, una arquitectura.</h2>
       <p class="section-deck">Cinco capítulos acumulativos. Cada fase se construye encima de la anterior, sin re-trabajo. Stack único, deliverables auditables, métricas de cierre por hito.</p>
     </header>
@@ -1730,7 +1788,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section muted" id="dashboard-mock">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ IV<small>BI · DASHBOARD</small></div>
+      <div class="section-num">04<small>BI · DASHBOARD</small></div>
       <h2 class="section-title">Dashboard ejecutivo <em>en vivo</em> (preview).</h2>
       <p class="section-deck">El dashboard que TSC LABS tendrá al cierre de Fase 04. Cualquier pregunta del negocio, una visualización. Mock representativo del producto final.</p>
     </header>
@@ -1947,7 +2005,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section" id="roadmap">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ V<small>ROADMAP</small></div>
+      <div class="section-num">05<small>ROADMAP</small></div>
       <h2 class="section-title">Roadmap — <em>12 meses, mes a mes</em>.</h2>
       <p class="section-deck">Cada mes una entrega tangible. Sin meses vacíos.</p>
     </header>
@@ -2109,7 +2167,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section muted" id="comms-layer">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VI<small>COMMS LAYER</small></div>
+      <div class="section-num">06<small>COMMS LAYER</small></div>
       <h2 class="section-title">Capa de <em>comunicaciones</em> — un solo cerebro, múltiples voces.</h2>
       <p class="section-deck">Chatbots multi-propósito que comparten la misma data substrate. Cada bot lee y escribe al mismo origen de verdad — DTC, B2B, outbound, supplier, internal queries, compliance y talent updates operan como una capa unificada, no como herramientas dispersas.</p>
     </header>
@@ -2179,7 +2237,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section" id="inversion">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VII<small>INVERSIÓN</small></div>
+      <div class="section-num">07<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
       <p class="section-deck">Setup acumulado de las cinco fases más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
     </header>
@@ -2277,16 +2335,29 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section muted" id="por-que-eigen">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VIII<small>POR QUÉ EIGEN</small></div>
+      <div class="section-num">08<small>POR QUÉ EIGEN</small></div>
       <h2 class="section-title">No proveedor. <em>Partner</em>.</h2>
-      <p class="section-deck">Cinco razones, defendibles. El partnership de transformación, el stack, el playbook, el framework propietario y la operación 100% México. Cada una es defendible en una sala con CTO de cualquier vertical.</p>
+      <p class="section-deck">Esto no es delivery de IT — es transformación digital y de negocio integral. Seis razones, defendibles: el rol de CTO Fractional, el partnership de transformación, el stack, el playbook, el framework propietario y la operación 100% México. Cada una es defendible en una sala con CTO de cualquier vertical.</p>
     </header>
 
     <div class="governance-grid">
+      <div class="gov-card gov-card-emph">
+        <div class="gov-tag">RAZÓN · 00 · CTO FRACTIONAL</div>
+        <h3 class="gov-title">Raul Chio entra como <em>CTO Fractional</em> de TSC LABS</h3>
+        <p class="gov-prose">Durante los 12 meses de construcción y todo el período de retainer, Raul Chio funge como <strong>CTO Fractional de TSC LABS</strong>. No es un vendor con un PM remoto — es un seat at the leadership table. Estrategia tecnológica, decisiones de negocio, arquitectura técnica y selección de talent técnico futuro. CTO de tiempo parcial pero con responsabilidad real sobre el resultado.</p>
+        <ul class="cto-fractional-list">
+          <li>Arquitectura técnica completa del sistema operativo TSC</li>
+          <li>Roadmap de evolución del producto · trade-offs de stack</li>
+          <li>Selección y onboarding de talent técnico futuro de TSC</li>
+          <li>Reporting técnico-ejecutivo a leadership de TSC LABS</li>
+          <li>Liaison con compliance · COFEPRIS · auditorías</li>
+          <li>Dirección técnica integrada con dirección de negocio</li>
+        </ul>
+      </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · 0 · PARTNERSHIP</div>
         <h3 class="gov-title">Partnership de <em>transformación</em>, no entrega de proyecto</h3>
-        <p class="gov-prose">Los 12 meses de construcción son la base. <strong>El retainer no es soporte: es operación conjunta del sistema.</strong> Eigen evoluciona la plataforma con TSC LABS conforme la operación crece. Cuando se alinea la data, se alinean las comunicaciones — y operamos como partners, no como proveedor y cliente.</p>
+        <p class="gov-prose">Los 12 meses de construcción son la base. <strong>El retainer no es soporte: es operación conjunta del sistema.</strong> Eigen evoluciona la plataforma con TSC LABS conforme la operación crece. Lo que se transforma es <strong>el negocio mismo</strong>, no el stack tecnológico solamente — y cuando se alinea la data, se alinean las comunicaciones, operamos como partners, no como proveedor y cliente.</p>
       </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · I</div>
@@ -2348,7 +2419,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section" id="capacidades">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ IX<small>CAPACIDADES</small></div>
+      <div class="section-num">09<small>CAPACIDADES</small></div>
       <h2 class="section-title">Capacidades <em>que se construyen</em>.</h2>
       <p class="section-deck">Lo que TSC LABS recibe al cierre de los 12 meses. No es un paquete técnico — es ocho capacidades operando como pilares de la empresa.</p>
     </header>
@@ -2421,7 +2492,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <section class="section muted" id="proximos">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ X<small>LA INVITACIÓN</small></div>
+      <div class="section-num">10<small>LA INVITACIÓN</small></div>
       <h2 class="section-title">Tres pasos, <em>siete días</em>, una década.</h2>
       <p class="section-deck">Una secuencia explícita para pasar de propuesta firmada a Fase 1 en operación. Sin renegociación de scope, sin sorpresas, sin diluir el calendario. Y al final — la invitación a operar como partners.</p>
     </header>
@@ -2451,8 +2522,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="invitation-tag">CIERRE · LA INVITACIÓN</div>
       <h3 class="invitation-title">Construir, juntos, la <em>aplicación que va a operar como TSC LABS</em>.</h3>
       <div class="invitation-prose">
-        <p>Esta propuesta no es para que un proveedor entregue cinco productos en doce meses y se vaya. Es para construir, juntos, <strong>la aplicación que va a operar como TSC LABS los próximos cinco años</strong>. El equipo Eigen entra como partner: doce meses de construcción + retainer de operación conjunta + evolución continua del sistema conforme el laboratorio crece.</p>
-        <p>Lo que se construye es <strong>queryable, replicable, defendible</strong> — pero el verdadero valor está en cómo operamos juntos cuando esté en producción. Cuando la data del laboratorio, las marcas, los talents y los proveedores vive en un solo origen de verdad, las comunicaciones dejan de ser ad-hoc, las decisiones dejan de cruzar tres herramientas, y el equipo TSC opera con la fricción de una empresa de mil personas — sin tener mil personas.</p>
+        <p>Esta propuesta no es para que un proveedor entregue cinco productos en doce meses y se vaya. Es para construir, juntos, <strong>la aplicación que va a operar como TSC LABS los próximos cinco años</strong>. El equipo Eigen entra como partner — <strong>Raul Chio funge como CTO Fractional de TSC LABS</strong>, integrando dirección técnica con dirección de negocio. Doce meses de construcción + retainer de operación conjunta + evolución continua del sistema conforme el laboratorio crece.</p>
+        <p>Lo que entregamos no es software: es <strong>transformación digital y de negocio integral</strong>. La tecnología es el vehículo; la transformación es del modelo operativo de TSC LABS. Al cierre de los doce meses, TSC LABS deja de ser una empresa que <em>usa</em> tecnología y pasa a ser una <strong>empresa-aplicación</strong> — queryable, replicable, defendible. Pero el verdadero valor está en cómo operamos juntos cuando esté en producción.</p>
+        <p>Cuando la data del laboratorio, las marcas, los talents y los proveedores vive en un solo origen de verdad, las comunicaciones dejan de ser ad-hoc, las decisiones dejan de cruzar tres herramientas, y el equipo TSC opera con la fricción de una empresa de mil personas — sin tener mil personas.</p>
         <p><strong>Operamos como partners. No como vendor y client.</strong></p>
       </div>
     </div>
@@ -2491,16 +2563,16 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div>
         <h4 class="colophon-col-title">Secciones</h4>
         <ul class="colophon-list">
-          <li><a href="#diagnostico">§ I · Diagnóstico</a></li>
-          <li><a href="#tesis">§ II · La Tesis</a></li>
-          <li><a href="#fases">§ III · Cinco fases</a></li>
-          <li><a href="#dashboard-mock">§ IV · Dashboard mock</a></li>
-          <li><a href="#roadmap">§ V · Roadmap</a></li>
-          <li><a href="#comms-layer">§ VI · Capa de comunicaciones</a></li>
-          <li><a href="#inversion">§ VII · Inversión total</a></li>
-          <li><a href="#por-que-eigen">§ VIII · Por qué Eigen</a></li>
-          <li><a href="#capacidades">§ IX · Capacidades</a></li>
-          <li><a href="#proximos">§ X · La invitación</a></li>
+          <li><a href="#diagnostico">01 / Diagnóstico</a></li>
+          <li><a href="#tesis">02 / La Tesis</a></li>
+          <li><a href="#fases">03 / Cinco fases</a></li>
+          <li><a href="#dashboard-mock">04 / Dashboard mock</a></li>
+          <li><a href="#roadmap">05 / Roadmap</a></li>
+          <li><a href="#comms-layer">06 / Capa de comunicaciones</a></li>
+          <li><a href="#inversion">07 / Inversión total</a></li>
+          <li><a href="#por-que-eigen">08 / Por qué Eigen</a></li>
+          <li><a href="#capacidades">09 / Capacidades</a></li>
+          <li><a href="#proximos">10 / La invitación</a></li>
         </ul>
       </div>
       <div>
