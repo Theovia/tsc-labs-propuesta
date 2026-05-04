@@ -2160,6 +2160,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .tesis-body{font-size:17px;line-height:1.7;color:var(--ink-soft);max-width:820px}
 .tesis-body p{margin-bottom:22px}
 .tesis-body strong{font-weight:600;color:var(--ink)}
+.tesis-pillars{list-style:none;counter-reset:pillar;padding:0;margin:8px 0 28px;max-width:820px;display:grid;gap:14px}
+.tesis-pillars li{counter-increment:pillar;position:relative;padding:14px 18px 14px 56px;border:1px solid var(--rule);border-radius:6px;background:rgba(255,255,255,0.4);font-size:16px;line-height:1.55;color:var(--ink-soft)}
+.tesis-pillars li::before{content:counter(pillar,decimal-leading-zero);position:absolute;left:14px;top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--accent);font-weight:600;width:30px;text-align:left}
+.tesis-pillars li strong{color:var(--ink);font-weight:600}
 .tesis-pull{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:22px;line-height:1.4;color:var(--ink);border-left:2px solid var(--accent);padding:10px 0 10px 22px;margin:32px 0;letter-spacing:-0.01em;max-width:780px}
 .tesis-pull em{font-style:normal;color:var(--accent);font-weight:500}
 .tesis-diagram{margin-top:64px;padding:40px 24px;background:var(--bg);border:1px solid var(--rule-strong);border-radius:2px;position:relative}
@@ -2662,9 +2666,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="tldr-card">
           <div class="tldr-tag">CUÁNTO CUESTA</div>
           <ul class="tldr-list">
-            <li>Setup: <strong class="tldr-num">$1.56M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.50M</span></li>
+            <li>Setup: <strong class="tldr-num">$1.76M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.70M</span></li>
             <li>Retainer Año 1: <strong class="tldr-num">$720K MXN</strong><span class="tldr-num-note">$60K/mes × 12 meses post-launch</span></li>
-            <li>Total Año 1+2: <strong class="tldr-num tldr-num-emph">$2.28M MXN</strong></li>
+            <li>Total Año 1+2: <strong class="tldr-num tldr-num-emph">$2.48M MXN</strong></li>
             <li class="tldr-list-foot">Pagos: 50% inicio fase + 50% al cierre con hitos validados · Net 15.</li>
           </ul>
         </div>
@@ -2862,12 +2866,21 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="tesis-frame">
       <div class="tesis-eyebrow">03 / LA TESIS</div>
       <h1 class="tesis-headline">Un solo <em>data substrate</em>, todos los servicios encima.</h1>
-      <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Talent Portal, ERP, Operations registry + Document Vault básico, dashboards y agentes leen y escriben al mismo store.</p>
+      <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Eigen no toca los procesos físicos de TSC — envasado, formulación, proveeduría manual son de TSC. Lo que Eigen <em>construye alrededor</em> son las cinco piezas que hoy no existen y sin las cuales el negocio no escala.</p>
 
       <div class="tesis-body">
         <p>TSC LABS opera hoy con un stack distribuido: Google Sheets sistematizado (50 fórmulas, clientes, cotizaciones), Shopify (Skin Club), Landingi (landing TSC), WhatsApp Business, META, Skydropx. Cada herramienta funciona en su silo. Cada decisión de negocio cruza 3 sistemas y termina en una hoja de Sheets reconciliada a mano.</p>
 
-        <p>F1-F5 reemplaza esto con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal, ERP de inventario, Operations registry + Document Vault básico, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
+        <p>Eigen entrega cinco piezas esenciales sobre los procesos físicos que TSC ya hace bien:</p>
+        <ol class="tesis-pillars">
+          <li><strong>Plataforma de enlace con clientes</strong> — Talent Portal cliente-facing donde cada cliente externo coordina con TSC sin email back-and-forth (status, adjuntos, pagos, factura).</li>
+          <li><strong>Portal interno operativo</strong> — vista para Diego, Kaori, Natalia y becarios entrantes con queue de envasado, dashboards en vivo, alertas operativas, role-based access.</li>
+          <li><strong>ERP que descuenta automático y proyecta re-stock</strong> — inventario auto-descontante por lote producido + cálculo predictivo que anticipa cuándo cada SKU/insumo cruzará threshold antes de quedarse sin stock.</li>
+          <li><strong>Agentes inteligentes</strong> cubriendo customer service DTC, lead qualification B2B, proveeduría automática y compliance + social media monitoring — cada uno leyendo el mismo store.</li>
+          <li><strong>Arquitectura Cloudflare-native</strong> que mantiene todo lo anterior coherente: Durable Objects + Workers + R2 + D1 + Workers AI + MCP servers — un solo edge runtime, un solo audit trail, un solo modelo de costos.</li>
+        </ol>
+
+        <p>F1-F5 reemplaza el stack distribuido con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal cliente-facing, portal interno operativo, ERP de inventario auto-descontante con forecast predictivo, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
 
         <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. Sin reconciliación entre canales. Sin discrepancia entre dashboard y operación. El store es la fuente. Todos los servicios leen y escriben de ahí.</p>
 
@@ -3045,17 +3058,18 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Cada talent manager que evalúa lanzar marca propia tiene acceso a un <strong>Talent Portal</strong> con login magic-link. Ahí ve estado real de su fórmula: progreso de R&amp;D, batch listo, status de envío, link de pago, factura, y conversación archivada.</p>
+          <p><strong>Talent Portal (cliente-facing).</strong> Cada talent manager y cliente externo tiene acceso con login magic-link a un portal donde ve el estado real de su producto: progreso de R&amp;D, batch listo, status de envío, link de pago, factura, y conversación archivada. <strong>Pueden adjuntar documentos</strong> (imágenes de inspiración, briefs, refs de marca, contratos firmados) sin email back-and-forth. Built sobre <strong>Cloudflare Durable Objects</strong> — un DO por cliente, isolated state, que preserva la sesión, los documentos adjuntos y el audit trail de cada interacción.</p>
+          <p><strong>Portal interno de operación.</strong> Vista paralela para Diego, Kaori, Natalia y becarios entrantes. Queue de envasado/etiquetado priorizado, lista de POs pendientes con Natalia, dashboards de leads en pipeline, alertas operativas en vivo. Built sobre <strong>Workers + KV</strong> con role-based access (admin · ops · finance · talent-read), de modo que el becario del lunes ve la cola que le toca sin acceder a margen ni a contratos.</p>
           <p><strong>CRM lead pipeline</strong> para escalar del primer talent a las próximas diez agencias. <strong>Email automation</strong> por hito (concepto aprobado, prototipo listo, lote producido, listo para retail). <strong>Stripe + MercadoPago</strong> con factura IVA-compliant CFDI 4.0 emitida automáticamente por hito.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Talent Portal · CRM lead pipeline · Email automation por milestones · Stripe + MP IVA invoicing por hito.</div>
+            <div class="phase-block-body"><strong>Talent Portal cliente-facing</strong> (status producto, adjuntar documentos, conversación archivada — 1 Durable Object por cliente) · <strong>Portal interno de operación</strong> (queue envasado, POs pendientes, dashboards leads, role-based access) · CRM lead pipeline · Email automation por milestones · Stripe + MP IVA invoicing por hito.</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
-            <div class="phase-stack">CF Durable Objects · Workers · KV · R2 · Resend templates · Stripe · MercadoPago · magic-link auth</div>
+            <div class="phase-stack">CF Durable Objects (1 DO por cliente) · Workers · KV · R2 · Resend · Stripe · MercadoPago · magic-link auth · role-based access (admin · ops · finance · talent-read)</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
@@ -3090,6 +3104,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p><strong>Alertas predictivas por SKU:</strong> threshold configurable por insumo. Cuando el inventario proyectado (basado en producción reciente + lotes planeados) cae bajo el umbral, alerta automática a Natalia o quien corresponda. <em>No esperan a quedarse sin frasco amber para reaccionar</em> — el sistema avisa antes.</p>
 
           <p><strong>Pedidos automáticos a proveedores:</strong> cuando se cruza el threshold, el sistema genera <em>draft de PO</em> con cantidad sugerida + proveedor histórico + ETA esperado. Natalia revisa y firma. <strong>2 clicks vs 2 horas buscando cotizaciones</strong>. Esto resuelve el dolor #1 reportado por el equipo en operación.</p>
+
+          <p><strong>Cálculo predictivo de re-stock:</strong> el sistema lee histórico de consumo (lotes producidos × ingredientes/envases × velocidad de uso) y proyecta cuándo cada SKU/insumo va a cruzar threshold. No solo alerta cuando ya cayó al umbral — <em>proyecta semanas antes</em> basado en pedidos abiertos + producción planeada. Natalia recibe forecast accionable: "frasco amber baja a threshold en 12 días, sugerimos pedir 2,000 unidades hoy con tu proveedor histórico". Built sobre <strong>Workers Cron Triggers</strong> que corren nightly + <strong>Workers Analytics Engine</strong> para histórico longitudinal por SKU.</p>
 
           <p><strong>Tracking de envasado/etiquetado por lote:</strong> cada lote tiene status visible — <em>EN PRODUCCIÓN → EN ENVASADO → EN ETIQUETADO → EN ENVÍO → ENTREGADO</em>. Los becarios entrantes ven cola de trabajo organizada en lugar de "preguntá a Diego". Diego ve el cuello de botella en vivo, no al final de la semana.</p>
 
@@ -3167,17 +3183,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p class="phase-subtitle">Convertimos los chatbots dispersos en una capa unificada que opera como senior staff.</p>
         </div>
         <div class="phase-price">
-          <div class="phase-price-num">$440<em>K</em></div>
+          <div class="phase-price-num">$640<em>K</em></div>
           <div class="phase-price-label">MXN · 5 MESES · 4 OLAS</div>
         </div>
       </header>
       <div class="phase-body">
         <div class="phase-prose">
           <p>Los agentes <strong>no son productos sueltos</strong>. Son la voz del sistema: cada uno comparte el mismo data substrate de las fases 1-4, escribe al mismo audit log, y se comunica internamente para no actuar contra políticas. El equipo TSC interactúa con ellos como con un colega más; los talents y clientes interactúan con ellos como con la marca.</p>
-          <p>Cuatro olas alineadas a los dolores reales de TSC. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): hoy son ~5 mensajes/mes que Diego responde manualmente con un ticket promedio de $858. El chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra escala ese volumen a ~50 mensajes/mes en línea con el crecimiento del negocio, sin costo lineal en tiempo de Diego.</p>
-          <p><strong>Ola B — B2B Lead Qualifier</strong> (1 mes · $90K): los 30 leads/mes detenidos por saturación entran a un qualifier automático que filtra <em>volumen alto</em> y descarta lo pequeño. El equipo TSC ya no atiende todo a mano — atiende el subconjunto que mueve la aguja. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
-          <p><strong>Ola C — Proveeduría Agent</strong> (1.5 meses · $130K · prioridad): automatiza el dolor #1 reportado por Kaori y Natalia. El agente busca proveedores nuevos, solicita cotizaciones por WhatsApp/email, agrega resultados en una tabla comparable, y entrega <em>shortlist con recomendación</em>. Natalia recibe 3 opciones evaluadas, no busca de cero. Trabaja sobre el sistema de F3: cuando draft de PO se genera, el agente puede haber pre-cotizado con 2-3 proveedores antes de que Natalia lo vea.</p>
-          <p><strong>Ola D — Compliance Monitor + Social Media</strong> (1.5 meses · $130K): alertas COFEPRIS/NOM en &lt;24h light + <em>generación y programación de contenido IG/TikTok/Facebook</em>. La tarea que el equipo TSC reportó odiar — social media — pasa a un agente que produce posts, calendariza scheduled, y deja al equipo aprobando en lugar de creando desde cero.</p>
+          <p><strong>Ola A · DTC Chatbot Skin Club</strong> (1 mes · $130K). Chatbot 24/7 que responde a clientes finales del Shopify Skin Club. Matching de fórmula por tipo de piel, seguimiento post-compra, recovery de carritos abandonados. Hoy son ~5 mensajes/mes que Diego responde manualmente con ticket promedio de $858; la capa escala ese volumen a ~50 mensajes/mes sin costo lineal en su tiempo. <strong>Built sobre Cloudflare Workers AI (Llama 4) + Durable Object por sesión de cliente</strong> (preserva contexto conversacional). Conectado a Shopify API para historia de compras y Workers KV para preferencias. Fallback a humano (Diego/Kaori) cuando confidence &lt;0.7.</p>
+          <p><strong>Ola B · B2B Lead Qualifier</strong> (1 mes · $130K). Agente que filtra los 30 leads/mes detenidos por saturación. Lee descripción del proyecto, capacidad mL, precio objetivo, marcas like/dislike — descarta cliente pequeño/incompatible, agenda con Diego/Kaori solo si fit real. <strong>Built sobre Workers + Claude API + MCP server</strong> (acceso a Calendly + CRM + checklist de fit criteria). Notifica vía WhatsApp Business cuando hay match. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
+          <p><strong>Ola C · Proveeduría Agent</strong> (1.5 meses · $190K · prioridad). Agente que automatiza el dolor #1 de Natalia/Kaori. Cuando F3 dispara draft de PO, el agente busca proveedores en su base + scrape competidores web, solicita cotizaciones por WhatsApp/email, agrega resultados en tabla comparable, entrega shortlist con recomendación. <strong>Built sobre Workers + Durable Object por orden de compra</strong> (preserva estado de cada solicitud) + Claude API para parsing de respuestas + MCP server para WhatsApp Cloud API + Resend SMTP. Natalia recibe 3 opciones evaluadas, no busca de cero.</p>
+          <p><strong>Ola D · Compliance Monitor + Social Media</strong> (1.5 meses · $190K). Dos agentes en paralelo. <em>Compliance Monitor:</em> lee feeds COFEPRIS + actualizaciones NOMs, alerta a Diego si hay actualización relevante en &lt;24h. <strong>Built sobre Workers Cron Trigger + Claude API</strong> para evaluación de relevancia + R2 para archivo histórico. <em>Social Media Generator:</em> genera contenido scheduled para IG/TikTok/Facebook a partir de prompts del equipo, programación automática vía Buffer-like custom. <strong>Built sobre Workers + Workers AI (Llama 4) + Cloudflare Image Resizing</strong> + integraciones Meta Graph API + TikTok API.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
@@ -4182,47 +4198,47 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <td><div class="fin-line-label">Fase 00 · Discovery &amp; Modelo Maestro<em>Auditoría · ER diagrams · taxonomías · master schema · plan de migración</em></div></td>
             <td class="right">$60K</td>
             <td class="right">3 sem</td>
-            <td class="fin-line-pct">3.8%</td>
+            <td class="fin-line-pct">3.4%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 01 · Foundation Digital<em>Landing Skin Club · Portal B2B · email infra · WA</em></div></td>
             <td class="right">$200K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">12.8%</td>
+            <td class="fin-line-pct">11.4%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 02 · Sales &amp; CRM<em>Talent Portal · CRM · email automation · CFDI 4.0</em></div></td>
             <td class="right">$240K</td>
             <td class="right">1.5 mo</td>
-            <td class="fin-line-pct">15.4%</td>
+            <td class="fin-line-pct">13.6%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 03 · ERP &amp; Operations Tracking<em>Formula DB · Lot lifecycle · Envases status · Shipment + PO tracking · Document Vault básico</em></div></td>
             <td class="right">$400K</td>
             <td class="right">2.5 mo</td>
-            <td class="fin-line-pct">25.6%</td>
+            <td class="fin-line-pct">22.7%</td>
             <td class="fin-yoy">05 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 04 · BI + Empresa Queryable<em>Dashboard · ad attribution · LTV · semantic data layer · ER diagrams · NL queries</em></div></td>
             <td class="right">$220K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">14.1%</td>
+            <td class="fin-line-pct">12.5%</td>
             <td class="fin-yoy">06 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Proveeduría agent · Compliance + Social Media</em></div></td>
-            <td class="right">$440K</td>
+            <td class="right">$640K</td>
             <td class="right">5 mo</td>
-            <td class="fin-line-pct">28.2%</td>
+            <td class="fin-line-pct">36.4%</td>
             <td class="fin-yoy">04 olas</td>
           </tr>
           <tr class="subtotal">
             <td><strong>Setup acumulado · F0 + 5 fases</strong></td>
-            <td class="right">$1.56M</td>
+            <td class="right">$1.76M</td>
             <td class="right">~13.7 mo</td>
             <td class="fin-line-pct">100%</td>
             <td class="fin-yoy">27 entregas</td>
@@ -4236,7 +4252,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </tr>
           <tr class="total">
             <td><strong>Total · Año 1+2</strong></td>
-            <td class="right">$2.28M</td>
+            <td class="right">$2.48M</td>
             <td class="right">~25.7 mo</td>
             <td class="fin-line-pct">—</td>
             <td class="fin-yoy">end-to-end</td>
@@ -4274,7 +4290,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             </tr>
             <tr class="anchor-row-eigen">
               <td class="anchor-opt"><strong>Eigen Atlas · esta propuesta</strong><em>F0 Discovery + F1-F5 + retainer integrado</em></td>
-              <td class="right"><strong class="anchor-num-eigen">$2.28M</strong><br><span class="anchor-sub">$1.56M setup + $720K retainer Año 1+2</span></td>
+              <td class="right"><strong class="anchor-num-eigen">$2.48M</strong><br><span class="anchor-sub">$1.76M setup + $720K retainer Año 1+2</span></td>
               <td>$60K/mes retainer</td>
               <td>Sistema operacional unificado · ERP integrado · capa agéntica · Talent Portal · queryable enterprise · CTO Fractional integrado · IP 100% TSC.</td>
             </tr>
