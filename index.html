@@ -7,8 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
 <style>
 :root{
   --bg:#FAFAF7;
@@ -104,35 +102,41 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
 .cover-center{
   display:grid;
-  grid-template-columns:minmax(360px, 0.9fr) minmax(420px, 1.1fr);
+  grid-template-columns:1fr;
   align-items:center;
-  gap:64px;
-  padding:64px 0;
+  gap:0;
+  padding:88px 0 72px;
+  min-height:88vh;
 }
 .cover-copy{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:24px;
+  width:100%;
 }
+.cover-copy > *{ grid-column: 1 / span 9; }
 .cover-eyebrow{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
   letter-spacing:0.18em;
   color:var(--accent);
   text-transform:uppercase;
-  margin-bottom:32px;
+  margin-bottom:36px;
   font-weight:500;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--rule);
 }
 .cover-title{
   font-family:'Inter Tight',sans-serif;
   font-weight:300;
-  font-size:clamp(40px,5vw,76px);
+  font-size:clamp(48px, 6vw, 92px);
   line-height:1.05;
-  letter-spacing:-0.02em;
+  letter-spacing:-0.025em;
   color:var(--ink);
-  margin-bottom:28px;
-  max-width:1100px;
+  margin-bottom:40px;
+  padding-bottom:36px;
+  border-bottom:1px solid var(--rule);
+  max-width:1180px;
 }
 .cover-title strong{font-weight:500;color:var(--ink)}
 .cover-title em{font-style:normal;color:var(--accent);font-weight:500}
@@ -210,79 +214,6 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   text-transform:none;
   letter-spacing:0;
   font-weight:500;
-}
-
-/* === REACTIVE PORTRAIT HERO === */
-.ascii-hero-wrap{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:stretch;
-  justify-content:center;
-  border:1px solid var(--rule);
-  background:var(--bg);
-  padding:18px 18px 14px;
-}
-.ascii-hero{
-  position:relative;
-  width:100%;
-  aspect-ratio: 4 / 5;
-  overflow:hidden;
-  background:
-    radial-gradient(ellipse 60% 28% at 50% 92%, rgba(10,10,10,0.10), rgba(10,10,10,0) 70%),
-    var(--bg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.ascii-hero canvas{
-  display:block;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  user-select:none;
-}
-.ascii-hero .ascii-portrait{
-  display:block;
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;
-  line-height:0.92;
-  letter-spacing:0;
-  color:var(--ink);
-  background:transparent;
-  white-space:pre;
-  overflow:hidden;
-  pointer-events:none;
-  user-select:none;
-  text-align:center;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-.ascii-hero .ascii-portrait .hi{ color:var(--accent) }
-.ascii-hero-cap{
-  margin-top:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;
-  letter-spacing:0.12em;
-  color:var(--ink-mute);
-  text-transform:uppercase;
-  border-top:1px solid var(--rule);
-  padding-top:12px;
-}
-.ascii-hero-cap em{
-  font-family:'Inter',sans-serif;
-  font-style:normal;
-  font-size:11px;
-  letter-spacing:0;
-  color:var(--ink-soft);
-  text-transform:none;
 }
 
 /* === SECTIONS === */
@@ -1525,9 +1456,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 @media(max-width:1100px){
   .cover{padding:30px 24px}
   .section,.colophon{padding-left:24px;padding-right:24px}
-  .cover-center{grid-template-columns:1fr;gap:36px;padding:40px 0}
-  .cover-copy{align-items:flex-start}
-  .ascii-hero{aspect-ratio: 4 / 4}
+  .cover-center{grid-template-columns:1fr;gap:36px;padding:56px 0 48px;min-height:auto}
+  .cover-copy{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+  .cover-copy > *{ grid-column: auto; width:100%; }
   .cover-headline-stats{grid-template-columns:1fr}
   .cover-stat{border-right:none;border-bottom:1px solid var(--rule);padding:18px 0}
   .cover-stat:first-child{padding-top:0}
@@ -1559,10 +1490,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .bi-cell:last-child{border-bottom:none}
 }
 @media(max-width:768px){
-  .ascii-hero-wrap{display:none}
   .cover-center{grid-template-columns:1fr}
   .section{padding:80px 24px}
-  .cover-title{font-size:36px}
+  .cover-title{font-size:36px;padding-bottom:24px;margin-bottom:28px}
   .diag-title,.section-title{font-size:30px}
   .tesis-headline{font-size:30px}
   .invitation-title{font-size:28px}
@@ -1801,7 +1731,6 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   *{color:#000 !important;background:#fff !important;border-color:#000 !important}
   .cover{min-height:auto;page-break-after:always;border-bottom:2px solid #000}
   .section{page-break-inside:avoid;padding:32px 24px;border-bottom:1px solid #000}
-  .ascii-hero-wrap{display:none}
   .roadmap-row{opacity:1 !important;transform:none !important;page-break-inside:avoid}
   a{color:#000 !important;border:none}
   .retainer-callout{background:#fff !important;color:#000 !important;border:1px solid #000}
@@ -1818,22 +1747,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="cover-top-mark">EIGEN ATLAS</div>
     <div class="cover-top-meta">
       <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
-      <span><strong>Filed</strong>2026.05.01</span>
+      <span><strong>Filed</strong>2026.05.04</span>
       <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
     </div>
   </div>
 
   <div class="cover-center">
-    <div class="ascii-hero-wrap" aria-hidden="true">
-      <div class="ascii-hero" id="ascii-hero">
-        <pre id="hero-portrait" class="ascii-portrait"></pre>
-      </div>
-      <div class="ascii-hero-cap">
-        <span>FIG. I · STRUCTURAL MESH</span>
-        <em>3D NETWORK · INTERCONNECTED · TRACKS CURSOR</em>
-      </div>
-    </div>
-
     <div class="cover-copy">
       <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
       <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em>queryable</em> en una sola arquitectura.</h1>
@@ -3316,314 +3235,6 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 })();
 
-// STRUCTURAL MESH HERO — three.js graph network rendered to an OFFSCREEN canvas,
-// then canvas-sampled into ASCII text. ~30-50 nodes connected by edges, slow
-// auto-rotation, cursor pulls nearby nodes via spring physics. Represents
-// "data substrate" / interconnected agents / queryable enterprise.
-(function(){
-  var host = document.getElementById('ascii-hero');
-  var pre  = document.getElementById('hero-portrait');
-  if(!host || !pre || typeof THREE === 'undefined') return;
-
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var smallVP = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-  if(smallVP){ return; }
-
-  // === ASCII GRID ============================================================
-  var COLS = 160;
-  var ROWS = 80;
-  var PALETTE = " .'-:;~=+*#%@";
-  var HI = "*#%@";
-
-  // === OFFSCREEN RENDERER / SCENE / CAMERA ==================================
-  var off = document.createElement('canvas');
-  off.width  = COLS;
-  off.height = ROWS;
-  var renderer = new THREE.WebGLRenderer({ canvas: off, antialias: true, alpha: true, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(1);
-  renderer.setSize(COLS, ROWS, false);
-  renderer.setClearColor(0x000000, 0);
-
-  var scene = new THREE.Scene();
-  scene.background = null;
-
-  // Wider FOV — see the whole graph.
-  var camera = new THREE.PerspectiveCamera(45, COLS / ROWS, 0.1, 100);
-  camera.position.set(0, 0, 12);
-  camera.lookAt(0, 0, 0);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  var keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  keyLight.position.set(2, 3, 4);
-  scene.add(keyLight);
-
-  // === STRUCTURAL MESH ======================================================
-  // 40 nodes distributed in a sphere volume, with 5 of them designated as
-  // "agent hubs" (1.5× scale). Connect each node to its k closest neighbors
-  // within a distance threshold to form a network of ~80 edges.
-  var graph = new THREE.Group();
-  scene.add(graph);
-
-  var NODE_COUNT = 40;
-  var AGENT_COUNT = 5;
-  var SPHERE_RADIUS = 4.0;          // distribution radius
-  var EDGE_DISTANCE_THRESHOLD = 2.4; // max edge length
-  var MAX_EDGES_PER_NODE = 4;
-
-  var sharedMat = new THREE.MeshNormalMaterial({ flatShading: false });
-
-  // Deterministic distribution so the mesh is the same on every reload.
-  // Mix Fibonacci sphere (surface) + small radial jitter inward for volume.
-  function buildPositions(){
-    var positions = [];
-    var phi = Math.PI * (Math.sqrt(5) - 1); // golden angle
-    for (var i = 0; i < NODE_COUNT; i++){
-      var t = i / (NODE_COUNT - 1);
-      var y = 1 - 2 * t;                    // [-1, 1]
-      var r = Math.sqrt(1 - y * y);
-      var theta = phi * i;
-      var x = Math.cos(theta) * r;
-      var z = Math.sin(theta) * r;
-      // Pseudo-deterministic radial jitter: pulls some nodes inward to give volume.
-      var seed = (i * 9301 + 49297) % 233280;
-      var rand = seed / 233280;
-      var radius = SPHERE_RADIUS * (0.55 + rand * 0.45);
-      positions.push(new THREE.Vector3(x * radius, y * radius, z * radius));
-    }
-    return positions;
-  }
-
-  var positions = buildPositions();
-
-  // Build node meshes; tag the first AGENT_COUNT (after a small offset) as hubs.
-  // Pick agent indices so they're spread out across the array.
-  var agentSet = {};
-  var agentStep = Math.floor(NODE_COUNT / AGENT_COUNT);
-  for (var ai = 0; ai < AGENT_COUNT; ai++){
-    agentSet[ai * agentStep + 2] = true;
-  }
-
-  var nodes = [];
-  var nodeGeo  = new THREE.SphereGeometry(0.15, 16, 12);
-  var agentGeo = new THREE.SphereGeometry(0.225, 20, 14); // 1.5× radius
-
-  for (var n = 0; n < NODE_COUNT; n++){
-    var isAgent = !!agentSet[n];
-    var mesh = new THREE.Mesh(isAgent ? agentGeo : nodeGeo, sharedMat);
-    mesh.position.copy(positions[n]);
-    graph.add(mesh);
-    nodes.push({
-      mesh: mesh,
-      original: positions[n].clone(),
-      velocity: new THREE.Vector3(0, 0, 0),
-      isAgent: isAgent
-    });
-  }
-
-  // Build edges: for each node connect to up to MAX_EDGES_PER_NODE closest
-  // neighbors that are within EDGE_DISTANCE_THRESHOLD. Dedupe.
-  var edgePairs = [];
-  var edgeKey = {};
-  for (var i = 0; i < NODE_COUNT; i++){
-    var dists = [];
-    for (var j = 0; j < NODE_COUNT; j++){
-      if (i === j) continue;
-      var d = positions[i].distanceTo(positions[j]);
-      if (d < EDGE_DISTANCE_THRESHOLD) dists.push({ j: j, d: d });
-    }
-    dists.sort(function(a, b){ return a.d - b.d; });
-    var take = Math.min(MAX_EDGES_PER_NODE, dists.length);
-    for (var k = 0; k < take; k++){
-      var jj = dists[k].j;
-      var key = i < jj ? (i + '_' + jj) : (jj + '_' + i);
-      if (edgeKey[key]) continue;
-      edgeKey[key] = true;
-      edgePairs.push([i, jj]);
-    }
-  }
-
-  // Render edges as TubeGeometry segments — chunkier ASCII rendering than lines.
-  // We rebuild geometries in-place each frame so they follow node motion.
-  var edgeMeshes = [];
-  var EDGE_TUBE_RADIUS = 0.025;
-  var EDGE_TUBE_SEGMENTS = 1; // straight line; cheap.
-  for (var e = 0; e < edgePairs.length; e++){
-    var a = nodes[edgePairs[e][0]].mesh.position;
-    var b = nodes[edgePairs[e][1]].mesh.position;
-    var path = new THREE.LineCurve3(a.clone(), b.clone());
-    var geo = new THREE.TubeGeometry(path, EDGE_TUBE_SEGMENTS, EDGE_TUBE_RADIUS, 6, false);
-    var em = new THREE.Mesh(geo, sharedMat);
-    graph.add(em);
-    edgeMeshes.push({ mesh: em, a: edgePairs[e][0], b: edgePairs[e][1] });
-  }
-
-  function rebuildEdgeGeometry(edge){
-    var a = nodes[edge.a].mesh.position;
-    var b = nodes[edge.b].mesh.position;
-    var path = new THREE.LineCurve3(a.clone(), b.clone());
-    var newGeo = new THREE.TubeGeometry(path, EDGE_TUBE_SEGMENTS, EDGE_TUBE_RADIUS, 6, false);
-    edge.mesh.geometry.dispose();
-    edge.mesh.geometry = newGeo;
-  }
-
-  // === ASCII SAMPLER ========================================================
-  var sampler = document.createElement('canvas');
-  sampler.width  = COLS;
-  sampler.height = ROWS;
-  var sctx = sampler.getContext('2d', { willReadFrequently: true });
-
-  function renderToASCII(){
-    renderer.render(scene, camera);
-    sctx.clearRect(0, 0, COLS, ROWS);
-    sctx.drawImage(off, 0, 0, COLS, ROWS);
-    var img = sctx.getImageData(0, 0, COLS, ROWS).data;
-
-    var lines = new Array(ROWS / 2);
-    var maxIdx = PALETTE.length - 1;
-    for (var y = 0; y < ROWS; y += 2){
-      var row = '';
-      for (var x = 0; x < COLS; x += 2){
-        var sum = 0, w = 0;
-        for (var dy = 0; dy < 2; dy++){
-          for (var dx = 0; dx < 2; dx++){
-            var i2 = ((y + dy) * COLS + (x + dx)) * 4;
-            var a2 = img[i2 + 3] / 255;
-            if (a2 <= 0.02) continue;
-            var l = 0.299 * img[i2] + 0.587 * img[i2+1] + 0.114 * img[i2+2];
-            sum += (l / 255) * a2;
-            w   += a2;
-          }
-        }
-        if (w === 0){ row += ' '; continue; }
-        var lum = sum / w;
-        var idx = Math.round(lum * maxIdx);
-        if (idx < 0) idx = 0; else if (idx > maxIdx) idx = maxIdx;
-        var ch = PALETTE.charAt(idx);
-        if (HI.indexOf(ch) >= 0){
-          row += '<span class="hi">' + ch + '</span>';
-        } else if (ch === '<'){
-          row += '&lt;';
-        } else if (ch === '>'){
-          row += '&gt;';
-        } else if (ch === '&'){
-          row += '&amp;';
-        } else {
-          row += ch;
-        }
-      }
-      lines[y / 2] = row;
-    }
-    pre.innerHTML = lines.join('\n');
-  }
-
-  // === CURSOR TRACKING ======================================================
-  // Project cursor into local graph space at z=0 (graph local). We invert the
-  // graph's current rotation when computing the target so attraction feels
-  // anchored to the screen, not to the spinning frame.
-  var mx = 0, my = 0;
-  var lastMoveT = performance.now();
-  var hasMoved = false;
-  function onPointerMove(e){
-    var rect = host.getBoundingClientRect();
-    var cx = rect.left + rect.width  / 2;
-    var cy = rect.top  + rect.height / 2;
-    // Normalize to the host element so attraction tracks the visible mesh, not
-    // the whole page. Clamp to roughly the visible graph extent.
-    var nx = (e.clientX - cx) / (rect.width  / 2 || 1);
-    var ny = (e.clientY - cy) / (rect.height / 2 || 1);
-    if (nx < -1.5) nx = -1.5; else if (nx > 1.5) nx = 1.5;
-    if (ny < -1.5) ny = -1.5; else if (ny > 1.5) ny = 1.5;
-    mx = nx; my = ny;
-    lastMoveT = performance.now();
-    hasMoved = true;
-  }
-  window.addEventListener('mousemove', onPointerMove);
-  window.addEventListener('pointermove', onPointerMove);
-
-  // === FRAME ================================================================
-  var ATTRACT_THRESHOLD = 4.0;   // units (in graph-local space)
-  var ATTRACT_STRENGTH  = 0.18;  // per-frame lerp factor at zero distance
-  var SPRING_BACK       = 0.05;  // damping toward original position
-  var ROT_Y_PER_FRAME   = 0.0035;
-  var ROT_X_PER_FRAME   = 0.001;
-
-  var cursorWorld = new THREE.Vector3();
-  var cursorLocal = new THREE.Vector3();
-  var inv = new THREE.Matrix4();
-  var tmp = new THREE.Vector3();
-
-  function frame(){
-    var now = performance.now();
-    var idle = !hasMoved || (now - lastMoveT > 1500);
-
-    // Auto-rotate the whole graph.
-    graph.rotation.y += ROT_Y_PER_FRAME;
-    graph.rotation.x += ROT_X_PER_FRAME;
-
-    // Cursor position in graph-local coords. Approx: fit cursor into the
-    // graph's visible extent (~SPHERE_RADIUS in each axis) at z=0 in *world*
-    // space, then transform into graph-local space (so it doesn't spin with
-    // the graph).
-    cursorWorld.set(mx * SPHERE_RADIUS * 1.1, -my * SPHERE_RADIUS * 0.9, 0);
-    inv.copy(graph.matrixWorld).invert();
-    // Force the matrix to be up-to-date so the inverse is correct.
-    graph.updateMatrixWorld();
-    inv.copy(graph.matrixWorld).invert();
-    cursorLocal.copy(cursorWorld).applyMatrix4(inv);
-
-    for (var i = 0; i < nodes.length; i++){
-      var nd = nodes[i];
-      var p  = nd.mesh.position;
-
-      if (!idle){
-        tmp.copy(cursorLocal).sub(p);
-        var dist = tmp.length();
-        if (dist < ATTRACT_THRESHOLD && dist > 0.0001){
-          // Strength decays with distance, max at the cursor.
-          var falloff = 1 - (dist / ATTRACT_THRESHOLD);
-          var strength = ATTRACT_STRENGTH * falloff * falloff;
-          p.lerp(cursorLocal, strength);
-        } else {
-          // Spring back even while moving for far nodes.
-          p.lerp(nd.original, SPRING_BACK);
-        }
-      } else {
-        // Cursor idle: ease all nodes back home.
-        p.lerp(nd.original, SPRING_BACK);
-      }
-    }
-
-    // Edges follow node motion: rebuild tube geometries in place.
-    for (var ee = 0; ee < edgeMeshes.length; ee++){
-      rebuildEdgeGeometry(edgeMeshes[ee]);
-    }
-
-    renderToASCII();
-  }
-
-  // === LOOP / OBSERVER / RESIZE =============================================
-  var last = 0, INVIEW = true;
-  function loop(t){
-    if(INVIEW && (t - last > 33)){ frame(); last = t; }
-    requestAnimationFrame(loop);
-  }
-
-  // Render one immediate frame.
-  frame();
-
-  if(reduced){
-    return; // Single static frame for reduced-motion users.
-  }
-
-  if('IntersectionObserver' in window){
-    var io2 = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ INVIEW = e.isIntersecting; });
-    }, { threshold: 0.05 });
-    io2.observe(host);
-  }
-
-  requestAnimationFrame(loop);
-})();
 </script>
 </body>
 </html>
