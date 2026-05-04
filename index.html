@@ -1223,6 +1223,54 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   text-transform:uppercase;
 }
 
+/* === LA TESIS (§ II) === */
+.tesis-frame{max-width:1080px;margin:0 auto}
+.tesis-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.tesis-headline{font-family:'Inter Tight',sans-serif;font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin-bottom:18px}
+.tesis-headline em{font-style:normal;color:var(--accent);font-weight:500}
+.tesis-headline strong{font-weight:500;color:var(--ink)}
+.tesis-sub{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:20px;line-height:1.4;color:var(--ink-soft);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);letter-spacing:-0.01em;max-width:820px}
+.tesis-body{font-size:17px;line-height:1.7;color:var(--ink-soft);max-width:820px}
+.tesis-body p{margin-bottom:22px}
+.tesis-body strong{font-weight:600;color:var(--ink)}
+.tesis-pull{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:22px;line-height:1.4;color:var(--ink);border-left:2px solid var(--accent);padding:10px 0 10px 22px;margin:32px 0;letter-spacing:-0.01em;max-width:780px}
+.tesis-pull em{font-style:normal;color:var(--accent);font-weight:500}
+.tesis-diagram{margin-top:64px;padding:40px 24px;background:var(--bg);border:1px solid var(--rule-strong);border-radius:2px;position:relative}
+.tesis-diagram-cap{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px;font-weight:500;text-align:center}
+.tesis-diagram svg{display:block;width:100%;height:auto;max-height:540px}
+
+/* === COMMUNICATIONS LAYER (§ VI) === */
+.comms-frame{max-width:1280px;margin:0 auto}
+.comms-intro{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:19px;line-height:1.5;color:var(--ink-soft);max-width:880px;margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--rule);letter-spacing:-0.01em}
+.comms-intro strong{font-weight:600;color:var(--ink)}
+.comms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule-strong);border-left:1px solid var(--rule-strong)}
+.comms-card{padding:28px 26px;border-right:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);background:var(--bg);display:flex;flex-direction:column;gap:12px;transition:background-color .2s ease}
+.comms-card:hover{background:var(--bg-2)}
+.comms-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;color:var(--accent);text-transform:uppercase;font-weight:500}
+.comms-title{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:18px;line-height:1.25;letter-spacing:-0.01em;color:var(--ink)}
+.comms-title em{font-style:normal;color:var(--accent);font-weight:500}
+.comms-prose{font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;color:var(--ink-soft)}
+.comms-prose strong{font-weight:600;color:var(--ink)}
+.comms-substrate{margin-top:48px;padding:28px 32px;background:var(--bg-3);border-left:3px solid var(--accent)}
+.comms-substrate-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.comms-substrate-prose{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:18px;line-height:1.5;color:var(--ink);letter-spacing:-0.01em}
+.comms-substrate-prose strong{font-weight:600;color:var(--ink)}
+
+/* === FASES INTRO === */
+.fases-intro{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:900px;margin:-32px 0 48px;padding:24px 28px;background:var(--bg);border-left:3px solid var(--accent);letter-spacing:-0.005em}
+.fases-intro strong{font-weight:600;color:var(--ink)}
+.fases-intro em{font-style:normal;color:var(--accent);font-weight:500}
+
+/* === LA INVITACIÓN === */
+.invitation-block{margin-top:80px;padding:48px 44px;background:var(--bg-3);border:1px solid var(--rule-strong);border-radius:2px;max-width:900px}
+.invitation-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.invitation-title{font-family:'Inter Tight',sans-serif;font-weight:300;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:24px}
+.invitation-title em{font-style:normal;color:var(--accent);font-weight:500}
+.invitation-prose{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;color:var(--ink-soft)}
+.invitation-prose p{margin-bottom:18px}
+.invitation-prose p:last-child{margin-bottom:0}
+.invitation-prose strong{font-weight:600;color:var(--ink)}
+
 /* === RESPONSIVE === */
 @media(max-width:1100px){
   .cover{padding:30px 24px}
@@ -1252,6 +1300,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .roadmap-row{grid-template-columns:1fr;gap:14px;padding:24px 0}
   .roadmap-row.final{padding:24px 18px}
   .cap-grid{grid-template-columns:1fr 1fr}
+  .comms-grid{grid-template-columns:1fr 1fr}
+  .invitation-block{padding:32px 24px}
+  .fases-intro{margin-top:0}
   .bi-grid{grid-template-columns:1fr}
   .bi-cell{border-right:none}
   .bi-cell:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
@@ -1263,8 +1314,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .section{padding:80px 24px}
   .cover-title{font-size:36px}
   .diag-title,.section-title{font-size:30px}
+  .tesis-headline{font-size:30px}
+  .invitation-title{font-size:28px}
   .roadmap-theme{font-size:20px}
   .cap-grid{grid-template-columns:1fr}
+  .comms-grid{grid-template-columns:1fr}
 }
 @media(max-width:380px){
   .cover{padding:24px 16px}
@@ -1383,14 +1437,99 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § II · LAS CINCO FASES -->
-<section class="section muted" id="fases">
+<!-- § II · LA TESIS -->
+<section class="section muted" id="tesis">
+  <div class="section-frame">
+    <div class="tesis-frame">
+      <div class="tesis-eyebrow">§ II · LA TESIS</div>
+      <h1 class="tesis-headline">Una sola aplicación que <em>opera como TSC LABS</em>.</h1>
+      <p class="tesis-sub">No estamos construyendo cinco productos. Estamos construyendo el <strong>sistema operativo de TSC LABS</strong>.</p>
+
+      <div class="tesis-body">
+        <p>TSC LABS hoy opera con piezas separadas: Excel, carpetas, WhatsApp, Calendly, contadores, USBs. Cada pieza no se habla con la siguiente. Cada decisión de negocio cruza tres herramientas y dos personas antes de convertirse en respuesta.</p>
+
+        <p>Nuestra tesis: las cinco fases de este programa <strong>no son entregables aislados</strong>. Son las capas de construcción de <strong>una sola aplicación</strong> que va a operar como TSC LABS. Cada fase añade un sub-sistema que se enchufa al mismo data substrate común — una sola fuente de verdad, un solo audit log, una sola superficie de queries.</p>
+
+        <p>Cuando las fórmulas viven en una DB versionada (F3), el inventario se descuenta solo (F3), las facturas se emiten contra hito (F2), los dashboards leen del mismo data layer (F4) y los agentes responden con la misma data (F5) — la empresa deja de tener fricciones internas. Cualquier pregunta de negocio es una query. Cualquier comunicación externa nace del mismo origen de verdad.</p>
+
+        <div class="tesis-pull">Alineamos la data <em>→</em> alineamos las comunicaciones <em>→</em> operamos como partners, no como proveedor y cliente.</div>
+
+        <p>El resultado a los doce meses no es "un proyecto entregado". Es <strong>TSC LABS convertida en empresa-aplicación</strong>: cada decisión de negocio es una query, cada comunicación externa fluye del mismo data layer, el inventario se predice solo, la producción se traza sola. El laboratorio se vuelve un sistema vivo.</p>
+      </div>
+
+      <div class="tesis-diagram">
+        <div class="tesis-diagram-cap">FIG. 01 · Arquitectura del sistema unificado · Data substrate central + 7 servicios interconectados</div>
+        <svg viewBox="0 0 920 480" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de arquitectura unificada">
+          <defs>
+            <marker id="arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#1E40AF"/>
+            </marker>
+            <marker id="arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M10,0 L0,5 L10,10 z" fill="#6E6E70"/>
+            </marker>
+          </defs>
+
+          <!-- Center: DATA SUBSTRATE -->
+          <g>
+            <rect x="380" y="200" width="160" height="80" rx="2" fill="#1E40AF" stroke="#1E3A8A" stroke-width="1.5"/>
+            <text x="460" y="232" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#FAFAF7" letter-spacing="2" font-weight="600">DATA SUBSTRATE</text>
+            <text x="460" y="252" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#FAFAF7" letter-spacing="1.5" opacity="0.85">CF D1 · R2 · DURABLE OBJECTS</text>
+            <text x="460" y="268" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#FAFAF7" letter-spacing="1.5" opacity="0.85">SEMANTIC LAYER · AUDIT LOG</text>
+          </g>
+          <!-- Ring services (top + side + bottom) -->
+          <g font-family="Inter Tight, sans-serif" font-size="12" fill="#0A0A0A" font-weight="500">
+            <rect x="80" y="60" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="160" y="84" text-anchor="middle">Talent Portal</text>
+            <text x="160" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F2 · B2B</text>
+            <rect x="380" y="40" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="460" y="64" text-anchor="middle">Skin Club DTC</text>
+            <text x="460" y="82" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F1 · LANDING + PIXELS</text>
+            <rect x="680" y="60" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="760" y="84" text-anchor="middle">ERP Inventory</text>
+            <text x="760" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F3 · AUTO-DESCONTANDO</text>
+            <rect x="40" y="220" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="120" y="244" text-anchor="middle">Compliance Vault</text>
+            <text x="120" y="262" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F3 · COFEPRIS · NOMS</text>
+            <rect x="720" y="220" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="800" y="244" text-anchor="middle">BI Dashboard</text>
+            <text x="800" y="262" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F4 · QUERYABLE</text>
+            <rect x="80" y="380" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#1E40AF" stroke-width="1.2"/>
+            <text x="160" y="404" text-anchor="middle">Chatbot Layer</text>
+            <text x="160" y="422" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2">F5 · MULTI-PROPÓSITO</text>
+            <rect x="380" y="400" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#1E40AF" stroke-width="1.2"/>
+            <text x="460" y="424" text-anchor="middle">Outbound Agents</text>
+            <text x="460" y="442" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2">F5 · EMAIL · WA · VOZ</text>
+            <rect x="680" y="380" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#1E40AF" stroke-width="1.2"/>
+            <text x="760" y="404" text-anchor="middle">Internal Queries</text>
+            <text x="760" y="422" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2">F5 · NL → SQL</text>
+          </g>
+          <!-- Bidirectional connectors substrate <-> services -->
+          <g stroke="#1E40AF" stroke-width="1.2" fill="none" marker-end="url(#arrow-end)" marker-start="url(#arrow-start)">
+            <line x1="240" y1="100" x2="385" y2="205"/>
+            <line x1="460" y1="96" x2="460" y2="200"/>
+            <line x1="680" y1="100" x2="535" y2="205"/>
+            <line x1="200" y1="248" x2="380" y2="240"/>
+            <line x1="720" y1="248" x2="540" y2="240"/>
+            <line x1="240" y1="395" x2="385" y2="280"/>
+            <line x1="460" y1="400" x2="460" y2="280"/>
+            <line x1="680" y1="395" x2="535" y2="280"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § III · LAS CINCO FASES -->
+<section class="section" id="fases">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ II<small>FASES</small></div>
+      <div class="section-num">§ III<small>FASES</small></div>
       <h2 class="section-title">Doce meses, <em>cinco fases</em>, una arquitectura.</h2>
       <p class="section-deck">Cinco capítulos acumulativos. Cada fase se construye encima de la anterior, sin re-trabajo. Stack único, deliverables auditables, métricas de cierre por hito.</p>
     </header>
+
+    <div class="fases-intro">Las cinco fases que siguen <strong>no son productos sueltos</strong>. Son las capas de construcción de <em>una sola aplicación</em>: cada fase añade un sub-sistema que se enchufa al data substrate común. Al cierre de F5, TSC LABS es una empresa-aplicación operando con un solo origen de verdad.</div>
 
     <article class="phase">
       <header class="phase-head">
@@ -1551,9 +1690,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <span class="phase-num-label">Fase cinco · clímax</span>
         </div>
         <div>
-          <h3 class="phase-title">AI <em>Agents</em> · 4 olas</h3>
+          <h3 class="phase-title">Capa <em>Agéntica</em></h3>
           <p class="phase-meta-line">5 meses · 4 olas · DTC chatbot · Lead qualifier · Outbound agents · Compliance + R&amp;D</p>
-          <p class="phase-subtitle">Cuatro agentes que operan como empleados senior, sin sueldo.</p>
+          <p class="phase-subtitle">Convertimos los chatbots dispersos en una capa unificada que opera como senior staff.</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$440<em>K</em></div>
@@ -1562,7 +1701,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Cuatro olas de agentes operativos que convierten IA en senior staff que opera 24/7. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra. <strong>Ola B — Lead Qualification B2B</strong> (1 mes · $90K): filtra talents inbound y agenda solo cuando hay fit real.</p>
+          <p>Los agentes <strong>no son productos sueltos</strong>. Son la voz del sistema: cada uno comparte el mismo data substrate de las fases 1-4, escribe al mismo audit log, y se comunica internamente para no actuar contra políticas. El equipo TSC interactúa con ellos como con un colega más; los talents y clientes interactúan con ellos como con la marca.</p>
+          <p>Cuatro olas que convierten IA en senior staff operando 24/7. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra. <strong>Ola B — Lead Qualification B2B</strong> (1 mes · $90K): filtra talents inbound y agenda solo cuando hay fit real.</p>
           <p><strong>Ola C — Outbound Sales Agents</strong> (1.5 meses · $130K): agentes que hacen primeros acercamientos a talents potenciales — research preliminary, redactan email, envían WhatsApp inicial, escalan a humano cuando hay interés. Multi-canal: email, WhatsApp y llamadas voz vía Twilio + ElevenLabs. <strong>Convierte el pipeline B2B en motor outbound 24/7.</strong></p>
           <p><strong>Ola D — Compliance Monitor + R&amp;D Research</strong> (1.5 meses · $130K): alertas en menos de 24 horas cuando COFEPRIS o cualquier NOM relevante actualiza, y asistente de investigación que rastrea papers científicos, activos emergentes y movimientos regulatorios de competidores globales.</p>
         </div>
@@ -1586,11 +1726,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § III · DASHBOARD EJECUTIVO MOCK -->
-<section class="section" id="dashboard-mock">
+<!-- § IV · DASHBOARD EJECUTIVO MOCK -->
+<section class="section muted" id="dashboard-mock">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ III<small>BI · DASHBOARD</small></div>
+      <div class="section-num">§ IV<small>BI · DASHBOARD</small></div>
       <h2 class="section-title">Dashboard ejecutivo <em>en vivo</em> (preview).</h2>
       <p class="section-deck">El dashboard que TSC LABS tendrá al cierre de Fase 04. Cualquier pregunta del negocio, una visualización. Mock representativo del producto final.</p>
     </header>
@@ -1803,11 +1943,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § IV · ROADMAP MENSUAL -->
-<section class="section muted" id="roadmap">
+<!-- § V · ROADMAP MENSUAL -->
+<section class="section" id="roadmap">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ IV<small>ROADMAP</small></div>
+      <div class="section-num">§ V<small>ROADMAP</small></div>
       <h2 class="section-title">Roadmap — <em>12 meses, mes a mes</em>.</h2>
       <p class="section-deck">Cada mes una entrega tangible. Sin meses vacíos.</p>
     </header>
@@ -1965,11 +2105,81 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § V · INVERSIÓN TOTAL -->
+<!-- § VI · COMMUNICATIONS LAYER -->
+<section class="section muted" id="comms-layer">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">§ VI<small>COMMS LAYER</small></div>
+      <h2 class="section-title">Capa de <em>comunicaciones</em> — un solo cerebro, múltiples voces.</h2>
+      <p class="section-deck">Chatbots multi-propósito que comparten la misma data substrate. Cada bot lee y escribe al mismo origen de verdad — DTC, B2B, outbound, supplier, internal queries, compliance y talent updates operan como una capa unificada, no como herramientas dispersas.</p>
+    </header>
+
+    <div class="comms-frame">
+      <p class="comms-intro">La diferencia entre tener varios bots dispersos y tener una <strong>capa de comunicaciones</strong> es la data debajo. Cuando todos los bots leen del mismo data layer y escriben al mismo audit log, las comunicaciones de TSC LABS dejan de ser ad-hoc — pasan a ser <strong>sistemáticas, profesionales, trazables, escalables</strong>.</p>
+
+      <div class="comms-grid">
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 01 · DTC</div>
+          <div class="comms-title">Chatbot <em>DTC Skin Club</em></div>
+          <p class="comms-prose">Clientes finales: matching de fórmula por tipo de piel, seguimiento post-compra, soporte 24/7. <strong>Lee del catálogo, escribe al CRM, escala a humano cuando hay devolución.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 02 · B2B</div>
+          <div class="comms-title">Chatbot <em>B2B Talent</em></div>
+          <p class="comms-prose">Primer contacto talents inbound, qualification por fit real, agendado automático cuando pasa filtros. <strong>Lee del CRM, escribe al pipeline, no agenda fuera de capacidad.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 03 · OUTBOUND</div>
+          <div class="comms-title"><em>Outbound Sales</em> Agents</div>
+          <p class="comms-prose">Primeros acercamientos a talents potenciales. Multi-canal — email + WhatsApp + voz vía Twilio + ElevenLabs. <strong>Comparte datos con B2B chatbot para no duplicar contactos.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 04 · SUPPLIER</div>
+          <div class="comms-title"><em>Supplier</em> Outreach</div>
+          <p class="comms-prose">Negocia y coordina con proveedores de materia prima cuando ERP detecta umbral de re-stock. <strong>Lee del ERP, escribe a órdenes de compra, escala a humano para aprobación de monto.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 05 · INTERNAL</div>
+          <div class="comms-title"><em>Internal Team</em> Queries</div>
+          <p class="comms-prose">Equipo TSC pregunta en lenguaje natural — "¿cuánto Suero Vit C tenemos?", "estado batch 304" — y obtiene respuesta directa contra la DB. <strong>NL → SQL contra el semantic layer.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 06 · COMPLIANCE</div>
+          <div class="comms-title"><em>Compliance</em> Alerts</div>
+          <p class="comms-prose">Bot que avisa COFEPRIS y NOM updates relevantes a stakeholders correctos en menos de 24h. <strong>Lee del Document Vault, escribe al audit log, segmenta por rol.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 07 · TALENT</div>
+          <div class="comms-title"><em>Talent</em> Updates</div>
+          <p class="comms-prose">Comunicaciones automatizadas a talent managers cuando hay milestone — concepto aprobado, prototipo listo, lote producido, listo para retail. <strong>Lee del Talent Portal, dispara email + WA por hito.</strong></p>
+        </div>
+
+        <div class="comms-card">
+          <div class="comms-tag">VOZ · 08 · ORCHESTRATION</div>
+          <div class="comms-title">Cross-bot <em>orchestration</em></div>
+          <p class="comms-prose">Los siete agentes anteriores se hablan entre sí cuando hay handoff — outbound abre lead, B2B chatbot lo califica, talent updates lo informa. <strong>Una sola conversación, siete voces coordinadas.</strong></p>
+        </div>
+      </div>
+
+      <div class="comms-substrate">
+        <div class="comms-substrate-label">DATA SUBSTRATE COMÚN</div>
+        <p class="comms-substrate-prose">Las ocho voces leen y escriben contra el mismo <strong>D1 + R2 + Durable Objects + Audit Log</strong>. Cuando un bot actualiza un talent, el siguiente bot lo ve. Cuando un proveedor cambia precio, el dashboard se entera. Cuando compliance alerta, el equipo ya tiene el contexto. <strong>La data es la que alinea — los bots son la superficie.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § VII · INVERSIÓN TOTAL -->
 <section class="section" id="inversion">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ V<small>INVERSIÓN</small></div>
+      <div class="section-num">§ VII<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
       <p class="section-deck">Setup acumulado de las cinco fases más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
     </header>
@@ -2063,16 +2273,21 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VI · POR QUÉ EIGEN -->
+<!-- § VIII · POR QUÉ EIGEN -->
 <section class="section muted" id="por-que-eigen">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VI<small>POR QUÉ EIGEN</small></div>
-      <h2 class="section-title">Cuatro razones, <em>defendibles</em>.</h2>
-      <p class="section-deck">El stack, el playbook, el framework propietario y la operación 100% México. Cada una de las cuatro es defendible en una sala con CTO de cualquier vertical.</p>
+      <div class="section-num">§ VIII<small>POR QUÉ EIGEN</small></div>
+      <h2 class="section-title">No proveedor. <em>Partner</em>.</h2>
+      <p class="section-deck">Cinco razones, defendibles. El partnership de transformación, el stack, el playbook, el framework propietario y la operación 100% México. Cada una es defendible en una sala con CTO de cualquier vertical.</p>
     </header>
 
     <div class="governance-grid">
+      <div class="gov-card">
+        <div class="gov-tag">RAZÓN · 0 · PARTNERSHIP</div>
+        <h3 class="gov-title">Partnership de <em>transformación</em>, no entrega de proyecto</h3>
+        <p class="gov-prose">Los 12 meses de construcción son la base. <strong>El retainer no es soporte: es operación conjunta del sistema.</strong> Eigen evoluciona la plataforma con TSC LABS conforme la operación crece. Cuando se alinea la data, se alinean las comunicaciones — y operamos como partners, no como proveedor y cliente.</p>
+      </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · I</div>
         <h3 class="gov-title">Stack <em>Cloudflare-nativo</em></h3>
@@ -2129,11 +2344,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VII · CAPACIDADES QUE SE CONSTRUYEN -->
+<!-- § IX · CAPACIDADES QUE SE CONSTRUYEN -->
 <section class="section" id="capacidades">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VII<small>CAPACIDADES</small></div>
+      <div class="section-num">§ IX<small>CAPACIDADES</small></div>
       <h2 class="section-title">Capacidades <em>que se construyen</em>.</h2>
       <p class="section-deck">Lo que TSC LABS recibe al cierre de los 12 meses. No es un paquete técnico — es ocho capacidades operando como pilares de la empresa.</p>
     </header>
@@ -2202,13 +2417,13 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VIII · PRÓXIMOS PASOS -->
+<!-- § X · LA INVITACIÓN + PRÓXIMOS PASOS -->
 <section class="section muted" id="proximos">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">§ VIII<small>PRÓXIMOS PASOS</small></div>
-      <h2 class="section-title">Tres pasos, <em>siete días</em>.</h2>
-      <p class="section-deck">Una secuencia explícita para pasar de propuesta firmada a Fase 1 en operación. Sin renegociación de scope, sin sorpresas, sin diluir el calendario.</p>
+      <div class="section-num">§ X<small>LA INVITACIÓN</small></div>
+      <h2 class="section-title">Tres pasos, <em>siete días</em>, una década.</h2>
+      <p class="section-deck">Una secuencia explícita para pasar de propuesta firmada a Fase 1 en operación. Sin renegociación de scope, sin sorpresas, sin diluir el calendario. Y al final — la invitación a operar como partners.</p>
     </header>
 
     <div class="outlook-grid">
@@ -2229,6 +2444,16 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="outlook-tag">PASO 03 · KICKOFF</div>
         <h4 class="outlook-title">Fase 1 arranca</h4>
         <p class="outlook-prose">Siete días post-firma. Sprint 0 = setup de cuentas, accesos, repos. Sprint 1 = landing The Skin Club + portal B2B en staging. Demo semanal. Cierre Fase 1 a 60 días.</p>
+      </div>
+    </div>
+
+    <div class="invitation-block">
+      <div class="invitation-tag">CIERRE · LA INVITACIÓN</div>
+      <h3 class="invitation-title">Construir, juntos, la <em>aplicación que va a operar como TSC LABS</em>.</h3>
+      <div class="invitation-prose">
+        <p>Esta propuesta no es para que un proveedor entregue cinco productos en doce meses y se vaya. Es para construir, juntos, <strong>la aplicación que va a operar como TSC LABS los próximos cinco años</strong>. El equipo Eigen entra como partner: doce meses de construcción + retainer de operación conjunta + evolución continua del sistema conforme el laboratorio crece.</p>
+        <p>Lo que se construye es <strong>queryable, replicable, defendible</strong> — pero el verdadero valor está en cómo operamos juntos cuando esté en producción. Cuando la data del laboratorio, las marcas, los talents y los proveedores vive en un solo origen de verdad, las comunicaciones dejan de ser ad-hoc, las decisiones dejan de cruzar tres herramientas, y el equipo TSC opera con la fricción de una empresa de mil personas — sin tener mil personas.</p>
+        <p><strong>Operamos como partners. No como vendor y client.</strong></p>
       </div>
     </div>
 
@@ -2267,13 +2492,15 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <h4 class="colophon-col-title">Secciones</h4>
         <ul class="colophon-list">
           <li><a href="#diagnostico">§ I · Diagnóstico</a></li>
-          <li><a href="#fases">§ II · Cinco fases</a></li>
-          <li><a href="#dashboard-mock">§ III · Dashboard mock</a></li>
-          <li><a href="#roadmap">§ IV · Roadmap</a></li>
-          <li><a href="#inversion">§ V · Inversión total</a></li>
-          <li><a href="#por-que-eigen">§ VI · Por qué Eigen</a></li>
-          <li><a href="#capacidades">§ VII · Capacidades</a></li>
-          <li><a href="#proximos">§ VIII · Próximos pasos</a></li>
+          <li><a href="#tesis">§ II · La Tesis</a></li>
+          <li><a href="#fases">§ III · Cinco fases</a></li>
+          <li><a href="#dashboard-mock">§ IV · Dashboard mock</a></li>
+          <li><a href="#roadmap">§ V · Roadmap</a></li>
+          <li><a href="#comms-layer">§ VI · Capa de comunicaciones</a></li>
+          <li><a href="#inversion">§ VII · Inversión total</a></li>
+          <li><a href="#por-que-eigen">§ VIII · Por qué Eigen</a></li>
+          <li><a href="#capacidades">§ IX · Capacidades</a></li>
+          <li><a href="#proximos">§ X · La invitación</a></li>
         </ul>
       </div>
       <div>
