@@ -242,6 +242,27 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   pointer-events:none;
   user-select:none;
 }
+.ascii-hero .ascii-portrait{
+  display:block;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  line-height:0.92;
+  letter-spacing:0;
+  color:var(--ink);
+  background:transparent;
+  white-space:pre;
+  overflow:hidden;
+  pointer-events:none;
+  user-select:none;
+  text-align:center;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.ascii-hero .ascii-portrait .hi{ color:var(--accent) }
 .ascii-hero-cap{
   margin-top:14px;
   display:flex;
@@ -1689,10 +1710,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   <div class="cover-center">
     <div class="ascii-hero-wrap" aria-hidden="true">
       <div class="ascii-hero" id="ascii-hero">
-        <canvas id="hero-portrait"></canvas>
+        <pre id="hero-portrait" class="ascii-portrait"></pre>
       </div>
       <div class="ascii-hero-cap">
-        <span>FIG. I · REACTIVE PORTRAIT</span>
+        <span>FIG. I · ASCII PORTRAIT</span>
         <em>3D · Tracks Cursor</em>
       </div>
     </div>
@@ -3137,72 +3158,58 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 })();
 
-// REACTIVE PORTRAIT HERO — direct WebGL render of a detailed 3D head/face
-// that turns to look at the viewer. Tries Lee Perry Smith → Suzanne → procedural.
-// Back-compat: ?gltf=1 is preserved as a no-op opt-out hook.
+// ASCII PORTRAIT HERO — three.js scene rendered to an OFFSCREEN canvas, then
+// canvas-sampled into ASCII text. Same procedural head + cursor tracking as
+// before; output is a <pre> grid (~160×80) instead of pixels. MeshNormalMaterial
+// gives a clean gradient that ASCII-samples beautifully.
 (function(){
-  var host   = document.getElementById('ascii-hero');
-  var canvas = document.getElementById('hero-portrait');
-  if(!host || !canvas || typeof THREE === 'undefined') return;
+  var host = document.getElementById('ascii-hero');
+  var pre  = document.getElementById('hero-portrait');
+  if(!host || !pre || typeof THREE === 'undefined') return;
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var smallVP = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
   if(smallVP){ return; }
 
-  try {
-    var qs = (window.location && window.location.search) || '';
-    if (/[?&]gltf=1\b/.test(qs)) {
-      // Back-compat hook: future caller may attach its own GLTF scene to #ascii-hero.
-      host.setAttribute('data-mode', 'gltf');
-      return;
-    }
-  } catch(_) {}
+  // === ASCII GRID ============================================================
+  // 2:1 char aspect (chars are ~2× tall). Target ~160 cols × 80 rows.
+  var COLS = 160;
+  var ROWS = 80;
+  // Palette from darkest (space) to brightest (@). 13 levels.
+  var PALETTE = " .'-:;~=+*#%@";
+  // Top-density chars (cobalt accent).
+  var HI = "*#%@";
 
-  // === RENDERER / SCENE / CAMERA ============================================
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  // === OFFSCREEN RENDERER / SCENE / CAMERA ==================================
+  var off = document.createElement('canvas');
+  off.width  = COLS;
+  off.height = ROWS;
+  var renderer = new THREE.WebGLRenderer({ canvas: off, antialias: true, alpha: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(1);
+  renderer.setSize(COLS, ROWS, false);
   renderer.setClearColor(0x000000, 0);
 
   var scene = new THREE.Scene();
   scene.background = null;
 
-  var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.set(0, 0, 4);
+  // Closer crop: face fills the frame.
+  var camera = new THREE.PerspectiveCamera(35, COLS / ROWS, 0.1, 100);
+  camera.position.set(0, 0, 3);
   camera.lookAt(0, 0, 0);
 
-  function sizeRenderer(){
-    var rect = host.getBoundingClientRect();
-    var w = Math.max(1, rect.width);
-    var h = Math.max(1, rect.height);
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-  sizeRenderer();
-
-  // === LIGHTS — cinematic studio portrait ===================================
-  scene.add(new THREE.AmbientLight(0xffffff, 0.30));
-  scene.add(new THREE.HemisphereLight(0xfff4e0, 0x404050, 0.25));
-
-  var keyLight = new THREE.DirectionalLight(0xfff5e6, 0.90);
-  keyLight.position.set(5, 8, 6);
+  // Minimal lighting (MeshNormalMaterial doesn't need light, but ambient keeps
+  // any textured GLTF readable as a fallback).
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  var keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  keyLight.position.set(2, 3, 4);
   scene.add(keyLight);
-
-  var fillLight = new THREE.DirectionalLight(0xb8d4ff, 0.40);
-  fillLight.position.set(-4, 2, 4);
-  scene.add(fillLight);
-
-  var rimLight = new THREE.DirectionalLight(0x4060c0, 0.60);
-  rimLight.position.set(0, 4, -8);
-  scene.add(rimLight);
 
   // === HEAD CONTAINER =======================================================
   var head = new THREE.Group();
-  head.position.x = 0.05;          // subtle off-center bias
+  head.position.x = 0.05;
   scene.add(head);
 
-  var eyeTargets = [];             // optional eye spheres that lookAt the cursor
-  var loadedSource = 'pending';
+  var eyeTargets = [];
 
   // === MODEL LOADING ========================================================
   var GLTF_URLS = [
@@ -3221,10 +3228,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     loader.load(
       url,
       function(gltf){
-        var root = gltf.scene || gltf.scenes && gltf.scenes[0];
+        var root = gltf.scene || (gltf.scenes && gltf.scenes[0]);
         if(!root){ tryLoadGLTF(idx + 1); return; }
-
-        // Compute bounding box to normalize size.
         var box = new THREE.Box3().setFromObject(root);
         var size = new THREE.Vector3(); box.getSize(size);
         var center = new THREE.Vector3(); box.getCenter(center);
@@ -3232,25 +3237,13 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         var scale = 1.6 / maxDim;
         root.scale.setScalar(scale);
         root.position.sub(center.multiplyScalar(scale));
-
-        // Tune materials for skin look.
+        // ASCII-friendly normal material on every mesh — clean gradient.
         root.traverse(function(obj){
-          if(obj.isMesh && obj.material){
-            var m = obj.material;
-            // If model has texture, keep it; otherwise apply skin tone.
-            if (m.map){
-              m.roughness = 0.55;
-              m.metalness = 0.0;
-            } else {
-              obj.material = new THREE.MeshStandardMaterial({
-                color: 0xE8C49A, roughness: 0.6, metalness: 0.0
-              });
-            }
+          if(obj.isMesh){
+            obj.material = new THREE.MeshNormalMaterial({ flatShading: false });
           }
         });
-
         head.add(root);
-        loadedSource = url.indexOf('Suzanne') >= 0 ? 'suzanne' : 'leeperrysmith';
       },
       undefined,
       function(){ tryLoadGLTF(idx + 1); }
@@ -3258,92 +3251,62 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 
   function buildProceduralHead(){
-    loadedSource = 'procedural';
+    var mat = new THREE.MeshNormalMaterial({ flatShading: false });
 
-    var skin = new THREE.MeshStandardMaterial({
-      color: 0xE8C49A, roughness: 0.6, metalness: 0.0
-    });
-    var darkSkin = new THREE.MeshStandardMaterial({
-      color: 0xC79A78, roughness: 0.7, metalness: 0.0
-    });
-    var hairMat = new THREE.MeshStandardMaterial({
-      color: 0x2A1F1A, roughness: 0.85, metalness: 0.0
-    });
-    var lipMat = new THREE.MeshStandardMaterial({
-      color: 0xB87060, roughness: 0.5, metalness: 0.0
-    });
-    var eyeWhite = new THREE.MeshStandardMaterial({
-      color: 0xF7F1E8, roughness: 0.25, metalness: 0.0
-    });
-    var iris = new THREE.MeshStandardMaterial({
-      color: 0x3A4A6E, roughness: 0.3, metalness: 0.05
-    });
-    var pupil = new THREE.MeshStandardMaterial({
-      color: 0x080808, roughness: 0.3, metalness: 0.0
-    });
-
-    // Skull — slightly elongated y.
-    var skull = new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 64), skin);
+    var skull = new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 64), mat);
     skull.scale.set(0.92, 1.05, 0.95);
     head.add(skull);
 
-    // Cheekbones.
-    var cheekL = new THREE.Mesh(new THREE.SphereGeometry(0.32, 32, 32), skin);
+    var cheekL = new THREE.Mesh(new THREE.SphereGeometry(0.32, 32, 32), mat);
     cheekL.position.set(-0.42, -0.10, 0.62);
     cheekL.scale.set(1, 0.85, 0.7);
     head.add(cheekL);
     var cheekR = cheekL.clone(); cheekR.position.x = 0.42; head.add(cheekR);
 
-    // Brow ridges.
-    var browL = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), darkSkin);
+    var browL = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), mat);
     browL.position.set(-0.28, 0.30, 0.78);
     browL.scale.set(1.4, 0.35, 0.8);
     head.add(browL);
     var browR = browL.clone(); browR.position.x = 0.28; head.add(browR);
 
-    // Jaw.
-    var jaw = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), skin);
+    var jaw = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), mat);
     jaw.position.set(0, -0.62, 0.18);
     jaw.scale.set(1.05, 0.55, 0.95);
     head.add(jaw);
 
-    // Chin.
-    var chin = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 24), skin);
+    var chin = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 24), mat);
     chin.position.set(0, -0.78, 0.55);
     chin.scale.set(1, 0.75, 0.85);
     head.add(chin);
 
-    // Nose — cone.
-    var nose = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.42, 24), skin);
+    var nose = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.42, 24), mat);
     nose.position.set(0, 0.02, 0.92);
     nose.rotation.x = -Math.PI / 2.2;
     head.add(nose);
-    var noseTip = new THREE.Mesh(new THREE.SphereGeometry(0.10, 24, 24), skin);
+    var noseTip = new THREE.Mesh(new THREE.SphereGeometry(0.10, 24, 24), mat);
     noseTip.position.set(0, -0.10, 1.04);
     head.add(noseTip);
 
-    // Lips.
-    var lips = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), lipMat);
+    var lips = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), mat);
     lips.position.set(0, -0.42, 0.86);
     lips.scale.set(1.3, 0.30, 0.55);
     head.add(lips);
 
-    // Eye sockets (slightly recessed, darker).
-    var socketL = new THREE.Mesh(new THREE.SphereGeometry(0.18, 24, 24), darkSkin);
+    var socketL = new THREE.Mesh(new THREE.SphereGeometry(0.18, 24, 24), mat);
     socketL.position.set(-0.30, 0.18, 0.82);
     socketL.scale.set(1.1, 0.9, 0.6);
     head.add(socketL);
     var socketR = socketL.clone(); socketR.position.x = 0.30; head.add(socketR);
 
-    // Eyeballs — these will lookAt cursor independently.
+    // Eye groups — each lookAt cursor independently.
     var eyeL = new THREE.Group();
     eyeL.position.set(-0.27, 0.17, 0.86);
-    var eyeBallL = new THREE.Mesh(new THREE.SphereGeometry(0.10, 32, 32), eyeWhite);
+    var eyeBallL = new THREE.Mesh(new THREE.SphereGeometry(0.10, 32, 32), mat);
     eyeL.add(eyeBallL);
-    var irisL = new THREE.Mesh(new THREE.SphereGeometry(0.052, 24, 24), iris);
+    var irisL = new THREE.Mesh(new THREE.SphereGeometry(0.052, 24, 24), mat);
     irisL.position.set(0, 0, 0.075);
     eyeL.add(irisL);
-    var pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.024, 16, 16), pupil);
+    var pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.024, 16, 16), mat);
     pupilL.position.set(0, 0, 0.10);
     eyeL.add(pupilL);
     head.add(eyeL);
@@ -3354,28 +3317,77 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     head.add(eyeR);
     eyeTargets.push(eyeR);
 
-    // Hair cap — half-sphere on top.
     var hairGeo = new THREE.SphereGeometry(1.02, 48, 48, 0, Math.PI * 2, 0, Math.PI * 0.55);
-    var hair = new THREE.Mesh(hairGeo, hairMat);
+    var hair = new THREE.Mesh(hairGeo, mat);
     hair.position.set(0, 0.05, -0.05);
     hair.scale.set(0.96, 1.10, 1.0);
     head.add(hair);
 
-    // Ears.
-    var earL = new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24), skin);
+    var earL = new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24), mat);
     earL.position.set(-0.92, 0.0, 0.05);
     earL.scale.set(0.45, 1.0, 0.7);
     head.add(earL);
     var earR = earL.clone(); earR.position.x = 0.92; head.add(earR);
 
-    // Neck.
-    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.42, 0.55, 24), skin);
+    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.42, 0.55, 24), mat);
     neck.position.set(0, -1.05, -0.05);
     head.add(neck);
   }
 
-  // Kick off model loading.
   tryLoadGLTF(0);
+
+  // === SAMPLER (offscreen 2D context for readback) ==========================
+  var sampler = document.createElement('canvas');
+  sampler.width  = COLS;
+  sampler.height = ROWS;
+  var sctx = sampler.getContext('2d', { willReadFrequently: true });
+
+  function renderToASCII(){
+    renderer.render(scene, camera);
+    // Blit GL canvas → 2D canvas so we can read pixels.
+    sctx.clearRect(0, 0, COLS, ROWS);
+    sctx.drawImage(off, 0, 0, COLS, ROWS);
+    var img = sctx.getImageData(0, 0, COLS, ROWS).data;
+
+    var lines = new Array(ROWS / 2);
+    var maxIdx = PALETTE.length - 1;
+    // Walk in 2-row × 2-col blocks, alpha-weighted luminance, average across 4 px.
+    for (var y = 0; y < ROWS; y += 2){
+      var row = '';
+      for (var x = 0; x < COLS; x += 2){
+        var sum = 0, w = 0;
+        for (var dy = 0; dy < 2; dy++){
+          for (var dx = 0; dx < 2; dx++){
+            var i = ((y + dy) * COLS + (x + dx)) * 4;
+            var a = img[i + 3] / 255;
+            if (a <= 0.02) continue;
+            // Rec. 601 luminance.
+            var l = 0.299 * img[i] + 0.587 * img[i+1] + 0.114 * img[i+2];
+            sum += (l / 255) * a;
+            w   += a;
+          }
+        }
+        if (w === 0){ row += ' '; continue; }
+        var lum = sum / w;
+        var idx = Math.round(lum * maxIdx);
+        if (idx < 0) idx = 0; else if (idx > maxIdx) idx = maxIdx;
+        var ch = PALETTE.charAt(idx);
+        if (HI.indexOf(ch) >= 0){
+          row += '<span class="hi">' + ch + '</span>';
+        } else if (ch === '<'){
+          row += '&lt;';
+        } else if (ch === '>'){
+          row += '&gt;';
+        } else if (ch === '&'){
+          row += '&amp;';
+        } else {
+          row += ch;
+        }
+      }
+      lines[y / 2] = row;
+    }
+    pre.innerHTML = lines.join('\n');
+  }
 
   // === CURSOR TRACKING ======================================================
   var mx = 0, my = 0;
@@ -3396,19 +3408,18 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   window.addEventListener('pointermove', onPointerMove);
 
   var DAMP = 0.08;
-  var MAX_YAW = 0.6;     // ~35°
-  var MAX_PITCH = 0.25;  // slight nod
+  var MAX_YAW = 0.6;
+  var MAX_PITCH = 0.25;
   var rotYTarget = 0, rotXTarget = 0;
   var eyeTargetVec = new THREE.Vector3(0, 0, 5);
 
-  function frame(t){
+  function frame(){
     var now = performance.now();
     var idle = !hasMoved || (now - lastMoveT > 3000);
 
     if (idle){
       rotYTarget = 0;
       rotXTarget = 0;
-      // Subtle breathing scale.
       var br = 1 + Math.sin(now * 0.0008) * 0.005;
       head.scale.setScalar(br);
     } else {
@@ -3416,11 +3427,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       rotXTarget = -my * MAX_PITCH;
       head.scale.setScalar(1);
     }
-
     head.rotation.y += (rotYTarget - head.rotation.y) * DAMP;
     head.rotation.x += (rotXTarget - head.rotation.x) * DAMP;
 
-    // Eyes track cursor independently (extra-realistic).
     if (eyeTargets.length){
       eyeTargetVec.set(mx * 1.0, my * 0.5, 1.0);
       for (var i = 0; i < eyeTargets.length; i++){
@@ -3432,21 +3441,22 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       }
     }
 
-    renderer.render(scene, camera);
+    renderToASCII();
   }
 
   // === LOOP / OBSERVER / RESIZE =============================================
+  // 30fps RAF throttle.
   var last = 0, INVIEW = true;
   function loop(t){
-    if(INVIEW && (t - last > 33)){ frame(t); last = t; }
+    if(INVIEW && (t - last > 33)){ frame(); last = t; }
     requestAnimationFrame(loop);
   }
 
-  // Render one frame immediately so something shows even before model loads.
-  frame(performance.now());
+  // Render one immediate frame.
+  frame();
 
   if(reduced){
-    // Reduced motion: render single static frame, no loop.
+    // Reduced motion: single static frame.
     return;
   }
 
@@ -3458,13 +3468,6 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 
   requestAnimationFrame(loop);
-
-  var ro;
-  function onResize(){
-    if(ro) clearTimeout(ro);
-    ro = setTimeout(function(){ sizeRenderer(); }, 120);
-  }
-  window.addEventListener('resize', onResize);
 })();
 </script>
 </body>
