@@ -754,280 +754,70 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .bi-bar-meta{justify-content:flex-start}
   .bi-foot-sources{flex-direction:column;align-items:flex-start;gap:8px}
 }
-
 /* === BROWSER CHROME + APP SHELL (shared by BI + TP mocks) === */
-.browser-frame{
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 30px 60px -20px rgba(10,10,10,0.18), 0 8px 20px -10px rgba(10,10,10,0.10), 0 0 0 1px rgba(10,10,10,0.08);
-  background:#FFFFFF;
-  margin:0 auto;
-}
-.browser-chrome{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:11px 14px;
-  background:#E5E7EB;
-  border-bottom:1px solid rgba(10,10,10,0.08);
-}
+.browser-frame{border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(10,10,10,0.18), 0 8px 20px -10px rgba(10,10,10,0.10), 0 0 0 1px rgba(10,10,10,0.08);background:#FFFFFF;margin:0 auto}
+.browser-chrome{display:flex;align-items:center;gap:14px;padding:11px 14px;background:#E5E7EB;border-bottom:1px solid rgba(10,10,10,0.08)}
 .traffic-lights{display:flex;gap:7px;align-items:center}
-.traffic-lights span{
-  width:12px;height:12px;border-radius:50%;
-  display:inline-block;
-  border:1px solid rgba(0,0,0,0.06);
-}
+.traffic-lights span{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,0.06)}
 .traffic-lights .tl-red{background:#FF5F57}
 .traffic-lights .tl-amber{background:#FEBC2E}
 .traffic-lights .tl-green{background:#28C840}
-.browser-url{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  background:#FFFFFF;
-  border:1px solid rgba(10,10,10,0.08);
-  border-radius:6px;
-  padding:5px 14px;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:11px;
-  color:#4B5563;
-  letter-spacing:0.01em;
-  max-width:560px;
-  margin:0 auto;
-}
-.browser-url-lock{
-  width:11px;height:11px;display:inline-block;flex-shrink:0;color:#6B7280;
-}
+.browser-url{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#FFFFFF;border:1px solid rgba(10,10,10,0.08);border-radius:6px;padding:5px 14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#4B5563;letter-spacing:0.01em;max-width:560px;margin:0 auto}
+.browser-url-lock{width:11px;height:11px;display:inline-block;flex-shrink:0;color:#6B7280}
 .browser-url-host{color:#0A0A0A;font-weight:500}
 .browser-url-path{color:#6B7280}
 .browser-actions{display:flex;gap:6px;color:#6B7280}
-.browser-actions span{
-  width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
-  border-radius:4px;font-size:14px;line-height:1;
-}
+.browser-actions span{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;font-size:14px;line-height:1}
 .browser-actions span:hover{background:rgba(10,10,10,0.05)}
-
 /* === BI App shell === */
-.bi-app{
-  display:grid;
-  grid-template-columns:56px 1fr;
-  background:#FAFAF7;
-}
-.bi-sidebar{
-  background:#F5F1E9;
-  border-right:1px solid var(--rule);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:14px 0;
-  gap:6px;
-}
-.bi-sidebar-brand{
-  width:32px;height:32px;border-radius:8px;
-  background:var(--accent);
-  color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;
-  letter-spacing:0.02em;
-  margin-bottom:14px;
-}
-.bi-sidebar-item{
-  width:36px;height:36px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:8px;
-  color:var(--ink-mute);
-  cursor:default;
-  position:relative;
-  transition:background .15s ease,color .15s ease;
-}
+.bi-app{display:grid;grid-template-columns:56px 1fr;background:#FAFAF7}
+.bi-sidebar{background:#F5F1E9;border-right:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:6px}
+.bi-sidebar-brand{width:32px;height:32px;border-radius:8px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;margin-bottom:14px}
+.bi-sidebar-item{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:var(--ink-mute);cursor:default;position:relative;transition:background .15s ease,color .15s ease}
 .bi-sidebar-item svg{width:18px;height:18px;display:block}
 .bi-sidebar-item:hover{background:rgba(10,10,10,0.04);color:var(--ink)}
 .bi-sidebar-item.active{background:var(--accent);color:#fff}
 .bi-sidebar-item.active:hover{background:var(--accent)}
-.bi-sidebar-item:hover::after{
-  content:attr(data-label);
-  position:absolute;
-  left:46px;top:50%;transform:translateY(-50%);
-  background:#0A0A0A;color:#fff;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;letter-spacing:0.08em;
-  padding:5px 9px;border-radius:4px;
-  white-space:nowrap;
-  z-index:5;text-transform:uppercase;
-  pointer-events:none;
-}
+.bi-sidebar-item:hover::after{content:attr(data-label);position:absolute;left:46px;top:50%;transform:translateY(-50%);background:#0A0A0A;color:#fff;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.08em;padding:5px 9px;border-radius:4px;white-space:nowrap;z-index:5;text-transform:uppercase;pointer-events:none}
 .bi-sidebar-spacer{flex:1}
-
 /* App top nav */
-.bi-topnav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 18px;
-  background:#FFFFFF;
-  border-bottom:1px solid var(--rule);
-  gap:18px;
-  flex-wrap:wrap;
-}
+.bi-topnav{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#FFFFFF;border-bottom:1px solid var(--rule);gap:18px;flex-wrap:wrap}
 .bi-topnav-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.bi-topnav-brand{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;letter-spacing:0.18em;
-  color:var(--ink);
-  font-weight:600;
-  text-transform:uppercase;
-}
+.bi-topnav-brand{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink);font-weight:600;text-transform:uppercase}
 .bi-topnav-brand em{font-style:normal;color:var(--accent)}
-.bi-breadcrumb{
-  font-family:'Inter',sans-serif;
-  font-size:12px;
-  color:var(--ink-mute);
-  display:flex;align-items:center;gap:6px;
-}
+.bi-breadcrumb{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-mute);display:flex;align-items:center;gap:6px}
 .bi-breadcrumb strong{color:var(--ink);font-weight:500}
-.bi-tabs{
-  display:flex;
-  gap:2px;
-  background:#F5F1E9;
-  border-radius:6px;
-  padding:3px;
-}
-.bi-tab{
-  font-family:'Inter',sans-serif;
-  font-size:11.5px;
-  color:var(--ink-mute);
-  padding:5px 10px;
-  border-radius:4px;
-  letter-spacing:0;
-  cursor:default;
-  white-space:nowrap;
-}
-.bi-tab.active{
-  background:#FFFFFF;
-  color:var(--ink);
-  font-weight:500;
-  box-shadow:0 1px 2px rgba(10,10,10,0.05);
-}
+.bi-tabs{display:flex;gap:2px;background:#F5F1E9;border-radius:6px;padding:3px}
+.bi-tab{font-family:'Inter',sans-serif;font-size:11.5px;color:var(--ink-mute);padding:5px 10px;border-radius:4px;letter-spacing:0;cursor:default;white-space:nowrap}
+.bi-tab.active{background:#FFFFFF;color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(10,10,10,0.05)}
 .bi-topnav-right{display:flex;align-items:center;gap:10px}
-.bi-topnav-ctrl{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:'Inter',sans-serif;
-  font-size:11.5px;color:var(--ink-soft);
-  padding:5px 10px;
-  border:1px solid var(--rule);
-  border-radius:6px;
-  background:#FFFFFF;
-  cursor:default;
-}
+.bi-topnav-ctrl{display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;font-size:11.5px;color:var(--ink-soft);padding:5px 10px;border:1px solid var(--rule);border-radius:6px;background:#FFFFFF;cursor:default}
 .bi-topnav-ctrl:hover{border-color:var(--rule-strong)}
-.bi-topnav-ctrl small{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;color:var(--ink-mute);letter-spacing:0.06em;
-}
-.bi-topnav-icon{
-  width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
-  color:var(--ink-soft);border-radius:6px;cursor:default;
-}
+.bi-topnav-ctrl small{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;color:var(--ink-mute);letter-spacing:0.06em}
+.bi-topnav-icon{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink-soft);border-radius:6px;cursor:default}
 .bi-topnav-icon:hover{background:rgba(10,10,10,0.04)}
-.bi-topnav-avatar{
-  width:30px;height:30px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:12px;
-  display:flex;align-items:center;justify-content:center;
-  letter-spacing:0.02em;
-  cursor:default;
-}
-
+.bi-topnav-avatar{width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;letter-spacing:0.02em;cursor:default}
 /* Polish: KPI cards as proper cards */
-.bi-content{
-  padding:18px;
-  display:flex;flex-direction:column;gap:16px;
-  background:#FAFAF7;
-}
-.bi-kpi-row.polished{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  border:none;
-  padding:0;
-}
-.bi-kpi.card{
-  background:#FFFFFF;
-  border:1px solid var(--rule);
-  border-radius:8px;
-  box-shadow:0 1px 3px rgba(0,0,0,0.04);
-  padding:18px 18px 18px;
-  min-height:auto;
-  position:relative;
-}
-.bi-kpi.card .bi-kpi-menu{
-  position:absolute;top:14px;right:14px;
-  color:var(--ink-light);font-size:14px;
-  cursor:default;letter-spacing:1px;
-}
-.bi-kpi-delta-row{
-  display:flex;align-items:center;gap:6px;
-  margin-top:4px;
-}
-.bi-delta-chip{
-  display:inline-flex;align-items:center;gap:3px;
-  font-family:'Inter',sans-serif;
-  font-size:11px;font-weight:600;
-  padding:2px 7px;border-radius:999px;
-}
+.bi-content{padding:18px;display:flex;flex-direction:column;gap:16px;background:#FAFAF7}
+.bi-kpi-row.polished{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border:none;padding:0}
+.bi-kpi.card{background:#FFFFFF;border:1px solid var(--rule);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.04);padding:18px 18px 18px;min-height:auto;position:relative}
+.bi-kpi.card .bi-kpi-menu{position:absolute;top:14px;right:14px;color:var(--ink-light);font-size:14px;cursor:default;letter-spacing:1px}
+.bi-kpi-delta-row{display:flex;align-items:center;gap:6px;margin-top:4px}
+.bi-delta-chip{display:inline-flex;align-items:center;gap:3px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;padding:2px 7px;border-radius:999px}
 .bi-delta-chip.up{color:#15803D;background:rgba(21,128,61,0.10)}
 .bi-delta-chip.dn{color:#A16207;background:rgba(161,98,7,0.10)}
 .bi-delta-chip.flat{color:var(--ink-mute);background:rgba(10,10,10,0.05)}
 .bi-delta-chip-arrow{font-size:10px;line-height:1}
-.bi-delta-context{
-  font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-mute);
-}
-
+.bi-delta-context{font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-mute)}
 /* Cards proper */
-.bi-grid.polished{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-  border:none;
-  padding:0;
-}
-.bi-cell.card{
-  background:#FFFFFF;
-  border:1px solid var(--rule);
-  border-radius:8px;
-  box-shadow:0 1px 3px rgba(0,0,0,0.04);
-  padding:18px 20px 20px;
-  border-right:1px solid var(--rule);
-  border-bottom:1px solid var(--rule);
-}
-.bi-cell.card .bi-cell-menu{
-  color:var(--ink-light);font-size:14px;
-  cursor:default;letter-spacing:1px;
-  padding-top:2px;
-}
-
+.bi-grid.polished{display:grid;grid-template-columns:1fr 1fr;gap:16px;border:none;padding:0}
+.bi-cell.card{background:#FFFFFF;border:1px solid var(--rule);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.04);padding:18px 20px 20px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.bi-cell.card .bi-cell-menu{color:var(--ink-light);font-size:14px;cursor:default;letter-spacing:1px;padding-top:2px}
 /* Agent feed: avatars + alternating shading */
-.bi-feed.polished{
-  gap:0;max-height:none;
-}
-.bi-feed.polished .bi-feed-row{
-  display:grid;
-  grid-template-columns:24px 60px auto 1fr;
-  gap:10px;align-items:center;
-  padding:7px 8px;border-radius:4px;
-}
-.bi-feed.polished .bi-feed-row:nth-child(odd){
-  background:rgba(10,10,10,0.025);
-}
-.bi-feed-avatar{
-  width:22px;height:22px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:9px;
-  display:flex;align-items:center;justify-content:center;
-  letter-spacing:0.02em;flex-shrink:0;
-}
+.bi-feed.polished{gap:0;max-height:none}
+.bi-feed.polished .bi-feed-row{display:grid;grid-template-columns:24px 60px auto 1fr;gap:10px;align-items:center;padding:7px 8px;border-radius:4px}
+.bi-feed.polished .bi-feed-row:nth-child(odd){background:rgba(10,10,10,0.025)}
+.bi-feed-avatar{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:9px;display:flex;align-items:center;justify-content:center;letter-spacing:0.02em;flex-shrink:0}
 .bi-feed-avatar.compliance{background:#A16207}
 .bi-feed-avatar.batch{background:#15803D}
 .bi-feed-avatar.lead{background:#6E6E70}
@@ -1035,495 +825,173 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .bi-feed-avatar.supplier{background:#7C3AED}
 .bi-feed-avatar.research{background:#0891B2}
 .bi-feed-avatar.retail{background:#0A0A0A}
-
 /* Status bar */
-.bi-statusbar{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  align-items:center;
-  padding:8px 18px;
-  background:#0A0A0A;
-  color:rgba(255,255,255,0.85);
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9.5px;letter-spacing:0.10em;
-  text-transform:uppercase;
-  min-height:28px;
-}
+.bi-statusbar{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding:8px 18px;background:#0A0A0A;color:rgba(255,255,255,0.85);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.10em;text-transform:uppercase;min-height:28px}
 .bi-statusbar > div:nth-child(1){justify-self:start;display:flex;align-items:center;gap:8px}
 .bi-statusbar > div:nth-child(2){justify-self:center;color:rgba(255,255,255,0.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .bi-statusbar > div:nth-child(3){justify-self:end;color:rgba(255,255,255,0.65)}
-.bi-statusbar-dot{
-  width:7px;height:7px;border-radius:50%;background:#22C55E;
-  box-shadow:0 0 0 3px rgba(34,197,94,0.20);
-  display:inline-block;
-}
+.bi-statusbar-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,0.20);display:inline-block}
 
 @media (max-width:980px){
-  .bi-app{grid-template-columns:1fr}
-  .bi-sidebar{flex-direction:row;width:100%;border-right:none;border-bottom:1px solid var(--rule);overflow-x:auto;justify-content:flex-start;padding:8px 12px}
-  .bi-sidebar-brand{margin-bottom:0;margin-right:8px}
-  .bi-sidebar-spacer{display:none}
-  .bi-kpi-row.polished{grid-template-columns:repeat(2,1fr)}
-  .bi-grid.polished{grid-template-columns:1fr}
-  .bi-tabs{order:2;flex:1 1 100%;overflow-x:auto}
-  .bi-statusbar{grid-template-columns:1fr;gap:4px;text-align:center}
-  .bi-statusbar > div{justify-self:center !important}
+.bi-app{grid-template-columns:1fr}
+.bi-sidebar{flex-direction:row;width:100%;border-right:none;border-bottom:1px solid var(--rule);overflow-x:auto;justify-content:flex-start;padding:8px 12px}
+.bi-sidebar-brand{margin-bottom:0;margin-right:8px}
+.bi-sidebar-spacer{display:none}
+.bi-kpi-row.polished{grid-template-columns:repeat(2,1fr)}
+.bi-grid.polished{grid-template-columns:1fr}
+.bi-tabs{order:2;flex:1 1 100%;overflow-x:auto}
+.bi-statusbar{grid-template-columns:1fr;gap:4px;text-align:center}
+.bi-statusbar > div{justify-self:center !important}
 }
 @media (max-width:540px){
-  .bi-kpi-row.polished{grid-template-columns:1fr}
-  .browser-url{font-size:10px;padding:4px 8px}
-  .browser-actions{display:none}
+.bi-kpi-row.polished{grid-template-columns:1fr}
+.browser-url{font-size:10px;padding:4px 8px}
+.browser-actions{display:none}
 }
 
 /* === Talent Portal · App shell === */
-.tp-app-shell{
-  display:grid;
-  grid-template-columns:200px 1fr;
-  background:#FAFAF7;
-  min-height:0;
-}
-.tp-side{
-  background:#F5F1E9;
-  border-right:1px solid var(--rule);
-  display:flex;flex-direction:column;
-  padding:14px 0 14px;
-  gap:4px;
-}
-.tp-side-workspace{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 14px;margin:0 8px 10px;
-  border:1px solid var(--rule);border-radius:6px;
-  background:#FFFFFF;
-  font-family:'Inter Tight',sans-serif;font-size:12.5px;
-  color:var(--ink);font-weight:500;
-  cursor:default;
-}
-.tp-side-workspace small{
-  display:block;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8.5px;color:var(--ink-mute);
-  letter-spacing:0.14em;text-transform:uppercase;
-  margin-bottom:2px;font-weight:500;
-}
+.tp-app-shell{display:grid;grid-template-columns:200px 1fr;background:#FAFAF7;min-height:0}
+.tp-side{background:#F5F1E9;border-right:1px solid var(--rule);display:flex;flex-direction:column;padding:14px 0 14px;gap:4px}
+.tp-side-workspace{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;margin:0 8px 10px;border:1px solid var(--rule);border-radius:6px;background:#FFFFFF;font-family:'Inter Tight',sans-serif;font-size:12.5px;color:var(--ink);font-weight:500;cursor:default}
+.tp-side-workspace small{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8.5px;color:var(--ink-mute);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2px;font-weight:500}
 .tp-side-workspace span.caret{color:var(--ink-mute);font-size:10px}
-.tp-side-section{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);
-  text-transform:uppercase;font-weight:500;
-  padding:6px 14px 4px;
-}
-.tp-side-item{
-  display:flex;align-items:center;gap:10px;
-  padding:7px 14px;
-  margin:0 8px;border-radius:6px;
-  font-family:'Inter',sans-serif;font-size:13px;
-  color:var(--ink-soft);
-  cursor:default;position:relative;
-}
+.tp-side-section{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;font-weight:500;padding:6px 14px 4px}
+.tp-side-item{display:flex;align-items:center;gap:10px;padding:7px 14px;margin:0 8px;border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-soft);cursor:default;position:relative}
 .tp-side-item:hover{background:rgba(10,10,10,0.04);color:var(--ink)}
 .tp-side-item.active{background:#FFFFFF;color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(10,10,10,0.04)}
-.tp-side-icon{
-  width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;
-  font-size:14px;flex-shrink:0;
-}
+.tp-side-icon{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .tp-side-label{flex:1}
-.tp-side-badge{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.06em;
-  background:var(--accent);color:#FFFFFF;
-  padding:1px 6px;border-radius:999px;font-weight:600;
-  min-width:18px;text-align:center;
-}
+.tp-side-badge{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.06em;background:var(--accent);color:#FFFFFF;padding:1px 6px;border-radius:999px;font-weight:600;min-width:18px;text-align:center}
 .tp-side-badge.gray{background:rgba(10,10,10,0.10);color:var(--ink-soft)}
 .tp-side-badge.red{background:#B91C1C;color:#fff}
 .tp-side-spacer{flex:1}
-.tp-side-foot{
-  margin:0 8px;padding:10px 12px;
-  border-top:1px solid var(--rule);
-  display:flex;align-items:center;gap:10px;
-}
+.tp-side-foot{margin:0 8px;padding:10px 12px;border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px}
 .tp-side-foot-info{flex:1;min-width:0;display:flex;flex-direction:column}
-.tp-side-foot-name{
-  font-family:'Inter Tight',sans-serif;font-size:11.5px;
-  color:var(--ink);font-weight:600;line-height:1.2;
-}
-.tp-side-foot-mail{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8.5px;color:var(--ink-mute);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.tp-side-foot-logout{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8.5px;letter-spacing:0.14em;
-  color:var(--ink-mute);text-transform:uppercase;
-  cursor:default;
-}
-
+.tp-side-foot-name{font-family:'Inter Tight',sans-serif;font-size:11.5px;color:var(--ink);font-weight:600;line-height:1.2}
+.tp-side-foot-mail{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8.5px;color:var(--ink-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-side-foot-logout{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8.5px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;cursor:default}
 /* TP top nav */
-.tp-topnav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 18px;background:#FFFFFF;
-  border-bottom:1px solid var(--rule);gap:14px;
-}
-.tp-topnav-brand{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;letter-spacing:0.18em;color:var(--ink);
-  font-weight:600;text-transform:uppercase;
-}
+.tp-topnav{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:#FFFFFF;border-bottom:1px solid var(--rule);gap:14px}
+.tp-topnav-brand{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.18em;color:var(--ink);font-weight:600;text-transform:uppercase}
 .tp-topnav-brand em{font-style:normal;color:var(--accent)}
 .tp-topnav-right{display:flex;align-items:center;gap:12px}
-.tp-bell{
-  position:relative;
-  width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
-  color:var(--ink-soft);border-radius:6px;cursor:default;
-}
+.tp-bell{position:relative;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink-soft);border-radius:6px;cursor:default}
 .tp-bell:hover{background:rgba(10,10,10,0.04)}
-.tp-bell-dot{
-  position:absolute;top:5px;right:6px;
-  width:8px;height:8px;border-radius:50%;background:#B91C1C;
-  border:2px solid #FFFFFF;
-}
-.tp-help{
-  width:30px;height:30px;border-radius:50%;
-  border:1px solid var(--rule);
-  display:inline-flex;align-items:center;justify-content:center;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;
-  color:var(--ink-mute);cursor:default;
-}
-.tp-userpill{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:4px 10px 4px 4px;
-  border:1px solid var(--rule);border-radius:999px;
-  cursor:default;
-}
+.tp-bell-dot{position:absolute;top:5px;right:6px;width:8px;height:8px;border-radius:50%;background:#B91C1C;border:2px solid #FFFFFF}
+.tp-help{width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);display:inline-flex;align-items:center;justify-content:center;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:13px;color:var(--ink-mute);cursor:default}
+.tp-userpill{display:inline-flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border:1px solid var(--rule);border-radius:999px;cursor:default}
 .tp-userpill .tp-avatar{width:24px;height:24px;font-size:10px}
 .tp-userpill-name{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink);font-weight:500}
 .tp-userpill-caret{color:var(--ink-mute);font-size:10px}
-
 /* TP main content */
 .tp-main{display:flex;flex-direction:column}
-.tp-page-header{
-  padding:18px 22px;background:#FFFFFF;
-  border-bottom:1px solid var(--rule);
-  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
-}
-.tp-page-header-left h2{
-  font-family:'Inter Tight',sans-serif;font-weight:500;
-  font-size:24px;line-height:1.15;letter-spacing:-0.02em;
-  color:var(--ink);margin:0;
-}
+.tp-page-header{padding:18px 22px;background:#FFFFFF;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.tp-page-header-left h2{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin:0}
 .tp-page-header-left h2 em{font-style:normal;color:var(--accent)}
-.tp-page-crumb{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.14em;color:var(--ink-mute);
-  text-transform:uppercase;margin-top:6px;
-}
-
+.tp-page-crumb{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;margin-top:6px}
 /* TP hero stat row */
-.tp-hero-row{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  padding:18px 22px 0;
-}
-.tp-hero{
-  background:#FFFFFF;
-  border:1px solid var(--rule);
-  border-radius:8px;
-  box-shadow:0 1px 3px rgba(0,0,0,0.04);
-  padding:16px 18px;
-  display:flex;flex-direction:column;gap:8px;
-}
-.tp-hero-label{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.18em;color:var(--ink-mute);
-  text-transform:uppercase;
-  display:flex;align-items:center;gap:8px;
-}
-.tp-hero-label-icon{
-  width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;
-  color:var(--accent);
-}
-.tp-hero-num{
-  font-family:'Inter Tight',sans-serif;font-weight:700;
-  font-size:30px;line-height:1;letter-spacing:-0.025em;color:var(--ink);
-}
+.tp-hero-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px 22px 0}
+.tp-hero{background:#FFFFFF;border:1px solid var(--rule);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.04);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.tp-hero-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.18em;color:var(--ink-mute);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.tp-hero-label-icon{width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;color:var(--accent)}
+.tp-hero-num{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:30px;line-height:1;letter-spacing:-0.025em;color:var(--ink)}
 .tp-hero-num em{font-style:normal;color:var(--ink-mute);font-weight:500;font-size:18px}
 .tp-hero-num.danger{color:#B91C1C}
-.tp-hero-progress{
-  display:flex;gap:4px;margin-top:2px;
-}
-.tp-hero-progress span{
-  flex:1;height:5px;border-radius:2px;background:var(--bg-3);
-}
+.tp-hero-progress{display:flex;gap:4px;margin-top:2px}
+.tp-hero-progress span{flex:1;height:5px;border-radius:2px;background:var(--bg-3)}
 .tp-hero-progress span.on{background:var(--accent)}
-.tp-hero-foot{
-  font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-mute);
-}
+.tp-hero-foot{font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-mute)}
 .tp-hero-foot strong{color:var(--ink);font-weight:600}
-
-.tp-content-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:14px;padding:18px 22px;
-}
-.tp-card{
-  background:#FFFFFF;
-  border:1px solid var(--rule);
-  border-radius:8px;
-  box-shadow:0 1px 3px rgba(0,0,0,0.04);
-  padding:16px 18px 18px;
-  display:flex;flex-direction:column;gap:12px;
-  transition:border-color .15s ease,box-shadow .15s ease;
-}
+.tp-content-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:18px 22px}
+.tp-card{background:#FFFFFF;border:1px solid var(--rule);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.04);padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s ease,box-shadow .15s ease}
 .tp-card:hover{border-color:var(--rule-strong);box-shadow:0 2px 6px rgba(0,0,0,0.06)}
-.tp-card-title{
-  font-family:'Inter Tight',sans-serif;font-weight:500;font-size:13.5px;
-  color:var(--ink);letter-spacing:-0.005em;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.tp-card-title small{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.14em;color:var(--ink-mute);
-  text-transform:uppercase;font-weight:500;
-}
-
+.tp-card-title{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:13.5px;color:var(--ink);letter-spacing:-0.005em;display:flex;align-items:center;justify-content:space-between}
+.tp-card-title small{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;font-weight:500}
 /* Formula row polish */
-.tp-formula.polished{
-  display:grid;
-  grid-template-columns:28px 1fr;
-  gap:10px;align-items:flex-start;
-  padding:10px;border:1px solid transparent;border-radius:6px;
-  transition:border-color .15s ease,background .15s ease;
-}
+.tp-formula.polished{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:flex-start;padding:10px;border:1px solid transparent;border-radius:6px;transition:border-color .15s ease,background .15s ease}
 .tp-formula.polished:hover{border-color:var(--rule);background:rgba(10,10,10,0.02)}
-.tp-formula-icon{
-  width:28px;height:28px;border-radius:6px;
-  background:rgba(30,64,175,0.08);
-  color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;
-}
+.tp-formula-icon{width:28px;height:28px;border-radius:6px;background:rgba(30,64,175,0.08);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px}
 .tp-formula-body{display:flex;flex-direction:column;gap:5px;min-width:0}
 .tp-formula-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .tp-formula-name{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:13px;color:var(--ink);line-height:1.25}
-.tp-formula-bar.polished{
-  position:relative;height:6px;background:var(--bg-3);
-  border-radius:3px;overflow:hidden;
-}
-.tp-formula-bar.polished span{
-  position:absolute;top:0;left:0;bottom:0;background:var(--accent);
-  border-radius:3px;
-}
-.tp-formula-bar-label{
-  position:absolute;right:6px;top:-1px;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8px;letter-spacing:0.06em;color:var(--ink);font-weight:600;
-}
-.tp-formula-foot{
-  display:flex;align-items:center;justify-content:space-between;
-  font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-mute);
-}
-.tp-formula-chemist{
-  display:inline-flex;align-items:center;gap:5px;
-}
-.tp-formula-chemist-avatar{
-  width:18px;height:18px;border-radius:50%;
-  background:#7C3AED;color:#fff;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:8px;
-  display:inline-flex;align-items:center;justify-content:center;
-}
-
+.tp-formula-bar.polished{position:relative;height:6px;background:var(--bg-3);border-radius:3px;overflow:hidden}
+.tp-formula-bar.polished span{position:absolute;top:0;left:0;bottom:0;background:var(--accent);border-radius:3px}
+.tp-formula-bar-label{position:absolute;right:6px;top:-1px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;letter-spacing:0.06em;color:var(--ink);font-weight:600}
+.tp-formula-foot{display:flex;align-items:center;justify-content:space-between;font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-mute)}
+.tp-formula-chemist{display:inline-flex;align-items:center;gap:5px}
+.tp-formula-chemist-avatar{width:18px;height:18px;border-radius:50%;background:#7C3AED;color:#fff;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:8px;display:inline-flex;align-items:center;justify-content:center}
 /* Pill mini */
 .tp-pill.mini{font-size:8.5px;padding:3px 7px;letter-spacing:0.12em}
-
 /* Timeline polish */
-.tp-timeline{
-  position:relative;padding-left:18px;
-  display:flex;flex-direction:column;gap:14px;
-}
-.tp-timeline::before{
-  content:"";position:absolute;left:5px;top:5px;bottom:5px;
-  width:2px;background:var(--bg-3);border-radius:1px;
-}
-.tp-timeline-item{
-  position:relative;display:flex;flex-direction:column;gap:4px;
-}
-.tp-timeline-item::before{
-  content:"";position:absolute;left:-18px;top:4px;
-  width:12px;height:12px;border-radius:50%;
-  background:#FFFFFF;border:2px solid var(--bg-3);
-  box-sizing:border-box;
-}
+.tp-timeline{position:relative;padding-left:18px;display:flex;flex-direction:column;gap:14px}
+.tp-timeline::before{content:"";position:absolute;left:5px;top:5px;bottom:5px;width:2px;background:var(--bg-3);border-radius:1px}
+.tp-timeline-item{position:relative;display:flex;flex-direction:column;gap:4px}
+.tp-timeline-item::before{content:"";position:absolute;left:-18px;top:4px;width:12px;height:12px;border-radius:50%;background:#FFFFFF;border:2px solid var(--bg-3);box-sizing:border-box}
 .tp-timeline-item.done::before{background:var(--ink-light);border-color:var(--ink-light)}
 .tp-timeline-item.upcoming::before{background:var(--accent);border-color:var(--accent)}
 .tp-timeline-item.warn::before{background:#A16207;border-color:#A16207}
-.tp-timeline-date{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9.5px;letter-spacing:0.10em;color:var(--accent);
-  font-weight:600;
-}
+.tp-timeline-date{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.10em;color:var(--accent);font-weight:600}
 .tp-timeline-item.done .tp-timeline-date{color:var(--ink-light)}
 .tp-timeline-item.warn .tp-timeline-date{color:#A16207}
 .tp-timeline-text{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink);line-height:1.4}
 .tp-timeline-text strong{font-weight:600}
-.tp-timeline-chip{
-  display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8px;letter-spacing:0.14em;color:var(--ink-mute);
-  background:rgba(10,10,10,0.04);padding:1px 6px;border-radius:3px;
-  text-transform:uppercase;align-self:flex-start;margin-top:1px;
-}
-
+.tp-timeline-chip{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8px;letter-spacing:0.14em;color:var(--ink-mute);background:rgba(10,10,10,0.04);padding:1px 6px;border-radius:3px;text-transform:uppercase;align-self:flex-start;margin-top:1px}
 /* Action card polish */
-.tp-action.polished{
-  border:1px solid var(--rule);background:#FFFFFF;
-  padding:11px 12px;border-radius:6px;
-  display:flex;flex-direction:column;gap:7px;
-}
+.tp-action.polished{border:1px solid var(--rule);background:#FFFFFF;padding:11px 12px;border-radius:6px;display:flex;flex-direction:column;gap:7px}
 .tp-action.polished:hover{border-color:var(--rule-strong)}
-.tp-action-title{
-  font-family:'Inter Tight',sans-serif;font-weight:500;font-size:12.5px;
-  color:var(--ink);line-height:1.3;
-}
-.tp-action-context{
-  font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-mute);line-height:1.4;
-}
+.tp-action-title{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:12.5px;color:var(--ink);line-height:1.3}
+.tp-action-context{font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-mute);line-height:1.4}
 .tp-action-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.tp-action-due{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8.5px;letter-spacing:0.10em;color:#A16207;
-  text-transform:uppercase;font-weight:600;
-}
+.tp-action-due{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8.5px;letter-spacing:0.10em;color:#A16207;text-transform:uppercase;font-weight:600}
 .tp-action-due.urgent{color:#B91C1C}
-.tp-action-btn.polished{
-  font-size:10px;padding:5px 10px;letter-spacing:0.12em;border-radius:5px;
-}
-
+.tp-action-btn.polished{font-size:10px;padding:5px 10px;letter-spacing:0.12em;border-radius:5px}
 /* Bottom cards */
-.tp-content-bottom{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:14px;padding:0 22px 18px;
-}
-
+.tp-content-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 22px 18px}
 /* Doc filter pills */
-.tp-doc-filters{
-  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;
-}
-.tp-doc-filter{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;letter-spacing:0.10em;color:var(--ink-mute);
-  background:var(--bg-2);padding:4px 10px;border-radius:999px;
-  border:1px solid transparent;text-transform:uppercase;cursor:default;
-}
-.tp-doc-filter.active{
-  background:var(--ink);color:#FFFFFF;border-color:var(--ink);font-weight:500;
-}
+.tp-doc-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.tp-doc-filter{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.10em;color:var(--ink-mute);background:var(--bg-2);padding:4px 10px;border-radius:999px;border:1px solid transparent;text-transform:uppercase;cursor:default}
+.tp-doc-filter.active{background:var(--ink);color:#FFFFFF;border-color:var(--ink);font-weight:500}
 .tp-doc-filter:hover{border-color:var(--rule-strong)}
-
 /* Doc row polish */
-.tp-doc.polished{
-  display:grid;
-  grid-template-columns:24px 1fr auto auto;
-  gap:10px;align-items:center;
-  padding:9px 8px;border-radius:6px;border-bottom:1px solid var(--rule);
-}
+.tp-doc.polished{display:grid;grid-template-columns:24px 1fr auto auto;gap:10px;align-items:center;padding:9px 8px;border-radius:6px;border-bottom:1px solid var(--rule)}
 .tp-doc.polished:last-child{border-bottom:none}
 .tp-doc.polished:hover{background:rgba(10,10,10,0.02)}
-.tp-doc-icon{
-  width:24px;height:24px;border-radius:5px;
-  background:rgba(30,64,175,0.08);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:600;flex-shrink:0;
-}
-.tp-doc-row-name{
-  font-family:'Inter',sans-serif;font-size:12.5px;color:var(--ink);line-height:1.3;
-}
-.tp-doc-row-name small{
-  display:block;font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;color:var(--ink-mute);letter-spacing:0.06em;margin-top:2px;
-}
+.tp-doc-icon{width:24px;height:24px;border-radius:5px;background:rgba(30,64,175,0.08);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0}
+.tp-doc-row-name{font-family:'Inter',sans-serif;font-size:12.5px;color:var(--ink);line-height:1.3}
+.tp-doc-row-name small{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;color:var(--ink-mute);letter-spacing:0.06em;margin-top:2px}
 .tp-doc-menu{color:var(--ink-light);font-size:14px;letter-spacing:1px;cursor:default;padding:0 4px}
-
 /* Chat polish */
-.tp-chat{
-  display:flex;flex-direction:column;gap:10px;
-  max-height:340px;overflow:hidden;padding:4px 0;
-}
+.tp-chat{display:flex;flex-direction:column;gap:10px;max-height:340px;overflow:hidden;padding:4px 0}
 .tp-chat-msg{display:flex;gap:8px;align-items:flex-end;max-width:85%}
 .tp-chat-msg.outbound{align-self:flex-end;flex-direction:row-reverse}
-.tp-chat-avatar{
-  width:24px;height:24px;border-radius:50%;
-  background:#7C3AED;color:#fff;
-  font-family:'Inter Tight',sans-serif;font-weight:700;font-size:9px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+.tp-chat-avatar{width:24px;height:24px;border-radius:50%;background:#7C3AED;color:#fff;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tp-chat-avatar.aurora{background:var(--accent)}
 .tp-chat-avatar.system{background:#0A0A0A}
-.tp-chat-bubble{
-  background:var(--bg-2);
-  padding:7px 11px;border-radius:10px;
-  font-family:'Inter',sans-serif;font-size:12px;color:var(--ink);
-  line-height:1.4;border:1px solid var(--rule);
-  position:relative;
-}
-.tp-chat-msg.outbound .tp-chat-bubble{
-  background:var(--accent);color:#FFFFFF;border-color:var(--accent);
-}
-.tp-chat-bubble-head{
-  display:flex;align-items:baseline;gap:6px;margin-bottom:2px;
-}
-.tp-chat-bubble-name{
-  font-family:'Inter Tight',sans-serif;font-size:10.5px;font-weight:600;
-}
-.tp-chat-bubble-time{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:8.5px;color:var(--ink-mute);letter-spacing:0.06em;
-  text-transform:uppercase;
-}
+.tp-chat-bubble{background:var(--bg-2);padding:7px 11px;border-radius:10px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink);line-height:1.4;border:1px solid var(--rule);position:relative}
+.tp-chat-msg.outbound .tp-chat-bubble{background:var(--accent);color:#FFFFFF;border-color:var(--accent)}
+.tp-chat-bubble-head{display:flex;align-items:baseline;gap:6px;margin-bottom:2px}
+.tp-chat-bubble-name{font-family:'Inter Tight',sans-serif;font-size:10.5px;font-weight:600}
+.tp-chat-bubble-time{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:8.5px;color:var(--ink-mute);letter-spacing:0.06em;text-transform:uppercase}
 .tp-chat-msg.outbound .tp-chat-bubble-time{color:rgba(255,255,255,0.65)}
-.tp-chat-unread{
-  width:7px;height:7px;border-radius:50%;background:#B91C1C;
-  margin-left:4px;display:inline-block;
-}
-.tp-composer{
-  display:flex;align-items:center;gap:8px;
-  border:1px solid var(--rule);border-radius:8px;
-  padding:5px 6px 5px 12px;background:#FFFFFF;margin-top:4px;
-}
-.tp-composer-input{
-  flex:1;font-family:'Inter',sans-serif;font-size:12px;
-  color:var(--ink-mute);
-}
+.tp-chat-unread{width:7px;height:7px;border-radius:50%;background:#B91C1C;margin-left:4px;display:inline-block}
+.tp-composer{display:flex;align-items:center;gap:8px;border:1px solid var(--rule);border-radius:8px;padding:5px 6px 5px 12px;background:#FFFFFF;margin-top:4px}
+.tp-composer-input{flex:1;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-mute)}
 .tp-composer-paperclip{color:var(--ink-mute);font-size:14px;cursor:default;padding:4px}
-.tp-composer-send{
-  background:var(--accent);color:#FFFFFF;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;letter-spacing:0.12em;padding:6px 12px;
-  border:none;border-radius:6px;font-weight:600;text-transform:uppercase;cursor:default;
-}
-
+.tp-composer-send{background:var(--accent);color:#FFFFFF;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;padding:6px 12px;border:none;border-radius:6px;font-weight:600;text-transform:uppercase;cursor:default}
 /* TP status bar */
-.tp-statusbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 18px;background:#0A0A0A;color:rgba(255,255,255,0.85);
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9.5px;letter-spacing:0.10em;text-transform:uppercase;min-height:28px;flex-wrap:wrap;gap:10px;
-}
+.tp-statusbar{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;background:#0A0A0A;color:rgba(255,255,255,0.85);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:0.10em;text-transform:uppercase;min-height:28px;flex-wrap:wrap;gap:10px}
 .tp-statusbar strong{color:#FFFFFF;font-weight:600}
-.tp-statusbar-dot{
-  width:7px;height:7px;border-radius:50%;background:#22C55E;
-  box-shadow:0 0 0 3px rgba(34,197,94,0.20);
-  display:inline-block;margin-right:6px;
-}
+.tp-statusbar-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,0.20);display:inline-block;margin-right:6px}
 
 @media (max-width:980px){
-  .tp-app-shell{grid-template-columns:1fr}
-  .tp-side{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--rule);padding:8px;gap:6px}
-  .tp-side-workspace, .tp-side-section, .tp-side-spacer, .tp-side-foot{display:none}
-  .tp-side-item{margin:0;padding:6px 10px;flex-shrink:0}
-  .tp-side-label{font-size:11px}
-  .tp-hero-row{grid-template-columns:1fr}
-  .tp-content-grid{grid-template-columns:1fr}
-  .tp-content-bottom{grid-template-columns:1fr}
+.tp-app-shell{grid-template-columns:1fr}
+.tp-side{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--rule);padding:8px;gap:6px}
+.tp-side-workspace, .tp-side-section, .tp-side-spacer, .tp-side-foot{display:none}
+.tp-side-item{margin:0;padding:6px 10px;flex-shrink:0}
+.tp-side-label{font-size:11px}
+.tp-hero-row{grid-template-columns:1fr}
+.tp-content-grid{grid-template-columns:1fr}
+.tp-content-bottom{grid-template-columns:1fr}
 }
 
 /* === TALENT PORTAL · ANEXO MOCK === */
@@ -1596,17 +1064,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .tp-foot-sources span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
 .tp-caption{font-family:'Inter',sans-serif;font-style:italic;font-size:13px;color:var(--ink-mute);text-align:center;margin-top:24px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.5}
 @media (max-width:880px){
-  .tp-grid{grid-template-columns:1fr}
-  .tp-col{border-right:none;border-bottom:1px solid var(--rule)}
-  .tp-col:last-child{border-bottom:none}
-  .tp-bottom{grid-template-columns:1fr}
-  .tp-bottom-col{border-right:none;border-bottom:1px solid var(--rule)}
-  .tp-bottom-col:last-child{border-bottom:none}
-  .tp-bar{flex-direction:column;align-items:flex-start;gap:10px}
-  .tp-bar-user{align-self:flex-start}
-  .tp-brand{flex-direction:column;align-items:flex-start}
-  .tp-brand-meta{align-items:flex-start}
-  .tp-foot{flex-direction:column;align-items:flex-start}
+.tp-grid{grid-template-columns:1fr}
+.tp-col{border-right:none;border-bottom:1px solid var(--rule)}
+.tp-col:last-child{border-bottom:none}
+.tp-bottom{grid-template-columns:1fr}
+.tp-bottom-col{border-right:none;border-bottom:1px solid var(--rule)}
+.tp-bottom-col:last-child{border-bottom:none}
+.tp-bar{flex-direction:column;align-items:flex-start;gap:10px}
+.tp-bar-user{align-self:flex-start}
+.tp-brand{flex-direction:column;align-items:flex-start}
+.tp-brand-meta{align-items:flex-start}
+.tp-foot{flex-direction:column;align-items:flex-start}
 }
 
 /* === CAPABILITIES === */
@@ -3468,48 +2936,126 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <p>30+ marcas, 40+ fórmulas, manufactura a escala, retail nacional consolidado, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics.</p>
       </div>
 
-      <div class="bi-dashboard">
+      <div class="bi-dashboard browser-frame">
 
-        <!-- HEADER BAR -->
-        <div class="bi-bar">
-          <div class="bi-bar-mark">
-            <span class="bi-bar-dot" aria-hidden="true"></span>
-            <strong>COMMAND CENTER</strong>
-            <span>· TSC LABS · OPERATIONS · LIVE</span>
+        <!-- BROWSER CHROME -->
+        <div class="browser-chrome">
+          <div class="traffic-lights" aria-hidden="true">
+            <span class="tl-red"></span>
+            <span class="tl-amber"></span>
+            <span class="tl-green"></span>
           </div>
-          <div class="bi-bar-meta">
-            <span class="bi-bar-meta-item"><span class="bi-pulse" aria-hidden="true"></span>CONNECTED</span>
-            <span class="bi-bar-meta-item">32 SOURCES</span>
-            <span class="bi-bar-meta-item">UPDATED 14:22:08</span>
+          <div class="browser-url">
+            <svg class="browser-url-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="browser-url-host">[ MOCK · F4 ]</span><span class="browser-url-path"> dashboard a construir</span>
+          </div>
+          <div class="browser-actions" aria-hidden="true">
+            <span>&#8676;</span><span>&#8677;</span><span>&#x21bb;</span>
           </div>
         </div>
 
-        <!-- TOP ROW · NORTH-STAR KPIs -->
-        <div class="bi-kpi-row">
+        <!-- APP TOP NAV -->
+        <div class="bi-topnav">
+          <div class="bi-topnav-left">
+            <div class="bi-topnav-brand">EIGEN <em>·</em> ATLAS / TSC LABS <em>·</em> OPS</div>
+            <div class="bi-breadcrumb"><strong>Operations</strong> <span>/</span> <strong>Live</strong></div>
+          </div>
+          <div class="bi-tabs" role="tablist">
+            <span class="bi-tab">Overview</span>
+            <span class="bi-tab">Revenue</span>
+            <span class="bi-tab active">Operations</span>
+            <span class="bi-tab">Compliance</span>
+            <span class="bi-tab">Agents</span>
+            <span class="bi-tab">Catálogo</span>
+          </div>
+          <div class="bi-topnav-right">
+            <span class="bi-topnav-ctrl">Last 30 days <small>&#9662;</small></span>
+            <span class="bi-topnav-icon" title="Refresh" aria-label="Refresh">&#x21bb;</span>
+            <span class="bi-topnav-ctrl"><small>Updated 14:22:08</small></span>
+            <span class="bi-topnav-icon" title="Export" aria-label="Export">&#x2193;</span>
+            <span class="bi-topnav-icon" title="Settings" aria-label="Settings">&#9881;</span>
+            <span class="bi-topnav-avatar">K</span>
+          </div>
+        </div>
+
+        <!-- APP SHELL · SIDEBAR + MAIN -->
+        <div class="bi-app">
+
+          <!-- LEFT SIDEBAR (mini-nav) -->
+          <aside class="bi-sidebar" aria-label="Primary navigation">
+            <div class="bi-sidebar-brand">E</div>
+            <div class="bi-sidebar-item active" data-label="Home" aria-label="Home">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="Revenue" aria-label="Revenue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="Operations" aria-label="Operations">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 12 15 2 8.5 12 2"/><polyline points="2 15.5 12 22 22 15.5"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="Compliance" aria-label="Compliance">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="AI Agents" aria-label="AI Agents">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="Catálogo" aria-label="Catálogo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div class="bi-sidebar-item" data-label="Files" aria-label="Files">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="bi-sidebar-spacer"></div>
+            <div class="bi-sidebar-item" data-label="Settings" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+          </aside>
+
+          <!-- MAIN CONTENT -->
+          <div class="bi-content">
+
+        <!-- TOP ROW · NORTH-STAR KPIs (cards) -->
+        <div class="bi-kpi-row polished">
           <!-- KPI 1 · ARR -->
-          <div class="bi-kpi">
-            <div class="bi-kpi-label"><span>ARR · ANNUAL RECURRING</span><span class="bi-kpi-delta">+12% YoY</span></div>
+          <div class="bi-kpi card">
+            <span class="bi-kpi-menu" aria-hidden="true">⋯</span>
+            <div class="bi-kpi-label"><span>ARR · ANNUAL RECURRING</span></div>
             <div class="bi-kpi-num">$28.4<em>M</em></div>
+            <div class="bi-kpi-delta-row">
+              <span class="bi-delta-chip up"><span class="bi-delta-chip-arrow">↗</span>+12% YoY</span>
+              <span class="bi-delta-context">vs $25.4M</span>
+            </div>
             <svg class="bi-kpi-spark" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
               <path d="M0 28 L20 26 L40 24 L60 22 L80 19 L100 17 L120 15 L140 12 L160 10 L180 8 L200 6 L220 4" fill="none" stroke="#1E40AF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
               <path d="M0 28 L20 26 L40 24 L60 22 L80 19 L100 17 L120 15 L140 12 L160 10 L180 8 L200 6 L220 4 L220 34 L0 34 Z" fill="#1E40AF" opacity="0.08"/>
-              <circle cx="220" cy="4" r="2.4" fill="#1E40AF"/>
+              <circle cx="220" cy="4" r="3.6" fill="#1E40AF"/>
+              <circle cx="220" cy="4" r="6" fill="#1E40AF" opacity="0.20"/>
             </svg>
             <div class="bi-kpi-foot">12 meses · Q3 2030</div>
           </div>
 
           <!-- KPI 2 · Talents activos -->
-          <div class="bi-kpi">
-            <div class="bi-kpi-label"><span>TALENTS ACTIVOS</span><span class="bi-kpi-delta">28 / 32</span></div>
+          <div class="bi-kpi card">
+            <span class="bi-kpi-menu" aria-hidden="true">⋯</span>
+            <div class="bi-kpi-label"><span>TALENTS ACTIVOS</span></div>
             <div class="bi-kpi-num">28<em>/32</em></div>
+            <div class="bi-kpi-delta-row">
+              <span class="bi-delta-chip up"><span class="bi-delta-chip-arrow">↗</span>+3 QoQ</span>
+              <span class="bi-delta-context">87.5% capacidad</span>
+            </div>
             <div class="bi-kpi-progress" aria-hidden="true"><span style="width:87.5%"></span></div>
-            <div class="bi-kpi-foot">87.5% utilización · 4 onboarding · Q3 2030</div>
+            <div class="bi-kpi-foot">4 onboarding · Q3 2030</div>
           </div>
 
           <!-- KPI 3 · Lots producidos YTD (stacked bar by quarter) -->
-          <div class="bi-kpi">
-            <div class="bi-kpi-label"><span>LOTS PRODUCIDOS · YTD</span><span class="bi-kpi-delta">+18% QoQ</span></div>
+          <div class="bi-kpi card">
+            <span class="bi-kpi-menu" aria-hidden="true">⋯</span>
+            <div class="bi-kpi-label"><span>LOTS PRODUCIDOS · YTD</span></div>
             <div class="bi-kpi-num">1,247</div>
+            <div class="bi-kpi-delta-row">
+              <span class="bi-delta-chip up"><span class="bi-delta-chip-arrow">↗</span>+18% QoQ</span>
+              <span class="bi-delta-context">run-rate 1,650</span>
+            </div>
             <svg class="bi-kpi-spark" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
               <g fill="#1E40AF">
                 <rect x="6" y="14" width="44" height="20"/>
@@ -3524,25 +3070,35 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
                 <text x="184" y="32" text-anchor="middle">Q4*</text>
               </g>
             </svg>
-            <div class="bi-kpi-foot">4 plantas · 6 turnos · run-rate 1,650</div>
+            <div class="bi-kpi-foot">4 plantas · 6 turnos</div>
           </div>
 
-          <!-- KPI 4 · COFEPRIS compliance -->
-          <div class="bi-kpi">
-            <div class="bi-kpi-label"><span>COFEPRIS COMPLIANCE</span><span class="bi-kpi-delta">100%</span></div>
-            <div class="bi-kpi-num">100<em>%</em></div>
-            <div class="bi-kpi-foot"><span class="bi-dot-ok"></span>40 fórmulas vigentes · last audit 2030-09-12</div>
+          <!-- KPI 4 · CAC Payback (negative delta example) -->
+          <div class="bi-kpi card">
+            <span class="bi-kpi-menu" aria-hidden="true">⋯</span>
+            <div class="bi-kpi-label"><span>CAC PAYBACK · DTC</span></div>
+            <div class="bi-kpi-num">4.2<em>mo</em></div>
+            <div class="bi-kpi-delta-row">
+              <span class="bi-delta-chip dn"><span class="bi-delta-chip-arrow">↘</span>−3% MoM</span>
+              <span class="bi-delta-context">Meta CPA &uarr;</span>
+            </div>
+            <svg class="bi-kpi-spark" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M0 18 L22 16 L44 14 L66 16 L88 13 L110 14 L132 12 L154 14 L176 17 L198 20 L220 22" fill="none" stroke="#1E40AF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="220" cy="22" r="3.6" fill="#1E40AF"/>
+              <circle cx="220" cy="22" r="6" fill="#1E40AF" opacity="0.20"/>
+            </svg>
+            <div class="bi-kpi-foot"><span class="bi-dot-ok"></span>healthy &lt;6mo · 30D avg</div>
           </div>
         </div>
 
         <!-- MAIN GRID · 6 PANELS -->
-        <div class="bi-grid">
+        <div class="bi-grid polished">
 
           <!-- PANEL A · Revenue heatmap (Talent × SKU) -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">Revenue heatmap · Talent × SKU<small>F4 · ARR contribution · Q3 2030</small></div>
-              <span class="bi-cell-tag live">LIVE</span>
+              <span class="bi-cell-tag live">LIVE</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
@@ -3707,10 +3263,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
 
           <!-- PANEL B · Margin per channel + cohort retention -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">Margen por canal · cohort retention<small>F4 · DTC + B2B + Retail · % gross margin</small></div>
-              <span class="bi-cell-tag">MIX</span>
+              <span class="bi-cell-tag">MIX</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <!-- Stacked horizontal bars · 4 channels -->
@@ -3795,10 +3351,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
 
           <!-- PANEL C · Predictive Inventory (30/60/90-day) -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">Predictive inventory · 30/60/90<small>F3 · ERP · auto-restock triggers</small></div>
-              <span class="bi-cell-tag alert">ALERT</span>
+              <span class="bi-cell-tag alert">ALERT</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
@@ -3849,10 +3405,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
 
           <!-- PANEL D · R&D Pipeline funnel -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">R&amp;D pipeline · stages activos<small>F3 · concept → production · 2030</small></div>
-              <span class="bi-cell-tag">PIPELINE</span>
+              <span class="bi-cell-tag">PIPELINE</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <!-- Funnel: 5 trapezoids stacked vertically, narrowing -->
@@ -3891,48 +3447,56 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
 
           <!-- PANEL E · Agent activity feed -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">Agent layer · last 15 min<small>F5 · 4 olas activas · 60-70% routine ops</small></div>
-              <span class="bi-cell-tag live">LIVE</span>
+              <span class="bi-cell-tag live">LIVE</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
-            <div class="bi-feed" role="log" aria-live="off">
+            <div class="bi-feed polished" role="log" aria-live="off">
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar" title="Outbound agent">OB</span>
                 <span class="bi-feed-time">14:21:55</span>
                 <span class="bi-feed-agent">OUTBOUND-AGENT</span>
                 <span class="bi-feed-msg">Talent J.M. — initial reach via WhatsApp · qualified</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar compliance" title="Compliance">CM</span>
                 <span class="bi-feed-time">14:21:42</span>
                 <span class="bi-feed-agent compliance">COMPLIANCE-MONITOR</span>
                 <span class="bi-feed-msg">NOM-141 update detected · 4 SKUs flagged for review</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar dtc" title="DTC chatbot">DC</span>
                 <span class="bi-feed-time">14:20:18</span>
                 <span class="bi-feed-agent">DTC-CHATBOT</span>
                 <span class="bi-feed-msg">Customer #4892 — match Suero Vit C · upsell tonic 200ml</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar supplier" title="Supplier agent">SP</span>
                 <span class="bi-feed-time">14:18:03</span>
                 <span class="bi-feed-agent">SUPPLIER-AGENT</span>
                 <span class="bi-feed-msg">Reorder PO-2030-441 · Niacinamide 5kg · ETA 8d</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar lead" title="Lead qualifier">LQ</span>
                 <span class="bi-feed-time">14:15:30</span>
                 <span class="bi-feed-agent lead">LEAD-QUALIFIER</span>
                 <span class="bi-feed-msg">Inbound talent — declined (audience &lt;500K)</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar research" title="R&amp;D research">RD</span>
                 <span class="bi-feed-time">14:12:11</span>
                 <span class="bi-feed-agent">R&amp;D-RESEARCH</span>
                 <span class="bi-feed-msg">3 papers nuevos · ácido kojic — alternativas</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar batch" title="Batch monitor">BM</span>
                 <span class="bi-feed-time">14:09:47</span>
                 <span class="bi-feed-agent batch">BATCH-MONITOR</span>
                 <span class="bi-feed-msg">Lot L-2030-887 — QA pass · ready for ship</span>
               </div>
               <div class="bi-feed-row">
+                <span class="bi-feed-avatar retail" title="Retail partner">RP</span>
                 <span class="bi-feed-time">14:08:02</span>
                 <span class="bi-feed-agent">RETAIL-PARTNER</span>
                 <span class="bi-feed-msg">Liverpool · re-order auto-confirmed · 8 SKUs · $1.30M MXN</span>
@@ -3942,10 +3506,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
 
           <!-- PANEL F · Compliance heat map (8 brands × 4 NOMs) -->
-          <div class="bi-cell">
+          <div class="bi-cell card">
             <div class="bi-cell-head">
               <div class="bi-cell-title">Compliance heat map · NOM × brand<small>F2 · COFEPRIS NOM-259/141/089 + Aviso Funcionamiento · status real-time</small></div>
-              <span class="bi-cell-tag live">100%</span>
+              <span class="bi-cell-tag live">100%</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <!-- Column headers · 4 NOMs + Aviso Funcionamiento -->
@@ -4048,10 +3612,20 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         </div>
 
+          </div><!-- /.bi-content -->
+        </div><!-- /.bi-app -->
+
         <!-- FOOTER · DATA SOURCES TICKER -->
         <div class="bi-foot-sources">
           <div><strong>DATA SOURCES</strong> · D1 transaccional · R2 documental · Workers Analytics · Meta Ads · TikTok Ads · Google Ads · Stripe · MercadoPago · COFEPRIS portal feed · Supplier API · OpenWeather · Liverpool EDI · Sephora API · …</div>
           <div><strong>REAL-TIME</strong> · last query 14:22:08</div>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="bi-statusbar" role="status" aria-live="off">
+          <div><span class="bi-statusbar-dot" aria-hidden="true"></span><strong>CONNECTED</strong> · 32 SOURCES · LATENCY 47ms</div>
+          <div>D1 · R2 · WORKERS ANALYTICS · STRIPE · MERCADOPAGO · META · TIKTOK · GOOGLE</div>
+          <div>v2026.05.04 · BUILD 1432 · ENV prod</div>
         </div>
 
       </div>
@@ -4801,234 +4375,436 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <p>Una sola brand, cuatro fórmulas, hitos calendarizados, acciones que requieren su firma. Login via magic-link a Eigen Identity, todo persistido en D1 + R2 con audit log inmutable.</p>
       </div>
 
-      <div class="tp-app">
+      <div class="tp-app browser-frame">
 
-        <!-- TOP BAR -->
-        <div class="tp-bar">
-          <div class="tp-bar-mark">
-            <strong>EIGEN · ATLAS · TALENT PORTAL</strong>
+        <!-- BROWSER CHROME -->
+        <div class="browser-chrome">
+          <div class="traffic-lights" aria-hidden="true">
+            <span class="tl-red"></span>
+            <span class="tl-amber"></span>
+            <span class="tl-green"></span>
           </div>
-          <div class="tp-bar-user">
-            <div class="tp-bar-user-info">
-              <span class="tp-bar-user-name">AURORA ROS</span>
-              <span class="tp-bar-user-email">talent.aurora@gmail.com</span>
-            </div>
-            <div class="tp-avatar" aria-hidden="true">AR</div>
-            <button class="tp-logout" type="button">[Logout]</button>
+          <div class="browser-url">
+            <svg class="browser-url-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="browser-url-host">[ MOCK · F2 ]</span><span class="browser-url-path"> talent portal a construir</span>
           </div>
-        </div>
-
-        <!-- BRAND STATUS CARD -->
-        <div class="tp-brand">
-          <div>
-            <div class="tp-brand-name">Aurora · <em>Skin</em></div>
-            <div class="tp-brand-sub">Línea inicial · 4 SKUs · launch target 2026.10</div>
-          </div>
-          <div class="tp-brand-meta">
-            <span class="tp-pill amber"><span class="tp-pill-dot"></span>EN PROTOTIPADO · F2 / R&amp;D</span>
-            <span class="tp-brand-updated">Actualizado hace 2 horas</span>
+          <div class="browser-actions" aria-hidden="true">
+            <span>&#8676;</span><span>&#8677;</span><span>&#x21bb;</span>
           </div>
         </div>
 
-        <!-- 3-COL GRID -->
-        <div class="tp-grid">
-
-          <!-- COL 1 · Fórmulas en desarrollo -->
-          <div class="tp-col">
-            <div class="tp-col-title">Fórmulas en desarrollo</div>
-
-            <div class="tp-formula">
-              <div class="tp-formula-name">Suero Vit C personalizado</div>
-              <div class="tp-formula-bar"><span style="width:75%"></span></div>
-              <div class="tp-formula-meta"><strong>75%</strong><span>VALIDACIÓN FINAL</span></div>
-            </div>
-
-            <div class="tp-formula">
-              <div class="tp-formula-name">Crema día anti-edad</div>
-              <div class="tp-formula-bar"><span style="width:45%"></span></div>
-              <div class="tp-formula-meta"><strong>45%</strong><span>ITERACIÓN 3</span></div>
-            </div>
-
-            <div class="tp-formula">
-              <div class="tp-formula-name">Mascarilla detox</div>
-              <div class="tp-formula-bar"><span style="width:90%"></span></div>
-              <div class="tp-formula-meta"><strong>90%</strong><span>LOTE PILOTO</span></div>
-            </div>
-
-            <div class="tp-formula">
-              <div class="tp-formula-name">Tónico bruma fresco</div>
-              <div class="tp-formula-bar"><span style="width:20%"></span></div>
-              <div class="tp-formula-meta"><strong>20%</strong><span>CONCEPTO INICIAL</span></div>
-            </div>
-          </div>
-
-          <!-- COL 2 · Próximos hitos -->
-          <div class="tp-col">
-            <div class="tp-col-title">Próximos hitos</div>
-
-            <div class="tp-hito">
-              <div class="tp-hito-date">2026.05.15</div>
-              <div class="tp-hito-body">
-                <div class="tp-hito-text">Aprobación final fórmula <strong>Mascarilla detox</strong></div>
-                <span class="tp-hito-chip">R&amp;D · APROBACIÓN</span>
-              </div>
-            </div>
-
-            <div class="tp-hito">
-              <div class="tp-hito-date">2026.05.22</div>
-              <div class="tp-hito-body">
-                <div class="tp-hito-text">Lote piloto Mascarilla — <strong>100 unidades para review</strong></div>
-                <span class="tp-hito-chip">PILOTO · MFG</span>
-              </div>
-            </div>
-
-            <div class="tp-hito">
-              <div class="tp-hito-date">2026.06.04</div>
-              <div class="tp-hito-body">
-                <div class="tp-hito-text">COFEPRIS submission · documentos vault</div>
-                <span class="tp-hito-chip">COFEPRIS</span>
-              </div>
-            </div>
-
-            <div class="tp-hito">
-              <div class="tp-hito-date">2026.06.18</div>
-              <div class="tp-hito-body">
-                <div class="tp-hito-text">Lanzamiento soft DTC — Mascarilla edición limitada</div>
-                <span class="tp-hito-chip">LAUNCH · DTC</span>
-              </div>
-            </div>
-
-            <div class="tp-hito">
-              <div class="tp-hito-date">2026.07.10</div>
-              <div class="tp-hito-body">
-                <div class="tp-hito-text">Audiencia inicial — campaña Meta + TikTok</div>
-                <span class="tp-hito-chip">GROWTH</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- COL 3 · Acciones pendientes -->
-          <div class="tp-col">
-            <div class="tp-col-title">Acciones pendientes</div>
-
-            <div class="tp-action">
-              <div class="tp-action-text">Confirmar paleta de envases — <strong>opciones A/B/C</strong></div>
-              <button class="tp-action-btn outline" type="button">Revisar</button>
-            </div>
-
-            <div class="tp-action">
-              <div class="tp-action-text">Aprobar copy de etiqueta — <strong>Mascarilla detox</strong></div>
-              <button class="tp-action-btn outline" type="button">Revisar</button>
-            </div>
-
-            <div class="tp-action">
-              <div class="tp-action-text">Firmar contrato addendum <strong>SKU #4</strong></div>
-              <button class="tp-action-btn" type="button">Firmar con magic-link</button>
-            </div>
-
-            <div class="tp-action">
-              <div class="tp-action-text">Revisar dashboard de pre-launch (Meta + TikTok)</div>
-              <button class="tp-action-btn outline" type="button">Abrir</button>
-            </div>
+        <!-- TOP NAV -->
+        <div class="tp-topnav">
+          <div class="tp-topnav-brand">EIGEN <em>·</em> ATLAS <em>·</em> TALENT PORTAL</div>
+          <div class="tp-topnav-right">
+            <span class="tp-bell" title="3 unread notifications" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="tp-bell-dot" aria-hidden="true"></span>
+            </span>
+            <span class="tp-help" title="Help" aria-label="Help">?</span>
+            <span class="tp-userpill">
+              <span class="tp-avatar">AR</span>
+              <span class="tp-userpill-name">Aurora ROS</span>
+              <span class="tp-userpill-caret">&#9662;</span>
+            </span>
           </div>
         </div>
 
-        <!-- BOTTOM 2-COL -->
-        <div class="tp-bottom">
+        <!-- APP SHELL: SIDEBAR + MAIN -->
+        <div class="tp-app-shell">
 
-          <!-- DOCUMENTS COFEPRIS -->
-          <div class="tp-bottom-col">
-            <div class="tp-col-title">Documentos COFEPRIS</div>
+          <!-- LEFT SIDEBAR -->
+          <aside class="tp-side" aria-label="Workspace navigation">
+            <div class="tp-side-workspace">
+              <div>
+                <small>WORKSPACE</small>
+                Aurora · Skin
+              </div>
+              <span class="caret">&#9662;</span>
+            </div>
+            <div class="tp-side-section">Brand</div>
+            <div class="tp-side-item active">
+              <span class="tp-side-icon">&#x1F3E0;</span>
+              <span class="tp-side-label">Resumen</span>
+            </div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F9EA;</span>
+              <span class="tp-side-label">Fórmulas</span>
+              <span class="tp-side-badge gray">4</span>
+            </div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F4C5;</span>
+              <span class="tp-side-label">Hitos</span>
+            </div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F4C4;</span>
+              <span class="tp-side-label">Documentos</span>
+            </div>
+            <div class="tp-side-section">Workflow</div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F4AC;</span>
+              <span class="tp-side-label">Conversación TSC</span>
+              <span class="tp-side-badge red">3</span>
+            </div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F4B3;</span>
+              <span class="tp-side-label">Pagos &amp; Facturas</span>
+            </div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#x1F4CA;</span>
+              <span class="tp-side-label">Lanzamiento</span>
+              <span class="tp-side-badge gray">PV</span>
+            </div>
+            <div class="tp-side-spacer"></div>
+            <div class="tp-side-item">
+              <span class="tp-side-icon">&#9881;</span>
+              <span class="tp-side-label">Settings</span>
+            </div>
+            <div class="tp-side-foot">
+              <span class="tp-avatar" style="width:28px;height:28px;font-size:11px">AR</span>
+              <div class="tp-side-foot-info">
+                <span class="tp-side-foot-name">Aurora ROS</span>
+                <span class="tp-side-foot-mail">talent.aurora@gmail.com</span>
+              </div>
+              <span class="tp-side-foot-logout">Logout</span>
+            </div>
+          </aside>
 
-            <div class="tp-doc">
-              <div class="tp-doc-name">Aviso de funcionamiento · Mascarilla detox</div>
-              <div class="tp-doc-meta">
-                <span class="tp-pill green"><span class="tp-pill-dot"></span>APROBADO</span>
-                <span class="tp-brand-updated">2026.04.20</span>
+          <!-- MAIN -->
+          <div class="tp-main">
+
+            <!-- PAGE HEADER -->
+            <div class="tp-page-header">
+              <div class="tp-page-header-left">
+                <h2>Resumen <em>·</em> Aurora <em>·</em> Skin</h2>
+                <div class="tp-page-crumb">INICIO / RESUMEN</div>
+              </div>
+              <div class="tp-brand-meta">
+                <span class="tp-pill amber"><span class="tp-pill-dot"></span>EN PROTOTIPADO · F2 / R&amp;D</span>
+                <span class="tp-brand-updated">Actualizado hace 2 horas</span>
               </div>
             </div>
 
-            <div class="tp-doc">
-              <div class="tp-doc-name">NOM-141 etiqueta · Mascarilla detox</div>
-              <div class="tp-doc-meta">
-                <span class="tp-pill green"><span class="tp-pill-dot"></span>VALIDADO</span>
-                <span class="tp-brand-updated">2026.04.18</span>
+            <!-- HERO STAT CARDS -->
+            <div class="tp-hero-row">
+              <div class="tp-hero">
+                <div class="tp-hero-label">
+                  <span class="tp-hero-label-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </span>
+                  Días al lanzamiento
+                </div>
+                <div class="tp-hero-num">127</div>
+                <div class="tp-hero-foot">Target launch <strong>2026.10.05</strong> · soft DTC</div>
+              </div>
+              <div class="tp-hero">
+                <div class="tp-hero-label">
+                  <span class="tp-hero-label-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M9 11H1l8-8 8 8h-8z" transform="rotate(45 12 12)"/><circle cx="12" cy="12" r="9"/></svg>
+                  </span>
+                  Fórmulas en producción
+                </div>
+                <div class="tp-hero-num">2 <em>/ 4</em></div>
+                <div class="tp-hero-progress" aria-hidden="true">
+                  <span class="on"></span><span class="on"></span><span></span><span></span>
+                </div>
+                <div class="tp-hero-foot">2 listas para piloto · 2 en R&amp;D</div>
+              </div>
+              <div class="tp-hero">
+                <div class="tp-hero-label">
+                  <span class="tp-hero-label-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  </span>
+                  Documentos pendientes
+                </div>
+                <div class="tp-hero-num danger">3</div>
+                <div class="tp-hero-foot"><strong>1 firma</strong> requiere magic-link · 2 reviews</div>
               </div>
             </div>
 
-            <div class="tp-doc">
-              <div class="tp-doc-name">NOM-259 BPF batch L-2030-887</div>
-              <div class="tp-doc-meta">
-                <span class="tp-pill amber"><span class="tp-pill-dot"></span>EN REVISIÓN</span>
-                <span class="tp-brand-updated">2026.04.27</span>
+            <!-- 3-COL GRID (cards) -->
+            <div class="tp-content-grid">
+
+              <!-- CARD 1 · Fórmulas en desarrollo -->
+              <div class="tp-card">
+                <div class="tp-card-title">Fórmulas en desarrollo <small>4 ACTIVAS</small></div>
+
+                <div class="tp-formula polished">
+                  <div class="tp-formula-icon">&#x2697;</div>
+                  <div class="tp-formula-body">
+                    <div class="tp-formula-head">
+                      <div class="tp-formula-name">Suero Vit C personalizado</div>
+                      <span class="tp-pill green mini"><span class="tp-pill-dot"></span>VAL. FINAL</span>
+                    </div>
+                    <div class="tp-formula-bar polished">
+                      <span style="width:75%"></span>
+                      <span class="tp-formula-bar-label">75%</span>
+                    </div>
+                    <div class="tp-formula-foot">
+                      <span>Hace 6h · iter 5</span>
+                      <span class="tp-formula-chemist"><span class="tp-formula-chemist-avatar">DN</span>D. Núñez</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tp-formula polished">
+                  <div class="tp-formula-icon">&#x1F33F;</div>
+                  <div class="tp-formula-body">
+                    <div class="tp-formula-head">
+                      <div class="tp-formula-name">Crema día anti-edad</div>
+                      <span class="tp-pill amber mini"><span class="tp-pill-dot"></span>ITER 3</span>
+                    </div>
+                    <div class="tp-formula-bar polished">
+                      <span style="width:45%"></span>
+                      <span class="tp-formula-bar-label">45%</span>
+                    </div>
+                    <div class="tp-formula-foot">
+                      <span>Hace 2d · iter 3</span>
+                      <span class="tp-formula-chemist"><span class="tp-formula-chemist-avatar">KF</span>K. Flores</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tp-formula polished">
+                  <div class="tp-formula-icon">&#x1F9F4;</div>
+                  <div class="tp-formula-body">
+                    <div class="tp-formula-head">
+                      <div class="tp-formula-name">Mascarilla detox</div>
+                      <span class="tp-pill green mini"><span class="tp-pill-dot"></span>LOTE PILOTO</span>
+                    </div>
+                    <div class="tp-formula-bar polished">
+                      <span style="width:90%"></span>
+                      <span class="tp-formula-bar-label">90%</span>
+                    </div>
+                    <div class="tp-formula-foot">
+                      <span>Hace 3h · piloto agendado</span>
+                      <span class="tp-formula-chemist"><span class="tp-formula-chemist-avatar">DN</span>D. Núñez</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tp-formula polished">
+                  <div class="tp-formula-icon">&#x1F4A7;</div>
+                  <div class="tp-formula-body">
+                    <div class="tp-formula-head">
+                      <div class="tp-formula-name">Tónico bruma fresco</div>
+                      <span class="tp-pill gray mini"><span class="tp-pill-dot"></span>CONCEPTO</span>
+                    </div>
+                    <div class="tp-formula-bar polished">
+                      <span style="width:20%"></span>
+                      <span class="tp-formula-bar-label">20%</span>
+                    </div>
+                    <div class="tp-formula-foot">
+                      <span>Hace 1 sem · brief</span>
+                      <span class="tp-formula-chemist"><span class="tp-formula-chemist-avatar">KF</span>K. Flores</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 2 · Próximos hitos (timeline) -->
+              <div class="tp-card">
+                <div class="tp-card-title">Próximos hitos <small>5 SIGUIENTES</small></div>
+                <div class="tp-timeline">
+                  <div class="tp-timeline-item done">
+                    <div class="tp-timeline-date">2026.04.22 · DONE</div>
+                    <div class="tp-timeline-text">Brief inicial firmado · 4 SKUs definidos</div>
+                    <span class="tp-timeline-chip">KICKOFF</span>
+                  </div>
+                  <div class="tp-timeline-item done">
+                    <div class="tp-timeline-date">2026.04.28 · DONE</div>
+                    <div class="tp-timeline-text">Validación de paleta de envases — opción <strong>B</strong></div>
+                    <span class="tp-timeline-chip">PACKAGING</span>
+                  </div>
+                  <div class="tp-timeline-item upcoming">
+                    <div class="tp-timeline-date">2026.05.15</div>
+                    <div class="tp-timeline-text">Aprobación final fórmula <strong>Mascarilla detox</strong></div>
+                    <span class="tp-timeline-chip">R&amp;D · APROBACIÓN</span>
+                  </div>
+                  <div class="tp-timeline-item upcoming">
+                    <div class="tp-timeline-date">2026.05.22</div>
+                    <div class="tp-timeline-text">Lote piloto Mascarilla — <strong>100 unidades para review</strong></div>
+                    <span class="tp-timeline-chip">PILOTO · MFG</span>
+                  </div>
+                  <div class="tp-timeline-item warn">
+                    <div class="tp-timeline-date">2026.05.04 · OVERDUE 3D</div>
+                    <div class="tp-timeline-text">Firma addendum SKU #4 (pendiente de tu lado)</div>
+                    <span class="tp-timeline-chip">CONTRATO</span>
+                  </div>
+                  <div class="tp-timeline-item upcoming">
+                    <div class="tp-timeline-date">2026.06.04</div>
+                    <div class="tp-timeline-text">COFEPRIS submission · documentos vault</div>
+                    <span class="tp-timeline-chip">COFEPRIS</span>
+                  </div>
+                  <div class="tp-timeline-item upcoming">
+                    <div class="tp-timeline-date">2026.06.18</div>
+                    <div class="tp-timeline-text">Lanzamiento soft DTC — Mascarilla edición limitada</div>
+                    <span class="tp-timeline-chip">LAUNCH · DTC</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3 · Acciones pendientes -->
+              <div class="tp-card">
+                <div class="tp-card-title">Acciones pendientes <small>4 ABIERTAS</small></div>
+
+                <div class="tp-action polished">
+                  <div class="tp-action-title">Confirmar paleta de envases</div>
+                  <div class="tp-action-context">3 opciones (A/B/C) listas para review en Document Vault.</div>
+                  <div class="tp-action-row">
+                    <span class="tp-action-due">DUE IN 2 DAYS</span>
+                    <button class="tp-action-btn outline polished" type="button">Revisar</button>
+                  </div>
+                </div>
+
+                <div class="tp-action polished">
+                  <div class="tp-action-title">Aprobar copy de etiqueta — <strong>Mascarilla detox</strong></div>
+                  <div class="tp-action-context">Texto NOM-141 generado por R&amp;D, requiere tu OK final.</div>
+                  <div class="tp-action-row">
+                    <span class="tp-action-due">DUE IN 5 DAYS</span>
+                    <button class="tp-action-btn outline polished" type="button">Revisar</button>
+                  </div>
+                </div>
+
+                <div class="tp-action polished">
+                  <div class="tp-action-title">Firmar contrato addendum <strong>SKU #4</strong></div>
+                  <div class="tp-action-context">Tónico bruma incorporado al scope. Magic-link envia firma a tu email.</div>
+                  <div class="tp-action-row">
+                    <span class="tp-action-due urgent">OVERDUE 3 DAYS</span>
+                    <button class="tp-action-btn polished" type="button">Firmar magic-link</button>
+                  </div>
+                </div>
+
+                <div class="tp-action polished">
+                  <div class="tp-action-title">Revisar dashboard de pre-launch</div>
+                  <div class="tp-action-context">Audiencia inicial Meta + TikTok cargada — preview del impacto orgánico.</div>
+                  <div class="tp-action-row">
+                    <span class="tp-action-due">DUE IN 14 DAYS</span>
+                    <button class="tp-action-btn outline polished" type="button">Abrir</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- BOTTOM 2-COL -->
+            <div class="tp-content-bottom">
+
+              <!-- CARD · DOCUMENTS COFEPRIS (table-style + filter pills) -->
+              <div class="tp-card">
+                <div class="tp-card-title">Documentos COFEPRIS <small>4 TOTAL</small></div>
+                <div class="tp-doc-filters">
+                  <span class="tp-doc-filter active">Todos · 4</span>
+                  <span class="tp-doc-filter">Aprobados · 2</span>
+                  <span class="tp-doc-filter">En revisión · 1</span>
+                  <span class="tp-doc-filter">Pendientes · 1</span>
+                </div>
+
+                <div class="tp-doc polished">
+                  <div class="tp-doc-icon">&#x1F4C4;</div>
+                  <div class="tp-doc-row-name">Aviso de funcionamiento · Mascarilla detox<small>PDF · 412 KB · v3</small></div>
+                  <span class="tp-pill green mini"><span class="tp-pill-dot"></span>APROBADO</span>
+                  <span class="tp-doc-menu" aria-hidden="true">⋯</span>
+                </div>
+
+                <div class="tp-doc polished">
+                  <div class="tp-doc-icon">&#x1F4C4;</div>
+                  <div class="tp-doc-row-name">NOM-141 etiqueta · Mascarilla detox<small>PDF · 268 KB · v2</small></div>
+                  <span class="tp-pill green mini"><span class="tp-pill-dot"></span>VALIDADO</span>
+                  <span class="tp-doc-menu" aria-hidden="true">⋯</span>
+                </div>
+
+                <div class="tp-doc polished">
+                  <div class="tp-doc-icon">&#x1F4C4;</div>
+                  <div class="tp-doc-row-name">NOM-259 BPF batch L-2030-887<small>PDF · 1.2 MB · v1</small></div>
+                  <span class="tp-pill amber mini"><span class="tp-pill-dot"></span>EN REVISIÓN</span>
+                  <span class="tp-doc-menu" aria-hidden="true">⋯</span>
+                </div>
+
+                <div class="tp-doc polished">
+                  <div class="tp-doc-icon">&#x1F4C4;</div>
+                  <div class="tp-doc-row-name">NOM-089 microbiológico · lote piloto<small>— · esperando lab —</small></div>
+                  <span class="tp-pill gray mini"><span class="tp-pill-dot"></span>PENDIENTE</span>
+                  <span class="tp-doc-menu" aria-hidden="true">⋯</span>
+                </div>
+              </div>
+
+              <!-- CARD · CHAT TSC (chat-app style) -->
+              <div class="tp-card">
+                <div class="tp-card-title">Conversación con TSC <small>3 NUEVOS<span class="tp-chat-unread" aria-hidden="true"></span></small></div>
+
+                <div class="tp-chat" role="log" aria-live="off">
+                  <div class="tp-chat-msg">
+                    <span class="tp-chat-avatar system">SY</span>
+                    <div class="tp-chat-bubble">
+                      <div class="tp-chat-bubble-head">
+                        <span class="tp-chat-bubble-name">TSC · Sistema</span>
+                        <span class="tp-chat-bubble-time">HACE 3D</span>
+                      </div>
+                      Fórmula Mascarilla validada en R&amp;D. Lista para piloto.
+                    </div>
+                  </div>
+
+                  <div class="tp-chat-msg">
+                    <span class="tp-chat-avatar">KF</span>
+                    <div class="tp-chat-bubble">
+                      <div class="tp-chat-bubble-head">
+                        <span class="tp-chat-bubble-name">TSC · Kaori F.</span>
+                        <span class="tp-chat-bubble-time">AYER</span>
+                      </div>
+                      Adjunto opciones de envase. ¿Cuál prefieres? A/B/C en Document Vault.
+                    </div>
+                  </div>
+
+                  <div class="tp-chat-msg outbound">
+                    <span class="tp-chat-avatar aurora">AR</span>
+                    <div class="tp-chat-bubble">
+                      <div class="tp-chat-bubble-head">
+                        <span class="tp-chat-bubble-name">Tú</span>
+                        <span class="tp-chat-bubble-time">AYER</span>
+                      </div>
+                      Genial, espero el lote piloto. Aviso por aquí cuando reciba la muestra.
+                    </div>
+                  </div>
+
+                  <div class="tp-chat-msg outbound">
+                    <span class="tp-chat-avatar aurora">AR</span>
+                    <div class="tp-chat-bubble">
+                      <div class="tp-chat-bubble-head">
+                        <span class="tp-chat-bubble-name">Tú</span>
+                        <span class="tp-chat-bubble-time">HACE 6H</span>
+                      </div>
+                      Confirmado el copy A. Procedan con la impresión de etiqueta.
+                    </div>
+                  </div>
+
+                  <div class="tp-chat-msg">
+                    <span class="tp-chat-avatar">DN</span>
+                    <div class="tp-chat-bubble">
+                      <div class="tp-chat-bubble-head">
+                        <span class="tp-chat-bubble-name">TSC · Diego N.</span>
+                        <span class="tp-chat-bubble-time">HACE 2H<span class="tp-chat-unread" aria-hidden="true"></span></span>
+                      </div>
+                      Lote piloto agendado para el lunes 22. Te aviso cuando esté listo para shipping.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tp-composer">
+                  <span class="tp-composer-paperclip" aria-hidden="true">&#128206;</span>
+                  <span class="tp-composer-input">Escribe a TSC…</span>
+                  <button class="tp-composer-send" type="button">Enviar</button>
+                </div>
               </div>
             </div>
 
-            <div class="tp-doc">
-              <div class="tp-doc-name">NOM-089 microbiológico · lote piloto</div>
-              <div class="tp-doc-meta">
-                <span class="tp-pill gray"><span class="tp-pill-dot"></span>PENDIENTE</span>
-                <span class="tp-brand-updated">— · —</span>
-              </div>
-            </div>
-          </div>
+          </div><!-- /.tp-main -->
+        </div><!-- /.tp-app-shell -->
 
-          <!-- CHAT WITH TSC -->
-          <div class="tp-bottom-col">
-            <div class="tp-col-title">Conversación con TSC</div>
-
-            <div class="tp-msg">
-              <div class="tp-msg-head">
-                <span class="tp-msg-sender"><em>TSC</em> · Diego N.</span>
-                <span class="tp-msg-time">HACE 2 HORAS</span>
-              </div>
-              <div class="tp-msg-text">"Lote piloto agendado para el lunes. Te aviso cuando esté listo."</div>
-            </div>
-
-            <div class="tp-msg">
-              <div class="tp-msg-head">
-                <span class="tp-msg-sender">Aurora ROS</span>
-                <span class="tp-msg-time">HACE 6 HORAS</span>
-              </div>
-              <div class="tp-msg-text">"Confirmado el copy A. Procedan."</div>
-            </div>
-
-            <div class="tp-msg">
-              <div class="tp-msg-head">
-                <span class="tp-msg-sender"><em>TSC</em> · Kaori F.</span>
-                <span class="tp-msg-time">AYER</span>
-              </div>
-              <div class="tp-msg-text">"Adjunto opciones de envase. ¿Cuál prefieres?"</div>
-            </div>
-
-            <div class="tp-msg">
-              <div class="tp-msg-head">
-                <span class="tp-msg-sender">Aurora ROS</span>
-                <span class="tp-msg-time">AYER</span>
-              </div>
-              <div class="tp-msg-text">"Genial, espero el lote piloto."</div>
-            </div>
-
-            <div class="tp-msg">
-              <div class="tp-msg-head">
-                <span class="tp-msg-sender"><em>TSC</em> · Sistema</span>
-                <span class="tp-msg-time">HACE 3 DÍAS</span>
-              </div>
-              <div class="tp-msg-text">"Fórmula Mascarilla validada en R&amp;D. Lista para piloto."</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="tp-foot">
-          <span>Data substrate: D1 + R2 · authenticated session · audit log activo</span>
-          <div class="tp-foot-sources">
-            <span>Formula DB</span>
-            <span>Batch tracking</span>
-            <span>Document Vault COFEPRIS</span>
-            <span>Stripe + MP</span>
-            <span>Resend</span>
-          </div>
+        <!-- STATUS BAR -->
+        <div class="tp-statusbar" role="status" aria-live="off">
+          <div><span class="tp-statusbar-dot" aria-hidden="true"></span><strong>AUTHENTICATED</strong> · MAGIC-LINK · SESIÓN EXPIRA EN 7d 14h · AUDIT LOG ACTIVO</div>
+          <div>D1 · R2 · FORMULA DB · DOCUMENT VAULT COFEPRIS · STRIPE · MERCADOPAGO · RESEND</div>
         </div>
 
       </div>
