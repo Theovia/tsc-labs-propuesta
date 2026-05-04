@@ -964,8 +964,8 @@ a:hover{border-bottom-color:var(--oxblood)}
         <pre id="ascii-hero-out"></pre>
       </div>
       <div class="ascii-hero-cap">
-        <span>↻ Fig. I · Reactive Bust · Tracks Cursor</span>
-        <em>Procedural Head · Lambertian · ASCII-sampled</em>
+        <span>↻ Fig. I · 龍 Reactive Dragon · Tracks Cursor</span>
+        <em>Procedural · 22 segments · ASCII-sampled</em>
       </div>
     </div>
 
@@ -1543,76 +1543,129 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
   var scene = new THREE.Scene();
   scene.background = null;
 
-  var camera = new THREE.PerspectiveCamera(40, COLS / ROWS, 0.1, 100);
-  camera.position.set(0, 0, 14);
+  var camera = new THREE.PerspectiveCamera(55, COLS / ROWS, 0.1, 100);
+  camera.position.set(0, 0, 25);
   camera.lookAt(0, 0, 0);
 
   var renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, preserveDrawingBuffer: true });
   renderer.setSize(W, H, false);
   renderer.setClearColor(0x000000, 0);
 
-  // Camera: pull back to fit head bust
-  camera.position.set(0, 0, 25);
-  camera.lookAt(0, 0, 0);
-
-  // Lighting (MeshNormalMaterial doesn't need it but Lambertian does;
-  // adding both lets us swap materials without rewiring)
-  var ambLight = new THREE.AmbientLight(0xffffff, 0.6);
-  var dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
-  dirLight.position.set(5, 8, 10);
+  // Lighting: ambient + directional from top-left (consistent with brief)
+  var ambLight = new THREE.AmbientLight(0xffffff, 0.8);
+  var dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+  dirLight.position.set(-6, 8, 6);
   scene.add(ambLight); scene.add(dirLight);
 
-  // --- Build procedural alien-bust head as the primary, reliable mesh ---
-  // (assembled spheres/cone/box → low-poly anatomy that ASCII-samples beautifully)
-  function buildProceduralHead(){
-    var group = new THREE.Group();
-    var bodyMat = new THREE.MeshNormalMaterial({ flatShading: true });
-    // Skull (slightly elongated egg)
-    var skull = new THREE.Mesh(new THREE.SphereGeometry(4.2, 28, 22), bodyMat);
-    skull.scale.set(1.0, 1.18, 1.05);
-    group.add(skull);
-    // Jaw / chin (smaller sphere, pulled forward+down)
-    var jaw = new THREE.Mesh(new THREE.SphereGeometry(2.6, 20, 16), bodyMat);
-    jaw.position.set(0, -3.0, 0.4);
-    jaw.scale.set(1.0, 0.65, 0.95);
-    group.add(jaw);
-    // Cheekbones
-    var cheekL = new THREE.Mesh(new THREE.SphereGeometry(1.1, 14, 12), bodyMat);
-    cheekL.position.set(-2.2, -0.6, 2.6);
-    group.add(cheekL);
-    var cheekR = cheekL.clone(); cheekR.position.x = 2.2; group.add(cheekR);
-    // Brow ridge (flattened box)
-    var brow = new THREE.Mesh(new THREE.BoxGeometry(5.6, 0.6, 1.4), bodyMat);
-    brow.position.set(0, 1.4, 3.0);
-    group.add(brow);
-    // Eye sockets (dark spheres slightly inset to read as voids)
-    var eyeMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a });
-    var eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.85, 16, 12), eyeMat);
-    eyeL.position.set(-1.5, 0.55, 3.4);
-    group.add(eyeL);
-    var eyeR = eyeL.clone(); eyeR.position.x = 1.5; group.add(eyeR);
-    // Nose (cone, rotated to point outward+down)
-    var nose = new THREE.Mesh(new THREE.ConeGeometry(0.55, 2.2, 16), bodyMat);
-    nose.rotation.x = Math.PI; // tip down
-    nose.position.set(0, -0.3, 3.7);
-    group.add(nose);
-    // Mouth slit (thin box)
-    var mouth = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.18, 0.4), eyeMat);
-    mouth.position.set(0, -2.0, 3.4);
-    group.add(mouth);
-    // Neck stub
-    var neck = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.9, 2.4, 18), bodyMat);
-    neck.position.set(0, -5.2, 0);
-    group.add(neck);
-    return group;
+  // --- Procedural ORIENTAL DRAGON (龍): 22 segments, head leads, body trails ---
+  // Each segment = THREE.Group (sphere torso + scale ridge box). Head segment
+  // gets horns, whiskers, eyes, snout. Tail tapers + ends in flattened fin.
+  var SEGMENTS = 22;
+  var dragonRoot = new THREE.Group();
+  scene.add(dragonRoot);
+
+  var dragonBody = [];           // array of segment Groups
+  var trail = [];                // THREE.Vector3 positions (head=index 0)
+  var prevTrail = [];            // previous-frame snapshot for delayed follow
+  var bodyMat = new THREE.MeshNormalMaterial({ flatShading: true });
+  var darkMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a });
+
+  function segmentScale(i){
+    // Head=1.1, body taper 0.9→0.4 across middle, tail fades to 0.2 in last 4
+    if (i === 0) return 1.1;
+    var tailStart = SEGMENTS - 4;
+    if (i >= tailStart){
+      var t = (i - tailStart) / 3; // 0..1 across last 4
+      return 0.4 + (0.2 - 0.4) * t;
+    }
+    var k = (i - 1) / Math.max(1, tailStart - 1);
+    return 0.9 + (0.4 - 0.9) * k;
   }
 
-  var head = buildProceduralHead();
-  scene.add(head);
+  function buildSegment(i){
+    var g = new THREE.Group();
+    var s = segmentScale(i);
+    // Torso sphere
+    var torso = new THREE.Mesh(new THREE.SphereGeometry(s, 14, 10), bodyMat);
+    g.add(torso);
+    // Scale ridge — 3 small boxes along the top (organic spinal feel)
+    for (var k = -1; k <= 1; k++){
+      var ridge = new THREE.Mesh(new THREE.BoxGeometry(s*0.18, s*0.34, s*0.22), bodyMat);
+      ridge.position.set(k * s * 0.35, s * 0.85, 0);
+      g.add(ridge);
+    }
+    // Head ornaments (segment 0 only)
+    if (i === 0){
+      // Two horns (cones swept back over the head)
+      var hornGeo = new THREE.ConeGeometry(0.22, 1.4, 10);
+      var hornL = new THREE.Mesh(hornGeo, bodyMat);
+      hornL.position.set(-0.45, 0.85, -0.15);
+      hornL.rotation.x = -Math.PI / 2.6;   // sweep back over head
+      hornL.rotation.z =  0.18;
+      g.add(hornL);
+      var hornR = hornL.clone();
+      hornR.position.x = 0.45; hornR.rotation.z = -0.18;
+      g.add(hornR);
+      // Two whiskers (thin curved cylinders extending forward)
+      var whiskGeo = new THREE.CylinderGeometry(0.045, 0.025, 2.6, 6);
+      var whiskL = new THREE.Mesh(whiskGeo, bodyMat);
+      whiskL.geometry.translate(0, 1.3, 0);   // pivot at base
+      whiskL.position.set(-0.35, -0.15, 0.55);
+      whiskL.rotation.x =  Math.PI / 2.05;    // forward
+      whiskL.rotation.z = -0.22;              // slight outward curve
+      g.add(whiskL);
+      var whiskR = whiskL.clone();
+      whiskR.position.x = 0.35; whiskR.rotation.z = 0.22;
+      g.add(whiskR);
+      // Eyes (small dark spheres)
+      var eyeGeo = new THREE.SphereGeometry(0.16, 10, 8);
+      var eyeL = new THREE.Mesh(eyeGeo, darkMat);
+      eyeL.position.set(-0.5, 0.25, 0.85);
+      g.add(eyeL);
+      var eyeR = eyeL.clone(); eyeR.position.x = 0.5; g.add(eyeR);
+      // Snout (small cone protruding forward)
+      var snout = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.95, 12), bodyMat);
+      snout.rotation.x = Math.PI / 2;
+      snout.position.set(0, -0.05, 1.05);
+      g.add(snout);
+    }
+    // Tail fin on the last segment (flattened box)
+    if (i === SEGMENTS - 1){
+      var fin = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.95, 1.2), bodyMat);
+      fin.position.set(0, 0, -0.5);
+      g.add(fin);
+    }
+    return g;
+  }
 
-  // --- Optional GLTF upgrade: try Lee Perry Smith bust; on success, swap in ---
+  // Initialize a coiled-S idle pose along x with gentle y wave (used for
+  // reduced-motion static frame and as starting trail state).
+  for (var i = 0; i < SEGMENTS; i++){
+    var seg = buildSegment(i);
+    dragonRoot.add(seg);
+    dragonBody.push(seg);
+    var x = -i * 1.05 + 8;            // string from right→left
+    var y = Math.sin(i * 0.55) * 1.6;  // S-coil
+    var z = Math.cos(i * 0.45) * 0.6;
+    var p = new THREE.Vector3(x, y, z);
+    trail.push(p);
+    prevTrail.push(p.clone());
+    seg.position.copy(p);
+  }
+  // Orient initial pose so each segment looks at the one ahead
+  for (var j = SEGMENTS - 1; j > 0; j--){
+    dragonBody[j].lookAt(trail[j-1]);
+  }
+  // Head looks forward by default
+  dragonBody[0].lookAt(trail[0].clone().add(new THREE.Vector3(1, 0, 0)));
+
+  // --- Optional GLTF upgrade: gated behind ?gltf=1 so default = procedural dragon ---
   function tryLoadGLTF(){
     if (window.__noGLTF || typeof THREE.GLTFLoader === 'undefined') return;
+    try {
+      var qs = new URLSearchParams(window.location.search || '');
+      if (qs.get('gltf') !== '1') return; // disabled by default
+    } catch(_e){ return; }
     var urls = [
       'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb',
       'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
@@ -1623,25 +1676,22 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
       loader.load(urls[i], function(gltf){
         var loaded = gltf.scene || gltf.scenes && gltf.scenes[0];
         if (!loaded) return tryNext(i+1);
-        // Recenter and scale to fit ~10 units tall
         var box = new THREE.Box3().setFromObject(loaded);
         var size = new THREE.Vector3(); box.getSize(size);
         var center = new THREE.Vector3(); box.getCenter(center);
         loaded.position.sub(center);
         var fit = 10 / Math.max(size.x, size.y, size.z);
         loaded.scale.multiplyScalar(fit);
-        // Apply MeshNormalMaterial uniformly for ASCII-friendly gradient
         loaded.traverse(function(o){
           if (o.isMesh) o.material = new THREE.MeshNormalMaterial({ flatShading: false });
         });
-        scene.remove(head);
-        head = loaded;
-        scene.add(head);
+        scene.remove(dragonRoot);
+        scene.add(loaded);
       }, undefined, function(){ tryNext(i+1); });
     }
     tryNext(0);
   }
-  try { tryLoadGLTF(); } catch(_e) { /* keep procedural */ }
+  try { tryLoadGLTF(); } catch(_e) { /* keep procedural dragon */ }
 
   // --- Sampling canvas: read GPU output via renderer.domElement ---
   var glCanvas = renderer.domElement;
@@ -1649,23 +1699,18 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
   sampler.width = W; sampler.height = H;
   var sctx = sampler.getContext('2d');
 
-  // --- Cursor tracking: rotation follows mouse relative to container center ---
-  // mx,my are normalized [-1,1] offsets from container center.
+  // --- Cursor tracking: head leads, body trails (snake physics) ---
+  // mx,my normalized [-1,1] from viewport center; head target = (mx*14, -my*6, 0).
   var mx = 0, my = 0;
-  var targetRotY = 0, targetRotX = 0;
   var lastMoveT = performance.now();
   var hasMoved = false;
   function onPointerMove(e){
-    var r = host.getBoundingClientRect();
-    var cx = r.left + r.width / 2;
-    var cy = r.top  + r.height / 2;
-    // Use viewport-half so head reacts even when cursor is outside the small ASCII frame
+    var cx = window.innerWidth  / 2;
+    var cy = window.innerHeight / 2;
     mx = (e.clientX - cx) / (window.innerWidth  / 2);
     my = (e.clientY - cy) / (window.innerHeight / 2);
     if (mx < -1) mx = -1; else if (mx > 1) mx = 1;
     if (my < -1) my = -1; else if (my > 1) my = 1;
-    targetRotY = mx * 0.7;   // up to ~40deg yaw
-    targetRotX = -my * 0.3;  // subtle nod
     lastMoveT = performance.now();
     hasMoved = true;
   }
@@ -1673,20 +1718,46 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
   window.addEventListener('pointermove', onPointerMove);
 
   // --- Render → ASCII ---
-  var DAMP = 0.08;
+  var HEAD_DAMP = 0.10;   // head lerps toward target
+  var BODY_DAMP = 0.18;   // each body segment lerps toward previous-frame pos of segment[i-1]
+  var headTarget = new THREE.Vector3(8, 0, 0);
   var idleT = 0;
+  var tmpV = new THREE.Vector3();
   function frame(){
-    // Idle bob if no mouse for >2s (or before any input)
     var now = performance.now();
     var idle = !hasMoved || (now - lastMoveT > 2000);
     if (idle){
-      idleT += 0.012;
-      targetRotY = Math.sin(idleT) * 0.18;
-      targetRotX = Math.sin(idleT * 0.6) * 0.06;
+      // Lissajous figure-8 over 8s period: x = sin(t)*8, y = sin(2t)*3
+      idleT += 0.0078;                  // ~8s period at 30fps (2π/0.0078≈805 frames ≈ 26.8s @30fps; but with 2π over t loop)
+      headTarget.set(Math.sin(idleT) * 8, Math.sin(idleT * 2) * 3, 0);
+    } else {
+      headTarget.set(mx * 14, -my * 6, 0);
     }
-    // Lerp/damp rotation toward target
-    head.rotation.y += (targetRotY - head.rotation.y) * DAMP;
-    head.rotation.x += (targetRotX - head.rotation.x) * DAMP;
+
+    // Snapshot current trail positions BEFORE updates — body follows the
+    // previous-frame position of the segment ahead (creates visible delay).
+    for (var s = 0; s < SEGMENTS; s++){ prevTrail[s].copy(trail[s]); }
+
+    // Head: lerp toward headTarget
+    trail[0].lerp(headTarget, HEAD_DAMP);
+    // Body: each segment lerps toward previous-frame pos of segment[i-1]
+    for (var i = 1; i < SEGMENTS; i++){
+      trail[i].lerp(prevTrail[i-1], BODY_DAMP);
+    }
+
+    // Apply to meshes + orient each segment toward the segment ahead
+    dragonBody[0].position.copy(trail[0]);
+    // Head looks toward where it's heading (target direction)
+    tmpV.copy(headTarget).sub(trail[0]);
+    if (tmpV.lengthSq() > 1e-4){
+      dragonBody[0].lookAt(tmpV.add(trail[0]));
+    }
+    for (var b = 1; b < SEGMENTS; b++){
+      dragonBody[b].position.copy(trail[b]);
+      // face the segment ahead so body undulates naturally
+      dragonBody[b].lookAt(trail[b-1]);
+    }
+
     renderer.render(scene, camera);
 
     // Copy GL canvas to sampler
