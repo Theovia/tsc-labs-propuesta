@@ -249,8 +249,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .cover-title{
   font-family:'Inter Tight',sans-serif;
   font-weight:300;
-  font-size:clamp(56px, 8vw, 152px);
-  line-height:0.96;
+  font-size:clamp(44px, 5.5vw, 88px);
+  line-height:1.02;
   letter-spacing:-0.025em;
   color:var(--ink);
   margin-bottom:40px;
@@ -470,6 +470,64 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink-mute);
   text-transform:uppercase;
   font-weight:500;
+}
+.diag-audit-head{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin:48px 0 20px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+}
+.diag-audit-list{
+  list-style:none;
+  margin:0 0 40px;
+  padding:0;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+}
+.diag-audit-item{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:32px;
+  padding:24px 0;
+  border-bottom:1px solid var(--rule);
+  align-items:start;
+}
+.diag-audit-item:last-child{border-bottom:none}
+.diag-audit-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--ink);
+  text-transform:uppercase;
+  font-weight:600;
+  padding-top:4px;
+}
+.diag-audit-q{
+  font-family:'Inter Tight',sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  font-weight:400;
+}
+.diag-audit-q .diag-audit-tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-left:6px;
+}
+@media (max-width:720px){
+  .diag-audit-item{grid-template-columns:1fr;gap:8px}
+  .diag-audit-label{padding-top:0}
 }
 
 /* === PHASE === */
@@ -2604,9 +2662,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="tldr-card">
           <div class="tldr-tag">CUÁNTO CUESTA</div>
           <ul class="tldr-list">
-            <li>Setup: <strong class="tldr-num">$1.36M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.30M</span></li>
+            <li>Setup: <strong class="tldr-num">$1.56M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.50M</span></li>
             <li>Retainer Año 1: <strong class="tldr-num">$720K MXN</strong><span class="tldr-num-note">$60K/mes × 12 meses post-launch</span></li>
-            <li>Total Año 1+2: <strong class="tldr-num tldr-num-emph">$2.08M MXN</strong></li>
+            <li>Total Año 1+2: <strong class="tldr-num tldr-num-emph">$2.28M MXN</strong></li>
             <li class="tldr-list-foot">Pagos: 30% inicio fase + 70% al cierre con hitos validados · Net 15.</li>
           </ul>
         </div>
@@ -2630,19 +2688,40 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="diag-body">
         <p class="salutation">Para TSC LABS,</p>
 
-        <p><strong>Para que esta propuesta sea defendible necesitamos primero llamar a las cosas por su nombre.</strong> Nuestra lectura desde afuera, sin asumir lo que no podemos ver, identifica cinco frentes en los que la operación actual de TSC LABS — sólida en formulación, validada en mercado — depende todavía de procesos manuales que escalan linealmente. Y que, en seis meses, no en seis años, se vuelven el techo del laboratorio.</p>
+        <p>TSC LABS tiene hoy <strong>50 fórmulas sistematizadas en Google Sheets</strong>, <strong>13 clientes activos</strong>, <strong>30 leads/mes detenidos por saturación operativa</strong> y un <strong>50% de close rate</strong>. Diego, Natalia y Kaori operan 9am-3pm a 40hrs/semana cada uno y están considerando contratar 2-3 becarios — con miedo legítimo de no escalar más equipo sin antes escalar el sistema. La operación corre sobre Google Sheets + Shopify + Landingi + WhatsApp Business + META + Skydropx. Funciona. Pero es una colección de herramientas que no se hablan entre sí, y el techo operacional ya se está tocando.</p>
 
-        <p>Las <strong>fórmulas</strong> del laboratorio viven hoy en hojas de cálculo distribuidas o sólo en la memoria del químico. Para una operación con +18 fórmulas validadas en mercado, esto significa riesgo de continuidad y un techo de escalabilidad que se va a notar en seis meses, no en seis años.</p>
+        <div class="diag-pull">El bottleneck real <strong>no está en formulación</strong> — las 50 fórmulas viven sistematizadas. <strong>No está en producción</strong> — la capacidad instalada es ~28K productos/mes y apenas se usa. El bottleneck está en <em>envasado, etiquetado y proveeduría manual</em>, en social media que el equipo odia hacer, y en 30 leads/mes que se quedan sin atender porque el equipo no da más.</p>
 
-        <p>El <strong>lot tracking</strong> y el <strong>supply chain</strong> viven en hojas de cálculo. No hay un único origen de verdad sobre dónde está cada lote, qué envases tiene asignados, qué proveedor está pendiente. Saber el status real de un envío o reconciliar inventario físico vs sistema toma horas, no segundos.</p>
+        <div class="diag-audit-head">Lo que F0 Discovery audita en concreto</div>
 
-        <div class="diag-pull">The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</div>
+        <ul class="diag-audit-list">
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Fórmulas — 50 sistematizadas</div>
+            <p class="diag-audit-q">Las 50 fórmulas viven en Google Sheets sistematizado — Sheets es bueno para staging early, no para producción versionada. F0 audita el schema actual y diseña la migración a D1 + R2 con audit log inmutable. <span class="diag-audit-tag">F0 mapea</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Bottleneck operacional real</div>
+            <p class="diag-audit-q">~10 lotes/mes producidos · cliente Fer demanda 7,000 productos/mes · capacidad ~28K/mes. El cuello no es producir — es envasar, etiquetar y coordinar proveeduría sin un sistema central. F0 cuantifica horas/semana perdidas en estas tareas. <span class="diag-audit-tag">F0 audita</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Stack desconectado</div>
+            <p class="diag-audit-q">Shopify (Skin Club · 5 pedidos/mes · $858 ticket promedio) + Landingi (landing TSC) + WhatsApp Business + META + Skydropx + IG/TikTok/Facebook. Ningún sistema habla con otro. F0 mapea cada integración faltante. <span class="diag-audit-tag">F0 inventaria</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Pipeline B2B detenido</div>
+            <p class="diag-audit-q">30 leads/mes entran. 50% close rate cuando se atienden. Saturación operacional impide procesarlos. F0 estructura el qualifier que filtra volumen alto y descarta pequeños — sin perder lo bueno. <span class="diag-audit-tag">F0 estructura</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Proveeduría manual</div>
+            <p class="diag-audit-q">Natalia coordina proveedores manualmente — cotizaciones, POs, ETAs, recepciones. Es el dolor #1 reportado. F0 audita el ciclo completo y diseña automatización draft-to-firma. <span class="diag-audit-tag">F0 audita</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Compliance &amp; lot records</div>
+            <p class="diag-audit-q">COFEPRIS vigente, continuidad de fórmulas resuelta. F0 verifica cómo se mantienen lot records, micro tests, audits NOM-259 — y los lleva a Document Vault con trazabilidad. <span class="diag-audit-tag">F0 verifica</span></p>
+          </li>
+        </ul>
 
-        <p>El <strong>pipeline B2B con management de talento</strong> está abriéndose. Sin un Talent Portal, un CRM real y contratos generados desde template, no es replicable. Cada nuevo talent que entra repite el ciclo manualmente.</p>
-
-        <p>El <strong>operations data</strong> — lotes, envases, envíos, POs, inventario — vive en carpetas locales, USBs y correos. No es queryable. No es exportable. No es la calidad de operación que un laboratorio en escalamiento defendible necesita. Los certificados COFEPRIS están vigentes — pero el problema diario no es ese, es saber dónde está el lote 887 sin abrir 4 archivos.</p>
-
-        <p>Lo que sigue es la propuesta para resolverlo: 5 fases acumulativas, 12 meses, una arquitectura unificada. F1-F5 entregan el sistema operacional de TSC LABS — un data substrate único (D1 + R2 + Workers Analytics), servicios encima (Talent Portal, ERP, Operations registry + Document Vault básico, dashboards), y capa agéntica de 4 olas. El objetivo medible es <strong>hacer la operación queryable</strong>: cada decisión de negocio termina en una query SQL contra D1, cada agente lee del mismo store, y cada lote, envase, envío y PO queda con status visible en tiempo real. Schemas formales, ER diagrams, lot lifecycle mapeado al data model.</p>
+        <p>Eigen entra como <strong>dirección técnica con autoridad</strong> — no como integrador suave de lo que ya existe. La capa que falta no es una herramienta más; es la arquitectura que conecta Shopify, WhatsApp, META, Skydropx y la operación interna en un solo sistema, automatiza lo que el equipo odia hacer (envasado coordinado, social media, proveeduría manual), y libera capacidad para procesar los 30 leads/mes que hoy se quedan en cola. F1-F5 construye eso.</p>
 
         <div class="diag-sign">
           <p class="diag-sign-name">Eigen Atlas Practice</p>
@@ -2765,7 +2844,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
 
       <!-- BLOCK 3 · What this means for TSC LABS -->
-      <p class="urgency-closing">La oportunidad no es de timing — <em>es de capacidad construida</em>. La industria farmacéutica + cosmética que adopta sistemas integrados con IA captura entre <strong>10-30% de ahorro operativo</strong> y <strong>30%+ de productividad sostenida</strong>. TSC LABS tiene la base para hacerlo: equipo técnico, marca propia validada, infraestructura COFEPRIS vigente. La pregunta es construir el sistema operacional ahora — con la curva industrial — o construirlo después contra el efecto compuesto de seguir operando manualmente.</p>
+      <p class="urgency-closing">La oportunidad no es de timing — <em>es de capacidad construida</em>. La industria farmacéutica + cosmética que adopta sistemas integrados con IA captura entre <strong>10-30% de ahorro operativo</strong> y <strong>30%+ de productividad sostenida</strong>. TSC LABS tiene la base para hacerlo: equipo técnico, marca propia validada, infraestructura COFEPRIS vigente.</p>
+      <p class="urgency-closing"><strong>Aplicado a los números reales de TSC:</strong> 30 leads/mes detenidos por saturación es costo de oportunidad medible — no abstracto. Con 50% close rate sin sistema, el qualifier automático filtrando volumen alto traduce ese mismo 50% a clientes 5-10× más grandes. La capacidad de producción está en ~28K/mes apenas usada — el sistema desbloquea esa capacidad sin contratar más equipo, que es exactamente lo que Diego, Natalia y Kaori quieren evitar.</p>
 
       <!-- Sources strip -->
       <div class="urgency-sources-strip">
@@ -2785,7 +2865,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Talent Portal, ERP, Operations registry + Document Vault básico, dashboards y agentes leen y escriben al mismo store.</p>
 
       <div class="tesis-body">
-        <p>TSC LABS opera hoy con piezas que no se hablan: Excel, carpetas locales, USBs, Calendly, contadores externos. Cada decisión de negocio cruza 3 herramientas y termina en un Excel manual.</p>
+        <p>TSC LABS opera hoy con un stack distribuido: Google Sheets sistematizado (50 fórmulas, clientes, cotizaciones), Shopify (Skin Club), Landingi (landing TSC), WhatsApp Business, META, Skydropx. Cada herramienta funciona en su silo. Cada decisión de negocio cruza 3 sistemas y termina en una hoja de Sheets reconciliada a mano.</p>
 
         <p>F1-F5 reemplaza esto con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal, ERP de inventario, Operations registry + Document Vault básico, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
 
@@ -2890,13 +2970,13 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Auditoría completa de la información existente — fórmulas, lotes, envases, talents, proveedores, certificados regulatorios, comunicaciones, accesos, software actual — y arquitectura del <strong>modelo maestro</strong> al que F1-F5 conectarán. Lo que vive en Excels, carpetas locales, USBs, sistemas activos, suscripciones y documentación dispersa se inventaria, se clasifica y se mapea al data substrate.</p>
+          <p>Auditoría completa de la información existente — 50 fórmulas en Sheets, lotes, envases, talents, proveedores, certificados regulatorios, comunicaciones, accesos, software actual — y arquitectura del <strong>modelo maestro</strong> al que F1-F5 conectarán. Lo que vive en Google Sheets, Shopify, Landingi, WhatsApp Business, META, Skydropx y documentación dispersa se inventaria, se clasifica y se mapea al data substrate.</p>
           <p>El cierre es un <strong>master schema firmado</strong>: tablas, FKs, constraints, índices, taxonomías canónicas y un plan de migración de cómo y cuándo cada fase F1-F5 se conecta al modelo maestro. El sistema no se diseña dos veces.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Auditoría completa de información (fórmulas Excel, carpetas locales, USBs, sistemas activos, suscripciones, accesos, documentación dispersa) · ER diagrams formales (entidades + relaciones + cardinalidades) · taxonomías canónicas (fórmulas · lotes · envases · talents · proveedores · canales de venta · SKUs) · master schema (tablas, FKs, constraints, índices) · plan de migración F1-F5 al modelo maestro · audit de accesos + seguridad de la operación actual.</div>
+            <div class="phase-block-body">Auditoría completa de información (50 fórmulas en Sheets, Shopify, Landingi, WhatsApp Business, META, Skydropx, suscripciones, accesos, documentación dispersa) · ER diagrams formales (entidades + relaciones + cardinalidades) · taxonomías canónicas (fórmulas · lotes · envases · talents · proveedores · canales de venta · SKUs) · master schema (tablas, FKs, constraints, índices) · plan de migración F1-F5 al modelo maestro · audit de accesos + seguridad de la operación actual.</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
@@ -2928,12 +3008,13 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="phase-body">
         <div class="phase-prose">
           <p>La superficie pública de TSC LABS y de The Skin Club queda al nivel de la calidad que el laboratorio ya demostró en formulación. <strong>Landing premium The Skin Club</strong> con narrativa de marca, tipografía editorial, performance &lt;1.5s LCP móvil y arquitectura DTC lista para feeds, pixels y attribution.</p>
-          <p>En paralelo, el <strong>portal B2B tsc-labs.com.mx</strong> consolida los cuatro dossiers en un sólo lugar, con captura de leads, formulario de proyecto y embed de Calendly. <strong>Email infra profesional</strong>: Cloudflare Email Routing + Resend Pro con cuatro prefijos operativos (business@, produccion@, compliance@, rd@). <strong>Capa de mensajería multi-canal</strong>: integración a la familia Meta (WhatsApp Business API, Messenger, Instagram Direct) + chat embebido en el sitio web. Se eligen los canales que TSC priorice — la arquitectura soporta los cuatro sin re-trabajo.</p>
+          <p><strong>Landing TSC LABS reemplazada</strong>: la landing actual en Landingi sale. Entra una landing nativa en <strong>Cloudflare Workers</strong> — 1.5s LCP móvil, ownership total del código, sin licencia recurrente, sin vendor lock-in. Esto es la diferencia entre alquilar tu superficie pública y poseerla.</p>
+          <p>En paralelo, el <strong>portal B2B tsc-labs.com.mx</strong> consolida los cuatro dossiers en un sólo lugar, con captura de leads, formulario de proyecto y embed de Calendly. <strong>Email infra profesional</strong>: Cloudflare Email Routing + Resend Pro con cuatro prefijos operativos (business@, produccion@, compliance@, rd@). <strong>Capa de mensajería multi-canal</strong>: integración a la familia Meta (WhatsApp Business API, Messenger, Instagram Direct) + chat embebido en el sitio web — los canales que TSC ya usa, ahora hablándose entre sí. La arquitectura soporta los cuatro sin re-trabajo.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Landing Skin Club rebuild · Portal B2B consolidado · Email Routing + Resend Pro (4 prefijos) · Capa de mensajería multi-canal (Meta + sitio web).</div>
+            <div class="phase-block-body">Landing TSC LABS reemplazada (Landingi → Cloudflare Workers nativa, ownership total) · Landing Skin Club rebuild · Portal B2B consolidado · Email Routing + Resend Pro (4 prefijos) · Capa de mensajería multi-canal (Meta + sitio web priorizada con TSC).</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
@@ -2958,7 +3039,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p class="phase-meta-line">1.5 meses · Talent Portal · CRM lead pipeline · email automation · Stripe + MP CFDI 4.0</p>
         </div>
         <div class="phase-price">
-          <div class="phase-price-num">$140<em>K</em></div>
+          <div class="phase-price-num">$240<em>K</em></div>
           <div class="phase-price-label">MXN · 1.5 MESES</div>
         </div>
       </header>
@@ -2996,29 +3077,40 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p class="phase-subtitle">El laboratorio se convierte en sistema. Cada lote, envase, envío y orden con status en vivo.</p>
         </div>
         <div class="phase-price">
-          <div class="phase-price-num">$300<em>K</em></div>
+          <div class="phase-price-num">$400<em>K</em></div>
           <div class="phase-price-label">MXN · 2.5 MESES</div>
         </div>
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Las fórmulas + lotes + envases + envíos + órdenes de proveedor pasan de hojas de cálculo a un sistema con <strong>status en vivo</strong>. Cada lote tiene su lifecycle visible: <strong>producción → cuarentena → liberado → empacado → enviado → entregado</strong>. Cada envase (frasco, etiqueta, tapa, secundario) tiene status: pedido, recibido, asignado a lote, consumido. Cada PO a proveedor con ETA, recibido, validado, facturado.</p>
-          <p><strong>Formula DB versionada</strong> con ingredientes, sustitutos, eficacia y NOMs aplicables como metadata. <strong>Shipment tracking</strong> integrado con APIs de courier (DHL · Estafeta · FedEx) — cada lote enviado con guía, status entrega, fecha y destino visibles en una sola vista. <strong>Reconciliación de inventario</strong> físico vs sistema con alertas de discrepancia.</p>
-          <p><strong>Document Vault básico</strong> para los certificados COFEPRIS vigentes (Aviso de Funcionamiento, designación de Responsable Sanitario, audits vigentes) — repositorio simple, no centro operativo. TSC ya cumple, lo que necesita el día a día es saber dónde está cada lote, cada frasco y cada PO.</p>
-          <p class="phase-value-list"><strong>Lo que TSC gana, en concreto:</strong> "¿dónde está el lote 887?" → courier + guía + ETA + status en &lt;2s · frasco amber 30ml: en stock 1,200 · pedido 800 · ETA 2d · proyección consumo 6d → orden auto sugerida · producción terminada → automático: QC pass, asignar envases disponibles, generar packing slip, notificar talent · reconciliación inventario nocturna: alerta a Diego si discrepancia &gt;2% · cada PO a proveedor: trail completo desde solicitud → recibido → facturado → pagado.</p>
+          <p>F3 resuelve el bottleneck real reportado por el equipo: <strong>envasado, etiquetado y proveeduría manual</strong>. Las 50 fórmulas que viven en Google Sheets migran a Formula DB versionada en D1. El día-a-día operacional pasa de coordinación humana ad-hoc a sistema con <strong>controles atómicos automatizados</strong>.</p>
+
+          <p><strong>Auto-descuento de inventario:</strong> cuando se produce un lote, el sistema descuenta automáticamente las materias primas + envases consumidos contra el catálogo. Stock real-time. Sin reconciliación manual al final del día. Sin Sheet paralelo. La fuente de verdad es una sola.</p>
+
+          <p><strong>Alertas predictivas por SKU:</strong> threshold configurable por insumo. Cuando el inventario proyectado (basado en producción reciente + lotes planeados) cae bajo el umbral, alerta automática a Natalia o quien corresponda. <em>No esperan a quedarse sin frasco amber para reaccionar</em> — el sistema avisa antes.</p>
+
+          <p><strong>Pedidos automáticos a proveedores:</strong> cuando se cruza el threshold, el sistema genera <em>draft de PO</em> con cantidad sugerida + proveedor histórico + ETA esperado. Natalia revisa y firma. <strong>2 clicks vs 2 horas buscando cotizaciones</strong>. Esto resuelve el dolor #1 reportado por el equipo en operación.</p>
+
+          <p><strong>Tracking de envasado/etiquetado por lote:</strong> cada lote tiene status visible — <em>EN PRODUCCIÓN → EN ENVASADO → EN ETIQUETADO → EN ENVÍO → ENTREGADO</em>. Los becarios entrantes ven cola de trabajo organizada en lugar de "preguntá a Diego". Diego ve el cuello de botella en vivo, no al final de la semana.</p>
+
+          <p><strong>Integración Skydropx automática:</strong> cuando un lote completa etiquetado, el sistema genera la guía Skydropx automática con dirección del cliente. Sin export-import manual de CSV, sin copiar pedacitos de Shopify a Skydropx. La operación logística que ya funciona se conecta al sistema central.</p>
+
+          <p><strong>Formula DB versionada</strong> con ingredientes, sustitutos, eficacia y NOMs aplicables como metadata. Google Sheets queda como staging temprano para R&amp;D — nunca como sistema de producción. <strong>Document Vault básico</strong> para certificados COFEPRIS vigentes (Aviso de Funcionamiento, designación de Responsable Sanitario, audits) — repositorio simple, TSC ya cumple regulación, lo que necesita el día a día es saber dónde está cada lote, cada frasco y cada PO.</p>
+
+          <p class="phase-value-list"><strong>Lo que TSC gana, en concreto:</strong> producción terminada → auto-descuento de envases consumidos · proyección frasco amber: stock 1,200 + ETA 2d → alerta predictiva con draft de PO listo para Natalia · "¿dónde está el lote 887?" → status en &lt;2s + guía Skydropx + ETA · capacidad ~28K/mes ahora alcanzable sin contratar 5 personas más para coordinación manual · cliente Fer (7,000/mes) procesado sin que Diego/Kaori/Natalia trabajen 50hrs/semana extra.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Formula DB versionada · <strong>Lot lifecycle tracking</strong> (producción → cuarentena → liberado → empacado → enviado → entregado) · <strong>Envases + packaging materials status</strong> (pedido / recibido / asignado / consumido) · <strong>Shipment tracking</strong> via courier APIs · <strong>Supply chain operativo</strong> (POs a proveedores: ETA, recibido, facturado) · <strong>Reconciliación inventario</strong> (físico vs sistema, alertas de discrepancia) · Document Vault básico (AF, RS, audits COFEPRIS vigentes — repositorio simple).</div>
+            <div class="phase-block-body"><strong>Inventario auto-descontante</strong> (materias primas + envases) con cada lote producido · <strong>Alertas predictivas por threshold de SKU</strong> · <strong>Pedidos automáticos a proveedores</strong> (draft de PO con cantidad + proveedor + ETA, Natalia firma en 2 clicks) · <strong>Lot lifecycle visible</strong> (PRODUCCIÓN → ENVASADO → ETIQUETADO → ENVÍO → ENTREGADO) con cola de trabajo para becarios · <strong>Integración Skydropx auto-guía</strong> cuando lote completa etiquetado · <strong>Formula DB versionada</strong> (50 fórmulas migradas de Google Sheets a D1 con audit log) · Document Vault básico (AF, RS, audits COFEPRIS — repositorio simple).</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
-            <div class="phase-stack">CF D1 · R2 · Workers Workflows · Pages dashboards · Cron Triggers (predicciones + alertas) · Courier APIs (DHL · Estafeta · FedEx) para shipment tracking · Webhooks de proveedores</div>
+            <div class="phase-stack">CF D1 versionada (audit log inmutable) · R2 documental · Workers Workflows · Pages dashboards · Cron Triggers (alertas predictivas + draft POs) · Skydropx API · Webhooks de proveedores</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
-            <div class="phase-block-body">100% lotes activos con status en vivo · 100% envases catalogados con tracking de pedido a consumo · 1 lote completo trackeado de producción a entrega final · reconciliación inventario con discrepancia &lt;2% · Document Vault básico digitalizado (AF, RS, audits vigentes).</div>
+            <div class="phase-block-body">50 fórmulas migradas Sheets → D1 con audit log · 100% lotes con status en vivo y cola de envasado/etiquetado visible · auto-descuento de inventario operando con &lt;2% discrepancia · ≥3 pedidos automáticos a proveedores firmados por Natalia · Skydropx auto-guía operando en ≥80% lotes salientes · Document Vault básico digitalizado.</div>
           </div>
         </div>
       </div>
@@ -3042,9 +3134,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>TSC LABS deja de ser una colección de Excels y carpetas. Pasamos a una <strong>arquitectura de datos completa</strong>: entity-relationship diagrams formales, base de datos transaccional + analítica separadas, semantic layer que permite cualquier pregunta de negocio en lenguaje natural.</p>
+          <p>TSC LABS deja de ser un stack distribuido entre Sheets, Shopify, Landingi, WhatsApp y Skydropx que no se hablan entre sí. Pasamos a una <strong>arquitectura de datos completa</strong>: entity-relationship diagrams formales, base de datos transaccional + analítica separadas, semantic layer que permite cualquier pregunta de negocio en lenguaje natural.</p>
           <p><strong>Dashboard ejecutivo</strong> con margen real-time por SKU, por canal y por talento. <strong>Ad performance integrada</strong> de Meta, TikTok y Google con attribution multi-touch. <strong>Modelo predictivo</strong> de retención y LTV por marca-talento. Margin calculator productivizada en versión pública para pitch + privada interna con costos reales.</p>
-          <p><strong>Empresa totalmente queryable:</strong> cualquier ejecutivo puede preguntar "¿cuánto entregamos del Suero Vit C en marzo en TikTok?" y recibir respuesta directa, sin pasar por nadie. Cada decisión de negocio se convierte en una pregunta SQL — la operación deja de depender de quién tiene el Excel correcto.</p>
+          <p><strong>Empresa totalmente queryable:</strong> cualquier ejecutivo puede preguntar "¿cuánto entregamos del Suero Vit C en marzo en TikTok?" y recibir respuesta directa, sin pasar por nadie. Cada decisión de negocio se convierte en una pregunta SQL — la operación deja de depender de quién tiene el Sheet correcto.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
@@ -3082,14 +3174,15 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="phase-body">
         <div class="phase-prose">
           <p>Los agentes <strong>no son productos sueltos</strong>. Son la voz del sistema: cada uno comparte el mismo data substrate de las fases 1-4, escribe al mismo audit log, y se comunica internamente para no actuar contra políticas. El equipo TSC interactúa con ellos como con un colega más; los talents y clientes interactúan con ellos como con la marca.</p>
-          <p>Cuatro olas que convierten IA en senior staff operando 24/7. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra. <strong>Ola B — Lead Qualification B2B</strong> (1 mes · $90K): filtra talents inbound y agenda solo cuando hay fit real.</p>
-          <p><strong>Ola C — Outbound Sales Agents</strong> (1.5 meses · $130K): agentes que hacen primeros acercamientos a talents potenciales — research preliminary, redactan email, envían WhatsApp inicial, escalan a humano cuando hay interés. Multi-canal: email, WhatsApp y llamadas voz vía Twilio + ElevenLabs. <strong>Convierte el pipeline B2B en motor outbound 24/7.</strong></p>
-          <p><strong>Ola D — Compliance Monitor + R&amp;D Research</strong> (1.5 meses · $130K): alertas en menos de 24 horas cuando COFEPRIS o cualquier NOM relevante actualiza, y asistente de investigación que rastrea papers científicos, activos emergentes y movimientos regulatorios de competidores globales.</p>
+          <p>Cuatro olas alineadas a los dolores reales de TSC. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): hoy son ~5 mensajes/mes que Diego responde manualmente con un ticket promedio de $858. El chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra escala ese volumen a ~50 mensajes/mes en línea con el crecimiento del negocio, sin costo lineal en tiempo de Diego.</p>
+          <p><strong>Ola B — B2B Lead Qualifier</strong> (1 mes · $90K): los 30 leads/mes detenidos por saturación entran a un qualifier automático que filtra <em>volumen alto</em> y descarta lo pequeño. El equipo TSC ya no atiende todo a mano — atiende el subconjunto que mueve la aguja. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
+          <p><strong>Ola C — Proveeduría Agent</strong> (1.5 meses · $130K · prioridad): automatiza el dolor #1 reportado por Kaori y Natalia. El agente busca proveedores nuevos, solicita cotizaciones por WhatsApp/email, agrega resultados en una tabla comparable, y entrega <em>shortlist con recomendación</em>. Natalia recibe 3 opciones evaluadas, no busca de cero. Trabaja sobre el sistema de F3: cuando draft de PO se genera, el agente puede haber pre-cotizado con 2-3 proveedores antes de que Natalia lo vea.</p>
+          <p><strong>Ola D — Compliance Monitor + Social Media</strong> (1.5 meses · $130K): alertas COFEPRIS/NOM en &lt;24h light + <em>generación y programación de contenido IG/TikTok/Facebook</em>. La tarea que el equipo TSC reportó odiar — social media — pasa a un agente que produce posts, calendariza scheduled, y deja al equipo aprobando en lugar de creando desde cero.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">4 agentes productivizados · SLA 99.5% · −70% tiempo qualification · alertas COFEPRIS &lt;24h · outbound ejecutado en 3 canales (email + WhatsApp + voz).</div>
+            <div class="phase-block-body">4 agentes productivizados · SLA 99.5% · DTC chatbot Skin Club escalado 5→50 msgs/mes · B2B qualifier procesando 30 leads/mes · Proveeduría agent entregando shortlists a Natalia · Social media generation IG/TikTok/Facebook scheduled · alertas COFEPRIS &lt;24h.</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
@@ -3118,7 +3211,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="bi-frame">
       <div class="bi-intro">
         <h3>El dashboard que TSC LABS lee al <em>año 5</em>.</h3>
-        <p>30+ marcas, 40+ fórmulas, manufactura a escala, retail nacional consolidado, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics.</p>
+        <p>Projection — desde la base actual de 13 clientes activos + 50 fórmulas: brand portfolio expandido, manufactura a escala, retail nacional consolidado, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics. <strong>[ MOCK · VISIÓN AÑO 5 — los números son escenarios de proyección, no estado actual ]</strong></p>
       </div>
 
       <div class="bi-dashboard browser-frame">
@@ -3888,7 +3981,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f2">F2 · entrega</span>
-            <div class="roadmap-deliv-text">CRM lead pipeline funcional con 5 leads · email automation por hito (concepto, prototipo, lote, retail) · Stripe + MP IVA-compliant CFDI 4.0 emitiendo · primera Formula DB migration de 6 fórmulas.</div>
+            <div class="roadmap-deliv-text">CRM lead pipeline funcional con 5 leads · email automation por hito (concepto, prototipo, lote, retail) · Stripe + MP IVA-compliant CFDI 4.0 emitiendo · primera Formula DB migration de 10 fórmulas (de las 50 sistematizadas en Sheets).</div>
           </div>
         </div>
 
@@ -3900,7 +3993,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f3">F3 · medio</span>
-            <div class="roadmap-deliv-text">Formula DB live (18 fórmulas) · Lot lifecycle tracking activo (producción → cuarentena → liberado) · Envases catalogados con status (pedido / recibido / asignado) · primeras alertas de re-stock operando.</div>
+            <div class="roadmap-deliv-text">Formula DB live (50 fórmulas migradas Sheets → D1 con audit log) · Lot lifecycle activo (PRODUCCIÓN → ENVASADO → ETIQUETADO → ENVÍO → ENTREGADO) · auto-descuento de inventario operando · pedidos automáticos draft-to-Natalia activos · Skydropx auto-guía operando.</div>
           </div>
         </div>
 
@@ -4089,47 +4182,47 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <td><div class="fin-line-label">Fase 00 · Discovery &amp; Modelo Maestro<em>Auditoría · ER diagrams · taxonomías · master schema · plan de migración</em></div></td>
             <td class="right">$60K</td>
             <td class="right">3 sem</td>
-            <td class="fin-line-pct">4.4%</td>
+            <td class="fin-line-pct">3.8%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 01 · Foundation Digital<em>Landing Skin Club · Portal B2B · email infra · WA</em></div></td>
             <td class="right">$200K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">14.7%</td>
+            <td class="fin-line-pct">12.8%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 02 · Sales &amp; CRM<em>Talent Portal · CRM · email automation · CFDI 4.0</em></div></td>
-            <td class="right">$140K</td>
+            <td class="right">$240K</td>
             <td class="right">1.5 mo</td>
-            <td class="fin-line-pct">10.3%</td>
+            <td class="fin-line-pct">15.4%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 03 · ERP &amp; Operations Tracking<em>Formula DB · Lot lifecycle · Envases status · Shipment + PO tracking · Document Vault básico</em></div></td>
-            <td class="right">$300K</td>
+            <td class="right">$400K</td>
             <td class="right">2.5 mo</td>
-            <td class="fin-line-pct">22.1%</td>
+            <td class="fin-line-pct">25.6%</td>
             <td class="fin-yoy">05 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 04 · BI + Empresa Queryable<em>Dashboard · ad attribution · LTV · semantic data layer · ER diagrams · NL queries</em></div></td>
             <td class="right">$220K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">16.2%</td>
+            <td class="fin-line-pct">14.1%</td>
             <td class="fin-yoy">06 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Outbound agents · Compliance + R&amp;D</em></div></td>
+            <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Proveeduría agent · Compliance + Social Media</em></div></td>
             <td class="right">$440K</td>
             <td class="right">5 mo</td>
-            <td class="fin-line-pct">32.3%</td>
+            <td class="fin-line-pct">28.2%</td>
             <td class="fin-yoy">04 olas</td>
           </tr>
           <tr class="subtotal">
             <td><strong>Setup acumulado · F0 + 5 fases</strong></td>
-            <td class="right">$1.36M</td>
+            <td class="right">$1.56M</td>
             <td class="right">~13.7 mo</td>
             <td class="fin-line-pct">100%</td>
             <td class="fin-yoy">27 entregas</td>
@@ -4143,7 +4236,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </tr>
           <tr class="total">
             <td><strong>Total · Año 1+2</strong></td>
-            <td class="right">$2.08M</td>
+            <td class="right">$2.28M</td>
             <td class="right">~25.7 mo</td>
             <td class="fin-line-pct">—</td>
             <td class="fin-yoy">end-to-end</td>
@@ -4174,22 +4267,22 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <td>Equipo en formación · stack a elegir · 12 meses para producto MVP · operación de equipo a montar (HR, recruiting, equipo técnico).</td>
             </tr>
             <tr>
-              <td class="anchor-opt"><strong>Licensing stack genérico</strong><em>Salesforce + Shopify Plus + Klaviyo + Zoho ERP + custom dev</em></td>
+              <td class="anchor-opt"><strong>Licensing stack genérico</strong><em>Salesforce + Shopify Plus + Klaviyo + ERP off-the-shelf + custom dev</em></td>
               <td class="right"><strong>~$480K</strong><br><span class="anchor-sub">~$200K setup integración · $40K/mes licencias</span></td>
               <td>$40K/mes licencias + dev manual</td>
               <td>Stack desconectado · cada decisión cruza 3-4 herramientas · sin ERP integrado a Formula DB · sin agentic layer · sin queryable.</td>
             </tr>
             <tr class="anchor-row-eigen">
               <td class="anchor-opt"><strong>Eigen Atlas · esta propuesta</strong><em>F0 Discovery + F1-F5 + retainer integrado</em></td>
-              <td class="right"><strong class="anchor-num-eigen">$2.08M</strong><br><span class="anchor-sub">$1.36M setup + $720K retainer Año 1+2</span></td>
+              <td class="right"><strong class="anchor-num-eigen">$2.28M</strong><br><span class="anchor-sub">$1.56M setup + $720K retainer Año 1+2</span></td>
               <td>$60K/mes retainer</td>
               <td>Sistema operacional unificado · ERP integrado · capa agéntica · Talent Portal · queryable enterprise · CTO Fractional integrado · IP 100% TSC.</td>
             </tr>
             <tr>
-              <td class="anchor-opt"><strong>No hacer nada</strong><em>operar sobre Excels + carpetas + USBs</em></td>
+              <td class="anchor-opt"><strong>No hacer nada</strong><em>seguir sobre Sheets + Landingi + comm dispersa</em></td>
               <td class="right"><strong>$0</strong><br><span class="anchor-sub">directo</span></td>
               <td>Costo invisible · deuda operacional creciente</td>
-              <td>TSC sigue operando con Excel + carpetas + USBs · lotes sin status visible · envases y POs sin tracking · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · costo acumulado contra la curva industrial.</td>
+              <td>TSC sigue con stack distribuido (Sheets + Shopify + Landingi + WA + META + Skydropx sin integrar) · lotes sin status visible · envasado y proveeduría coordinados a mano · 30 leads/mes detenidos por saturación siguen detenidos · cada nueva fórmula/talent/lote suma carga manual lineal · costo acumulado contra la curva industrial.</td>
             </tr>
           </tbody>
         </table>
@@ -4236,15 +4329,16 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="governance-grid">
       <div class="gov-card gov-card-emph">
         <div class="gov-tag">RAZÓN · 00 · CTO FRACTIONAL</div>
-        <h3 class="gov-title">Eigen entra como <em>capa de dirección técnica</em> integrada al equipo TSC LABS</h3>
-        <p class="gov-prose">Eigen entra como dirección técnica integrada al equipo TSC LABS. <strong>Raul Chio</strong>, fundador, opera como <strong>CTO Fractional</strong> durante los 12 meses de construcción y todo el período de retainer — combinando expertise en estrategia de negocio, transformación digital, business intelligence e inteligencia artificial. La continuidad del sistema queda con quien lo construyó.</p>
+        <h3 class="gov-title">Eigen entra como <em>dirección técnica con autoridad</em> — no como integrador suave</h3>
+        <p class="gov-prose"><strong>Raul Chio entra como CTO Fractional</strong> con autoridad para tomar las decisiones de stack que el equipo TSC LABS no debería seguir tomando solo. Diego, Natalia y Kaori son fundadores excepcionales en formulación, ecommerce, operación, finanzas y diseño — lo que falta es <em>dirección técnica formal</em>. Eigen la provee durante los 12 meses de construcción y todo el retainer.</p>
+        <p class="gov-prose"><strong>Eigen no consulta. Construye, opera y evoluciona el sistema con TSC durante todo el período.</strong> Reemplaza tech mediocre con stack profesional cuando hace falta (Landingi → Cloudflare Workers nativa). Construye lo que un laboratorio biotech en escalamiento necesita, no preserva lo que estaba comprado ad-hoc. La continuidad del sistema queda con quien lo construyó.</p>
         <ul class="cto-fractional-list">
           <li>Arquitectura técnica end-to-end</li>
           <li>Roadmap evolutivo del producto</li>
           <li>Decisiones de stack y trade-offs</li>
           <li>Selección y onboarding de talent técnico futuro</li>
           <li>Reporting técnico-ejecutivo a leadership TSC</li>
-          <li>Liaison con compliance + auditorías COFEPRIS</li>
+          <li>Liaison con compliance regulatorio (NOM-259, NOM-141, NOM-089, NOM-251)</li>
         </ul>
         <div class="expertise-inset">
           <div class="expertise-inset-tag">EXPERTISE COMBINADA · NEGOCIOS + TECNOLOGÍA + IA</div>
@@ -4412,7 +4506,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="uplift-grid">
         <div class="uplift-card">
           <div class="uplift-card-title">ONBOARDING INTERNO</div>
-          <p class="uplift-card-prose">De semanas explicando Excel + carpetas + procesos manuales a horas de tour por el portal. Cualquier nuevo empleado entiende el sistema porque cada decisión está versionada y auditada. <strong>Documentación viva en el repo, no en cabezas.</strong></p>
+          <p class="uplift-card-prose">De semanas explicando Sheets + procesos manuales repartidos entre Diego, Natalia y Kaori a horas de tour por el portal. Los 2-3 becarios entrantes ven la cola de trabajo en pantalla — no preguntan a Diego. Cada decisión está versionada y auditada. <strong>Documentación viva en el repo, no en cabezas.</strong></p>
         </div>
         <div class="uplift-card">
           <div class="uplift-card-title">CAPACITACIÓN DE TALENT MANAGERS</div>
@@ -5026,9 +5120,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <h3 class="invitation-title">Construir, juntos, la <em>aplicación que va a operar como TSC LABS</em>.</h3>
       <div class="invitation-prose">
         <p>12 meses de construcción + retainer de operación conjunta. La operación queda en producción, evoluciona con el negocio, y la dirección técnica permanece con quien construyó el sistema. Para pasar a kickoff: revisión, work order F1 firmado, y arrancamos en 7 días.</p>
+        <p>TSC LABS tiene 3 fundadores excepcionales en formulación, ecommerce, operación, finanzas y diseño. <strong>Lo que falta es dirección técnica formal — Eigen la provee.</strong> Raul Chio entra como CTO Fractional con autoridad para reemplazar tech mediocre con stack profesional y construir lo que un laboratorio biotech en escalamiento necesita, no preservar lo que estaba comprado ad-hoc.</p>
         <p>Al cierre de F5, TSC LABS opera con un solo data substrate (D1 + R2 + Workers Analytics), una capa de servicios encima (Talent Portal, ERP, Operations registry + Document Vault básico, dashboards de margen), y una capa agéntica de 4 olas activa sobre ambos. Cada decisión técnica del período — schemas, latencia, seguridad, escalamiento — la toma quien va a operar el sistema en producción.</p>
-        <p>Las consultas de stock, margen, fórmula, batch record y compliance van al mismo store. Los chatbots DTC, B2B, Talent, Compliance e Interno leen del mismo data layer. El audit log es uno solo. La operación de TSC LABS se vuelve queryable: cada decisión de negocio termina en una query SQL contra D1, sin reconciliación entre canales.</p>
-        <p><strong>Eigen opera como dirección técnica integrada, no como proveedor externo.</strong></p>
+        <p>Las consultas de stock, margen, fórmula, batch record y compliance van al mismo store. Los chatbots DTC, B2B, Proveeduría, Compliance + Social Media leen del mismo data layer. El audit log es uno solo. La operación de TSC LABS se vuelve queryable: cada decisión de negocio termina en una query SQL contra D1, sin reconciliación entre canales.</p>
+        <p><strong>Eigen no consulta. Construye, opera y evoluciona el sistema con TSC durante todo el período.</strong></p>
       </div>
     </div>
 
