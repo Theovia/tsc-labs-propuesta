@@ -65,6 +65,126 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   grid-template-rows:auto 1fr auto;
   position:relative;
   border-bottom:1px solid var(--rule-strong);
+  overflow:hidden;
+}
+/* Subtle drifting color blobs behind hero */
+.cover::before,
+.cover::after{
+  content:"";
+  position:absolute;
+  width:780px;height:780px;
+  border-radius:50%;
+  filter:blur(120px);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+  z-index:0;
+  will-change:transform;
+}
+.cover::before{
+  background:radial-gradient(circle, rgba(30,64,175,0.55) 0%, rgba(30,64,175,0) 70%);
+  top:-10%;left:-10%;
+  opacity:0.08;
+  animation:coverBlobA 40s ease-in-out infinite;
+}
+.cover::after{
+  background:radial-gradient(circle, rgba(217,119,6,0.55) 0%, rgba(217,119,6,0) 70%);
+  bottom:-15%;right:-12%;
+  opacity:0.06;
+  animation:coverBlobB 40s ease-in-out infinite;
+}
+@keyframes coverBlobA{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(80px,60px) scale(1.08)}
+}
+@keyframes coverBlobB{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-70px,-50px) scale(1.06)}
+}
+.cover-top, .cover-center, .cover-bottom, .cover-stamp, .hero-rule-wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion: reduce){
+  .cover::before, .cover::after{animation:none}
+}
+
+/* Doc stamp top-right */
+.cover-stamp{
+  position:absolute;
+  top:88px; right:60px;
+  padding:14px 18px;
+  border:1px solid var(--rule-strong);
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(2px);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  transform:rotate(-3deg);
+  display:flex;flex-direction:column;gap:6px;
+  z-index:2;
+  pointer-events:none;
+  max-width:200px;
+}
+.cover-stamp strong{color:var(--accent);font-weight:600;letter-spacing:0.16em;font-size:10px}
+.cover-stamp .stamp-rule{height:1px;background:var(--rule-strong);width:100%;margin:2px 0}
+.cover-stamp .stamp-id{color:var(--ink);font-weight:500;letter-spacing:0.14em}
+
+/* Floating scientific annotations */
+.cover-annotations{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+.cover-annotation{
+  position:absolute;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  font-weight:500;
+  white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+}
+.cover-annotation::before{
+  content:"";
+  display:inline-block;
+  width:32px;height:1px;
+  background:var(--ink-mute);
+  opacity:0.5;
+}
+.cover-annotation.left::before{display:none}
+.cover-annotation.left::after{
+  content:"";
+  display:inline-block;
+  width:32px;height:1px;
+  background:var(--ink-mute);
+  opacity:0.5;
+}
+.cover-annotation .ann-arrow{color:var(--accent);font-weight:700}
+.ann-1{top:38%;right:6%}
+.ann-2{top:48%;right:4%}
+.ann-3{top:60%;right:8%}
+.ann-4{top:69%;right:5%}
+
+/* Hero SVG hairline rules + cobalt rule above stats */
+.hero-rule-wrap{position:relative;width:100%;max-width:1080px;height:1px;margin-top:8px}
+.hero-rule-wrap svg{display:block;width:100%;height:1px;overflow:visible}
+.hero-rule{stroke:var(--accent);stroke-width:1;fill:none}
+.hero-rule-pulse{
+  position:absolute;inset:0;
+  background:var(--accent);
+  height:1px;width:100%;
+  opacity:0.7;
+  animation:rulePulse 8s ease-in-out infinite;
+  transform-origin:left center;
+}
+@keyframes rulePulse{
+  0%,100%{opacity:0.6}
+  50%{opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-rule-pulse{animation:none;opacity:0.7}
 }
 .cover-top{
   display:flex;
@@ -129,17 +249,18 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .cover-title{
   font-family:'Inter Tight',sans-serif;
   font-weight:300;
-  font-size:clamp(48px, 6vw, 92px);
-  line-height:1.05;
+  font-size:clamp(56px, 8vw, 152px);
+  line-height:0.96;
   letter-spacing:-0.025em;
   color:var(--ink);
   margin-bottom:40px;
   padding-bottom:36px;
   border-bottom:1px solid var(--rule);
-  max-width:1180px;
+  max-width:1280px;
 }
 .cover-title strong{font-weight:500;color:var(--ink)}
 .cover-title em{font-style:normal;color:var(--accent);font-weight:500}
+.cover-title .word{display:inline-block;will-change:transform,opacity}
 .cover-subtitle{
   font-family:'Inter',sans-serif;
   font-size:18px;
@@ -2112,6 +2233,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .cover-stat{border-right:none;border-bottom:1px solid var(--rule);padding:18px 0}
   .cover-stat:first-child{padding-top:0}
   .cover-stat:last-child{border-bottom:none}
+  .cover-annotations, .cover-stamp{display:none}
+  .cover::before, .cover::after{display:none}
   .governance-grid{grid-template-columns:1fr}
   .outlook-grid{grid-template-columns:1fr}
   .section-header{grid-template-columns:1fr;gap:18px;align-items:start}
@@ -2387,6 +2510,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .phase-num-tag{background:#fff !important;color:#000 !important;border:1px solid #000}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
 </head>
 <body>
 
@@ -2401,24 +2528,47 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     </div>
   </div>
 
+  <!-- Doc stamp top-right -->
+  <div class="cover-stamp" aria-hidden="true">
+    <strong>CONFIDENTIAL</strong>
+    <div class="stamp-rule"></div>
+    <span class="stamp-id">EIGEN-PROP-TSC-2026/01</span>
+    <span>FILED 2026.05.04</span>
+    <span>FOR PRINCIPALS ONLY</span>
+  </div>
+
+  <!-- Floating scientific annotations -->
+  <div class="cover-annotations" aria-hidden="true">
+    <div class="cover-annotation ann-1"><span class="ann-arrow">↳</span> ÚNICA FUENTE DE VERDAD</div>
+    <div class="cover-annotation ann-2"><span class="ann-arrow">↗</span> MULTI-TENANT DO</div>
+    <div class="cover-annotation ann-3"><span class="ann-arrow">↳</span> AUDIT TRAIL</div>
+    <div class="cover-annotation ann-4"><span class="ann-arrow">↗</span> AGÉNTICO 24/7</div>
+  </div>
+
   <div class="cover-center">
     <div class="cover-copy">
       <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
-      <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em>queryable</em> en una sola arquitectura.</h1>
+      <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em data-scramble="queryable">queryable</em> en una sola arquitectura.</h1>
       <p class="cover-subtitle">F0 + 12 meses · 6 fases · una arquitectura unificada. F0 fija el modelo maestro; F1-F5 dejan a TSC LABS operando sobre un solo data substrate, con audit trail, ERP, BI y capa agéntica activos.</p>
       <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Operations registry, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
 
+      <!-- Cobalt hairline rule above stats -->
+      <div class="hero-rule-wrap" aria-hidden="true">
+        <svg viewBox="0 0 1080 1" preserveAspectRatio="none"><line class="hero-rule" x1="0" y1="0.5" x2="1080" y2="0.5"/></svg>
+        <div class="hero-rule-pulse"></div>
+      </div>
+
       <div class="cover-headline-stats">
         <div class="cover-stat">
-          <div class="cover-stat-num">$2.08<em>M</em><span class="sm"> MXN</span></div>
+          <div class="cover-stat-num"><span class="cover-stat-prefix">$</span><span class="cover-stat-value" data-count-to="2.08" data-count-decimals="2">0.00</span><em>M</em><span class="sm"> MXN</span></div>
           <div class="cover-stat-label">Inversión Año 1+2</div>
         </div>
         <div class="cover-stat">
-          <div class="cover-stat-num">12<em> mo</em></div>
+          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="12" data-count-decimals="0">0</span><em> mo</em></div>
           <div class="cover-stat-label">Roadmap mensual</div>
         </div>
         <div class="cover-stat">
-          <div class="cover-stat-num">10</div>
+          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="10" data-count-decimals="0">0</span></div>
           <div class="cover-stat-label">Entregas · productos digitales</div>
         </div>
       </div>
@@ -4958,6 +5108,152 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     </div>
   </div>
 </footer>
+
+<script>
+// === HERO ENTRANCE TIMELINE — monumental cinematic typography (entrance only, no scroll-tied effects, no smooth-scroll lib) ===
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+
+  // Stat counter helper — runs always (even reduced/mobile we just snap to final)
+  function setStatsFinal(){
+    document.querySelectorAll('.cover-stat-value').forEach(function(el){
+      var target = parseFloat(el.getAttribute('data-count-to') || '0');
+      var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+      el.textContent = target.toFixed(dec);
+    });
+  }
+
+  if (reduced || isMobile || typeof gsap === 'undefined'){
+    setStatsFinal();
+    // Make sure no opacity:0 leftovers if GSAP failed to load
+    var leftovers = document.querySelectorAll('.cover-title, .cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation');
+    leftovers.forEach(function(n){ n.style.opacity = 1; });
+    return;
+  }
+
+  // Register optional plugins
+  try {
+    if (window.SplitText) gsap.registerPlugin(SplitText);
+    if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
+    if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
+  } catch(e){}
+
+  // Pre-set initial states (avoid FOUC flicker)
+  gsap.set('.cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation, .cover-stat', { opacity: 0 });
+  gsap.set('.cover-title', { opacity: 1 });
+
+  // Word splitting — fallback if SplitText not loaded: wrap by whitespace manually
+  var titleEl = document.querySelector('.cover-title');
+  var words = [];
+  if (titleEl){
+    if (window.SplitText){
+      try {
+        var split = new SplitText(titleEl, { type: 'words', wordsClass: 'word' });
+        words = split.words;
+      } catch(e){ words = []; }
+    }
+    if (!words.length){
+      // Manual fallback: wrap each text node word in a .word span (preserve <em> children)
+      var manualWrap = function(node){
+        if (node.nodeType === 3){
+          var frag = document.createDocumentFragment();
+          var parts = node.nodeValue.split(/(\s+)/);
+          parts.forEach(function(p){
+            if (/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(p)); }
+            else if (p.length){
+              var sp = document.createElement('span');
+              sp.className = 'word';
+              sp.textContent = p;
+              frag.appendChild(sp);
+            }
+          });
+          node.parentNode.replaceChild(frag, node);
+        } else if (node.nodeType === 1){
+          // descend into element children (e.g. <em>) and wrap their text nodes
+          var kids = Array.prototype.slice.call(node.childNodes);
+          kids.forEach(manualWrap);
+        }
+      };
+      var children = Array.prototype.slice.call(titleEl.childNodes);
+      children.forEach(manualWrap);
+      words = titleEl.querySelectorAll('.word');
+    }
+  }
+
+  var tl = gsap.timeline({ defaults: { ease: 'power3.out' }});
+
+  // Hairline cobalt rule draws in (uses DrawSVGPlugin if available, else fallback to scaleX)
+  if (window.DrawSVGPlugin){
+    tl.fromTo('.hero-rule', { drawSVG: '0%' }, { drawSVG: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.0);
+  } else {
+    var ruleEl = document.querySelector('.hero-rule-wrap svg');
+    if (ruleEl){
+      tl.fromTo(ruleEl, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.0);
+    }
+  }
+  // Pulse line above stats (delayed entrance)
+  tl.fromTo('.hero-rule-pulse', { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.4);
+
+  // Eyebrow fade
+  tl.to('.cover-eyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0.2)
+    .from('.cover-eyebrow', { y: -8, duration: 0.7 }, 0.2);
+
+  // H1 word stagger (monumental entrance)
+  if (words && words.length){
+    tl.from(words, { opacity: 0, y: 40, duration: 0.95, stagger: 0.045 }, 0.4);
+  }
+
+  // Body copy fade
+  tl.to('.cover-subtitle', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
+    .from('.cover-subtitle', { y: 20, duration: 0.7, stagger: 0.08 }, '-=1.1');
+
+  // Stats fade in container
+  tl.to('.cover-stat', { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
+    .from('.cover-stat', { y: 14, duration: 0.6, stagger: 0.08 }, '-=1.0');
+
+  // Counter tweens (run inside the timeline so they sync with stats reveal)
+  document.querySelectorAll('.cover-stat-value').forEach(function(el, i){
+    var target = parseFloat(el.getAttribute('data-count-to') || '0');
+    var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+    var obj = { v: 0 };
+    tl.to(obj, {
+      v: target,
+      duration: dec === 0 ? 1.0 : 1.6,
+      ease: 'power2.out',
+      onUpdate: function(){ el.textContent = obj.v.toFixed(dec); }
+    }, '-=0.5');
+  });
+
+  // Doc stamp rotate-in (settles at -3deg via CSS)
+  tl.fromTo('.cover-stamp',
+    { opacity: 0, rotate: -8, scale: 0.95 },
+    { opacity: 1, rotate: -3, scale: 1, duration: 1.0, ease: 'power2.out' },
+    0.5);
+
+  // Floating annotations stagger
+  tl.to('.cover-annotation', { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 1.0)
+    .from('.cover-annotation', { y: 6, duration: 0.7, stagger: 0.12 }, 1.0);
+
+  // Optional ScrambleText on "queryable"
+  if (window.ScrambleTextPlugin){
+    var sc = document.querySelector('[data-scramble="queryable"]');
+    if (sc){
+      tl.to(sc, {
+        duration: 1.2,
+        scrambleText: { text: 'queryable', chars: 'lowerCase', revealDelay: 0.3, speed: 0.6 },
+        ease: 'none'
+      }, '-=0.4');
+    }
+  }
+
+  // Cleanup will-change after timeline complete
+  tl.eventCallback('onComplete', function(){
+    if (window.DrawSVGPlugin) gsap.set('.hero-rule', { clearProps: 'drawSVG' });
+    gsap.set('.cover-title .word, .cover-eyebrow, .cover-subtitle, .cover-stat, .cover-stamp, .cover-annotation', { clearProps: 'transform,opacity,willChange' });
+  });
+})();
+</script>
 
 <script>
 // Roadmap reveal on scroll (IntersectionObserver, no GSAP)
