@@ -1382,6 +1382,219 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .phase-title{font-size:24px}
 }
 
+/* === PAYMENT TERMS === */
+.payment-terms-frame{
+  margin-top:48px;
+  padding:32px 28px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+}
+.payment-terms-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:10px;
+}
+.payment-terms-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:24px;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 22px;
+}
+.payment-terms-title em{font-style:normal;color:var(--accent);font-weight:500}
+.payment-terms-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  grid-template-columns:1fr;
+  border-top:1px solid var(--rule);
+}
+.payment-terms-list li{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:24px;
+  padding:14px 0;
+  border-bottom:1px solid var(--rule);
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.payment-terms-key{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  padding-top:2px;
+}
+.payment-terms-val{color:var(--ink-soft)}
+@media(max-width:780px){
+  .payment-terms-list li{grid-template-columns:1fr;gap:4px}
+  .payment-terms-frame{padding:24px 20px}
+  .payment-terms-title{font-size:20px}
+}
+
+/* === GLOSSARY === */
+.glossary-frame{
+  max-width:1280px;
+  margin:0 auto;
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule-strong);
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+}
+.glossary-cell{
+  padding:22px 24px;
+  border-right:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.glossary-cell:hover{background:var(--bg-2)}
+.glossary-term{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;
+  letter-spacing:0.12em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:600;
+}
+.glossary-def{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin:0;
+}
+.glossary-def strong{color:var(--ink);font-weight:500}
+@media(max-width:780px){
+  .glossary-frame{grid-template-columns:1fr}
+}
+
+/* === IP / OFF-BOARDING === */
+.ip-frame{
+  max-width:1280px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0;
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule-strong);
+}
+.ip-card{
+  padding:28px 28px;
+  border-right:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.ip-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.ip-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:18px;
+  line-height:1.25;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin:0;
+}
+.ip-title em{font-style:normal;color:var(--accent);font-weight:500}
+.ip-prose{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin:0;
+}
+.ip-prose strong{color:var(--ink);font-weight:500}
+@media(max-width:780px){
+  .ip-frame{grid-template-columns:1fr}
+  .ip-card{padding:22px 20px}
+}
+
+/* === DR / BACKUP === */
+.dr-frame{
+  margin-top:48px;
+  padding:28px 28px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+}
+.dr-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:8px;
+}
+.dr-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:22px;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 18px;
+}
+.dr-title em{font-style:normal;color:var(--accent);font-weight:500}
+.dr-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  grid-template-columns:1fr;
+  border-top:1px solid var(--rule);
+}
+.dr-list li{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:24px;
+  padding:12px 0;
+  border-bottom:1px solid var(--rule);
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.dr-list li:last-child{border-bottom:none}
+.dr-key{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  padding-top:2px;
+}
+.dr-val{color:var(--ink-soft)}
+.dr-val strong{color:var(--ink);font-weight:500}
+@media(max-width:780px){
+  .dr-list li{grid-template-columns:1fr;gap:4px}
+  .dr-frame{padding:22px 20px}
+  .dr-title{font-size:18px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .ascii-hero pre{animation:none}
   .roadmap-row{opacity:1;transform:none;transition:none}
@@ -1506,7 +1719,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         <p>F1-F5 reemplaza esto con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal, ERP de inventario, Document Vault COFEPRIS, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
 
-        <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. No hay reconciliación manual entre canales. No hay "la verdad de Diego" versus "la verdad del Excel". Hay una verdad: la del store.</p>
+        <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. Sin reconciliación entre canales. Sin discrepancia entre dashboard y operación. El store es la fuente. Todos los servicios leen y escriben de ahí.</p>
 
         <p>Cómo se compone por fase: las fórmulas viven en D1 versionada (F3), el inventario se descuenta contra producción registrada (F3), las facturas se emiten contra hito en CFDI 4.0 (F2), los dashboards consultan el mismo data layer (F4) y los agentes responden leyendo el mismo store (F5). Cada fase es un sub-sistema sobre el substrate común — no un entregable aislado.</p>
 
@@ -1796,7 +2009,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="bi-frame">
       <div class="bi-intro">
         <h3>El dashboard que TSC LABS tendrá <em>al cierre de Fase 04</em>.</h3>
-        <p>Cualquier pregunta del negocio, una visualización. Margen, stock, ads y LTV — sin abrir un Excel.</p>
+        <p>Cualquier pregunta del negocio, una visualización. Margen, stock, ads y LTV — queryable directo contra D1.</p>
       </div>
 
       <div class="bi-dashboard">
@@ -2315,6 +2528,19 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="financials-note"><strong>Pagos</strong>30% al inicio de cada fase + 70% al cierre con hitos validados. Sin intereses, sin cargos por adelantado, sin pagos por fases que no se han ejecutado.</p>
       <p class="financials-note"><strong>Retainer</strong>Mínimo 12 meses post-deployment. Incluye monitoreo de infra, hotfix &lt;4h, dos features chicos al mes, security patches, backups y soporte chat directo. Renovable anual por mutuo acuerdo.</p>
       <p class="financials-note"><strong>Confidencialidad</strong>Toda figura económica es indicativa hasta firma de work order. NDA aplica desde recepción de este documento. Propuesta válida 30 días.</p>
+
+      <div class="payment-terms-frame">
+        <div class="payment-terms-tag">TÉRMINOS DE PAGO</div>
+        <h3 class="payment-terms-title">Calendario de facturación, <em>sin sorpresas</em>.</h3>
+        <ul class="payment-terms-list">
+          <li><span class="payment-terms-key">Por fase</span><span class="payment-terms-val">30% al firmar work order de la fase + 70% al cierre con hitos validados.</span></li>
+          <li><span class="payment-terms-key">Cierre con hitos validados</span><span class="payment-terms-val">Sign-off escrito de Raul Chio (Eigen) + Diego Nuño (TSC) sobre los entregables específicos de esa fase.</span></li>
+          <li><span class="payment-terms-key">Net</span><span class="payment-terms-val">15 días desde sign-off.</span></li>
+          <li><span class="payment-terms-key">Retainer</span><span class="payment-terms-val">$60K MXN/mes facturado mes vencido, Net 15 días.</span></li>
+          <li><span class="payment-terms-key">Sobrecostos</span><span class="payment-terms-val">Ningún cobro fuera de lo cotizado sin work order firmado previamente.</span></li>
+          <li><span class="payment-terms-key">Moneda</span><span class="payment-terms-val">MXN. IVA 16% facturable aparte (CFDI 4.0).</span></li>
+        </ul>
+      </div>
     </div>
 
     <div class="retainer-callout">
@@ -2412,6 +2638,20 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </tr>
       </tbody>
     </table>
+
+    <div class="dr-frame">
+      <div class="dr-tag">BACKUP &amp; DISASTER RECOVERY</div>
+      <h3 class="dr-title">Continuidad operativa, <em>RTO/RPO contractual</em>.</h3>
+      <ul class="dr-list">
+        <li><span class="dr-key">D1 (transaccional)</span><span class="dr-val">Backups automáticos cada 24h por Cloudflare. Backup adicional manual semanal a R2 archive.</span></li>
+        <li><span class="dr-key">R2 (storage)</span><span class="dr-val">Replicación multi-region nativa de Cloudflare. RTO &lt;1h.</span></li>
+        <li><span class="dr-key">RPO</span><span class="dr-val">(Recovery Point Objective) &lt;24h para D1 (último backup), &lt;0 para R2 (replicado en tiempo real).</span></li>
+        <li><span class="dr-key">RTO</span><span class="dr-val">(Recovery Time Objective) &lt;2h para servicios críticos (Talent Portal, Document Vault), &lt;8h para servicios secundarios (dashboards, agentes).</span></li>
+        <li><span class="dr-key">Encriptación</span><span class="dr-val">At rest (<strong>AES-256</strong> nativo Cloudflare) + in transit (TLS 1.3).</span></li>
+        <li><span class="dr-key">RBAC</span><span class="dr-val">Roles definidos en Auth0 o magic-link auth (Workers KV). Mínimo: admin, ops, finance, talent-read, public-api.</span></li>
+        <li><span class="dr-key">Audit log</span><span class="dr-val">100% de mutaciones en D1 escriben fila al audit log con (timestamp, actor, action, before, after). Retenido 7 años en R2.</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -2438,14 +2678,14 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></div>
           <div class="cap-num">CAP · 02</div>
           <div class="cap-title">Sistemas agénticos</div>
-          <p class="cap-prose">Agentes que operan 24/7 como senior staff · multi-tenant · Eigen Agents framework. <strong>Empleados sin sueldo, con SLA contractual.</strong></p>
+          <p class="cap-prose">Agentes que operan 24/7 como senior staff · multi-tenant · Eigen Agents framework. <strong>Cuatro agentes con SLA 99.5% uptime, retorno medible (−70% tiempo qualification, alertas COFEPRIS &lt;24h).</strong></p>
         </div>
 
         <div class="cap-card">
           <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 9h18M9 3v18"/><circle cx="14" cy="14" r="1.6" fill="currentColor"/></svg></div>
           <div class="cap-num">CAP · 03</div>
           <div class="cap-title">ERP propio</div>
-          <p class="cap-prose">Inventario auto-descontando con cada producción · predicción de agotamiento por SKU · órdenes de compra · gestión de proveedores. <strong>Operación trazable, sin Excel.</strong></p>
+          <p class="cap-prose">Inventario auto-descontando con cada producción · predicción de agotamiento por SKU · órdenes de compra · gestión de proveedores. <strong>Operación trazable, sin export-import semanal.</strong></p>
         </div>
 
         <div class="cap-card">
@@ -2466,7 +2706,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20V8M9 20V4M15 20v-9M21 20v-6"/></svg></div>
           <div class="cap-num">CAP · 06</div>
           <div class="cap-title">Business intelligence</div>
-          <p class="cap-prose">Dashboards real-time · attribution multi-touch · LTV predictivo · queries en lenguaje natural. <strong>Margen, ads y retención sin abrir un Excel.</strong></p>
+          <p class="cap-prose">Dashboards real-time · attribution multi-touch · LTV predictivo · queries en lenguaje natural. <strong>Margen, ads y retención sin discrepancia entre dashboard y operación.</strong></p>
         </div>
 
         <div class="cap-card">
@@ -2480,7 +2720,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.6 6h6.8M8.6 18h6.8M6 8.6v6.8M18 8.6v6.8"/></svg></div>
           <div class="cap-num">CAP · 08</div>
           <div class="cap-title">Arquitectura completa</div>
-          <p class="cap-prose">Entidades, diagramas, bases de datos, lógica de negocio · expertise combinada negocio + tecnología. <strong>El laboratorio queda diseñado como sistema, no como Excel.</strong></p>
+          <p class="cap-prose">Entidades, diagramas, bases de datos, lógica de negocio · expertise combinada negocio + tecnología. <strong>F1-F5 entregan TSC LABS operando sobre D1 + R2 con audit trail unificado.</strong></p>
         </div>
 
       </div>
@@ -2488,11 +2728,109 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § X · LA INVITACIÓN + PRÓXIMOS PASOS -->
+<!-- § XI · GLOSARIO -->
+<section class="section" id="glosario">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">11<small>GLOSARIO</small></div>
+      <h2 class="section-title">Términos <em>técnicos</em>, definidos.</h2>
+      <p class="section-deck">Stack y normativa que aparece a lo largo del documento — definiciones de una línea para referencia rápida.</p>
+    </header>
+
+    <div class="glossary-frame">
+      <div class="glossary-cell">
+        <div class="glossary-term">D1</div>
+        <p class="glossary-def">Base de datos SQL transaccional de Cloudflare. Replicada multi-region, latencia &lt;50ms desde MX. Usada para Formula DB, batch tracking, CRM, ERP, audit log.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">R2</div>
+        <p class="glossary-def">Storage de objetos compatible S3 sin egress fees. Usada para PDFs COFEPRIS, snapshots de inventario, backups.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">Workers</div>
+        <p class="glossary-def">Servidores edge serverless que ejecutan código en &lt;10ms desde 300+ ciudades. Cada API endpoint corre como Worker.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">Durable Objects (DO)</div>
+        <p class="glossary-def">Workers con estado persistente y consistencia fuerte. Un DO por talent manager, isolated state, perfecto para Talent Portal multi-tenant.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">Workers Analytics Engine</div>
+        <p class="glossary-def">Pipeline de eventos analíticos sobre Workers. Usado para dashboards de margen, ad attribution, métricas de agentes.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">MCP (Model Context Protocol)</div>
+        <p class="glossary-def">Protocolo estándar para que agentes IA accedan a herramientas externas (DB, calendarios, APIs). Usado por agentes de outbound, compliance, R&amp;D.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">NOM-259-SSA1-2022</div>
+        <p class="glossary-def">Buenas Prácticas de Fabricación cosmética en México (sucede a NOM-259-SSA1-2014). Auditable. Document Vault la cumple.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">NOM-141-SSA1/SCFI-2012</div>
+        <p class="glossary-def">Etiquetado de productos cosméticos en MX. Cubre claims, ingredientes, etiquetas.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">NOM-089-SSA1-1994</div>
+        <p class="glossary-def">Métodos para análisis microbiológico de productos cosméticos. Validación de lote.</p>
+      </div>
+      <div class="glossary-cell">
+        <div class="glossary-term">CFDI 4.0</div>
+        <p class="glossary-def">Comprobante Fiscal Digital por Internet versión 4.0 (SAT). Formato obligatorio MX para facturación. Stripe + MercadoPago lo emiten via Resend templates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § XII · PROPIEDAD INTELECTUAL Y SALIDA -->
+<section class="section muted" id="propiedad-intelectual">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">12<small>PROPIEDAD INTELECTUAL Y SALIDA</small></div>
+      <h2 class="section-title">El sistema es de TSC LABS, <em>desde el primer commit</em>.</h2>
+      <p class="section-deck">Propiedad del código, ownership de schemas y data, plan de off-boarding, continuidad si Eigen no puede continuar. Sin lock-in.</p>
+    </header>
+
+    <div class="ip-frame">
+      <div class="ip-card">
+        <div class="ip-tag">IP · 01 · CÓDIGO FUENTE</div>
+        <h3 class="ip-title">TSC LABS es <em>propietaria 100%</em> del código</h3>
+        <p class="ip-prose">Desde el primer commit. <strong>GitHub repo bajo organización TSC LABS</strong> (no bajo Eigen). Eigen tiene acceso de mantenimiento durante el contrato; al terminar, acceso revocado.</p>
+      </div>
+      <div class="ip-card">
+        <div class="ip-tag">IP · 02 · SCHEMAS Y DATA</div>
+        <h3 class="ip-title">Cuenta Cloudflare <em>de TSC LABS</em></h3>
+        <p class="ip-prose">D1 + R2 + Workers Analytics corren bajo cuenta Cloudflare de TSC LABS. <strong>Eigen administra durante el contrato; TSC paga directo a Cloudflare</strong> (~$200-400 USD/mes infra estimado).</p>
+      </div>
+      <div class="ip-card">
+        <div class="ip-tag">IP · 03 · DOCUMENTACIÓN TÉCNICA</div>
+        <h3 class="ip-title">ER diagrams, runbooks, decision logs, schemas</h3>
+        <p class="ip-prose">Todo entregado a TSC en repo + Notion/Confluence al cierre de cada fase. <strong>Sin documentación atrapada en cabezas o canales privados.</strong></p>
+      </div>
+      <div class="ip-card">
+        <div class="ip-tag">IP · 04 · OFF-BOARDING</div>
+        <h3 class="ip-title">Si TSC decide <em>internalizar</em> al cerrar el retainer Año 1</h3>
+        <p class="ip-prose">Eigen entrega: código (ya es de TSC), <strong>2 semanas de handoff técnico</strong> al equipo entrante, lista de decisiones arquitectónicas con rationale, runbooks operacionales, contactos de proveedores. <strong>Sin cláusulas de no-compete sobre el código.</strong></p>
+      </div>
+      <div class="ip-card">
+        <div class="ip-tag">IP · 05 · CONTINUIDAD</div>
+        <h3 class="ip-title">Si Eigen <em>termina antes</em></h3>
+        <p class="ip-prose">Cláusula contractual: si Eigen no puede continuar (cualquier razón), <strong>TSC mantiene 100% del código, datos, schemas</strong>. Eigen entrega handoff de 2 semanas remunerado prorrateado al retainer.</p>
+      </div>
+      <div class="ip-card">
+        <div class="ip-tag">IP · 06 · SIN LOCK-IN</div>
+        <h3 class="ip-title">Stack <em>portable</em>, no exclusivo</h3>
+        <p class="ip-prose">Cloudflare Workers, D1, R2 — todos servicios estándar. Schemas SQL exportables. R2 compatible S3. <strong>El sistema queda en producción al cierre de F5. Retainer mantiene operación, evoluciona producto, ajusta arquitectura conforme TSC crece.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § XIII · LA INVITACIÓN + PRÓXIMOS PASOS -->
 <section class="section muted" id="proximos">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">10<small>LA INVITACIÓN</small></div>
+      <div class="section-num">13<small>LA INVITACIÓN</small></div>
       <h2 class="section-title">Tres pasos, <em>siete días</em>, una década.</h2>
       <p class="section-deck">Secuencia explícita para pasar de propuesta firmada a F1 en operación: revisión de scope, work order F1 firmado, kickoff en 7 días. Sin renegociación posterior, sin diluir el calendario.</p>
     </header>
@@ -2524,7 +2862,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="invitation-prose">
         <p>12 meses de construcción + retainer de operación conjunta. La operación queda en producción, evoluciona con el negocio, y la dirección técnica permanece con quien construyó el sistema. Para pasar a kickoff: revisión, work order F1 firmado, y arrancamos en 7 días.</p>
         <p>Al cierre de F5, TSC LABS opera con un solo data substrate (D1 + R2 + Workers Analytics), una capa de servicios encima (Talent Portal, ERP, Document Vault COFEPRIS, dashboards de margen), y una capa agéntica de 4 olas activa sobre ambos. Cada decisión técnica del período — schemas, latencia, seguridad, escalamiento — la toma quien va a operar el sistema en producción.</p>
-        <p>Las consultas de stock, margen, fórmula, batch record y compliance van al mismo store. Los chatbots DTC, B2B, Talent, Compliance e Interno leen del mismo data layer. El audit log es uno solo. La operación de TSC LABS se vuelve queryable: cada decisión de negocio termina en una query SQL contra D1, no en un Excel manual.</p>
+        <p>Las consultas de stock, margen, fórmula, batch record y compliance van al mismo store. Los chatbots DTC, B2B, Talent, Compliance e Interno leen del mismo data layer. El audit log es uno solo. La operación de TSC LABS se vuelve queryable: cada decisión de negocio termina en una query SQL contra D1, sin reconciliación entre canales.</p>
         <p><strong>Eigen opera como dirección técnica integrada, no como proveedor externo.</strong></p>
       </div>
     </div>
@@ -2572,7 +2910,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <li><a href="#inversion">07 / Inversión total</a></li>
           <li><a href="#por-que-eigen">08 / Por qué Eigen</a></li>
           <li><a href="#capacidades">09 / Capacidades</a></li>
-          <li><a href="#proximos">10 / La invitación</a></li>
+          <li><a href="#glosario">11 / Glosario</a></li>
+          <li><a href="#propiedad-intelectual">12 / Propiedad intelectual y salida</a></li>
+          <li><a href="#proximos">13 / La invitación</a></li>
         </ul>
       </div>
       <div>
