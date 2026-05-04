@@ -1273,7 +1273,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   text-transform:uppercase;
 }
 
-/* === LA TESIS (§ II) === */
+/* === LA TESIS (§ III) === */
 .tesis-frame{max-width:1080px;margin:0 auto}
 .tesis-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;font-weight:500}
 .tesis-headline{font-family:'Inter Tight',sans-serif;font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin-bottom:18px}
@@ -1289,7 +1289,70 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .tesis-diagram-cap{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:24px;font-weight:500;text-align:center}
 .tesis-diagram svg{display:block;width:100%;height:auto;max-height:540px}
 
-/* === COMMUNICATIONS LAYER (§ VI) === */
+/* === POR QUÉ AHORA (§ II) === */
+.urgency-frame{max-width:1280px;margin:0 auto}
+.urgency-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.urgency-headline{font-family:'Inter Tight',sans-serif;font-weight:300;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);margin-bottom:18px;max-width:1040px}
+.urgency-headline em{font-style:normal;color:var(--accent);font-weight:500}
+.urgency-headline strong{font-weight:500;color:var(--ink)}
+.urgency-lead{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:20px;line-height:1.45;color:var(--ink-soft);max-width:880px;margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--rule);letter-spacing:-0.01em}
+.urgency-lead strong{font-weight:600;color:var(--ink)}
+.urgency-lead em{font-style:normal;color:var(--accent);font-weight:500}
+.urgency-diagram{margin:8px 0 40px;padding:48px 36px 36px;background:var(--bg);border:1px solid var(--rule-strong);position:relative}
+.urgency-diagram-cap{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:36px;font-weight:500;text-align:center;padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.urgency-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.urgency-pillar{padding:30px 26px 32px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg);display:flex;flex-direction:column;gap:18px;position:relative}
+.urgency-pillar-num{font-family:'Inter Tight',sans-serif;font-weight:200;font-size:78px;line-height:0.95;letter-spacing:-0.04em;color:var(--accent);opacity:0.85}
+.urgency-pillar-name{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:clamp(22px,1.7vw,28px);line-height:1.2;letter-spacing:-0.015em;color:var(--ink);min-height:64px}
+.urgency-pillar-name em{font-style:normal;color:var(--accent);font-weight:500}
+.urgency-state{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.urgency-state-box{padding:14px 16px;border:1px solid var(--rule-strong);background:var(--bg);position:relative}
+.urgency-state-box.now{border:1px solid var(--accent)}
+.urgency-state-box.future{border:1px dashed var(--rule-strong);background:var(--bg-2);opacity:0.92}
+.urgency-state-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.urgency-state-box.now .urgency-state-tag{color:var(--accent)}
+.urgency-state-box.future .urgency-state-tag{color:var(--ink-mute)}
+.urgency-state-prose{font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+.urgency-state-box.now .urgency-state-prose{color:var(--ink)}
+.urgency-state-box.future .urgency-state-prose{color:var(--ink-mute)}
+.urgency-state-prose strong{font-weight:600;color:var(--ink)}
+.urgency-arrow{display:flex;justify-content:center;align-items:center;height:12px;margin:-2px 0}
+.urgency-arrow svg{width:16px;height:14px;display:block;color:var(--ink-light)}
+.urgency-cost{margin-top:6px;padding-top:18px;border-top:1px solid var(--rule)}
+.urgency-cost-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.urgency-cost-prose{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:14.5px;line-height:1.45;color:var(--ink);letter-spacing:-0.005em}
+.urgency-cost-prose strong{color:var(--accent);font-weight:600}
+.urgency-rule-bottom{margin-top:0;height:1px;background:var(--rule-strong);width:100%}
+.urgency-convergence{margin-top:48px;padding:32px 28px 28px;background:var(--bg-2);border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong)}
+.urgency-conv-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.18em;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:24px}
+.urgency-conv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:1px solid var(--rule)}
+.urgency-conv-cell{padding:8px 24px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+.urgency-conv-cell:first-child{padding-left:0}
+.urgency-conv-num{font-family:'Inter Tight',sans-serif;font-weight:200;font-size:clamp(40px,4.4vw,64px);line-height:1;letter-spacing:-0.04em;color:var(--accent)}
+.urgency-conv-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.14em;color:var(--ink);text-transform:uppercase;font-weight:600;margin-top:4px}
+.urgency-conv-note{font-family:'Inter',sans-serif;font-size:13px;line-height:1.55;color:var(--ink-soft);margin-top:4px}
+.urgency-closing{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:22px;line-height:1.4;color:var(--ink);border-left:2px solid var(--accent);padding:10px 0 10px 22px;margin:32px 0 0;letter-spacing:-0.01em;max-width:880px}
+.urgency-closing em{font-style:normal;color:var(--accent);font-weight:500}
+.urgency-closing strong{font-weight:600;color:var(--ink)}
+@media(max-width:1100px){
+  .urgency-grid{grid-template-columns:1fr}
+  .urgency-pillar{border-right:1px solid var(--rule)}
+  .urgency-pillar-num{font-size:64px}
+  .urgency-pillar-name{min-height:0}
+  .urgency-diagram{padding:32px 22px 24px}
+  .urgency-conv-grid{grid-template-columns:1fr;border-left:none;border-top:1px solid var(--rule)}
+  .urgency-conv-cell{padding:20px 0;border-right:none;border-bottom:1px solid var(--rule)}
+  .urgency-conv-cell:last-child{border-bottom:none}
+}
+@media(max-width:768px){
+  .urgency-pillar{padding:24px 18px 26px}
+  .urgency-pillar-num{font-size:54px}
+  .urgency-headline{font-size:30px}
+  .urgency-lead{font-size:17px}
+  .urgency-closing{font-size:18px}
+}
+
+/* === COMMUNICATIONS LAYER (§ VII) === */
 .comms-frame{max-width:1280px;margin:0 auto}
 .comms-intro{font-family:'Inter Tight',sans-serif;font-weight:400;font-size:19px;line-height:1.5;color:var(--ink-soft);max-width:880px;margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--rule);letter-spacing:-0.01em}
 .comms-intro strong{font-weight:600;color:var(--ink)}
@@ -1700,11 +1763,118 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § II · LA TESIS -->
+<!-- § II · POR QUÉ AHORA -->
+<section class="section" id="por-que-ahora">
+  <div class="section-frame">
+    <div class="urgency-frame">
+      <div class="urgency-eyebrow">02 / POR QUÉ AHORA</div>
+      <h2 class="urgency-headline">Tres ventanas operacionales se cierran <em>si esperamos</em>.</h2>
+      <p class="urgency-lead">La modernización tecnológica no es opcional ni urgente — es una <em>opción con vencimiento</em>. Tres factores que en <strong>2026</strong> son ventaja convergen; en <strong>2028</strong> son tabla rasa.</p>
+
+      <div class="urgency-diagram">
+        <div class="urgency-diagram-cap">FIG. 02 · Tres ventanas operacionales · Estado 2026 vs 2028 · Cost de no actuar por pilar</div>
+        <div class="urgency-grid">
+
+          <div class="urgency-pillar">
+            <div class="urgency-pillar-num">01</div>
+            <div class="urgency-pillar-name">Pilar 1 · <em>Ventana de mercado</em></div>
+            <div class="urgency-state">
+              <div class="urgency-state-box now">
+                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
+                <p class="urgency-state-prose"><strong>DTC skincare + B2B-talent management</strong> están creando una nueva categoría en MX. Nancy Centella es prueba de concepto. <strong>&lt;10 talents managers</strong> en MX están pensando en marcas de skincare propias.</p>
+              </div>
+              <div class="urgency-arrow" aria-hidden="true">
+                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
+              </div>
+              <div class="urgency-state-box future">
+                <div class="urgency-state-tag">CERRADA · 2028</div>
+                <p class="urgency-state-prose">La categoría estará validada. Cada talent manager con audiencia +1M tendrá su propia marca DTC. La oferta de laboratorios "que saben hacerlo" será saturada. Precios y márgenes se nivelan.</p>
+              </div>
+            </div>
+            <div class="urgency-cost">
+              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
+              <p class="urgency-cost-prose">Ser <strong>el segundo, tercero, décimo</strong> lab en ofrecerlo. Captura del mercado pasa de "primero al mercado" a "uno más en la lista".</p>
+            </div>
+          </div>
+
+          <div class="urgency-pillar">
+            <div class="urgency-pillar-num">02</div>
+            <div class="urgency-pillar-name">Pilar 2 · <em>Deuda operacional creciente</em></div>
+            <div class="urgency-state">
+              <div class="urgency-state-box now">
+                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
+                <p class="urgency-state-prose">TSC LABS opera con <strong>+18 fórmulas</strong>, <strong>~50 lotes/año</strong>, <strong>3-5 talents</strong> potenciales en pipeline. Excel + carpetas + USBs es manejable a esta escala.</p>
+              </div>
+              <div class="urgency-arrow" aria-hidden="true">
+                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
+              </div>
+              <div class="urgency-state-box future">
+                <div class="urgency-state-tag">CERRADA · 2028</div>
+                <p class="urgency-state-prose">TSC con <strong>40+ fórmulas</strong>, <strong>200+ lotes/año</strong>, <strong>10+ talents</strong> activos, <strong>3+ marcas DTC</strong> propias. Sin sistema operacional, +15 horas/sem en reconciliación manual. Errores de lote/factura aumentan. Auditorías COFEPRIS pasan de 2-3 días a 3+ semanas.</p>
+              </div>
+            </div>
+            <div class="urgency-cost">
+              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
+              <p class="urgency-cost-prose">Cada nueva fórmula, cliente, marca añade carga manual lineal. Sin sistema, el cuello de botella ya no es R&amp;D ni producción — <strong>es admin</strong>.</p>
+            </div>
+          </div>
+
+          <div class="urgency-pillar">
+            <div class="urgency-pillar-num">03</div>
+            <div class="urgency-pillar-name">Pilar 3 · <em>Lead científico convertible en moat tecnológico</em></div>
+            <div class="urgency-state">
+              <div class="urgency-state-box now">
+                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
+                <p class="urgency-state-prose">TSC tiene credenciales que no se construyen rápido — <strong>ITESM-trained biotecnólogos</strong>, COFEPRIS vigentes, marca propia validada en retail (The Skin Club vs Kiehl's/Clinique/L'Oréal/The Ordinary), R&amp;D propia con +18 fórmulas defendibles.</p>
+              </div>
+              <div class="urgency-arrow" aria-hidden="true">
+                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
+              </div>
+              <div class="urgency-state-box future">
+                <div class="urgency-state-tag">CERRADA · 2028</div>
+                <p class="urgency-state-prose">Las credenciales siguen, pero competidores tendrán las suyas también. La ventaja perdurable se construye encima — sistema operacional propio, data del negocio, capa agéntica entrenada con la operación TSC, ER diagrams y schemas que <em>solo TSC tiene</em>.</p>
+              </div>
+            </div>
+            <div class="urgency-cost">
+              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
+              <p class="urgency-cost-prose">El lead científico se mantiene pero deja de ser diferenciador. La oportunidad de convertirlo en <strong>moat tecnológico</strong> (sistema queryable + agentes + ERP propio) tiene fecha de expiración.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="urgency-convergence">
+        <div class="urgency-conv-tag">CONVERGENCIA · MAYO 2026</div>
+        <div class="urgency-conv-grid">
+          <div class="urgency-conv-cell">
+            <div class="urgency-conv-num">~24</div>
+            <div class="urgency-conv-label">Meses de ventaja real</div>
+            <div class="urgency-conv-note">antes de que la categoría DTC × talent management quede saturada en MX.</div>
+          </div>
+          <div class="urgency-conv-cell">
+            <div class="urgency-conv-num">4×</div>
+            <div class="urgency-conv-label">Crecimiento operacional esperado</div>
+            <div class="urgency-conv-note">de ~50 lotes/año a 200+ · de 18 fórmulas a 40+ · sin sistema, ~15 hrs/sem perdidas en reconciliación.</div>
+          </div>
+          <div class="urgency-conv-cell">
+            <div class="urgency-conv-num">12</div>
+            <div class="urgency-conv-label">Meses para construir el moat</div>
+            <div class="urgency-conv-note">F1-F5: data substrate único, ERP propio, capa agéntica, document vault COFEPRIS · convertir lead científico en lead tecnológico.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="urgency-closing">Estas tres ventanas no son hipotéticas. Son la <em>lectura del momento de mercado</em> en mayo 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- § III · LA TESIS (was § II) -->
 <section class="section muted" id="tesis">
   <div class="section-frame">
     <div class="tesis-frame">
-      <div class="tesis-eyebrow">02 / LA TESIS</div>
+      <div class="tesis-eyebrow">03 / LA TESIS</div>
       <h1 class="tesis-headline">Un solo <em>data substrate</em>, todos los servicios encima.</h1>
       <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Talent Portal, ERP, Document Vault COFEPRIS, dashboards y agentes leen y escriben al mismo store.</p>
 
@@ -1785,11 +1955,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § III · LAS CINCO FASES -->
+<!-- § IV · LAS CINCO FASES (was § III) -->
 <section class="section" id="fases">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">03<small>FASES</small></div>
+      <div class="section-num">04<small>FASES</small></div>
       <h2 class="section-title">Doce meses, <em>cinco fases</em>, una arquitectura.</h2>
       <p class="section-deck">Cinco capítulos acumulativos. Cada fase se construye encima de la anterior, sin re-trabajo. Stack único, deliverables auditables, métricas de cierre por hito.</p>
     </header>
@@ -1991,11 +2161,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § IV · DASHBOARD EJECUTIVO MOCK -->
+<!-- § V · DASHBOARD EJECUTIVO MOCK (was § IV) -->
 <section class="section muted" id="dashboard-mock">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">04<small>BI · DASHBOARD</small></div>
+      <div class="section-num">05<small>BI · DASHBOARD</small></div>
       <h2 class="section-title">Dashboard ejecutivo <em>en vivo</em> (preview).</h2>
       <p class="section-deck">El dashboard que TSC LABS tendrá al cierre de Fase 04. Cualquier pregunta del negocio, una visualización. Mock representativo del producto final.</p>
     </header>
@@ -2208,11 +2378,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § V · ROADMAP MENSUAL -->
+<!-- § VI · ROADMAP MENSUAL (was § V) -->
 <section class="section" id="roadmap">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">05<small>ROADMAP</small></div>
+      <div class="section-num">06<small>ROADMAP</small></div>
       <h2 class="section-title">Roadmap — <em>12 meses, mes a mes</em>.</h2>
       <p class="section-deck">Cada mes una entrega tangible. Sin meses vacíos.</p>
     </header>
@@ -2370,11 +2540,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VI · COMMUNICATIONS LAYER -->
+<!-- § VII · COMMUNICATIONS LAYER (was § VI) -->
 <section class="section muted" id="comms-layer">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">06<small>COMMS LAYER</small></div>
+      <div class="section-num">07<small>COMMS LAYER</small></div>
       <h2 class="section-title">Capa de <em>comunicaciones</em> — un solo cerebro, múltiples voces.</h2>
       <p class="section-deck">Chatbots multi-propósito que comparten la misma data substrate. Cada bot lee y escribe al mismo origen de verdad — DTC, B2B, outbound, supplier, internal queries, compliance y talent updates operan como una capa unificada, no como herramientas dispersas.</p>
     </header>
@@ -2440,11 +2610,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VII · INVERSIÓN TOTAL -->
+<!-- § VIII · INVERSIÓN TOTAL (was § VII) -->
 <section class="section" id="inversion">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">07<small>INVERSIÓN</small></div>
+      <div class="section-num">08<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
       <p class="section-deck">Setup acumulado de las cinco fases más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
     </header>
@@ -2551,11 +2721,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § VIII · POR QUÉ EIGEN -->
+<!-- § IX · POR QUÉ EIGEN (was § VIII) -->
 <section class="section muted" id="por-que-eigen">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">08<small>POR QUÉ EIGEN</small></div>
+      <div class="section-num">09<small>POR QUÉ EIGEN</small></div>
       <h2 class="section-title">No proveedor. <em>Partner</em>.</h2>
       <p class="section-deck">No entregamos un proyecto IT. Construimos el sistema operacional de TSC LABS: 5 fases que dejan al laboratorio con un data substrate único, una capa de servicios sobre ese substrate, y una capa agéntica que opera sobre ambos. Las decisiones técnicas durante 12 meses (stack, schemas, seguridad, escalamiento) las toma quien va a operar el sistema después. Seis razones técnicas — CTO Fractional, operación conjunta, stack, playbook, framework propietario, ejecución 100% México.</p>
     </header>
@@ -2649,11 +2819,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § IX · CAPACIDADES QUE SE CONSTRUYEN -->
+<!-- § X · CAPACIDADES QUE SE CONSTRUYEN (was § IX) -->
 <section class="section" id="capacidades">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">09<small>CAPACIDADES</small></div>
+      <div class="section-num">10<small>CAPACIDADES</small></div>
       <h2 class="section-title">Capacidades <em>que se construyen</em>.</h2>
       <p class="section-deck">Lo que TSC LABS recibe al cierre de los 12 meses. No es un paquete técnico — es ocho capacidades operando como pilares de la empresa.</p>
     </header>
@@ -2722,11 +2892,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § XI · GLOSARIO -->
+<!-- § XII · GLOSARIO (was § XI) -->
 <section class="section" id="glosario">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">11<small>GLOSARIO</small></div>
+      <div class="section-num">12<small>GLOSARIO</small></div>
       <h2 class="section-title">Términos <em>técnicos</em>, definidos.</h2>
       <p class="section-deck">Stack y normativa que aparece a lo largo del documento — definiciones de una línea para referencia rápida.</p>
     </header>
@@ -2776,11 +2946,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § XII · PROPIEDAD INTELECTUAL Y SALIDA -->
+<!-- § XIII · PROPIEDAD INTELECTUAL Y SALIDA (was § XII) -->
 <section class="section muted" id="propiedad-intelectual">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">12<small>PROPIEDAD INTELECTUAL Y SALIDA</small></div>
+      <div class="section-num">13<small>PROPIEDAD INTELECTUAL Y SALIDA</small></div>
       <h2 class="section-title">El sistema es de TSC LABS, <em>desde el primer commit</em>.</h2>
       <p class="section-deck">Propiedad del código, ownership de schemas y data, plan de off-boarding, continuidad si Eigen no puede continuar. Sin lock-in.</p>
     </header>
@@ -2820,11 +2990,11 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § XIII · LA INVITACIÓN + PRÓXIMOS PASOS -->
+<!-- § XIV · LA INVITACIÓN + PRÓXIMOS PASOS (was § XIII) -->
 <section class="section muted" id="proximos">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">13<small>LA INVITACIÓN</small></div>
+      <div class="section-num">14<small>LA INVITACIÓN</small></div>
       <h2 class="section-title">Tres pasos, <em>siete días</em>, una década.</h2>
       <p class="section-deck">Secuencia explícita para pasar de propuesta firmada a F1 en operación: revisión de scope, work order F1 firmado, kickoff en 7 días. Sin renegociación posterior, sin diluir el calendario.</p>
     </header>
@@ -2896,17 +3066,19 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <h4 class="colophon-col-title">Secciones</h4>
         <ul class="colophon-list">
           <li><a href="#diagnostico">01 / Diagnóstico</a></li>
-          <li><a href="#tesis">02 / La Tesis</a></li>
-          <li><a href="#fases">03 / Cinco fases</a></li>
-          <li><a href="#dashboard-mock">04 / Dashboard mock</a></li>
-          <li><a href="#roadmap">05 / Roadmap</a></li>
-          <li><a href="#comms-layer">06 / Capa de comunicaciones</a></li>
-          <li><a href="#inversion">07 / Inversión total</a></li>
-          <li><a href="#por-que-eigen">08 / Por qué Eigen</a></li>
-          <li><a href="#capacidades">09 / Capacidades</a></li>
-          <li><a href="#glosario">11 / Glosario</a></li>
-          <li><a href="#propiedad-intelectual">12 / Propiedad intelectual y salida</a></li>
-          <li><a href="#proximos">13 / La invitación</a></li>
+          <li><a href="#por-que-ahora">02 / Por qué ahora</a></li>
+          <li><a href="#tesis">03 / La Tesis</a></li>
+          <li><a href="#fases">04 / Cinco fases</a></li>
+          <li><a href="#dashboard-mock">05 / Dashboard mock</a></li>
+          <li><a href="#roadmap">06 / Roadmap</a></li>
+          <li><a href="#comms-layer">07 / Capa de comunicaciones</a></li>
+          <li><a href="#inversion">08 / Inversión total</a></li>
+          <li><a href="#por-que-eigen">09 / Por qué Eigen</a></li>
+          <li><a href="#capacidades">10 / Capacidades</a></li>
+          <li><a href="#por-que-eigen">11 / SLA y RTO/RPO</a></li>
+          <li><a href="#glosario">12 / Glosario</a></li>
+          <li><a href="#propiedad-intelectual">13 / Propiedad intelectual y salida</a></li>
+          <li><a href="#proximos">14 / La invitación</a></li>
         </ul>
       </div>
       <div>
