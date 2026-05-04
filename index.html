@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=GT+Sectra:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <style>
 :root{
   --paper:#FCFAF4;
@@ -89,12 +90,76 @@ a:hover{border-bottom-color:var(--oxblood)}
 .cover-top-meta{display:flex;gap:24px}
 .cover-top-meta strong{color:var(--ink);font-weight:600;display:block;font-family:'GT Sectra',serif;font-style:italic;font-size:14px;letter-spacing:0.02em;text-transform:none}
 .cover-center{
+  display:grid;
+  grid-template-columns:minmax(360px, 0.95fr) minmax(420px, 1.05fr);
+  align-items:center;
+  gap:56px;
+  padding:48px 0;
+}
+.cover-copy{
   display:flex;
   flex-direction:column;
   justify-content:center;
+  align-items:flex-start;
+  text-align:left;
+}
+.cover-copy .cover-rule{margin:24px 0}
+.cover-copy .cover-headline-stats{margin-top:32px}
+
+/* === ASCII HERO === */
+.ascii-hero-wrap{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  border-bottom:1px solid var(--soft-rule);
+  padding-bottom:14px;
+}
+.ascii-hero{
+  position:relative;
+  width:100%;
+  aspect-ratio: 4 / 3;
+  overflow:hidden;
+  background:var(--paper);
+  display:flex;
   align-items:center;
-  text-align:center;
-  padding:60px 0;
+  justify-content:center;
+}
+.ascii-hero pre{
+  margin:0;
+  font-family:'JetBrains Mono','SF Mono','Menlo',monospace;
+  font-size:9px;
+  line-height:0.92;
+  letter-spacing:0;
+  color:var(--ink);
+  white-space:pre;
+  text-align:left;
+  font-weight:500;
+  pointer-events:none;
+  user-select:none;
+  text-shadow:none;
+}
+.ascii-hero pre .hi{color:var(--oxblood)}
+.ascii-hero canvas{display:none}
+.ascii-hero-cap{
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'Inter',sans-serif;
+  font-size:10px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+.ascii-hero-cap em{
+  font-family:'GT Sectra',serif;
+  font-style:italic;
+  font-size:12px;
+  letter-spacing:0.02em;
+  color:var(--ink);
+  text-transform:none;
 }
 .cover-eyebrow{
   font-family:'Inter',sans-serif;
@@ -139,7 +204,7 @@ a:hover{border-bottom-color:var(--oxblood)}
 .cover-rule{
   width:60px;height:1px;
   background:var(--gold);
-  margin:24px auto;
+  margin:24px 0;
 }
 .cover-headline-stats{
   display:grid;
@@ -849,6 +914,9 @@ a:hover{border-bottom-color:var(--oxblood)}
 @media(max-width:1100px){
   .cover{padding:30px 24px}
   .letter,.section,.colophon{padding-left:24px;padding-right:24px}
+  .cover-center{grid-template-columns:1fr;gap:36px;padding:32px 0}
+  .cover-copy{align-items:flex-start;text-align:left}
+  .ascii-hero pre{font-size:7px;line-height:0.9}
   .cover-headline-stats{grid-template-columns:1fr}
   .cover-stat{border-right:none;border-bottom:1px solid var(--soft-rule)}
   .cover-stat:last-child{border-bottom:none}
@@ -867,6 +935,13 @@ a:hover{border-bottom-color:var(--oxblood)}
   .retainer-num,.retainer-num-label{text-align:left}
   .contact-frame{grid-template-columns:1fr;gap:18px}
 }
+@media(max-width:768px){
+  .ascii-hero-wrap{display:none}
+  .cover-center{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .ascii-hero pre{animation:none}
+}
 </style>
 </head>
 <body>
@@ -883,27 +958,39 @@ a:hover{border-bottom-color:var(--oxblood)}
   </div>
 
   <div class="cover-center">
-    <div class="cover-eyebrow">— Eigen · Atlas / Propuesta / V1.0 · Mayo 2026 —</div>
-    <p class="cover-volume">Eigen Atlas · Propuesta MMXXVI · TSC LABS</p>
-    <h1 class="cover-title">Una infraestructura tecnológica completa para que <em>TSC LABS</em> escale como laboratorio, como marca, y como plataforma B2B.</h1>
-    <p class="cover-subtitle">12 meses · 5 fases · una sola arquitectura. Cloudflare-native · IVA-compliant · COFEPRIS-aware.</p>
-    <div class="cover-rule"></div>
+    <div class="ascii-hero-wrap" aria-hidden="true">
+      <div class="ascii-hero" id="ascii-hero">
+        <pre id="ascii-hero-out"></pre>
+      </div>
+      <div class="ascii-hero-cap">
+        <span>↻ Fig. I · Infrastructure · Rotating</span>
+        <em>TorusKnot · 200×32</em>
+      </div>
+    </div>
 
-    <div class="cover-headline-stats">
-      <div class="cover-stat">
-        <div class="cover-stat-num">$1.66<em>M</em><span class="sm"> MXN</span></div>
-        <div class="cover-stat-label">Inversión Año 1+2</div>
-        <div class="cover-stat-yoy">→ Setup + Retainer 12mo</div>
-      </div>
-      <div class="cover-stat">
-        <div class="cover-stat-num">12<em> mo</em></div>
-        <div class="cover-stat-label">Plan acumulativo</div>
-        <div class="cover-stat-yoy">→ 5 fases · entregas validadas</div>
-      </div>
-      <div class="cover-stat">
-        <div class="cover-stat-num">09</div>
-        <div class="cover-stat-label">Entregas · productos digitales en operación</div>
-        <div class="cover-stat-yoy">→ End-to-end</div>
+    <div class="cover-copy">
+      <div class="cover-eyebrow">— Eigen · Atlas / Propuesta / V1.0 · Mayo 2026 —</div>
+      <p class="cover-volume">Eigen Atlas · Propuesta MMXXVI · TSC LABS</p>
+      <h1 class="cover-title">Una infraestructura tecnológica completa para que <em>TSC LABS</em> escale como laboratorio, como marca, y como plataforma B2B.</h1>
+      <p class="cover-subtitle">12 meses · 5 fases · una sola arquitectura. Cloudflare-native · IVA-compliant · COFEPRIS-aware.</p>
+      <div class="cover-rule"></div>
+
+      <div class="cover-headline-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-num">$1.66<em>M</em><span class="sm"> MXN</span></div>
+          <div class="cover-stat-label">Inversión Año 1+2</div>
+          <div class="cover-stat-yoy">→ Setup + Retainer 12mo</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">12<em> mo</em></div>
+          <div class="cover-stat-label">Plan acumulativo</div>
+          <div class="cover-stat-yoy">→ 5 fases · entregas validadas</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-num">09</div>
+          <div class="cover-stat-label">Entregas · productos digitales en operación</div>
+          <div class="cover-stat-yoy">→ End-to-end</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1432,6 +1519,144 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
     scrollTrigger:{trigger:el,start:'top 88%'}
   });
 });
+
+// === ASCII 3D HERO (three.js + custom canvas-sampling AsciiEffect) ===
+(function(){
+  var host = document.getElementById('ascii-hero');
+  var out  = document.getElementById('ascii-hero-out');
+  if(!host || !out || typeof THREE === 'undefined') return;
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var smallVP = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+  if(smallVP){ return; }
+
+  // --- Char palette: low-density → high-density ---
+  // index 0 = darkest (here = paper, blank), last = densest (= ink heavy)
+  var PAL = ' .:-=+*#%@';
+  var COLS = 120; // ~chars wide
+  var ROWS = 60;  // ~chars tall (aspect ~ 2:1 char-cell, container is 4:3)
+
+  // --- THREE setup (offscreen) ---
+  var W = COLS * 2;   // pixels wide (each char samples a 2x2 block ~ enough)
+  var H = ROWS * 2;
+  var scene = new THREE.Scene();
+  scene.background = null;
+
+  var camera = new THREE.PerspectiveCamera(40, COLS / ROWS, 0.1, 100);
+  camera.position.set(0, 0, 14);
+  camera.lookAt(0, 0, 0);
+
+  var renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, preserveDrawingBuffer: true });
+  renderer.setSize(W, H, false);
+  renderer.setClearColor(0x000000, 0);
+
+  var geo = new THREE.TorusKnotGeometry(4, 1.4, 200, 32);
+  var mat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+  var mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+
+  // --- Sampling canvas: read GPU output via renderer.domElement ---
+  var glCanvas = renderer.domElement;
+  var sampler = document.createElement('canvas');
+  sampler.width = W; sampler.height = H;
+  var sctx = sampler.getContext('2d');
+
+  // --- Mouse parallax ---
+  var mx = 0, my = 0; // -1..1
+  host.addEventListener('mousemove', function(e){
+    var r = host.getBoundingClientRect();
+    mx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+    my = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+  });
+  host.addEventListener('mouseleave', function(){ mx = 0; my = 0; });
+
+  // --- Render → ASCII ---
+  function frame(){
+    // Auto-rotate + parallax
+    mesh.rotation.x += 0.005 + my * 0.004;
+    mesh.rotation.y += 0.008 + mx * 0.005;
+    renderer.render(scene, camera);
+
+    // Copy GL canvas to sampler
+    sctx.clearRect(0, 0, W, H);
+    sctx.drawImage(glCanvas, 0, 0, W, H);
+    var img = sctx.getImageData(0, 0, W, H).data;
+
+    // Sample: for each (col,row) average a 2x2 block, take alpha-weighted lum
+    var lines = new Array(ROWS);
+    for(var r = 0; r < ROWS; r++){
+      var line = '';
+      for(var c = 0; c < COLS; c++){
+        var sx = c * 2, sy = r * 2;
+        var sum = 0, hits = 0;
+        for(var dy = 0; dy < 2; dy++){
+          for(var dx = 0; dx < 2; dx++){
+            var i = ((sy + dy) * W + (sx + dx)) * 4;
+            var a = img[i+3];
+            if(a > 8){
+              // wireframe is white-on-transparent; brighter alpha = denser line
+              var lum = (img[i] + img[i+1] + img[i+2]) / 3;
+              sum += (lum * (a / 255));
+              hits++;
+            }
+          }
+        }
+        var v = hits ? (sum / hits) / 255 : 0;       // 0..1
+        // Bias darker (more empty space, paper-feel)
+        v = Math.pow(v, 0.85);
+        var idx = Math.min(PAL.length - 1, Math.floor(v * PAL.length));
+        var ch = PAL.charAt(idx);
+        if(idx >= PAL.length - 2 && ch !== ' '){
+          // top-tier brightness: oxblood accent
+          line += '<span class="hi">' + ch + '</span>';
+        } else {
+          line += ch;
+        }
+      }
+      lines[r] = line;
+    }
+    out.innerHTML = lines.join('\n');
+  }
+
+  // Throttled RAF (~30fps)
+  var last = 0, RUN = true, INVIEW = true;
+  function loop(t){
+    if(!RUN){ return; }
+    if(INVIEW && (t - last > 33)){ frame(); last = t; }
+    requestAnimationFrame(loop);
+  }
+
+  // Render one frame immediately (so static fallback is meaningful)
+  frame();
+
+  if(reduced){
+    // Static snapshot only — no loop
+    return;
+  }
+
+  // IntersectionObserver: pause when off-screen
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ INVIEW = e.isIntersecting; });
+    }, { threshold: 0.05 });
+    io.observe(host);
+  }
+
+  requestAnimationFrame(loop);
+
+  // Memoized resize (only re-aspect camera; sampling grid is char-fixed)
+  var ro;
+  function onResize(){
+    if(ro) clearTimeout(ro);
+    ro = setTimeout(function(){
+      var r = host.getBoundingClientRect();
+      var aspect = r.width / r.height;
+      camera.aspect = aspect > 0 ? aspect : (COLS/ROWS);
+      camera.updateProjectionMatrix();
+    }, 120);
+  }
+  window.addEventListener('resize', onResize);
+})();
 </script>
 </body>
 </html>
