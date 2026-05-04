@@ -1713,8 +1713,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <pre id="hero-portrait" class="ascii-portrait"></pre>
       </div>
       <div class="ascii-hero-cap">
-        <span>FIG. I · ASCII PORTRAIT</span>
-        <em>3D · Tracks Cursor</em>
+        <span>FIG. I · STRUCTURAL MESH</span>
+        <em>3D NETWORK · INTERCONNECTED · TRACKS CURSOR</em>
       </div>
     </div>
 
@@ -3158,10 +3158,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 })();
 
-// ASCII PORTRAIT HERO — three.js scene rendered to an OFFSCREEN canvas, then
-// canvas-sampled into ASCII text. Same procedural head + cursor tracking as
-// before; output is a <pre> grid (~160×80) instead of pixels. MeshNormalMaterial
-// gives a clean gradient that ASCII-samples beautifully.
+// STRUCTURAL MESH HERO — three.js graph network rendered to an OFFSCREEN canvas,
+// then canvas-sampled into ASCII text. ~30-50 nodes connected by edges, slow
+// auto-rotation, cursor pulls nearby nodes via spring physics. Represents
+// "data substrate" / interconnected agents / queryable enterprise.
 (function(){
   var host = document.getElementById('ascii-hero');
   var pre  = document.getElementById('hero-portrait');
@@ -3172,12 +3172,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   if(smallVP){ return; }
 
   // === ASCII GRID ============================================================
-  // 2:1 char aspect (chars are ~2× tall). Target ~160 cols × 80 rows.
   var COLS = 160;
   var ROWS = 80;
-  // Palette from darkest (space) to brightest (@). 13 levels.
   var PALETTE = " .'-:;~=+*#%@";
-  // Top-density chars (cobalt accent).
   var HI = "*#%@";
 
   // === OFFSCREEN RENDERER / SCENE / CAMERA ==================================
@@ -3192,151 +3189,126 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   var scene = new THREE.Scene();
   scene.background = null;
 
-  // Closer crop: face fills the frame.
-  var camera = new THREE.PerspectiveCamera(35, COLS / ROWS, 0.1, 100);
-  camera.position.set(0, 0, 3);
+  // Wider FOV — see the whole graph.
+  var camera = new THREE.PerspectiveCamera(45, COLS / ROWS, 0.1, 100);
+  camera.position.set(0, 0, 12);
   camera.lookAt(0, 0, 0);
 
-  // Minimal lighting (MeshNormalMaterial doesn't need light, but ambient keeps
-  // any textured GLTF readable as a fallback).
   scene.add(new THREE.AmbientLight(0xffffff, 0.6));
   var keyLight = new THREE.DirectionalLight(0xffffff, 0.8);
   keyLight.position.set(2, 3, 4);
   scene.add(keyLight);
 
-  // === HEAD CONTAINER =======================================================
-  var head = new THREE.Group();
-  head.position.x = 0.05;
-  scene.add(head);
+  // === STRUCTURAL MESH ======================================================
+  // 40 nodes distributed in a sphere volume, with 5 of them designated as
+  // "agent hubs" (1.5× scale). Connect each node to its k closest neighbors
+  // within a distance threshold to form a network of ~80 edges.
+  var graph = new THREE.Group();
+  scene.add(graph);
 
-  var eyeTargets = [];
+  var NODE_COUNT = 40;
+  var AGENT_COUNT = 5;
+  var SPHERE_RADIUS = 4.0;          // distribution radius
+  var EDGE_DISTANCE_THRESHOLD = 2.4; // max edge length
+  var MAX_EDGES_PER_NODE = 4;
 
-  // === MODEL LOADING ========================================================
-  var GLTF_URLS = [
-    'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb',
-    'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb',
-    'https://threejs.org/examples/models/gltf/Suzanne/glTF/Suzanne.gltf'
-  ];
+  var sharedMat = new THREE.MeshNormalMaterial({ flatShading: false });
 
-  function tryLoadGLTF(idx){
-    if (typeof THREE.GLTFLoader === 'undefined' || idx >= GLTF_URLS.length){
-      buildProceduralHead();
-      return;
+  // Deterministic distribution so the mesh is the same on every reload.
+  // Mix Fibonacci sphere (surface) + small radial jitter inward for volume.
+  function buildPositions(){
+    var positions = [];
+    var phi = Math.PI * (Math.sqrt(5) - 1); // golden angle
+    for (var i = 0; i < NODE_COUNT; i++){
+      var t = i / (NODE_COUNT - 1);
+      var y = 1 - 2 * t;                    // [-1, 1]
+      var r = Math.sqrt(1 - y * y);
+      var theta = phi * i;
+      var x = Math.cos(theta) * r;
+      var z = Math.sin(theta) * r;
+      // Pseudo-deterministic radial jitter: pulls some nodes inward to give volume.
+      var seed = (i * 9301 + 49297) % 233280;
+      var rand = seed / 233280;
+      var radius = SPHERE_RADIUS * (0.55 + rand * 0.45);
+      positions.push(new THREE.Vector3(x * radius, y * radius, z * radius));
     }
-    var url = GLTF_URLS[idx];
-    var loader = new THREE.GLTFLoader();
-    loader.load(
-      url,
-      function(gltf){
-        var root = gltf.scene || (gltf.scenes && gltf.scenes[0]);
-        if(!root){ tryLoadGLTF(idx + 1); return; }
-        var box = new THREE.Box3().setFromObject(root);
-        var size = new THREE.Vector3(); box.getSize(size);
-        var center = new THREE.Vector3(); box.getCenter(center);
-        var maxDim = Math.max(size.x, size.y, size.z) || 1;
-        var scale = 1.6 / maxDim;
-        root.scale.setScalar(scale);
-        root.position.sub(center.multiplyScalar(scale));
-        // ASCII-friendly normal material on every mesh — clean gradient.
-        root.traverse(function(obj){
-          if(obj.isMesh){
-            obj.material = new THREE.MeshNormalMaterial({ flatShading: false });
-          }
-        });
-        head.add(root);
-      },
-      undefined,
-      function(){ tryLoadGLTF(idx + 1); }
-    );
+    return positions;
   }
 
-  function buildProceduralHead(){
-    var mat = new THREE.MeshNormalMaterial({ flatShading: false });
+  var positions = buildPositions();
 
-    var skull = new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 64), mat);
-    skull.scale.set(0.92, 1.05, 0.95);
-    head.add(skull);
-
-    var cheekL = new THREE.Mesh(new THREE.SphereGeometry(0.32, 32, 32), mat);
-    cheekL.position.set(-0.42, -0.10, 0.62);
-    cheekL.scale.set(1, 0.85, 0.7);
-    head.add(cheekL);
-    var cheekR = cheekL.clone(); cheekR.position.x = 0.42; head.add(cheekR);
-
-    var browL = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), mat);
-    browL.position.set(-0.28, 0.30, 0.78);
-    browL.scale.set(1.4, 0.35, 0.8);
-    head.add(browL);
-    var browR = browL.clone(); browR.position.x = 0.28; head.add(browR);
-
-    var jaw = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), mat);
-    jaw.position.set(0, -0.62, 0.18);
-    jaw.scale.set(1.05, 0.55, 0.95);
-    head.add(jaw);
-
-    var chin = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 24), mat);
-    chin.position.set(0, -0.78, 0.55);
-    chin.scale.set(1, 0.75, 0.85);
-    head.add(chin);
-
-    var nose = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.42, 24), mat);
-    nose.position.set(0, 0.02, 0.92);
-    nose.rotation.x = -Math.PI / 2.2;
-    head.add(nose);
-    var noseTip = new THREE.Mesh(new THREE.SphereGeometry(0.10, 24, 24), mat);
-    noseTip.position.set(0, -0.10, 1.04);
-    head.add(noseTip);
-
-    var lips = new THREE.Mesh(new THREE.SphereGeometry(0.20, 24, 24), mat);
-    lips.position.set(0, -0.42, 0.86);
-    lips.scale.set(1.3, 0.30, 0.55);
-    head.add(lips);
-
-    var socketL = new THREE.Mesh(new THREE.SphereGeometry(0.18, 24, 24), mat);
-    socketL.position.set(-0.30, 0.18, 0.82);
-    socketL.scale.set(1.1, 0.9, 0.6);
-    head.add(socketL);
-    var socketR = socketL.clone(); socketR.position.x = 0.30; head.add(socketR);
-
-    // Eye groups — each lookAt cursor independently.
-    var eyeL = new THREE.Group();
-    eyeL.position.set(-0.27, 0.17, 0.86);
-    var eyeBallL = new THREE.Mesh(new THREE.SphereGeometry(0.10, 32, 32), mat);
-    eyeL.add(eyeBallL);
-    var irisL = new THREE.Mesh(new THREE.SphereGeometry(0.052, 24, 24), mat);
-    irisL.position.set(0, 0, 0.075);
-    eyeL.add(irisL);
-    var pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.024, 16, 16), mat);
-    pupilL.position.set(0, 0, 0.10);
-    eyeL.add(pupilL);
-    head.add(eyeL);
-    eyeTargets.push(eyeL);
-
-    var eyeR = eyeL.clone(true);
-    eyeR.position.x = 0.27;
-    head.add(eyeR);
-    eyeTargets.push(eyeR);
-
-    var hairGeo = new THREE.SphereGeometry(1.02, 48, 48, 0, Math.PI * 2, 0, Math.PI * 0.55);
-    var hair = new THREE.Mesh(hairGeo, mat);
-    hair.position.set(0, 0.05, -0.05);
-    hair.scale.set(0.96, 1.10, 1.0);
-    head.add(hair);
-
-    var earL = new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24), mat);
-    earL.position.set(-0.92, 0.0, 0.05);
-    earL.scale.set(0.45, 1.0, 0.7);
-    head.add(earL);
-    var earR = earL.clone(); earR.position.x = 0.92; head.add(earR);
-
-    var neck = new THREE.Mesh(new THREE.CylinderGeometry(0.36, 0.42, 0.55, 24), mat);
-    neck.position.set(0, -1.05, -0.05);
-    head.add(neck);
+  // Build node meshes; tag the first AGENT_COUNT (after a small offset) as hubs.
+  // Pick agent indices so they're spread out across the array.
+  var agentSet = {};
+  var agentStep = Math.floor(NODE_COUNT / AGENT_COUNT);
+  for (var ai = 0; ai < AGENT_COUNT; ai++){
+    agentSet[ai * agentStep + 2] = true;
   }
 
-  tryLoadGLTF(0);
+  var nodes = [];
+  var nodeGeo  = new THREE.SphereGeometry(0.15, 16, 12);
+  var agentGeo = new THREE.SphereGeometry(0.225, 20, 14); // 1.5× radius
 
-  // === SAMPLER (offscreen 2D context for readback) ==========================
+  for (var n = 0; n < NODE_COUNT; n++){
+    var isAgent = !!agentSet[n];
+    var mesh = new THREE.Mesh(isAgent ? agentGeo : nodeGeo, sharedMat);
+    mesh.position.copy(positions[n]);
+    graph.add(mesh);
+    nodes.push({
+      mesh: mesh,
+      original: positions[n].clone(),
+      velocity: new THREE.Vector3(0, 0, 0),
+      isAgent: isAgent
+    });
+  }
+
+  // Build edges: for each node connect to up to MAX_EDGES_PER_NODE closest
+  // neighbors that are within EDGE_DISTANCE_THRESHOLD. Dedupe.
+  var edgePairs = [];
+  var edgeKey = {};
+  for (var i = 0; i < NODE_COUNT; i++){
+    var dists = [];
+    for (var j = 0; j < NODE_COUNT; j++){
+      if (i === j) continue;
+      var d = positions[i].distanceTo(positions[j]);
+      if (d < EDGE_DISTANCE_THRESHOLD) dists.push({ j: j, d: d });
+    }
+    dists.sort(function(a, b){ return a.d - b.d; });
+    var take = Math.min(MAX_EDGES_PER_NODE, dists.length);
+    for (var k = 0; k < take; k++){
+      var jj = dists[k].j;
+      var key = i < jj ? (i + '_' + jj) : (jj + '_' + i);
+      if (edgeKey[key]) continue;
+      edgeKey[key] = true;
+      edgePairs.push([i, jj]);
+    }
+  }
+
+  // Render edges as TubeGeometry segments — chunkier ASCII rendering than lines.
+  // We rebuild geometries in-place each frame so they follow node motion.
+  var edgeMeshes = [];
+  var EDGE_TUBE_RADIUS = 0.025;
+  var EDGE_TUBE_SEGMENTS = 1; // straight line; cheap.
+  for (var e = 0; e < edgePairs.length; e++){
+    var a = nodes[edgePairs[e][0]].mesh.position;
+    var b = nodes[edgePairs[e][1]].mesh.position;
+    var path = new THREE.LineCurve3(a.clone(), b.clone());
+    var geo = new THREE.TubeGeometry(path, EDGE_TUBE_SEGMENTS, EDGE_TUBE_RADIUS, 6, false);
+    var em = new THREE.Mesh(geo, sharedMat);
+    graph.add(em);
+    edgeMeshes.push({ mesh: em, a: edgePairs[e][0], b: edgePairs[e][1] });
+  }
+
+  function rebuildEdgeGeometry(edge){
+    var a = nodes[edge.a].mesh.position;
+    var b = nodes[edge.b].mesh.position;
+    var path = new THREE.LineCurve3(a.clone(), b.clone());
+    var newGeo = new THREE.TubeGeometry(path, EDGE_TUBE_SEGMENTS, EDGE_TUBE_RADIUS, 6, false);
+    edge.mesh.geometry.dispose();
+    edge.mesh.geometry = newGeo;
+  }
+
+  // === ASCII SAMPLER ========================================================
   var sampler = document.createElement('canvas');
   sampler.width  = COLS;
   sampler.height = ROWS;
@@ -3344,27 +3316,24 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
   function renderToASCII(){
     renderer.render(scene, camera);
-    // Blit GL canvas → 2D canvas so we can read pixels.
     sctx.clearRect(0, 0, COLS, ROWS);
     sctx.drawImage(off, 0, 0, COLS, ROWS);
     var img = sctx.getImageData(0, 0, COLS, ROWS).data;
 
     var lines = new Array(ROWS / 2);
     var maxIdx = PALETTE.length - 1;
-    // Walk in 2-row × 2-col blocks, alpha-weighted luminance, average across 4 px.
     for (var y = 0; y < ROWS; y += 2){
       var row = '';
       for (var x = 0; x < COLS; x += 2){
         var sum = 0, w = 0;
         for (var dy = 0; dy < 2; dy++){
           for (var dx = 0; dx < 2; dx++){
-            var i = ((y + dy) * COLS + (x + dx)) * 4;
-            var a = img[i + 3] / 255;
-            if (a <= 0.02) continue;
-            // Rec. 601 luminance.
-            var l = 0.299 * img[i] + 0.587 * img[i+1] + 0.114 * img[i+2];
-            sum += (l / 255) * a;
-            w   += a;
+            var i2 = ((y + dy) * COLS + (x + dx)) * 4;
+            var a2 = img[i2 + 3] / 255;
+            if (a2 <= 0.02) continue;
+            var l = 0.299 * img[i2] + 0.587 * img[i2+1] + 0.114 * img[i2+2];
+            sum += (l / 255) * a2;
+            w   += a2;
           }
         }
         if (w === 0){ row += ' '; continue; }
@@ -3390,16 +3359,22 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 
   // === CURSOR TRACKING ======================================================
+  // Project cursor into local graph space at z=0 (graph local). We invert the
+  // graph's current rotation when computing the target so attraction feels
+  // anchored to the screen, not to the spinning frame.
   var mx = 0, my = 0;
   var lastMoveT = performance.now();
   var hasMoved = false;
   function onPointerMove(e){
-    var cx = window.innerWidth  / 2;
-    var cy = window.innerHeight / 2;
-    var nx = (e.clientX - cx) / (window.innerWidth  / 2 || 1);
-    var ny = (e.clientY - cy) / (window.innerHeight / 2 || 1);
-    if (nx < -1) nx = -1; else if (nx > 1) nx = 1;
-    if (ny < -1) ny = -1; else if (ny > 1) ny = 1;
+    var rect = host.getBoundingClientRect();
+    var cx = rect.left + rect.width  / 2;
+    var cy = rect.top  + rect.height / 2;
+    // Normalize to the host element so attraction tracks the visible mesh, not
+    // the whole page. Clamp to roughly the visible graph extent.
+    var nx = (e.clientX - cx) / (rect.width  / 2 || 1);
+    var ny = (e.clientY - cy) / (rect.height / 2 || 1);
+    if (nx < -1.5) nx = -1.5; else if (nx > 1.5) nx = 1.5;
+    if (ny < -1.5) ny = -1.5; else if (ny > 1.5) ny = 1.5;
     mx = nx; my = ny;
     lastMoveT = performance.now();
     hasMoved = true;
@@ -3407,45 +3382,68 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   window.addEventListener('mousemove', onPointerMove);
   window.addEventListener('pointermove', onPointerMove);
 
-  var DAMP = 0.08;
-  var MAX_YAW = 0.6;
-  var MAX_PITCH = 0.25;
-  var rotYTarget = 0, rotXTarget = 0;
-  var eyeTargetVec = new THREE.Vector3(0, 0, 5);
+  // === FRAME ================================================================
+  var ATTRACT_THRESHOLD = 4.0;   // units (in graph-local space)
+  var ATTRACT_STRENGTH  = 0.18;  // per-frame lerp factor at zero distance
+  var SPRING_BACK       = 0.05;  // damping toward original position
+  var ROT_Y_PER_FRAME   = 0.0035;
+  var ROT_X_PER_FRAME   = 0.001;
+
+  var cursorWorld = new THREE.Vector3();
+  var cursorLocal = new THREE.Vector3();
+  var inv = new THREE.Matrix4();
+  var tmp = new THREE.Vector3();
 
   function frame(){
     var now = performance.now();
-    var idle = !hasMoved || (now - lastMoveT > 3000);
+    var idle = !hasMoved || (now - lastMoveT > 1500);
 
-    if (idle){
-      rotYTarget = 0;
-      rotXTarget = 0;
-      var br = 1 + Math.sin(now * 0.0008) * 0.005;
-      head.scale.setScalar(br);
-    } else {
-      rotYTarget = mx * MAX_YAW;
-      rotXTarget = -my * MAX_PITCH;
-      head.scale.setScalar(1);
-    }
-    head.rotation.y += (rotYTarget - head.rotation.y) * DAMP;
-    head.rotation.x += (rotXTarget - head.rotation.x) * DAMP;
+    // Auto-rotate the whole graph.
+    graph.rotation.y += ROT_Y_PER_FRAME;
+    graph.rotation.x += ROT_X_PER_FRAME;
 
-    if (eyeTargets.length){
-      eyeTargetVec.set(mx * 1.0, my * 0.5, 1.0);
-      for (var i = 0; i < eyeTargets.length; i++){
-        eyeTargets[i].lookAt(
-          eyeTargets[i].position.x + eyeTargetVec.x,
-          eyeTargets[i].position.y - eyeTargetVec.y,
-          eyeTargets[i].position.z + eyeTargetVec.z
-        );
+    // Cursor position in graph-local coords. Approx: fit cursor into the
+    // graph's visible extent (~SPHERE_RADIUS in each axis) at z=0 in *world*
+    // space, then transform into graph-local space (so it doesn't spin with
+    // the graph).
+    cursorWorld.set(mx * SPHERE_RADIUS * 1.1, -my * SPHERE_RADIUS * 0.9, 0);
+    inv.copy(graph.matrixWorld).invert();
+    // Force the matrix to be up-to-date so the inverse is correct.
+    graph.updateMatrixWorld();
+    inv.copy(graph.matrixWorld).invert();
+    cursorLocal.copy(cursorWorld).applyMatrix4(inv);
+
+    for (var i = 0; i < nodes.length; i++){
+      var nd = nodes[i];
+      var p  = nd.mesh.position;
+
+      if (!idle){
+        tmp.copy(cursorLocal).sub(p);
+        var dist = tmp.length();
+        if (dist < ATTRACT_THRESHOLD && dist > 0.0001){
+          // Strength decays with distance, max at the cursor.
+          var falloff = 1 - (dist / ATTRACT_THRESHOLD);
+          var strength = ATTRACT_STRENGTH * falloff * falloff;
+          p.lerp(cursorLocal, strength);
+        } else {
+          // Spring back even while moving for far nodes.
+          p.lerp(nd.original, SPRING_BACK);
+        }
+      } else {
+        // Cursor idle: ease all nodes back home.
+        p.lerp(nd.original, SPRING_BACK);
       }
+    }
+
+    // Edges follow node motion: rebuild tube geometries in place.
+    for (var ee = 0; ee < edgeMeshes.length; ee++){
+      rebuildEdgeGeometry(edgeMeshes[ee]);
     }
 
     renderToASCII();
   }
 
   // === LOOP / OBSERVER / RESIZE =============================================
-  // 30fps RAF throttle.
   var last = 0, INVIEW = true;
   function loop(t){
     if(INVIEW && (t - last > 33)){ frame(); last = t; }
@@ -3456,8 +3454,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   frame();
 
   if(reduced){
-    // Reduced motion: single static frame.
-    return;
+    return; // Single static frame for reduced-motion users.
   }
 
   if('IntersectionObserver' in window){
