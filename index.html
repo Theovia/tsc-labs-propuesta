@@ -2049,6 +2049,25 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .urgency-lead{font-size:17px}
   .urgency-closing{font-size:18px}
 }
+/* Stat-card grid (Block 1 + Block 2) */
+.urgency-grid.stat-grid-6{grid-template-columns:repeat(3,1fr)}
+.urgency-pillar.stat-card{gap:14px;padding:32px 26px 26px}
+.urgency-pillar.stat-card .urgency-pillar-num{font-size:clamp(46px,4.6vw,68px);font-weight:300;letter-spacing:-0.035em;color:var(--accent);opacity:1;line-height:1}
+.urgency-pillar.stat-card .urgency-pillar-name{font-family:'Inter',sans-serif;font-weight:500;font-size:14px;line-height:1.4;letter-spacing:0;color:var(--ink);min-height:0;text-transform:none}
+.urgency-pillar.stat-card .urgency-pillar-name em{font-style:normal;color:var(--ink-soft);font-weight:400}
+.urgency-pillar.stat-card .urgency-state-prose{font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;color:var(--ink-soft);margin-top:2px}
+.urgency-pillar.stat-card .urgency-state-prose strong{color:var(--ink);font-weight:600}
+.urgency-pillar.stat-card .stat-source{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-mute);font-weight:600;margin-top:auto;padding-top:18px;border-top:1px solid var(--rule)}
+.urgency-rule-bottom{margin:32px 0;height:1px;background:var(--rule-strong);width:100%}
+.urgency-sources-strip{margin-top:36px;padding:14px 0;border-top:1px solid var(--rule);display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.urgency-sources-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;font-weight:600}
+.urgency-sources-list{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.06em;color:var(--ink-mute);text-transform:uppercase;font-weight:500;line-height:1.5}
+@media(max-width:1100px){
+  .urgency-grid.stat-grid-6{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .urgency-grid.stat-grid-6{grid-template-columns:1fr}
+}
 
 /* === COMMUNICATIONS LAYER (§ VII) === */
 .comms-frame{max-width:1280px;margin:0 auto}
@@ -2489,104 +2508,120 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   <div class="section-frame">
     <div class="urgency-frame">
       <div class="urgency-eyebrow">02 / POR QUÉ AHORA</div>
-      <h2 class="urgency-headline">Tres ventanas operacionales se cierran <em>si esperamos</em>.</h2>
-      <p class="urgency-lead">La modernización tecnológica no es opcional ni urgente — es una <em>opción con vencimiento</em>. Tres factores que en <strong>2026</strong> son ventaja convergen; en <strong>2028</strong> son tabla rasa.</p>
+      <h2 class="urgency-headline">Por qué ahora · <em>El costo de operar sin sistema integrado</em>.</h2>
+      <p class="urgency-lead">La data de la industria es directa: <strong>operación manual sin IA cuesta más cada año</strong>. Lo que TSC LABS gana al digitalizar es <em>medible</em>, no especulativo — el delta entre operar con sistema integrado y seguir como hoy ya está cuantificado por McKinsey, BCG, Gartner y Deloitte.</p>
 
+      <!-- BLOCK 1 · Cost of operating manual -->
       <div class="urgency-diagram">
-        <div class="urgency-diagram-cap">FIG. 02 · Tres ventanas operacionales · Estado 2026 vs 2028 · Cost de no actuar por pilar</div>
-        <div class="urgency-grid">
+        <div class="urgency-diagram-cap">FIG. 02A · OPERACIÓN MANUAL · Lo que la industria mide</div>
+        <div class="urgency-grid stat-grid-6">
 
-          <div class="urgency-pillar">
-            <div class="urgency-pillar-num">01</div>
-            <div class="urgency-pillar-name">Pilar 1 · <em>Ventana de mercado</em></div>
-            <div class="urgency-state">
-              <div class="urgency-state-box now">
-                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
-                <p class="urgency-state-prose"><strong>DTC skincare + B2B-talent management</strong> están creando una nueva categoría en MX. La conversación con management de talento ya empezó. <strong>&lt;10 talent managers</strong> en MX están pensando en marcas de skincare propias.</p>
-              </div>
-              <div class="urgency-arrow" aria-hidden="true">
-                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
-              </div>
-              <div class="urgency-state-box future">
-                <div class="urgency-state-tag">CERRADA · 2028</div>
-                <p class="urgency-state-prose">La categoría estará validada. Cada talent manager con audiencia +1M tendrá su propia marca DTC. La oferta de laboratorios "que saben hacerlo" será saturada. Precios y márgenes se nivelan.</p>
-              </div>
-            </div>
-            <div class="urgency-cost">
-              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
-              <p class="urgency-cost-prose">Ser <strong>el segundo, tercero, décimo</strong> lab en ofrecerlo. Captura del mercado pasa de "primero al mercado" a "uno más en la lista".</p>
-            </div>
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">−30%</div>
+            <div class="urgency-pillar-name">Productividad <em>vs peers digitalmente maduros</em></div>
+            <p class="urgency-state-prose">Las empresas con baja madurez digital operan ~30% por debajo en productividad respecto a las que digitalizaron procesos core.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · MOONCAMP / GARTNER 2026</div>
           </div>
 
-          <div class="urgency-pillar">
-            <div class="urgency-pillar-num">02</div>
-            <div class="urgency-pillar-name">Pilar 2 · <em>Deuda operacional creciente</em></div>
-            <div class="urgency-state">
-              <div class="urgency-state-box now">
-                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
-                <p class="urgency-state-prose">TSC LABS opera con <strong>+18 fórmulas</strong>, <strong>~50 lotes/año</strong>, <strong>3-5 talents</strong> potenciales en pipeline. Excel + carpetas + USBs es manejable a esta escala.</p>
-              </div>
-              <div class="urgency-arrow" aria-hidden="true">
-                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
-              </div>
-              <div class="urgency-state-box future">
-                <div class="urgency-state-tag">CERRADA · 2028</div>
-                <p class="urgency-state-prose">TSC con <strong>40+ fórmulas</strong>, <strong>200+ lotes/año</strong>, <strong>10+ talents</strong> activos, <strong>3+ marcas DTC</strong> propias. Sin sistema operacional, +15 horas/sem en reconciliación manual. Lotes sin status visible, envases sin tracking de pedido a consumo, POs a proveedores sin trail completo. Errores de lote/factura aumentan.</p>
-              </div>
-            </div>
-            <div class="urgency-cost">
-              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
-              <p class="urgency-cost-prose">Cada nueva fórmula, cliente, marca añade carga manual lineal. Sin sistema, el cuello de botella ya no es R&amp;D ni producción — <strong>es admin</strong>.</p>
-            </div>
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">$500B</div>
+            <div class="urgency-pillar-name">USD/año <em>en costos evitables</em></div>
+            <p class="urgency-state-prose">Manufactura + supply chain global pierde medio billón de dólares anuales en ineficiencias removibles con sistemas integrados y AI.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · MCKINSEY OPERATIONS 2024</div>
           </div>
 
-          <div class="urgency-pillar">
-            <div class="urgency-pillar-num">03</div>
-            <div class="urgency-pillar-name">Pilar 3 · <em>Lead científico convertible en moat tecnológico</em></div>
-            <div class="urgency-state">
-              <div class="urgency-state-box now">
-                <div class="urgency-state-tag">VENTANA ABIERTA · 2026</div>
-                <p class="urgency-state-prose">TSC tiene credenciales que no se construyen rápido — <strong>ITESM-trained biotecnólogos</strong>, COFEPRIS vigentes, marca propia validada en retail (The Skin Club vs Kiehl's/Clinique/L'Oréal/The Ordinary), R&amp;D propia con +18 fórmulas defendibles.</p>
-              </div>
-              <div class="urgency-arrow" aria-hidden="true">
-                <svg viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 0v12M3 8l5 5 5-5"/></svg>
-              </div>
-              <div class="urgency-state-box future">
-                <div class="urgency-state-tag">CERRADA · 2028</div>
-                <p class="urgency-state-prose">Las credenciales siguen, pero competidores tendrán las suyas también. La ventaja perdurable se construye encima — sistema operacional propio, data del negocio, capa agéntica entrenada con la operación TSC, ER diagrams y schemas que <em>solo TSC tiene</em>.</p>
-              </div>
-            </div>
-            <div class="urgency-cost">
-              <div class="urgency-cost-tag">COST DE NO ACTUAR</div>
-              <p class="urgency-cost-prose">El lead científico se mantiene pero deja de ser diferenciador. La oportunidad de convertirlo en <strong>moat tecnológico</strong> (sistema queryable + agentes + ERP propio) tiene fecha de expiración.</p>
-            </div>
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">+15-30%</div>
+            <div class="urgency-pillar-name">Capital atrapado <em>en exceso de inventario</em></div>
+            <p class="urgency-state-prose">Sin demand forecasting con AI, las empresas inmovilizan entre 15 y 30% adicional de capital en stock que no rota.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
+          </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">2-3 sem</div>
+            <div class="urgency-pillar-name">Preparación <em>para auditorías regulatorias</em></div>
+            <p class="urgency-state-prose">Empresas sin sistema digital integrado tardan semanas en consolidar evidencia de auditoría — versus <strong>&lt;2 días</strong> con sistema queryable. Benchmark de industria.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · DELOITTE TECH TRENDS 2024</div>
+          </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">47%</div>
+            <div class="urgency-pillar-name">Inversiones digitales <em>que no recuperan capital</em></div>
+            <p class="urgency-state-prose">Casi la mitad de los proyectos digitales mal planeados no recuperan su costo de capital. <strong>Hacerlo bien — no rápido — es la única forma rentable.</strong></p>
+            <div class="urgency-cost-tag stat-source">SOURCE · TEMPLETON 2024</div>
+          </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">23×</div>
+            <div class="urgency-pillar-name">Más probable <em>adquirir cliente B2B siendo data-driven</em></div>
+            <p class="urgency-state-prose">Las empresas data-driven tienen 23× mayor probabilidad de adquirir nuevos clientes B2B respecto a las que no lo son.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · MCKINSEY 2024</div>
           </div>
 
         </div>
       </div>
 
-      <div class="urgency-convergence">
-        <div class="urgency-conv-tag">CONVERGENCIA · MAYO 2026</div>
-        <div class="urgency-conv-grid">
-          <div class="urgency-conv-cell">
-            <div class="urgency-conv-num">~24</div>
-            <div class="urgency-conv-label">Meses de ventaja real</div>
-            <div class="urgency-conv-note">antes de que la categoría DTC × talent management quede saturada en MX.</div>
+      <!-- DIVIDER -->
+      <div class="urgency-rule-bottom"></div>
+
+      <!-- BLOCK 2 · What AI generates in operations -->
+      <div class="urgency-diagram">
+        <div class="urgency-diagram-cap">FIG. 02B · IA + SISTEMA INTEGRADO · Lo que ya está midiendo la industria</div>
+        <div class="urgency-grid stat-grid-6">
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">89%</div>
+            <div class="urgency-pillar-name">Manufacturers <em>planean AI en producción</em></div>
+            <p class="urgency-state-prose">El consenso ya no es si adoptar AI en operaciones — es cuándo. La curva industrial está movida.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
           </div>
-          <div class="urgency-conv-cell">
-            <div class="urgency-conv-num">4×</div>
-            <div class="urgency-conv-label">Crecimiento operacional esperado</div>
-            <div class="urgency-conv-note">de ~50 lotes/año a 200+ · de 18 fórmulas a 40+ · sin sistema, ~15 hrs/sem perdidas en reconciliación.</div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">68%</div>
+            <div class="urgency-pillar-name">Ya implementaron <em>AI en producción</em></div>
+            <p class="urgency-state-prose">Más de dos tercios de manufacturers globales ya tienen AI desplegado en producción. La ventaja relativa se está nivelando rápido.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
           </div>
-          <div class="urgency-conv-cell">
-            <div class="urgency-conv-num">12</div>
-            <div class="urgency-conv-label">Meses para construir el moat</div>
-            <div class="urgency-conv-note">F1-F5: data substrate único, ERP propio, lot + shipment tracking, capa agéntica · convertir lead científico en lead tecnológico.</div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">+30%</div>
+            <div class="urgency-pillar-name">Productividad <em>end-to-end con AI integrado</em></div>
+            <p class="urgency-state-prose">Operaciones con AI integrado al data layer reportan +30% productividad sostenida — no en pilotos, sino en estado estable.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
           </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">−10-20%</div>
+            <div class="urgency-pillar-name">Costo operativo <em>con predictive AI</em></div>
+            <p class="urgency-state-prose">Predictive maintenance + demand forecasting + scheduling automatizado reducen costo operativo entre 10 y 20% en industrias comparables a TSC.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
+          </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">−15-30%</div>
+            <div class="urgency-pillar-name">Capital atrapado <em>en inventario con AI predictivo</em></div>
+            <p class="urgency-state-prose">El mismo delta que se pierde sin AI se recupera con AI predictivo. Capital de trabajo liberable directamente al P&amp;L.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
+          </div>
+
+          <div class="urgency-pillar stat-card">
+            <div class="urgency-pillar-num">+2-5pp</div>
+            <div class="urgency-pillar-name">Revenue <em>con scenario simulation y demand forecasting</em></div>
+            <p class="urgency-state-prose">Empresas que ejecutan scenario planning con AI capturan entre 2 y 5 puntos porcentuales adicionales de revenue contra el grupo de control.</p>
+            <div class="urgency-cost-tag stat-source">SOURCE · BCG MANUFACTURING SURVEY 2024</div>
+          </div>
+
         </div>
       </div>
 
-      <p class="urgency-closing">Estas tres ventanas no son hipotéticas. Son la <em>lectura del momento de mercado</em> en mayo 2026.</p>
+      <!-- BLOCK 3 · What this means for TSC LABS -->
+      <p class="urgency-closing">La oportunidad no es de timing — <em>es de capacidad construida</em>. La industria farmacéutica + cosmética que adopta sistemas integrados con IA captura entre <strong>10-30% de ahorro operativo</strong> y <strong>30%+ de productividad sostenida</strong>. TSC LABS tiene la base para hacerlo: equipo técnico, marca propia validada, infraestructura COFEPRIS vigente. La pregunta es construir el sistema operacional ahora — con la curva industrial — o construirlo después contra el efecto compuesto de seguir operando manualmente.</p>
+
+      <!-- Sources strip -->
+      <div class="urgency-sources-strip">
+        <span class="urgency-sources-tag">SOURCES</span>
+        <span class="urgency-sources-list">McKinsey Operations 2024 · BCG Manufacturing Survey 2024 · Gartner Digital Maturity 2026 · Deloitte Tech Trends 2024</span>
+      </div>
     </div>
   </div>
 </section>
@@ -4004,7 +4039,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <td class="anchor-opt"><strong>No hacer nada</strong><em>operar sobre Excels + carpetas + USBs</em></td>
               <td class="right"><strong>$0</strong><br><span class="anchor-sub">directo</span></td>
               <td>Costo invisible · deuda operacional creciente</td>
-              <td>TSC sigue operando con Excel + carpetas + USBs · lotes sin status visible · envases y POs sin tracking · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · perdiendo ventana 2026-2028.</td>
+              <td>TSC sigue operando con Excel + carpetas + USBs · lotes sin status visible · envases y POs sin tracking · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · costo acumulado contra la curva industrial.</td>
             </tr>
           </tbody>
         </table>
