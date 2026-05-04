@@ -2387,7 +2387,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
       <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em>queryable</em> en una sola arquitectura.</h1>
       <p class="cover-subtitle">F0 + 12 meses · 6 fases · una arquitectura unificada. F0 fija el modelo maestro; F1-F5 dejan a TSC LABS operando sobre un solo data substrate, con audit trail, ERP, BI y capa agéntica activos.</p>
-      <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Document Vault, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
+      <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Operations registry, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
 
       <div class="cover-headline-stats">
         <div class="cover-stat">
@@ -2465,15 +2465,15 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         <p>Las <strong>fórmulas</strong> del laboratorio viven hoy en hojas de cálculo distribuidas o sólo en la memoria del químico. Para una operación con +18 fórmulas validadas en mercado, esto significa riesgo de continuidad y un techo de escalabilidad que se va a notar en seis meses, no en seis años.</p>
 
-        <p>El <strong>batch tracking</strong> no está sistematizado contra la NOM-259-SSA1-2022. Cada auditoría COFEPRIS — vigente o futura — toma semanas en preparación porque no hay un único origen de verdad sobre lotes, controles de calidad y caducidades.</p>
+        <p>El <strong>lot tracking</strong> y el <strong>supply chain</strong> viven en hojas de cálculo. No hay un único origen de verdad sobre dónde está cada lote, qué envases tiene asignados, qué proveedor está pendiente. Saber el status real de un envío o reconciliar inventario físico vs sistema toma horas, no segundos.</p>
 
         <div class="diag-pull">The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</div>
 
         <p>El <strong>pipeline B2B con management de talento</strong> está abriéndose. Sin un Talent Portal, un CRM real y contratos generados desde template, no es replicable. Cada nuevo talent que entra repite el ciclo manualmente.</p>
 
-        <p>Los <strong>documentos COFEPRIS, NOMs y trazabilidad de lotes</strong> viven en carpetas locales, USBs y correos. No es auditable. No es exportable. No es la calidad de archivo que un laboratorio en escalamiento defendible necesita.</p>
+        <p>El <strong>operations data</strong> — lotes, envases, envíos, POs, inventario — vive en carpetas locales, USBs y correos. No es queryable. No es exportable. No es la calidad de operación que un laboratorio en escalamiento defendible necesita. Los certificados COFEPRIS están vigentes — pero el problema diario no es ese, es saber dónde está el lote 887 sin abrir 4 archivos.</p>
 
-        <p>Lo que sigue es la propuesta para resolverlo: 5 fases acumulativas, 12 meses, una arquitectura unificada. F1-F5 entregan el sistema operacional de TSC LABS — un data substrate único (D1 + R2 + Workers Analytics), servicios encima (Talent Portal, ERP, Document Vault COFEPRIS, dashboards), y capa agéntica de 4 olas. El objetivo medible es <strong>hacer la operación queryable</strong>: cada decisión de negocio termina en una query SQL contra D1, cada agente lee del mismo store, y cada documento COFEPRIS queda versionado en R2 con audit log. Schemas formales, ER diagrams, NOM-259/NOM-141/NOM-089 mapeados al data model.</p>
+        <p>Lo que sigue es la propuesta para resolverlo: 5 fases acumulativas, 12 meses, una arquitectura unificada. F1-F5 entregan el sistema operacional de TSC LABS — un data substrate único (D1 + R2 + Workers Analytics), servicios encima (Talent Portal, ERP, Operations registry + Document Vault básico, dashboards), y capa agéntica de 4 olas. El objetivo medible es <strong>hacer la operación queryable</strong>: cada decisión de negocio termina en una query SQL contra D1, cada agente lee del mismo store, y cada lote, envase, envío y PO queda con status visible en tiempo real. Schemas formales, ER diagrams, lot lifecycle mapeado al data model.</p>
 
         <div class="diag-sign">
           <p class="diag-sign-name">Eigen Atlas Practice</p>
@@ -2531,7 +2531,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               </div>
               <div class="urgency-state-box future">
                 <div class="urgency-state-tag">CERRADA · 2028</div>
-                <p class="urgency-state-prose">TSC con <strong>40+ fórmulas</strong>, <strong>200+ lotes/año</strong>, <strong>10+ talents</strong> activos, <strong>3+ marcas DTC</strong> propias. Sin sistema operacional, +15 horas/sem en reconciliación manual. Errores de lote/factura aumentan. Auditorías COFEPRIS pasan de 2-3 días a 3+ semanas.</p>
+                <p class="urgency-state-prose">TSC con <strong>40+ fórmulas</strong>, <strong>200+ lotes/año</strong>, <strong>10+ talents</strong> activos, <strong>3+ marcas DTC</strong> propias. Sin sistema operacional, +15 horas/sem en reconciliación manual. Lotes sin status visible, envases sin tracking de pedido a consumo, POs a proveedores sin trail completo. Errores de lote/factura aumentan.</p>
               </div>
             </div>
             <div class="urgency-cost">
@@ -2581,7 +2581,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <div class="urgency-conv-cell">
             <div class="urgency-conv-num">12</div>
             <div class="urgency-conv-label">Meses para construir el moat</div>
-            <div class="urgency-conv-note">F1-F5: data substrate único, ERP propio, capa agéntica, document vault COFEPRIS · convertir lead científico en lead tecnológico.</div>
+            <div class="urgency-conv-note">F1-F5: data substrate único, ERP propio, lot + shipment tracking, capa agéntica · convertir lead científico en lead tecnológico.</div>
           </div>
         </div>
       </div>
@@ -2597,12 +2597,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="tesis-frame">
       <div class="tesis-eyebrow">03 / LA TESIS</div>
       <h1 class="tesis-headline">Un solo <em>data substrate</em>, todos los servicios encima.</h1>
-      <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Talent Portal, ERP, Document Vault COFEPRIS, dashboards y agentes leen y escriben al mismo store.</p>
+      <p class="tesis-sub">F1-F5 entregan un sistema operacional con un solo data layer (D1 + R2) y un audit trail unificado. Talent Portal, ERP, Operations registry + Document Vault básico, dashboards y agentes leen y escriben al mismo store.</p>
 
       <div class="tesis-body">
         <p>TSC LABS opera hoy con piezas que no se hablan: Excel, carpetas locales, USBs, Calendly, contadores externos. Cada decisión de negocio cruza 3 herramientas y termina en un Excel manual.</p>
 
-        <p>F1-F5 reemplaza esto con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal, ERP de inventario, Document Vault COFEPRIS, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
+        <p>F1-F5 reemplaza esto con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal, ERP de inventario, Operations registry + Document Vault básico, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
 
         <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. Sin reconciliación entre canales. Sin discrepancia entre dashboard y operación. El store es la fuente. Todos los servicios leen y escriben de ahí.</p>
 
@@ -2644,8 +2644,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <text x="760" y="84" text-anchor="middle">ERP Inventory</text>
             <text x="760" y="102" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F3 · AUTO-DESCONTANDO</text>
             <rect x="40" y="220" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
-            <text x="120" y="244" text-anchor="middle">Compliance Vault</text>
-            <text x="120" y="262" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F3 · COFEPRIS · NOMS</text>
+            <text x="120" y="244" text-anchor="middle">Operations Registry</text>
+            <text x="120" y="262" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F3 · LOTES · ENVASES · ENVÍOS</text>
             <rect x="720" y="220" width="160" height="56" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
             <text x="800" y="244" text-anchor="middle">BI Dashboard</text>
             <text x="800" y="262" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1.2">F4 · QUERYABLE</text>
@@ -2705,17 +2705,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Auditoría completa de la información existente — fórmulas, lotes, talents, proveedores, documentos COFEPRIS, comunicaciones, accesos, software actual — y arquitectura del <strong>modelo maestro</strong> al que F1-F5 conectarán. Lo que vive en Excels, carpetas locales, USBs, sistemas activos, suscripciones y documentación dispersa se inventaria, se clasifica y se mapea al data substrate.</p>
+          <p>Auditoría completa de la información existente — fórmulas, lotes, envases, talents, proveedores, certificados regulatorios, comunicaciones, accesos, software actual — y arquitectura del <strong>modelo maestro</strong> al que F1-F5 conectarán. Lo que vive en Excels, carpetas locales, USBs, sistemas activos, suscripciones y documentación dispersa se inventaria, se clasifica y se mapea al data substrate.</p>
           <p>El cierre es un <strong>master schema firmado</strong>: tablas, FKs, constraints, índices, taxonomías canónicas y un plan de migración de cómo y cuándo cada fase F1-F5 se conecta al modelo maestro. El sistema no se diseña dos veces.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Auditoría completa de información (fórmulas Excel, carpetas locales, USBs, sistemas activos, suscripciones, accesos, documentación dispersa) · ER diagrams formales (entidades + relaciones + cardinalidades) · taxonomías canónicas (fórmulas · lotes · talents · proveedores · documentos COFEPRIS · canales de venta · SKUs) · master schema (tablas, FKs, constraints, índices) · plan de migración F1-F5 al modelo maestro · audit de accesos + seguridad de la operación actual.</div>
+            <div class="phase-block-body">Auditoría completa de información (fórmulas Excel, carpetas locales, USBs, sistemas activos, suscripciones, accesos, documentación dispersa) · ER diagrams formales (entidades + relaciones + cardinalidades) · taxonomías canónicas (fórmulas · lotes · envases · talents · proveedores · canales de venta · SKUs) · master schema (tablas, FKs, constraints, índices) · plan de migración F1-F5 al modelo maestro · audit de accesos + seguridad de la operación actual.</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
-            <div class="phase-stack">Discovery sessions (Diego, Kaori, Natalia, equipo extendido) · ER tooling (dbdiagram, Lucidchart, schema visualizers) · audit framework</div>
+            <div class="phase-stack">Discovery sessions (Diego Nuño, Kaori Fonseca, Natalia Carrillo, equipo extendido) · ER tooling (dbdiagram, Lucidchart, schema visualizers) · audit framework</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
@@ -2779,7 +2779,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Cada talent manager que evalúa lanzar marca propia tiene acceso a un <strong>Talent Portal</strong> con login magic-link. Ahí ve estado real de su fórmula: progreso de R&amp;D, batch listo, documentación COFEPRIS, link de pago, factura, y conversación archivada.</p>
+          <p>Cada talent manager que evalúa lanzar marca propia tiene acceso a un <strong>Talent Portal</strong> con login magic-link. Ahí ve estado real de su fórmula: progreso de R&amp;D, batch listo, status de envío, link de pago, factura, y conversación archivada.</p>
           <p><strong>CRM lead pipeline</strong> para escalar del primer talent a las próximas diez agencias. <strong>Email automation</strong> por hito (concepto aprobado, prototipo listo, lote producido, listo para retail). <strong>Stripe + MercadoPago</strong> con factura IVA-compliant CFDI 4.0 emitida automáticamente por hito.</p>
         </div>
         <div class="phase-side">
@@ -2806,9 +2806,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <span class="phase-num-label">Fase tres</span>
         </div>
         <div>
-          <h3 class="phase-title">ERP &amp; <em>Producción Digital</em></h3>
-          <p class="phase-meta-line">2.5 meses · Formula DB · ERP propio · Document Vault COFEPRIS · trazabilidad lote→cliente</p>
-          <p class="phase-subtitle">El laboratorio se convierte en sistema. Inventario predictivo + producción trazable + compliance auditable.</p>
+          <h3 class="phase-title">ERP &amp; <em>Operations Tracking</em></h3>
+          <p class="phase-meta-line">2.5 meses · Formula DB · Lot lifecycle · Envases tracking · Shipment + PO tracking · Document Vault básico</p>
+          <p class="phase-subtitle">El laboratorio se convierte en sistema. Cada lote, envase, envío y orden con status en vivo.</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$300<em>K</em></div>
@@ -2817,23 +2817,23 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Las fórmulas migran de Excel a una <strong>Formula DB versionada</strong> con ingredientes, sustitutos, NOMs aplicables y eficacia comprobada. <strong>Batch tracking</strong> con números de lote, registros de QA, fechas de caducidad y reconciliación con inventario, ligado al talent portal correspondiente.</p>
-          <p><strong>ERP propio:</strong> control de inventario que descuenta automáticamente con cada producción y cada movimiento de salida, predicción de agotamiento por SKU, alertas de re-stock antes de quedarse sin materia prima, gestión de proveedores con histórico de compras y órdenes de compra generadas semi-automáticamente cuando un insumo cruza el umbral crítico.</p>
-          <p><strong>Document Vault COFEPRIS</strong> — Aviso de Funcionamiento + designación de Responsable Sanitario + auditorías NOM-259-SSA1-2022 con CAPAs + etiquetado NOM-141-SSA1/SCFI-2012 versionado por SKU + análisis microbiológicos NOM-089-SSA1-1994 por lote producido + lot/batch records + log de quejas y farmacovigilancia cosmética + checklist contra lista de ingredientes prohibidos/restringidos COFEPRIS — todo buscable, version-controlled y exportable a PDF firmado para cualquier auditoría. <strong>Trazabilidad lot → cliente final</strong>, audit-trail completo, litigio-ready.</p>
-          <p class="phase-value-list"><strong>Lo que TSC gana, en concreto:</strong> auditoría COFEPRIS de 3 semanas → 2 días · cualquier inspector pide doc X → exportable a PDF firmado en &lt;60s · ingrediente prohibido sale en lista nueva COFEPRIS → check automático contra todas las fórmulas activas · quejas y farmacovigilancia con audit log unificado, búsqueda &lt;5s · etiquetado NOM-141 versionado: cada cambio de label queda con timestamp y diff.</p>
+          <p>Las fórmulas + lotes + envases + envíos + órdenes de proveedor pasan de hojas de cálculo a un sistema con <strong>status en vivo</strong>. Cada lote tiene su lifecycle visible: <strong>producción → cuarentena → liberado → empacado → enviado → entregado</strong>. Cada envase (frasco, etiqueta, tapa, secundario) tiene status: pedido, recibido, asignado a lote, consumido. Cada PO a proveedor con ETA, recibido, validado, facturado.</p>
+          <p><strong>Formula DB versionada</strong> con ingredientes, sustitutos, eficacia y NOMs aplicables como metadata. <strong>Shipment tracking</strong> integrado con APIs de courier (DHL · Estafeta · FedEx) — cada lote enviado con guía, status entrega, fecha y destino visibles en una sola vista. <strong>Reconciliación de inventario</strong> físico vs sistema con alertas de discrepancia.</p>
+          <p><strong>Document Vault básico</strong> para los certificados COFEPRIS vigentes (Aviso de Funcionamiento, designación de Responsable Sanitario, audits vigentes) — repositorio simple, no centro operativo. TSC ya cumple, lo que necesita el día a día es saber dónde está cada lote, cada frasco y cada PO.</p>
+          <p class="phase-value-list"><strong>Lo que TSC gana, en concreto:</strong> "¿dónde está el lote 887?" → courier + guía + ETA + status en &lt;2s · frasco amber 30ml: en stock 1,200 · pedido 800 · ETA 2d · proyección consumo 6d → orden auto sugerida · producción terminada → automático: QC pass, asignar envases disponibles, generar packing slip, notificar talent · reconciliación inventario nocturna: alerta a Diego si discrepancia &gt;2% · cada PO a proveedor: trail completo desde solicitud → recibido → facturado → pagado.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">Formula DB · Batch tracking · <strong>ERP de inventario</strong> (auto-descuento, predicción, re-stock, proveedores) · Document Vault COFEPRIS · trazabilidad lot→cliente.</div>
+            <div class="phase-block-body">Formula DB versionada · <strong>Lot lifecycle tracking</strong> (producción → cuarentena → liberado → empacado → enviado → entregado) · <strong>Envases + packaging materials status</strong> (pedido / recibido / asignado / consumido) · <strong>Shipment tracking</strong> via courier APIs · <strong>Supply chain operativo</strong> (POs a proveedores: ETA, recibido, facturado) · <strong>Reconciliación inventario</strong> (físico vs sistema, alertas de discrepancia) · Document Vault básico (AF, RS, audits COFEPRIS vigentes — repositorio simple).</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
-            <div class="phase-stack">CF D1 · R2 · Workers Workflows · Pages dashboards · Cron Triggers para predicciones</div>
+            <div class="phase-stack">CF D1 · R2 · Workers Workflows · Pages dashboards · Cron Triggers (predicciones + alertas) · Courier APIs (DHL · Estafeta · FedEx) para shipment tracking · Webhooks de proveedores</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
-            <div class="phase-block-body">18 fórmulas migradas · 1 lote trackeado end-to-end · 100% docs COFEPRIS digital · ERP descontando inventario en tiempo real.</div>
+            <div class="phase-block-body">100% lotes activos con status en vivo · 100% envases catalogados con tracking de pedido a consumo · 1 lote completo trackeado de producción a entrega final · reconciliación inventario con discrepancia &lt;2% · Document Vault básico digitalizado (AF, RS, audits vigentes).</div>
           </div>
         </div>
       </div>
@@ -3505,31 +3505,31 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <div class="bi-cell-foot"><strong>312 acciones</strong> autónomas hoy · 0 escalaciones humanas · agent uptime 99.94%</div>
           </div>
 
-          <!-- PANEL F · Compliance heat map (8 brands × 4 NOMs) -->
+          <!-- PANEL F · Lot status heat map (8 lotes × ciclo operativo) -->
           <div class="bi-cell card">
             <div class="bi-cell-head">
-              <div class="bi-cell-title">Compliance heat map · NOM × brand<small>F2 · COFEPRIS NOM-259/141/089 + Aviso Funcionamiento · status real-time</small></div>
-              <span class="bi-cell-tag live">100%</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
+              <div class="bi-cell-title">Lot status heat map · 8 lotes × ciclo<small>F3 · Producción → Cuarentena → Liberado → Empacado → Enviado · status real-time</small></div>
+              <span class="bi-cell-tag live">LIVE</span><span class="bi-cell-menu" aria-hidden="true">⋯</span>
             </div>
             <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Column headers · 4 NOMs + Aviso Funcionamiento -->
+              <!-- Column headers · 5 fases lifecycle -->
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.4">
-                <text x="180" y="14" text-anchor="middle">NOM-259</text>
-                <text x="240" y="14" text-anchor="middle">NOM-141</text>
-                <text x="300" y="14" text-anchor="middle">NOM-089</text>
-                <text x="360" y="14" text-anchor="middle">NOM-251</text>
-                <text x="420" y="14" text-anchor="middle">AF · COFEPRIS</text>
+                <text x="180" y="14" text-anchor="middle">PRODUCC.</text>
+                <text x="240" y="14" text-anchor="middle">CUARENT.</text>
+                <text x="300" y="14" text-anchor="middle">LIBERADO</text>
+                <text x="360" y="14" text-anchor="middle">EMPACADO</text>
+                <text x="420" y="14" text-anchor="middle">ENVIADO</text>
               </g>
-              <!-- Row labels -->
+              <!-- Row labels · 8 lotes -->
               <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.3">
-                <text x="0" y="36">T. CAROLINA M.</text>
-                <text x="0" y="60">B. SKIN CO.</text>
-                <text x="0" y="84">AURORA ROS</text>
-                <text x="0" y="108">N. CENTELLA</text>
-                <text x="0" y="132">M. SOLER</text>
-                <text x="0" y="156">VEGA · LAB</text>
-                <text x="0" y="180">PALOMA F.</text>
-                <text x="0" y="204">RIVA · CO</text>
+                <text x="0" y="36">L-2030-887</text>
+                <text x="0" y="60">L-2030-892</text>
+                <text x="0" y="84">L-2030-901</text>
+                <text x="0" y="108">L-2030-905</text>
+                <text x="0" y="132">L-2030-912</text>
+                <text x="0" y="156">L-2030-918</text>
+                <text x="0" y="180">L-2030-924</text>
+                <text x="0" y="204">L-2030-930</text>
               </g>
               <!-- Cells: green / amber / red dots -->
               <!-- Helper: green=#16A34A amber=#D97706 red=#B91C1C -->
@@ -3587,27 +3587,27 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <g font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
                 <g transform="translate(0 232)">
                   <circle cx="6" cy="0" r="5" fill="#16A34A"/>
-                  <text x="18" y="4" fill="#0A0A0A">VIGENTE</text>
+                  <text x="18" y="4" fill="#0A0A0A">ACTIVO</text>
                 </g>
                 <g transform="translate(110 232)">
                   <circle cx="6" cy="0" r="5" fill="#D97706"/>
-                  <text x="18" y="4" fill="#0A0A0A">RENOVAR &lt;90D</text>
+                  <text x="18" y="4" fill="#0A0A0A">PENDIENTE</text>
                 </g>
                 <g transform="translate(260 232)">
                   <circle cx="6" cy="0" r="5" fill="#B91C1C"/>
-                  <text x="18" y="4" fill="#0A0A0A">VENCIDO</text>
+                  <text x="18" y="4" fill="#0A0A0A">BLOQUEADO</text>
                 </g>
                 <g transform="translate(370 232)">
                   <circle cx="6" cy="0" r="5" fill="#6E6E70" opacity="0.35"/>
-                  <text x="18" y="4" fill="#0A0A0A">N/A</text>
+                  <text x="18" y="4" fill="#0A0A0A">COMPLETADO</text>
                 </g>
               </g>
               <!-- Big number stat -->
               <g>
-                <text x="240" y="252" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.5">37 / 40 VIGENTES · 3 EN RENOVACIÓN AUTOMÁTICA</text>
+                <text x="240" y="252" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.5">8 / 8 LOTES CON STATUS LIVE · 3 EN ENVÍO ACTIVO</text>
               </g>
             </svg>
-            <div class="bi-cell-foot"><strong>3 NOM-141 renewals</strong> en pipeline · <strong>Document Vault</strong> R2 versionado · 0 vencidas</div>
+            <div class="bi-cell-foot"><strong>3 envíos</strong> con courier API live · <strong>Operations registry</strong> D1 + R2 · discrepancia inventario 0.8%</div>
           </div>
 
         </div>
@@ -3655,7 +3655,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f1">F0 · discovery</span>
-            <div class="roadmap-deliv-text">Auditoría de fórmulas, lotes, talents, proveedores, COFEPRIS, accesos · ER diagrams formales · taxonomías canónicas · master schema (tablas, FKs, constraints) · plan de migración F1-F5 al modelo maestro.</div>
+            <div class="roadmap-deliv-text">Auditoría de fórmulas, lotes, envases, talents, proveedores, accesos · ER diagrams formales · taxonomías canónicas · master schema (tablas, FKs, constraints) · plan de migración F1-F5 al modelo maestro.</div>
           </div>
         </div>
 
@@ -3710,24 +3710,24 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="roadmap-row">
           <div class="roadmap-month"><strong>M05</strong>SEP 2026</div>
           <div class="roadmap-content">
-            <div class="roadmap-theme">Formula DB completa</div>
+            <div class="roadmap-theme">Lot lifecycle + Envases tracking live</div>
             <div class="roadmap-summary">F3 medio.</div>
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f3">F3 · medio</span>
-            <div class="roadmap-deliv-text">18 fórmulas migradas a DB versionada con NOMs · ingredientes catalogados con sustitutos · primer Document Vault COFEPRIS importado.</div>
+            <div class="roadmap-deliv-text">Formula DB live (18 fórmulas) · Lot lifecycle tracking activo (producción → cuarentena → liberado) · Envases catalogados con status (pedido / recibido / asignado) · primeras alertas de re-stock operando.</div>
           </div>
         </div>
 
         <div class="roadmap-row">
           <div class="roadmap-month"><strong>M06</strong>OCT 2026</div>
           <div class="roadmap-content">
-            <div class="roadmap-theme">Batch tracking + Dashboard MVP</div>
+            <div class="roadmap-theme">Shipment tracking + Reconciliación inventario</div>
             <div class="roadmap-summary">F3 entrega + F4 arranque.</div>
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f3">F3 · entrega</span>
-            <div class="roadmap-deliv-text">Trazabilidad lot→cliente final live · 1 lote completo trackeado end-to-end · documentos COFEPRIS 100% digitalizados · Dashboard ejecutivo MVP con margen real-time por SKU.</div>
+            <div class="roadmap-deliv-text">1 lote trackeado producción → entrega final · shipment tracking via courier API live · reconciliación inventario operativa (discrepancia &lt;2%) · Document Vault básico digital (AF, RS, NOM audits) · Dashboard ejecutivo MVP con margen real-time por SKU.</div>
           </div>
         </div>
 
@@ -3819,7 +3819,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     </header>
 
     <div class="comms-frame">
-      <p class="comms-intro">Bots dispersos sobre data fragmentada no son una capa de comunicaciones. La diferencia es el store debajo. Cada chatbot (DTC, B2B, Talent, Compliance, Interno) lee del mismo D1 + R2 y escribe al mismo audit log. La respuesta a una consulta de stock, fórmula, precio o documento COFEPRIS es la misma vista por cliente final, talent, proveedor, equipo interno o autoridad regulatoria. <strong>Trazable, versionada, auditable.</strong></p>
+      <p class="comms-intro">Bots dispersos sobre data fragmentada no son una capa de comunicaciones. La diferencia es el store debajo. Cada chatbot (DTC, B2B, Talent, Compliance, Interno) lee del mismo D1 + R2 y escribe al mismo audit log. La respuesta a una consulta de stock, fórmula, precio o status de envío es la misma vista por cliente final, talent, proveedor, equipo interno o autoridad regulatoria. <strong>Trazable, versionada, auditable.</strong></p>
 
       <div class="comms-grid">
         <div class="comms-card">
@@ -3922,7 +3922,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 03 · ERP &amp; Producción Digital<em>Formula DB · ERP propio (inventario, predicción, proveedores) · Document Vault · trazabilidad</em></div></td>
+            <td><div class="fin-line-label">Fase 03 · ERP &amp; Operations Tracking<em>Formula DB · Lot lifecycle · Envases status · Shipment + PO tracking · Document Vault básico</em></div></td>
             <td class="right">$300K</td>
             <td class="right">2.5 mo</td>
             <td class="fin-line-pct">22.1%</td>
@@ -4004,7 +4004,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <td class="anchor-opt"><strong>No hacer nada</strong><em>operar sobre Excels + carpetas + USBs</em></td>
               <td class="right"><strong>$0</strong><br><span class="anchor-sub">directo</span></td>
               <td>Costo invisible · deuda operacional creciente</td>
-              <td>TSC sigue operando con Excel + carpetas + USBs · auditorías COFEPRIS 3+ semanas · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · perdiendo ventana 2026-2028.</td>
+              <td>TSC sigue operando con Excel + carpetas + USBs · lotes sin status visible · envases y POs sin tracking · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · perdiendo ventana 2026-2028.</td>
             </tr>
           </tbody>
         </table>
@@ -4191,8 +4191,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="cap-card">
           <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="cap-num">CAP · 05</div>
-          <div class="cap-title">Compliance auditable</div>
-          <p class="cap-prose">COFEPRIS digitalizado · trazabilidad lot→cliente · NOMs version-controlled. <strong>Litigio-ready, audit-trail completo.</strong></p>
+          <div class="cap-title">Operations tracking en vivo</div>
+          <p class="cap-prose">Cada lote, envase, envío y PO con status visible en tiempo real. Lifecycle completo desde producción hasta entrega final. <strong>Document Vault básico para certificados COFEPRIS vigentes — sin sobre-administrar lo que no es problema.</strong></p>
         </div>
 
         <div class="cap-card">
@@ -4235,7 +4235,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </div>
         <div class="uplift-card">
           <div class="uplift-card-title">CONTROLES DE CALIDAD</div>
-          <p class="uplift-card-prose">Checklist por lote vinculado a NOM-259-SSA1-2022. Cada batch pasa por validación digital antes de cerrarse en sistema. QA recibe alerta si un KPI sale de rango. <strong>Rastreabilidad inmediata si surge desviación.</strong></p>
+          <p class="uplift-card-prose">Checklist por lote anclado al lifecycle (producción → cuarentena → liberado → empacado → enviado). Cada batch pasa por QC digital antes de avanzar de fase. QA recibe alerta si un KPI sale de rango. <strong>Status del lote visible end-to-end, sin abrir 4 archivos.</strong></p>
         </div>
         <div class="uplift-card">
           <div class="uplift-card-title">DIRECCIÓN Y ESTRATEGIA</div>
@@ -4246,8 +4246,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p class="uplift-card-prose">Procesos repetitivos automatizados — factura por hito, restock por threshold, comunicación a talent en milestone. <strong>El equipo deja de pelear con admin y enfoca en R&amp;D, ventas y relaciones.</strong></p>
         </div>
         <div class="uplift-card">
-          <div class="uplift-card-title">AUDITORÍAS Y COMPLIANCE</div>
-          <p class="uplift-card-prose">Lo que antes tomaba 3 semanas pre-auditoría COFEPRIS pasa a 2 días: todo el archivo está versionado, etiquetado, exportable a PDF. <strong>El audit log responde por sí solo.</strong></p>
+          <div class="uplift-card-title">SHIPMENT + RECONCILIACIÓN</div>
+          <p class="uplift-card-prose">"¿Dónde está el lote 887?" → courier + guía + ETA + status entrega en &lt;2s. Reconciliación inventario nocturna: alerta a Diego si discrepancia &gt;2%. <strong>Operations responde por sí solo, sin reuniones de status.</strong></p>
         </div>
       </div>
     </div>
@@ -4270,7 +4270,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">R2</div>
-        <p class="glossary-def">Storage de objetos compatible S3 sin egress fees. Usada para PDFs COFEPRIS, snapshots de inventario, backups.</p>
+        <p class="glossary-def">Storage de objetos compatible S3 sin egress fees. Usada para snapshots de inventario, packing slips, certificados regulatorios, backups.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">Workers</div>
@@ -4290,23 +4290,15 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">Aviso de Funcionamiento</div>
-        <p class="glossary-def">Registro del establecimiento ante COFEPRIS. Se presenta una sola vez al inicio de operación, vigencia indefinida con actualizaciones cuando cambian datos del establecimiento. TSC LABS lo tiene desde 2021. Cosméticos en MX no requieren trámite a nivel SKU — el AF cubre toda la operación.</p>
+        <p class="glossary-def">Registro del establecimiento ante COFEPRIS. Se presenta una sola vez al inicio de operación, vigencia indefinida. TSC LABS lo tiene desde 2021. Cosméticos en MX no requieren trámite a nivel SKU — el AF cubre toda la operación.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">Responsable Sanitario</div>
-        <p class="glossary-def">Persona designada con cédula profesional, responsable ante COFEPRIS de la operación sanitaria del establecimiento cosmético. Designación documentada en el Document Vault.</p>
+        <p class="glossary-def">Persona designada con cédula profesional, responsable ante COFEPRIS de la operación sanitaria del establecimiento cosmético. Designación archivada en el Document Vault básico.</p>
       </div>
       <div class="glossary-cell">
-        <div class="glossary-term">NOM-259-SSA1-2022</div>
-        <p class="glossary-def">Buenas Prácticas de Fabricación cosmética en México (sucede a NOM-259-SSA1-2014). Auditable periódicamente. Document Vault la cumple con audit reports + CAPAs versionados.</p>
-      </div>
-      <div class="glossary-cell">
-        <div class="glossary-term">NOM-141-SSA1/SCFI-2012</div>
-        <p class="glossary-def">Etiquetado de productos cosméticos en MX. Cubre claims, ingredientes, etiquetas. Versionado por SKU vigente en el Document Vault con timestamp y diff por cambio.</p>
-      </div>
-      <div class="glossary-cell">
-        <div class="glossary-term">NOM-089-SSA1-1994</div>
-        <p class="glossary-def">Métodos para análisis microbiológico de productos cosméticos. Testing por lote producido, resultados archivados contra el lot record correspondiente.</p>
+        <div class="glossary-term">COFEPRIS · normativa cosmética</div>
+        <p class="glossary-def">Set de NOMs aplicables a fabricación cosmética en MX (NOM-259 BPF, NOM-141 etiquetado, NOM-089 microbiológico, NOM-251 buenas prácticas). TSC ya cumple — se mantiene en Document Vault básico sin operación recurrente.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">CFDI 4.0</div>
@@ -4804,7 +4796,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <!-- STATUS BAR -->
         <div class="tp-statusbar" role="status" aria-live="off">
           <div><span class="tp-statusbar-dot" aria-hidden="true"></span><strong>AUTHENTICATED</strong> · MAGIC-LINK · SESIÓN EXPIRA EN 7d 14h · AUDIT LOG ACTIVO</div>
-          <div>D1 · R2 · FORMULA DB · DOCUMENT VAULT COFEPRIS · STRIPE · MERCADOPAGO · RESEND</div>
+          <div>D1 · R2 · FORMULA DB · LOT REGISTRY · COURIER API · STRIPE · MERCADOPAGO · RESEND</div>
         </div>
 
       </div>
@@ -4849,7 +4841,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <h3 class="invitation-title">Construir, juntos, la <em>aplicación que va a operar como TSC LABS</em>.</h3>
       <div class="invitation-prose">
         <p>12 meses de construcción + retainer de operación conjunta. La operación queda en producción, evoluciona con el negocio, y la dirección técnica permanece con quien construyó el sistema. Para pasar a kickoff: revisión, work order F1 firmado, y arrancamos en 7 días.</p>
-        <p>Al cierre de F5, TSC LABS opera con un solo data substrate (D1 + R2 + Workers Analytics), una capa de servicios encima (Talent Portal, ERP, Document Vault COFEPRIS, dashboards de margen), y una capa agéntica de 4 olas activa sobre ambos. Cada decisión técnica del período — schemas, latencia, seguridad, escalamiento — la toma quien va a operar el sistema en producción.</p>
+        <p>Al cierre de F5, TSC LABS opera con un solo data substrate (D1 + R2 + Workers Analytics), una capa de servicios encima (Talent Portal, ERP, Operations registry + Document Vault básico, dashboards de margen), y una capa agéntica de 4 olas activa sobre ambos. Cada decisión técnica del período — schemas, latencia, seguridad, escalamiento — la toma quien va a operar el sistema en producción.</p>
         <p>Las consultas de stock, margen, fórmula, batch record y compliance van al mismo store. Los chatbots DTC, B2B, Talent, Compliance e Interno leen del mismo data layer. El audit log es uno solo. La operación de TSC LABS se vuelve queryable: cada decisión de negocio termina en una query SQL contra D1, sin reconciliación entre canales.</p>
         <p><strong>Eigen opera como dirección técnica integrada, no como proveedor externo.</strong></p>
       </div>
