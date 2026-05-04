@@ -3,109 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eigen Atlas · Propuesta MMXXVI · TSC LABS</title>
+<title>Eigen Atlas · Propuesta V2.0 · TSC LABS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=GT+Sectra:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="https://unpkg.com/three@0.160.0/examples/js/loaders/GLTFLoader.js" onerror="window.__noGLTF=true"></script>
 <style>
 :root{
-  --paper:#FCFAF4;
-  --paper-2:#F4F0E4;
-  --paper-3:#E9E3D2;
-  --ink:#1A1614;
-  --ink-soft:#2C2722;
-  --ink-mute:#6B6258;
-  --ink-light:#A8A096;
-  --rule:#1A1614;
-  --soft-rule:#D4CDB9;
-  --hair:#E8E2D2;
-  --oxblood:#5C2018;
-  --oxblood-light:#7C2C20;
-  --gold:#A88A4D;
-  --green:#3F5832;
-  --green-light:#5D7B4A;
-  --positive:#3F5832;
-  --negative:#5C2018;
+  --bg:#FAFAF7;
+  --bg-2:#F2F2EE;
+  --bg-3:#E8E8E2;
+  --ink:#0A0A0A;
+  --ink-soft:#2A2A2A;
+  --ink-mute:#6E6E70;
+  --ink-light:#B8B8B8;
+  --accent:#1E40AF;
+  --accent-bright:#2563EB;
+  --accent-deep:#1E3A8A;
+  --success:#15803D;
+  --rule:rgba(10,10,10,0.10);
+  --rule-strong:rgba(10,10,10,0.20);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--paper);
+  background:var(--bg);
   color:var(--ink);
-  font-family:'Crimson Pro','Iowan Old Style',Georgia,serif;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
   font-weight:400;
-  line-height:1.65;
-  font-size:18px;
+  line-height:1.6;
+  font-size:17px;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
-::selection{background:var(--oxblood);color:var(--paper)}
-a{color:var(--oxblood);text-decoration:none;border-bottom:0.5px solid var(--soft-rule);transition:border 0.2s}
-a:hover{border-bottom-color:var(--oxblood)}
+::selection{background:var(--accent);color:var(--bg)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .2s,color .2s}
+a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
+
+.mono{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:500;
+}
 
 /* === COVER === */
 .cover{
   min-height:100vh;
-  background:var(--paper);
-  padding:48px 60px;
+  background:var(--bg);
+  padding:40px 60px 48px;
   display:grid;
   grid-template-rows:auto 1fr auto;
   position:relative;
-  border-bottom:1px solid var(--ink);
+  border-bottom:1px solid var(--rule-strong);
 }
 .cover-top{
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
-  font-family:'Inter',sans-serif;
+  align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
-  letter-spacing:0.18em;
+  letter-spacing:0.14em;
   color:var(--ink-mute);
   text-transform:uppercase;
-  border-bottom:1px solid var(--ink);
-  padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:18px;
 }
 .cover-top-mark{
   display:flex;
   align-items:center;
-  gap:14px;
-  font-family:'GT Sectra',serif;
-  font-weight:700;
-  font-size:18px;
+  gap:12px;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:15px;
   letter-spacing:-0.005em;
   color:var(--ink);
   text-transform:none;
 }
-.cover-top-mark em{font-style:italic;color:var(--oxblood);font-weight:400}
 .cover-top-mark::before{
   content:'';
-  width:18px;height:18px;
-  border:1px solid var(--oxblood);
+  width:8px;height:8px;
+  background:var(--accent);
   border-radius:50%;
   display:inline-block;
 }
-.cover-top-meta{display:flex;gap:24px}
-.cover-top-meta strong{color:var(--ink);font-weight:600;display:block;font-family:'GT Sectra',serif;font-style:italic;font-size:14px;letter-spacing:0.02em;text-transform:none}
+.cover-top-meta{display:flex;gap:32px}
+.cover-top-meta span{display:flex;flex-direction:column;gap:2px}
+.cover-top-meta strong{color:var(--ink);font-weight:500;font-family:'Inter Tight',sans-serif;font-size:13px;letter-spacing:0;text-transform:none}
+
 .cover-center{
   display:grid;
-  grid-template-columns:minmax(360px, 0.95fr) minmax(420px, 1.05fr);
+  grid-template-columns:minmax(360px, 0.9fr) minmax(420px, 1.1fr);
   align-items:center;
-  gap:56px;
-  padding:48px 0;
+  gap:64px;
+  padding:64px 0;
 }
 .cover-copy{
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:flex-start;
-  text-align:left;
 }
-.cover-copy .cover-rule{margin:24px 0}
-.cover-copy .cover-headline-stats{margin-top:32px}
+.cover-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:32px;
+  font-weight:500;
+}
+.cover-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(40px,5vw,76px);
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin-bottom:28px;
+  max-width:1100px;
+}
+.cover-title strong{font-weight:500;color:var(--ink)}
+.cover-title em{font-style:normal;color:var(--accent);font-weight:500}
+.cover-subtitle{
+  font-family:'Inter',sans-serif;
+  font-size:18px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  font-weight:400;
+  max-width:720px;
+  margin-bottom:48px;
+}
+.cover-headline-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  margin-top:8px;
+  width:100%;
+  max-width:1080px;
+}
+.cover-stat{
+  padding:24px 0 24px 24px;
+  border-right:1px solid var(--rule);
+}
+.cover-stat:first-child{padding-left:0}
+.cover-stat:last-child{border-right:none}
+.cover-stat-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:36px;
+  line-height:1;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+.cover-stat-num em{font-style:normal;color:var(--accent)}
+.cover-stat-num .sm{font-size:16px;color:var(--ink-mute);font-weight:400}
+.cover-stat-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+
+.cover-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid var(--rule);
+  padding-top:18px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+.cover-imprint-mark{
+  font-family:'Inter Tight',sans-serif;
+  font-size:13px;
+  color:var(--ink);
+  text-transform:none;
+  letter-spacing:0;
+  font-weight:500;
+}
 
 /* === ASCII HERO === */
 .ascii-hero-wrap{
@@ -114,23 +208,24 @@ a:hover{border-bottom-color:var(--oxblood)}
   flex-direction:column;
   align-items:stretch;
   justify-content:center;
-  border-bottom:1px solid var(--soft-rule);
-  padding-bottom:14px;
+  border:1px solid var(--rule);
+  background:var(--bg);
+  padding:18px 18px 14px;
 }
 .ascii-hero{
   position:relative;
   width:100%;
   aspect-ratio: 4 / 3;
   overflow:hidden;
-  background:var(--paper);
+  background:var(--bg);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 .ascii-hero pre{
   margin:0;
-  font-family:'JetBrains Mono','SF Mono','Menlo',monospace;
-  font-size:9px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:7px;
   line-height:0.92;
   letter-spacing:0;
   color:var(--ink);
@@ -139,368 +234,249 @@ a:hover{border-bottom-color:var(--oxblood)}
   font-weight:500;
   pointer-events:none;
   user-select:none;
-  text-shadow:none;
 }
-.ascii-hero pre .hi{color:var(--oxblood)}
+.ascii-hero pre .hi{color:var(--accent)}
 .ascii-hero canvas{display:none}
 .ascii-hero-cap{
-  margin-top:10px;
+  margin-top:14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
+  letter-spacing:0.12em;
   color:var(--ink-mute);
   text-transform:uppercase;
+  border-top:1px solid var(--rule);
+  padding-top:12px;
 }
 .ascii-hero-cap em{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:12px;
-  letter-spacing:0.02em;
-  color:var(--ink);
-  text-transform:none;
-}
-.cover-eyebrow{
   font-family:'Inter',sans-serif;
+  font-style:normal;
   font-size:11px;
-  letter-spacing:0.32em;
-  color:var(--oxblood);
-  text-transform:uppercase;
-  margin-bottom:48px;
-  padding:8px 18px;
-  border-top:1px solid var(--oxblood);
-  border-bottom:1px solid var(--oxblood);
-}
-.cover-volume{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:20px;
-  color:var(--ink-mute);
-  margin-bottom:24px;
-  letter-spacing:0.04em;
-}
-.cover-title{
-  font-family:'GT Sectra',serif;
-  font-weight:500;
-  font-size:clamp(40px,5.4vw,86px);
-  line-height:1.02;
-  letter-spacing:-0.022em;
-  color:var(--ink);
-  margin-bottom:36px;
-  max-width:1180px;
-}
-.cover-title em{font-style:italic;color:var(--oxblood);font-weight:400}
-.cover-subtitle{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:24px;
-  line-height:1.5;
+  letter-spacing:0;
   color:var(--ink-soft);
-  font-weight:400;
-  max-width:820px;
-  margin-bottom:60px;
-}
-.cover-rule{
-  width:60px;height:1px;
-  background:var(--gold);
-  margin:24px 0;
-}
-.cover-headline-stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-  border:1px solid var(--ink);
-  background:var(--paper-2);
-  margin-top:40px;
-  width:100%;
-  max-width:1080px;
-}
-.cover-stat{
-  padding:28px 24px;
-  border-right:1px solid var(--soft-rule);
-  text-align:center;
-}
-.cover-stat:last-child{border-right:none}
-.cover-stat-num{
-  font-family:'GT Sectra',serif;
-  font-weight:500;
-  font-size:48px;
-  line-height:1;
-  letter-spacing:-0.02em;
-  color:var(--ink);
-  margin-bottom:8px;
-}
-.cover-stat-num em{font-style:italic;color:var(--oxblood)}
-.cover-stat-num .sm{font-size:18px;color:var(--ink-mute)}
-.cover-stat-label{
-  font-family:'Inter',sans-serif;
-  font-size:10px;
-  letter-spacing:0.18em;
-  color:var(--ink-mute);
-  text-transform:uppercase;
-  font-weight:500;
-}
-.cover-stat-yoy{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:13px;
-  color:var(--positive);
-  margin-top:6px;
-}
-.cover-stat-yoy.neg{color:var(--negative)}
-.cover-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  border-top:1px solid var(--ink);
-  padding-top:14px;
-  font-family:'Inter',sans-serif;
-  font-size:10px;
-  letter-spacing:0.18em;
-  color:var(--ink-mute);
-  text-transform:uppercase;
-}
-.cover-imprint-mark{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:14px;
-  color:var(--ink);
   text-transform:none;
-  letter-spacing:0.02em;
-}
-
-/* === LETTER FROM THE PRACTICE === */
-.letter{
-  background:var(--paper);
-  padding:120px 60px;
-  border-bottom:1px solid var(--ink);
-}
-.letter-frame{max-width:880px;margin:0 auto}
-.letter-head{
-  text-align:center;
-  margin-bottom:60px;
-  padding-bottom:36px;
-  border-bottom:0.5px solid var(--soft-rule);
-}
-.letter-eyebrow{
-  font-family:'Inter',sans-serif;
-  font-size:11px;
-  letter-spacing:0.28em;
-  color:var(--oxblood);
-  text-transform:uppercase;
-  margin-bottom:18px;
-}
-.letter-title{
-  font-family:'GT Sectra',serif;
-  font-weight:500;
-  font-size:clamp(40px,5vw,72px);
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  color:var(--ink);
-  margin-bottom:18px;
-}
-.letter-title em{font-style:italic;color:var(--oxblood);font-weight:400}
-.letter-date{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:17px;
-  color:var(--ink-mute);
-  letter-spacing:0.04em;
-}
-
-.letter-body{
-  font-size:21px;
-  line-height:1.75;
-  color:var(--ink);
-}
-.letter-body p{margin-bottom:28px}
-.letter-body p.salutation{
-  font-style:italic;
-  margin-bottom:36px;
-  font-size:22px;
-}
-.letter-body p.opener::first-letter{
-  font-family:'GT Sectra',serif;
-  font-size:108px;
-  line-height:0.85;
-  font-weight:500;
-  font-style:italic;
-  float:left;
-  margin:14px 14px -8px 0;
-  color:var(--oxblood);
-}
-.letter-body strong{font-weight:600;color:var(--ink)}
-.letter-body em{font-style:italic;color:var(--ink-soft)}
-.letter-body .pull{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-weight:400;
-  font-size:30px;
-  line-height:1.35;
-  color:var(--oxblood);
-  border-left:2px solid var(--oxblood);
-  padding-left:24px;
-  margin:48px 0;
-  letter-spacing:-0.01em;
-  max-width:760px;
-}
-.letter-sign{
-  margin-top:60px;
-  padding-top:36px;
-  border-top:0.5px solid var(--soft-rule);
-}
-.letter-sign-name{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-weight:400;
-  font-size:36px;
-  color:var(--ink);
-  letter-spacing:-0.01em;
-  margin-bottom:8px;
-}
-.letter-sign-title{
-  font-family:'Inter',sans-serif;
-  font-size:11px;
-  letter-spacing:0.18em;
-  color:var(--ink-mute);
-  text-transform:uppercase;
-  font-weight:500;
 }
 
 /* === SECTIONS === */
 .section{
   padding:120px 60px;
-  border-bottom:1px solid var(--ink);
-  background:var(--paper);
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);
 }
-.section.muted{background:var(--paper-2)}
-.section.dark{background:var(--ink);color:var(--paper)}
+.section.muted{background:var(--bg-2)}
 .section-frame{max-width:1280px;margin:0 auto}
 .section-header{
   margin-bottom:80px;
   display:grid;
-  grid-template-columns:140px 1fr 280px;
+  grid-template-columns:120px 1fr 320px;
   gap:48px;
   align-items:end;
-  padding-bottom:18px;
-  border-bottom:1px solid var(--ink);
+  padding-bottom:24px;
+  border-bottom:1px solid var(--rule-strong);
 }
-.section.dark .section-header{border-bottom-color:rgba(252,250,244,0.3)}
 .section-num{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:64px;
-  font-weight:400;
-  letter-spacing:-0.03em;
-  line-height:1;
-  color:var(--oxblood);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;
+  letter-spacing:0.12em;
+  line-height:1.4;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
 }
-.section.dark .section-num{color:var(--gold)}
 .section-num small{
   display:block;
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
+  letter-spacing:0.14em;
   color:var(--ink-mute);
   text-transform:uppercase;
   font-style:normal;
   font-weight:500;
-  margin-top:14px;
+  margin-top:6px;
 }
-.section.dark .section-num small{color:rgba(252,250,244,0.6)}
 .section-title{
-  font-family:'GT Sectra',serif;
-  font-weight:500;
-  font-size:48px;
-  line-height:1.05;
-  letter-spacing:-0.018em;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,3.2vw,48px);
+  line-height:1.1;
+  letter-spacing:-0.02em;
   color:var(--ink);
 }
-.section.dark .section-title{color:var(--paper)}
-.section-title em{font-style:italic;color:var(--oxblood);font-weight:400}
-.section.dark .section-title em{color:var(--gold)}
+.section-title strong{font-weight:500}
+.section-title em{font-style:normal;color:var(--accent);font-weight:500}
 .section-deck{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:17px;
+  font-family:'Inter',sans-serif;
+  font-size:15px;
   line-height:1.6;
+  color:var(--ink-mute);
+  font-weight:400;
+}
+
+/* === DIAGNÓSTICO === */
+.diag-frame{max-width:880px;margin:0 auto}
+.diag-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:24px;
+  font-weight:500;
+}
+.diag-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(36px,4.4vw,60px);
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.diag-title strong{font-weight:500;color:var(--ink)}
+.diag-title em{font-style:normal;color:var(--accent);font-weight:500}
+.diag-date{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  color:var(--ink-mute);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:60px;
+  padding-bottom:36px;
+  border-bottom:1px solid var(--rule);
+}
+.diag-body{
+  font-size:18px;
+  line-height:1.7;
   color:var(--ink-soft);
 }
-.section.dark .section-deck{color:rgba(252,250,244,0.7)}
+.diag-body p{margin-bottom:24px}
+.diag-body strong{font-weight:600;color:var(--ink)}
+.diag-body .salutation{
+  font-family:'Inter Tight',sans-serif;
+  font-size:18px;
+  font-weight:400;
+  margin-bottom:32px;
+  color:var(--ink);
+}
+.diag-pull{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:24px;
+  line-height:1.4;
+  color:var(--ink);
+  border-left:2px solid var(--accent);
+  padding:8px 0 8px 24px;
+  margin:40px 0;
+  letter-spacing:-0.01em;
+  max-width:780px;
+}
+.diag-sign{
+  margin-top:60px;
+  padding-top:32px;
+  border-top:1px solid var(--rule);
+}
+.diag-sign-name{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:20px;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+  margin-bottom:6px;
+}
+.diag-sign-title{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
 
-/* === PHASE CHAPTER === */
+/* === PHASE === */
 .phase{
   display:grid;
   grid-template-columns:1fr;
-  gap:36px;
-  padding:64px 0;
-  border-bottom:0.5px solid var(--soft-rule);
+  gap:32px;
+  padding:56px 0;
+  border-bottom:1px solid var(--rule);
 }
 .phase:last-child{border-bottom:none}
 .phase-head{
   display:grid;
-  grid-template-columns:90px 1fr 240px;
+  grid-template-columns:120px 1fr 200px;
   gap:36px;
   align-items:start;
   padding-bottom:24px;
-  border-bottom:0.5px solid var(--soft-rule);
+  border-bottom:1px solid var(--rule);
 }
 .phase-num{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:56px;
-  font-weight:400;
-  letter-spacing:-0.025em;
-  line-height:1;
-  color:var(--oxblood);
+  display:inline-flex;
+  flex-direction:column;
+  gap:4px;
 }
-.phase-num small{
-  display:block;
-  font-family:'Inter',sans-serif;
+.phase-num-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--bg);
+  background:var(--accent);
+  padding:5px 10px;
+  font-weight:500;
+  align-self:flex-start;
+}
+.phase-num-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
+  letter-spacing:0.14em;
   color:var(--ink-mute);
   text-transform:uppercase;
-  font-style:normal;
   font-weight:500;
-  margin-top:10px;
+  margin-top:6px;
 }
 .phase-title{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
-  font-size:34px;
-  line-height:1.1;
+  font-size:30px;
+  line-height:1.15;
   letter-spacing:-0.015em;
   color:var(--ink);
   margin-bottom:8px;
 }
-.phase-title em{font-style:italic;color:var(--oxblood);font-weight:400}
+.phase-title em{font-style:normal;color:var(--accent);font-weight:500}
 .phase-meta-line{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:16px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
   color:var(--ink-mute);
-  letter-spacing:0.02em;
+  line-height:1.5;
 }
-.phase-price{
-  text-align:right;
+.phase-subtitle{
+  font-family:'Inter Tight',sans-serif;
+  font-style:italic;
+  font-size:15px;
+  font-weight:400;
+  color:var(--accent);
+  margin-top:6px;
+  letter-spacing:-0.005em;
+  line-height:1.45;
 }
+.phase-price{text-align:right}
 .phase-price-num{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
-  font-size:42px;
+  font-size:34px;
   line-height:1;
   letter-spacing:-0.02em;
   color:var(--ink);
   margin-bottom:6px;
 }
-.phase-price-num em{font-style:italic;color:var(--oxblood)}
+.phase-price-num em{font-style:normal;color:var(--accent)}
 .phase-price-label{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
+  letter-spacing:0.12em;
   color:var(--ink-mute);
   text-transform:uppercase;
   font-weight:500;
@@ -511,12 +487,12 @@ a:hover{border-bottom-color:var(--oxblood)}
   gap:48px;
 }
 .phase-prose{
-  font-family:'Crimson Pro',serif;
-  font-size:18px;
-  line-height:1.7;
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.65;
   color:var(--ink-soft);
 }
-.phase-prose p{margin-bottom:18px}
+.phase-prose p{margin-bottom:16px}
 .phase-prose strong{font-weight:600;color:var(--ink)}
 .phase-side{
   display:flex;
@@ -525,71 +501,384 @@ a:hover{border-bottom-color:var(--oxblood)}
   min-width:280px;
 }
 .phase-block{
-  border-top:0.5px solid var(--soft-rule);
+  border-top:1px solid var(--rule);
   padding-top:18px;
 }
 .phase-block-label{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
-  color:var(--oxblood);
+  letter-spacing:0.14em;
+  color:var(--accent);
   text-transform:uppercase;
   margin-bottom:10px;
-  font-weight:600;
+  font-weight:500;
 }
 .phase-block-body{
-  font-family:'Crimson Pro',serif;
-  font-size:15px;
-  line-height:1.6;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  line-height:1.55;
   color:var(--ink-soft);
 }
 .phase-block-body strong{font-weight:600;color:var(--ink)}
 .phase-stack{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
-  letter-spacing:0.08em;
+  letter-spacing:0.04em;
   text-transform:uppercase;
   color:var(--ink-mute);
   line-height:1.7;
 }
+.block-ico{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:14px;
+  height:14px;
+  vertical-align:-2px;
+  margin-right:8px;
+  color:var(--accent);
+}
+.block-ico svg{width:14px;height:14px;display:block}
 
-/* === FINANCIAL TABLE · audited === */
-.financials-frame{}
+/* === BUSINESS INTELLIGENCE DASHBOARD MOCK === */
+.bi-frame{max-width:1180px;margin:0 auto}
+.bi-intro{
+  text-align:center;
+  margin-bottom:48px;
+}
+.bi-intro h3{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,3vw,40px);
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.bi-intro h3 em{font-style:normal;color:var(--accent);font-weight:500}
+.bi-intro p{
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  color:var(--ink-mute);
+  max-width:640px;
+  margin:0 auto;
+  line-height:1.55;
+}
+.bi-dashboard{
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+  padding:0;
+  display:grid;
+  grid-template-rows:auto 1fr;
+}
+.bi-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 22px;
+  border-bottom:1px solid var(--rule-strong);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  background:var(--bg-2);
+}
+.bi-bar-mark{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  color:var(--ink);
+}
+.bi-bar-mark::before{
+  content:'';
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  display:inline-block;
+}
+.bi-bar-meta{display:flex;gap:24px}
+.bi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+}
+.bi-cell{
+  padding:24px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.bi-cell:nth-child(2n){border-right:none}
+.bi-cell:nth-last-child(-n+2){border-bottom:none}
+.bi-cell-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+.bi-cell-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:-0.005em;
+  color:var(--ink);
+  line-height:1.3;
+}
+.bi-cell-title small{
+  display:block;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-top:4px;
+}
+.bi-cell-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.14em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  padding:3px 7px;
+  border:1px solid var(--accent);
+}
+.bi-chart{width:100%;height:auto;display:block}
+.bi-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px 18px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.1em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.bi-legend-item{display:flex;align-items:center;gap:6px}
+.bi-legend-dot{
+  width:9px;height:9px;
+  border-radius:2px;
+  display:inline-block;
+}
+.bi-caption{
+  margin-top:18px;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  color:var(--ink-mute);
+  text-align:center;
+  font-style:italic;
+}
+
+/* === CAPABILITIES === */
+.cap-frame{max-width:1280px;margin:0 auto}
+.cap-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:0;
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule-strong);
+}
+.cap-card{
+  padding:32px 28px;
+  border-right:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  transition:background-color .2s ease;
+}
+.cap-card:hover{background:var(--bg-2)}
+.cap-icon{
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:50%;
+}
+.cap-icon svg{width:18px;height:18px}
+.cap-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.16em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.cap-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:18px;
+  line-height:1.25;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+}
+.cap-prose{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.cap-prose strong{font-weight:600;color:var(--ink)}
+
+/* === ROADMAP === */
+.roadmap-frame{max-width:1180px;margin:0 auto}
+.roadmap-list{
+  display:flex;
+  flex-direction:column;
+  border-top:1px solid var(--rule-strong);
+}
+.roadmap-row{
+  display:grid;
+  grid-template-columns:160px 1fr 280px;
+  gap:32px;
+  padding:28px 0;
+  border-bottom:1px solid var(--rule);
+  align-items:center;
+  transition:background-color .25s ease;
+  opacity:0;
+  transform:translateY(16px);
+}
+.roadmap-row.in{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
+.roadmap-row:hover{background:var(--bg-2)}
+.roadmap-month{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  line-height:1.5;
+}
+.roadmap-month strong{
+  display:block;
+  color:var(--ink);
+  font-size:13px;
+  letter-spacing:0.06em;
+  margin-bottom:4px;
+  font-weight:600;
+}
+.roadmap-content{display:flex;flex-direction:column;gap:8px}
+.roadmap-theme{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:22px;
+  line-height:1.2;
+  letter-spacing:-0.015em;
+  color:var(--ink);
+}
+.roadmap-summary{
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--ink-mute);
+}
+.roadmap-deliverables{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.roadmap-phase-chip{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:500;
+  align-self:flex-start;
+  padding:4px 9px;
+  border:1px solid var(--rule-strong);
+  color:var(--ink-soft);
+  background:var(--bg);
+}
+.roadmap-phase-chip.f1{color:var(--accent);border-color:var(--accent)}
+.roadmap-phase-chip.f2{color:var(--accent-deep);border-color:var(--accent-deep)}
+.roadmap-phase-chip.f3{color:var(--ink);border-color:var(--ink)}
+.roadmap-phase-chip.f4{color:var(--accent);border-color:var(--accent)}
+.roadmap-phase-chip.f5{color:var(--accent-bright);border-color:var(--accent-bright)}
+.roadmap-deliv-text{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.5;
+  color:var(--ink-soft);
+}
+.roadmap-row.final{
+  background:var(--bg-2);
+  padding:36px 24px;
+  border:1px solid var(--accent);
+  margin-top:8px;
+}
+.roadmap-row.final .roadmap-theme{font-size:26px;color:var(--ink)}
+.roadmap-row.final .roadmap-month strong{color:var(--accent)}
+.roadmap-checkmark{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  color:var(--success);
+  text-transform:uppercase;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.roadmap-checkmark::before{
+  content:'';
+  width:14px;height:14px;
+  border-radius:50%;
+  background:var(--success);
+  display:inline-block;
+}
+
+/* === FINANCIAL TABLE === */
 .financials-table{
   width:100%;
   border-collapse:collapse;
-  border-top:2px solid var(--ink);
-  border-bottom:2px solid var(--ink);
-  font-family:'Crimson Pro',serif;
-  font-size:16px;
+  border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
 }
 .financials-table thead th{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink-mute);
-  font-weight:600;
+  font-weight:500;
   text-align:left;
-  padding:14px 18px;
-  border-bottom:1px solid var(--ink);
-  background:var(--paper);
+  padding:14px 16px;
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);
 }
 .financials-table thead th.right{text-align:right}
 .financials-table tbody td{
-  padding:14px 18px;
-  border-bottom:0.5px solid var(--soft-rule);
+  padding:18px 16px;
+  border-bottom:1px solid var(--rule);
   vertical-align:top;
   line-height:1.5;
 }
-.financials-table tbody td.right{text-align:right;font-family:'GT Sectra',serif;font-size:18px}
-.financials-table tbody tr:hover{background:var(--paper-2)}
+.financials-table tbody td.right{
+  text-align:right;
+  font-family:'Inter Tight',sans-serif;
+  font-size:18px;
+  font-weight:500;
+  color:var(--ink);
+}
+.financials-table tbody tr:hover{background:var(--bg-2)}
 .financials-table tbody tr.subtotal td{
-  border-top:0.5px solid var(--ink);
-  padding-top:18px;
-  padding-bottom:18px;
+  border-top:1px solid var(--rule-strong);
+  padding-top:20px;
+  padding-bottom:20px;
   font-weight:600;
-  background:var(--paper-3);
+  background:var(--bg-2);
 }
 .financials-table tbody tr.subtotal td.right{font-size:22px}
 .financials-table tbody tr.total td{
@@ -599,22 +888,20 @@ a:hover{border-bottom-color:var(--oxblood)}
   padding-bottom:20px;
   font-weight:700;
   font-size:18px;
-}
-.financials-table tbody tr.total td.right{font-size:32px;color:var(--oxblood);font-style:italic}
-.fin-line-label{
-  font-family:'Crimson Pro',serif;
-  font-size:16px;
   color:var(--ink);
 }
+.financials-table tbody tr.total td.right{font-size:30px;color:var(--accent)}
+.fin-line-label{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);font-weight:500}
 .fin-line-label em{
-  font-style:italic;
+  font-style:normal;
   color:var(--ink-mute);
-  font-size:14px;
+  font-size:13px;
   display:block;
-  margin-top:2px;
+  margin-top:4px;
+  font-weight:400;
 }
 .fin-line-pct{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
   letter-spacing:0.04em;
   color:var(--ink-mute);
@@ -622,77 +909,83 @@ a:hover{border-bottom-color:var(--oxblood)}
   width:90px;
 }
 .fin-yoy{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-size:14px;
-  color:var(--positive);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  color:var(--ink-mute);
   text-align:right;
   width:110px;
+  text-transform:uppercase;
+  font-weight:500;
 }
-.fin-yoy.neg{color:var(--negative)}
 
 .financials-note{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
+  font-family:'Inter',sans-serif;
   font-size:14px;
   color:var(--ink-mute);
-  margin-top:18px;
+  margin-top:16px;
   line-height:1.6;
 }
-.financials-note strong{color:var(--ink);font-weight:600;font-style:normal;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;margin-right:6px}
+.financials-note strong{
+  color:var(--ink);
+  font-weight:600;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  margin-right:8px;
+}
 
 .retainer-callout{
-  margin-top:36px;
-  padding:32px 36px;
+  margin-top:48px;
+  padding:36px 40px;
   background:var(--ink);
-  color:var(--paper);
-  border:1px solid var(--ink);
+  color:var(--bg);
   display:grid;
   grid-template-columns:1fr 320px;
   gap:36px;
   align-items:center;
 }
 .retainer-tag{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
-  color:var(--gold);
+  letter-spacing:0.14em;
+  color:var(--accent-bright);
   text-transform:uppercase;
   margin-bottom:10px;
-  font-weight:600;
+  font-weight:500;
 }
 .retainer-title{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
   font-size:26px;
-  line-height:1.15;
+  line-height:1.2;
   letter-spacing:-0.015em;
-  color:var(--paper);
-  margin-bottom:8px;
+  color:var(--bg);
+  margin-bottom:10px;
 }
-.retainer-title em{font-style:italic;color:var(--gold)}
+.retainer-title em{font-style:normal;color:var(--accent-bright);font-weight:500}
 .retainer-prose{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
+  font-family:'Inter',sans-serif;
   font-size:15px;
   line-height:1.55;
-  color:rgba(252,250,244,0.8);
+  color:rgba(250,250,247,0.78);
 }
 .retainer-num{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
   font-size:54px;
   line-height:1;
-  letter-spacing:-0.02em;
-  color:var(--gold);
+  letter-spacing:-0.025em;
+  color:var(--accent-bright);
   text-align:right;
 }
-.retainer-num em{font-style:italic;color:var(--paper);font-weight:400}
+.retainer-num em{font-style:normal;color:var(--bg);font-weight:300}
 .retainer-num-label{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
-  color:rgba(252,250,244,0.6);
+  letter-spacing:0.12em;
+  color:rgba(250,250,247,0.55);
   text-transform:uppercase;
   font-weight:500;
   text-align:right;
@@ -703,36 +996,39 @@ a:hover{border-bottom-color:var(--oxblood)}
 .governance-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:32px;
+  gap:0;
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule);
 }
 .gov-card{
-  border:1px solid var(--ink);
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
   padding:36px 32px;
-  background:var(--paper);
+  background:var(--bg);
 }
 .gov-tag{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
-  color:var(--oxblood);
+  letter-spacing:0.14em;
+  color:var(--accent);
   text-transform:uppercase;
   margin-bottom:14px;
-  font-weight:600;
+  font-weight:500;
 }
 .gov-title{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
-  font-size:26px;
-  line-height:1.1;
+  font-size:24px;
+  line-height:1.2;
   letter-spacing:-0.015em;
   color:var(--ink);
   margin-bottom:14px;
 }
-.gov-title em{font-style:italic;color:var(--oxblood)}
+.gov-title em{font-style:normal;color:var(--accent);font-weight:500}
 .gov-prose{
-  font-family:'Crimson Pro',serif;
-  font-size:16px;
-  line-height:1.65;
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  line-height:1.6;
   color:var(--ink-soft);
 }
 .gov-prose strong{font-weight:600;color:var(--ink)}
@@ -741,115 +1037,130 @@ a:hover{border-bottom-color:var(--oxblood)}
 .sla-table{
   width:100%;
   border-collapse:collapse;
-  border-top:2px solid var(--ink);
-  border-bottom:2px solid var(--ink);
-  font-family:'Crimson Pro',serif;
-  font-size:16px;
+  border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
   margin-top:48px;
 }
 .sla-table thead th{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink-mute);
-  font-weight:600;
+  font-weight:500;
   text-align:left;
-  padding:14px 18px;
-  border-bottom:1px solid var(--ink);
-  background:var(--paper);
+  padding:14px 16px;
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);
 }
 .sla-table tbody td{
-  padding:16px 18px;
-  border-bottom:0.5px solid var(--soft-rule);
+  padding:16px;
+  border-bottom:1px solid var(--rule);
   vertical-align:top;
   line-height:1.5;
   color:var(--ink-soft);
 }
 .sla-table tbody td:first-child{font-weight:500;color:var(--ink)}
-.sla-table tbody td.gold{font-family:'GT Sectra',serif;font-style:italic;color:var(--oxblood);font-size:18px}
+.sla-table tbody td.metric{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  color:var(--accent);
+  font-size:13px;
+  letter-spacing:0.06em;
+  font-weight:500;
+}
 
 /* === OUTLOOK / NEXT STEPS === */
 .outlook-grid{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:0;
-  border:1px solid var(--ink);
+  border-top:1px solid var(--rule-strong);
+  border-left:1px solid var(--rule);
 }
 .outlook-cell{
   padding:36px 28px;
-  border-right:1px solid var(--soft-rule);
-  background:var(--paper);
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);
   min-width:280px;
 }
-.outlook-cell:last-child{border-right:none}
 .outlook-q{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
-  font-weight:400;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
   font-size:48px;
   line-height:1;
-  color:var(--oxblood);
+  color:var(--accent);
   letter-spacing:-0.02em;
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 .outlook-tag{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.18em;
+  letter-spacing:0.14em;
   color:var(--ink-mute);
   text-transform:uppercase;
   margin-bottom:14px;
   font-weight:500;
 }
 .outlook-title{
-  font-family:'GT Sectra',serif;
+  font-family:'Inter Tight',sans-serif;
   font-weight:500;
-  font-size:24px;
-  line-height:1.15;
+  font-size:22px;
+  line-height:1.2;
   letter-spacing:-0.01em;
   color:var(--ink);
   margin-bottom:14px;
 }
 .outlook-prose{
-  font-family:'Crimson Pro',serif;
+  font-family:'Inter',sans-serif;
   font-size:15px;
   line-height:1.6;
   color:var(--ink-soft);
 }
 
 .contact-frame{
-  margin-top:48px;
+  margin-top:60px;
   padding:36px 0;
-  border-top:1px solid var(--ink);
-  border-bottom:1px solid var(--ink);
+  border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  gap:36px;
-  text-align:center;
+  gap:0;
 }
+.contact-cell{
+  padding:0 36px;
+  border-right:1px solid var(--rule);
+  text-align:left;
+}
+.contact-cell:first-child{padding-left:0}
+.contact-cell:last-child{border-right:none}
 .contact-cell-label{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.22em;
+  letter-spacing:0.14em;
   color:var(--ink-mute);
   text-transform:uppercase;
   margin-bottom:10px;
   font-weight:500;
 }
 .contact-cell-value{
-  font-family:'GT Sectra',serif;
-  font-style:italic;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
   font-size:22px;
-  color:var(--oxblood);
-  letter-spacing:-0.005em;
+  color:var(--accent);
+  letter-spacing:-0.01em;
+  border:none;
+  display:inline-block;
 }
+.contact-cell-value:hover{color:var(--accent-bright)}
 
 /* === COLOPHON === */
 .colophon{
-  background:var(--paper-2);
+  background:var(--bg-2);
   padding:80px 60px 48px;
-  border-top:2px solid var(--ink);
+  border-top:1px solid var(--rule-strong);
 }
 .colophon-frame{max-width:1280px;margin:0 auto}
 .colophon-grid{
@@ -859,89 +1170,127 @@ a:hover{border-bottom-color:var(--oxblood)}
   margin-bottom:48px;
 }
 .colophon-brand{
-  font-family:'GT Sectra',serif;
-  font-weight:700;
-  font-size:32px;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:24px;
   letter-spacing:-0.015em;
   margin-bottom:14px;
+  color:var(--ink);
 }
-.colophon-brand em{font-style:italic;color:var(--oxblood);font-weight:400}
+.colophon-brand em{font-style:normal;color:var(--accent);font-weight:500}
 .colophon-tag{
-  font-family:'Crimson Pro',serif;
-  font-style:italic;
-  font-size:16px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
   color:var(--ink-soft);
   line-height:1.55;
   margin-bottom:24px;
   max-width:340px;
 }
 .colophon-meta{
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
-  letter-spacing:0.14em;
+  letter-spacing:0.1em;
   color:var(--ink-mute);
   text-transform:uppercase;
   line-height:1.9;
 }
 .colophon-col-title{
-  font-family:'Inter',sans-serif;
-  font-size:11px;
-  letter-spacing:0.22em;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
   color:var(--ink);
   text-transform:uppercase;
-  font-weight:700;
+  font-weight:600;
   margin-bottom:18px;
   padding-bottom:8px;
-  border-bottom:0.5px solid var(--ink);
+  border-bottom:1px solid var(--rule-strong);
 }
 .colophon-list{list-style:none}
-.colophon-list li{padding:6px 0;font-family:'Crimson Pro',serif;font-size:15px;color:var(--ink-soft)}
+.colophon-list li{padding:6px 0;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-soft)}
 .colophon-list a{color:var(--ink-soft);border:none}
-.colophon-list a:hover{color:var(--oxblood)}
+.colophon-list a:hover{color:var(--accent)}
 .colophon-bottom{
-  border-top:0.5px solid var(--ink);
-  padding-top:28px;
+  border-top:1px solid var(--rule);
+  padding-top:24px;
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
   gap:14px;
-  font-family:'Inter',sans-serif;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:10px;
   color:var(--ink-mute);
-  letter-spacing:0.14em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
 }
 
+/* === RESPONSIVE === */
 @media(max-width:1100px){
   .cover{padding:30px 24px}
-  .letter,.section,.colophon{padding-left:24px;padding-right:24px}
-  .cover-center{grid-template-columns:1fr;gap:36px;padding:32px 0}
-  .cover-copy{align-items:flex-start;text-align:left}
-  .ascii-hero pre{font-size:7px;line-height:0.9}
+  .section,.colophon{padding-left:24px;padding-right:24px}
+  .cover-center{grid-template-columns:1fr;gap:36px;padding:40px 0}
+  .cover-copy{align-items:flex-start}
+  .ascii-hero pre{font-size:5.5px;line-height:0.9}
   .cover-headline-stats{grid-template-columns:1fr}
-  .cover-stat{border-right:none;border-bottom:1px solid var(--soft-rule)}
+  .cover-stat{border-right:none;border-bottom:1px solid var(--rule);padding:18px 0}
+  .cover-stat:first-child{padding-top:0}
   .cover-stat:last-child{border-bottom:none}
   .governance-grid{grid-template-columns:1fr}
   .outlook-grid{grid-template-columns:1fr}
-  .outlook-cell{border-right:none;border-bottom:1px solid var(--soft-rule)}
-  .section-header{grid-template-columns:1fr;gap:14px}
+  .section-header{grid-template-columns:1fr;gap:18px;align-items:start}
   .colophon-grid{grid-template-columns:1fr 1fr}
   .cover-top-meta{display:none}
   .financials-table,.financials-table tbody td,.sla-table,.sla-table tbody td{font-size:13px}
-  .financials-table tbody td.right{font-size:14px}
+  .financials-table tbody td.right{font-size:15px}
   .phase-head{grid-template-columns:1fr;gap:14px}
   .phase-price{text-align:left}
   .phase-body{grid-template-columns:1fr;gap:24px}
-  .retainer-callout{grid-template-columns:1fr;gap:18px}
+  .retainer-callout{grid-template-columns:1fr;gap:18px;padding:28px}
   .retainer-num,.retainer-num-label{text-align:left}
-  .contact-frame{grid-template-columns:1fr;gap:18px}
+  .contact-frame{grid-template-columns:1fr;gap:0}
+  .contact-cell{padding:18px 0;border-right:none;border-bottom:1px solid var(--rule)}
+  .contact-cell:last-child{border-bottom:none}
+  .roadmap-row{grid-template-columns:1fr;gap:14px;padding:24px 0}
+  .roadmap-row.final{padding:24px 18px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .bi-grid{grid-template-columns:1fr}
+  .bi-cell{border-right:none}
+  .bi-cell:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
+  .bi-cell:last-child{border-bottom:none}
 }
 @media(max-width:768px){
   .ascii-hero-wrap{display:none}
   .cover-center{grid-template-columns:1fr}
+  .section{padding:80px 24px}
+  .cover-title{font-size:36px}
+  .diag-title,.section-title{font-size:30px}
+  .roadmap-theme{font-size:20px}
+  .cap-grid{grid-template-columns:1fr}
 }
+@media(max-width:380px){
+  .cover{padding:24px 16px}
+  .section,.colophon{padding-left:16px;padding-right:16px}
+  .cover-title{font-size:30px}
+  .phase-title{font-size:24px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .ascii-hero pre{animation:none}
+  .roadmap-row{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* === PRINT === */
+@media print{
+  body{background:#fff;color:#000;font-size:11pt}
+  *{color:#000 !important;background:#fff !important;border-color:#000 !important}
+  .cover{min-height:auto;page-break-after:always;border-bottom:2px solid #000}
+  .section{page-break-inside:avoid;padding:32px 24px;border-bottom:1px solid #000}
+  .ascii-hero-wrap{display:none}
+  .roadmap-row{opacity:1 !important;transform:none !important;page-break-inside:avoid}
+  a{color:#000 !important;border:none}
+  .retainer-callout{background:#fff !important;color:#000 !important;border:1px solid #000}
+  .retainer-callout *{color:#000 !important}
+  .phase-num-tag{background:#fff !important;color:#000 !important;border:1px solid #000}
 }
 </style>
 </head>
@@ -950,11 +1299,11 @@ a:hover{border-bottom-color:var(--oxblood)}
 <!-- COVER -->
 <header class="cover">
   <div class="cover-top">
-    <div class="cover-top-mark">EIGEN · ATLAS <em>· Propuesta</em></div>
+    <div class="cover-top-mark">EIGEN ATLAS</div>
     <div class="cover-top-meta">
-      <span><strong>Propuesta</strong>MMXXVI · TSC LABS</span>
+      <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
       <span><strong>Filed</strong>2026.05.01</span>
-      <span><strong>Vol.</strong>V1.0</span>
+      <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
     </div>
   </div>
 
@@ -964,33 +1313,28 @@ a:hover{border-bottom-color:var(--oxblood)}
         <pre id="ascii-hero-out"></pre>
       </div>
       <div class="ascii-hero-cap">
-        <span>↻ Fig. I · 龍 Reactive Dragon · Tracks Cursor</span>
-        <em>Procedural · 22 segments · ASCII-sampled</em>
+        <span>↻ FIG. I · 3D WORLD · TRACKS CURSOR</span>
+        <em>TSC LABS · Sphere · 64×32 · ASCII-sampled</em>
       </div>
     </div>
 
     <div class="cover-copy">
-      <div class="cover-eyebrow">— Eigen · Atlas / Propuesta / V1.0 · Mayo 2026 —</div>
-      <p class="cover-volume">Eigen Atlas · Propuesta MMXXVI · TSC LABS</p>
-      <h1 class="cover-title">Una infraestructura tecnológica completa para que <em>TSC LABS</em> escale como laboratorio, como marca, y como plataforma B2B.</h1>
-      <p class="cover-subtitle">12 meses · 5 fases · una sola arquitectura. Cloudflare-native · IVA-compliant · COFEPRIS-aware.</p>
-      <div class="cover-rule"></div>
+      <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
+      <h1 class="cover-title">Transformación digital completa: <em>TSC LABS</em> como laboratorio, como marca, como plataforma B2B y como empresa <em>queryable</em>.</h1>
+      <p class="cover-subtitle">12 meses · 5 fases · ERP propio · BI ejecutivo · 4 olas de agentes · una sola arquitectura.</p>
 
       <div class="cover-headline-stats">
         <div class="cover-stat">
-          <div class="cover-stat-num">$1.66<em>M</em><span class="sm"> MXN</span></div>
+          <div class="cover-stat-num">$2.02<em>M</em><span class="sm"> MXN</span></div>
           <div class="cover-stat-label">Inversión Año 1+2</div>
-          <div class="cover-stat-yoy">→ Setup + Retainer 12mo</div>
         </div>
         <div class="cover-stat">
           <div class="cover-stat-num">12<em> mo</em></div>
-          <div class="cover-stat-label">Plan acumulativo</div>
-          <div class="cover-stat-yoy">→ 5 fases · entregas validadas</div>
+          <div class="cover-stat-label">Roadmap mensual</div>
         </div>
         <div class="cover-stat">
-          <div class="cover-stat-num">09</div>
-          <div class="cover-stat-label">Entregas · productos digitales en operación</div>
-          <div class="cover-stat-yoy">→ End-to-end</div>
+          <div class="cover-stat-num">10</div>
+          <div class="cover-stat-label">Entregas · productos digitales</div>
         </div>
       </div>
     </div>
@@ -998,42 +1342,42 @@ a:hover{border-bottom-color:var(--oxblood)}
 
   <div class="cover-bottom">
     <span>Atlas Studios · GDL · MX</span>
-    <span class="cover-imprint-mark">— EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL —</span>
+    <span class="cover-imprint-mark">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
     <span>For TSC LABS &amp; principals only</span>
   </div>
 </header>
 
-<!-- LETTER · § I · DIAGNÓSTICO -->
-<section class="letter" id="diagnostico">
-  <div class="letter-frame">
-    <header class="letter-head">
-      <div class="letter-eyebrow">— § I · Diagnóstico —</div>
-      <h2 class="letter-title">Llamar a las cosas por <em>su nombre</em>.</h2>
-      <p class="letter-date">Filed at Guadalajara · Mayo MMXXVI · Para TSC LABS</p>
-    </header>
+<!-- § I · DIAGNÓSTICO -->
+<section class="section" id="diagnostico">
+  <div class="section-frame">
+    <div class="diag-frame">
+      <div class="diag-eyebrow">§ I · DIAGNÓSTICO</div>
+      <h2 class="diag-title">Llamar a las cosas por <em>su nombre</em>.</h2>
+      <p class="diag-date">Filed at Guadalajara · Mayo 2026 · Para TSC LABS</p>
 
-    <div class="letter-body">
-      <p class="salutation">— Para TSC LABS,</p>
+      <div class="diag-body">
+        <p class="salutation">Para TSC LABS,</p>
 
-      <p class="opener"><strong>Para que esta propuesta sea defendible necesitamos primero llamar a las cosas por su nombre.</strong> Nuestra lectura desde afuera, sin asumir lo que no podemos ver, identifica cinco frentes en los que la operación actual de TSC LABS — sólida en formulación, validada en mercado — depende todavía de procesos manuales que escalan linealmente. Y que, en seis meses, no en seis años, se vuelven el techo del laboratorio.</p>
+        <p><strong>Para que esta propuesta sea defendible necesitamos primero llamar a las cosas por su nombre.</strong> Nuestra lectura desde afuera, sin asumir lo que no podemos ver, identifica cinco frentes en los que la operación actual de TSC LABS — sólida en formulación, validada en mercado — depende todavía de procesos manuales que escalan linealmente. Y que, en seis meses, no en seis años, se vuelven el techo del laboratorio.</p>
 
-      <p>Las <strong>fórmulas</strong> del laboratorio viven hoy en hojas de cálculo distribuidas o sólo en la memoria del químico. Para una operación con +18 fórmulas validadas en mercado, esto significa riesgo de continuidad y un techo de escalabilidad que se va a notar en seis meses, no en seis años.</p>
+        <p>Las <strong>fórmulas</strong> del laboratorio viven hoy en hojas de cálculo distribuidas o sólo en la memoria del químico. Para una operación con +18 fórmulas validadas en mercado, esto significa riesgo de continuidad y un techo de escalabilidad que se va a notar en seis meses, no en seis años.</p>
 
-      <p>El <strong>batch tracking</strong> no está sistematizado contra la NOM-259-SSA1-2022. Cada auditoría COFEPRIS — vigente o futura — toma semanas en preparación porque no hay un único origen de verdad sobre lotes, controles de calidad y caducidades.</p>
+        <p>El <strong>batch tracking</strong> no está sistematizado contra la NOM-259-SSA1-2022. Cada auditoría COFEPRIS — vigente o futura — toma semanas en preparación porque no hay un único origen de verdad sobre lotes, controles de calidad y caducidades.</p>
 
-      <div class="pull">"The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención sigue siendo manual."</div>
+        <div class="diag-pull">The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención sigue siendo manual.</div>
 
-      <p><strong>The Skin Club</strong> demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. Pero la maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</p>
+        <p><strong>The Skin Club</strong> demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. Pero la maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</p>
 
-      <p>El <strong>pipeline B2B con management de talento</strong> acaba de validarse con Nancy Centella. Sin un Talent Portal, un CRM real y contratos generados desde template, este pipeline no es replicable. Es 1 de 100 talentos posibles.</p>
+        <p>El <strong>pipeline B2B con management de talento</strong> acaba de validarse con Nancy Centella. Sin un Talent Portal, un CRM real y contratos generados desde template, este pipeline no es replicable. Es 1 de 100 talentos posibles.</p>
 
-      <p>Los <strong>documentos COFEPRIS, NOMs y trazabilidad de lotes</strong> viven en carpetas locales, USBs y correos. No es auditable. No es exportable. No es la calidad de archivo que un laboratorio en escalamiento defendible necesita.</p>
+        <p>Los <strong>documentos COFEPRIS, NOMs y trazabilidad de lotes</strong> viven en carpetas locales, USBs y correos. No es auditable. No es exportable. No es la calidad de archivo que un laboratorio en escalamiento defendible necesita.</p>
 
-      <p><em>Lo que sigue es la propuesta para resolverlo: cinco fases acumulativas, doce meses, una sola arquitectura. La forma en que cada fase se construye sobre la anterior — sin re-trabajo, sin reescritura, sin migración — es lo que distingue una propuesta de un catálogo.</em></p>
+        <p>Lo que sigue es la propuesta para resolverlo: cinco fases acumulativas, doce meses, una sola arquitectura. No es un proyecto técnico aislado — es transformación digital completa de la operación. El objetivo final es <strong>hacer la operación de TSC LABS totalmente queryable</strong>: convertir cada decisión de negocio en una pregunta SQL, cada agente de IA en senior staff que opera 24/7, y cada documento de compliance en evidencia auditable. Arquitectura formal de entidades, diagramas, bases de datos y lógica de negocio — desde la expertise combinada de negocios y tecnología.</p>
 
-      <div class="letter-sign">
-        <p class="letter-sign-name">— Eigen Atlas Practice</p>
-        <p class="letter-sign-title">Architecture practice · Guadalajara · México</p>
+        <div class="diag-sign">
+          <p class="diag-sign-name">Eigen Atlas Practice</p>
+          <p class="diag-sign-title">Architecture practice · Guadalajara · México</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1043,57 +1387,61 @@ a:hover{border-bottom-color:var(--oxblood)}
 <section class="section muted" id="fases">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">02.<small>— § II · Las cinco fases —</small></div>
+      <div class="section-num">§ II<small>FASES</small></div>
       <h2 class="section-title">Doce meses, <em>cinco fases</em>, una arquitectura.</h2>
       <p class="section-deck">Cinco capítulos acumulativos. Cada fase se construye encima de la anterior, sin re-trabajo. Stack único, deliverables auditables, métricas de cierre por hito.</p>
     </header>
 
-    <!-- FASE 01 -->
     <article class="phase">
       <header class="phase-head">
-        <div class="phase-num">01<small>— Fase uno —</small></div>
+        <div class="phase-num">
+          <span class="phase-num-tag">F1</span>
+          <span class="phase-num-label">Fase uno</span>
+        </div>
         <div>
-          <h3 class="phase-title">Foundation <em>Digital</em>.</h3>
-          <p class="phase-meta-line">Duración 2 meses · 1 landing premium · 1 portal B2B · email infra · WhatsApp Business API</p>
+          <h3 class="phase-title">Foundation <em>Digital</em></h3>
+          <p class="phase-meta-line">2 meses · 1 landing premium · 1 portal B2B · email infra · WhatsApp Business API</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$200<em>K</em></div>
-          <div class="phase-price-label">MXN · 2 meses</div>
+          <div class="phase-price-label">MXN · 2 MESES</div>
         </div>
       </header>
       <div class="phase-body">
         <div class="phase-prose">
           <p>La superficie pública de TSC LABS y de The Skin Club queda al nivel de la calidad que el laboratorio ya demostró en formulación. <strong>Landing premium The Skin Club</strong> con narrativa de marca, tipografía editorial, performance &lt;1.5s LCP móvil y arquitectura DTC lista para feeds, pixels y attribution.</p>
-          <p>En paralelo, el <strong>portal B2B <em>tsc-labs.com.mx</em></strong> consolida los cuatro dossiers en un sólo lugar, con captura de leads, formulario de proyecto y embed de Calendly. <strong>Email infra profesional</strong>: Cloudflare Email Routing + Resend Pro con cuatro prefijos operativos (<em>business@</em>, <em>produccion@</em>, <em>compliance@</em>, <em>rd@</em>). <strong>WhatsApp Business API</strong> con número oficial y dos flujos iniciales (DTC consulta producto / B2B lead inbound).</p>
+          <p>En paralelo, el <strong>portal B2B tsc-labs.com.mx</strong> consolida los cuatro dossiers en un sólo lugar, con captura de leads, formulario de proyecto y embed de Calendly. <strong>Email infra profesional</strong>: Cloudflare Email Routing + Resend Pro con cuatro prefijos operativos (business@, produccion@, compliance@, rd@). <strong>WhatsApp Business API</strong> con número oficial y dos flujos iniciales (DTC consulta producto / B2B lead inbound).</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
-            <div class="phase-block-label">Entregables</div>
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
             <div class="phase-block-body">Landing Skin Club rebuild · Portal B2B consolidado · Email Routing + Resend Pro (4 prefijos) · WhatsApp Business API.</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Stack</div>
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
             <div class="phase-stack">CF Workers · CF Pages · Email Routing · Resend · Stripe · MercadoPago · WhatsApp Cloud API</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Métricas de cierre</div>
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
             <div class="phase-block-body">Landing live · Portal B2B live · 4 prefijos email activos · WhatsApp operando con 2 flujos.</div>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- FASE 02 -->
     <article class="phase">
       <header class="phase-head">
-        <div class="phase-num">02<small>— Fase dos —</small></div>
+        <div class="phase-num">
+          <span class="phase-num-tag">F2</span>
+          <span class="phase-num-label">Fase dos</span>
+        </div>
         <div>
-          <h3 class="phase-title">Sales &amp; <em>CRM</em>.</h3>
-          <p class="phase-meta-line">Duración 1.5 meses · Talent Portal · CRM lead pipeline · email automation · Stripe + MP CFDI 4.0</p>
+          <h3 class="phase-title">Sales &amp; <em>CRM</em></h3>
+          <p class="phase-meta-line">1.5 meses · Talent Portal · CRM lead pipeline · email automation · Stripe + MP CFDI 4.0</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$140<em>K</em></div>
-          <div class="phase-price-label">MXN · 1.5 meses</div>
+          <div class="phase-price-label">MXN · 1.5 MESES</div>
         </div>
       </header>
       <div class="phase-body">
@@ -1103,121 +1451,133 @@ a:hover{border-bottom-color:var(--oxblood)}
         </div>
         <div class="phase-side">
           <div class="phase-block">
-            <div class="phase-block-label">Entregables</div>
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
             <div class="phase-block-body">Talent Portal · CRM lead pipeline · Email automation por milestones · Stripe + MP IVA invoicing por hito.</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Stack</div>
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
             <div class="phase-stack">CF Durable Objects · Workers · KV · R2 · Resend templates · Stripe · MercadoPago · magic-link auth</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Métricas de cierre</div>
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
             <div class="phase-block-body">1 portal funcional end-to-end · 5 leads activos en pipeline · 3 hitos automatizados con email + factura.</div>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- FASE 03 -->
     <article class="phase">
       <header class="phase-head">
-        <div class="phase-num">03<small>— Fase tres —</small></div>
+        <div class="phase-num">
+          <span class="phase-num-tag">F3</span>
+          <span class="phase-num-label">Fase tres</span>
+        </div>
         <div>
-          <h3 class="phase-title">Producción &amp; <em>Compliance</em>.</h3>
-          <p class="phase-meta-line">Duración 2 meses · Formula DB · batch tracking · Document Vault COFEPRIS · trazabilidad lote→cliente</p>
+          <h3 class="phase-title">ERP &amp; <em>Producción Digital</em></h3>
+          <p class="phase-meta-line">2.5 meses · Formula DB · ERP propio · Document Vault COFEPRIS · trazabilidad lote→cliente</p>
+          <p class="phase-subtitle">El laboratorio se convierte en sistema. Inventario predictivo + producción trazable + compliance auditable.</p>
         </div>
         <div class="phase-price">
-          <div class="phase-price-num">$220<em>K</em></div>
-          <div class="phase-price-label">MXN · 2 meses</div>
+          <div class="phase-price-num">$300<em>K</em></div>
+          <div class="phase-price-label">MXN · 2.5 MESES</div>
         </div>
       </header>
       <div class="phase-body">
         <div class="phase-prose">
           <p>Las fórmulas migran de Excel a una <strong>Formula DB versionada</strong> con ingredientes, sustitutos, NOMs aplicables y eficacia comprobada. <strong>Batch tracking</strong> con números de lote, registros de QA, fechas de caducidad y reconciliación con inventario, ligado al talent portal correspondiente.</p>
+          <p><strong>ERP propio:</strong> control de inventario que descuenta automáticamente con cada producción y cada movimiento de salida, predicción de agotamiento por SKU, alertas de re-stock antes de quedarse sin materia prima, gestión de proveedores con histórico de compras y órdenes de compra generadas semi-automáticamente cuando un insumo cruza el umbral crítico.</p>
           <p><strong>Document Vault COFEPRIS</strong> — NOM-259-SSA1-2022, NOM-141-SSA1/SCFI-2012, NOM-089-SSA1-1994 — buscable, version-controlled y exportable a PDF para cualquier auditoría. <strong>Trazabilidad lot → cliente final</strong>, audit-trail completo, litigio-ready.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
-            <div class="phase-block-label">Entregables</div>
-            <div class="phase-block-body">Formula DB · Batch tracking · Document Vault COFEPRIS · trazabilidad lot→cliente.</div>
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
+            <div class="phase-block-body">Formula DB · Batch tracking · <strong>ERP de inventario</strong> (auto-descuento, predicción, re-stock, proveedores) · Document Vault COFEPRIS · trazabilidad lot→cliente.</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Stack</div>
-            <div class="phase-stack">CF D1 · R2 · Workers Workflows · Pages dashboards</div>
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
+            <div class="phase-stack">CF D1 · R2 · Workers Workflows · Pages dashboards · Cron Triggers para predicciones</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Métricas de cierre</div>
-            <div class="phase-block-body">18 fórmulas migradas · 1 lote trackeado end-to-end · 100% docs COFEPRIS digitalizados.</div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- FASE 04 -->
-    <article class="phase">
-      <header class="phase-head">
-        <div class="phase-num">04<small>— Fase cuatro —</small></div>
-        <div>
-          <h3 class="phase-title">Analytics &amp; <em>Intelligence</em>.</h3>
-          <p class="phase-meta-line">Duración 1.5 meses · Dashboard ejecutivo · ad performance · LTV/Retention · margin calculator</p>
-        </div>
-        <div class="phase-price">
-          <div class="phase-price-num">$160<em>K</em></div>
-          <div class="phase-price-label">MXN · 1.5 meses</div>
-        </div>
-      </header>
-      <div class="phase-body">
-        <div class="phase-prose">
-          <p><strong>Dashboard ejecutivo</strong> con margen real-time por SKU, por canal y por talento. <strong>Ad performance integrada</strong> de Meta, TikTok y Google con attribution multi-touch. <strong>Modelo predictivo</strong> simple de retención y LTV por marca-talento.</p>
-          <p>Y la <strong>calculadora de margen</strong> — la misma que usaron en los dossiers — productivizada en versión pública para pitch + privada interna con costos reales y simulaciones de escenarios.</p>
-        </div>
-        <div class="phase-side">
-          <div class="phase-block">
-            <div class="phase-block-label">Entregables</div>
-            <div class="phase-block-body">Dashboard ejecutivo · Ad performance Meta+TikTok+Google · LTV/Retention modelo · Margin calculator pública+privada.</div>
-          </div>
-          <div class="phase-block">
-            <div class="phase-block-label">Stack</div>
-            <div class="phase-stack">CF Workers Analytics Engine · R2 data lake · D1 · Plotly/Observable · Meta + TikTok + Google APIs</div>
-          </div>
-          <div class="phase-block">
-            <div class="phase-block-label">Métricas de cierre</div>
-            <div class="phase-block-body">Dashboard live · 4 plataformas de ads conectadas · margen real-time por SKU.</div>
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
+            <div class="phase-block-body">18 fórmulas migradas · 1 lote trackeado end-to-end · 100% docs COFEPRIS digital · ERP descontando inventario en tiempo real.</div>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- FASE 05 -->
     <article class="phase">
       <header class="phase-head">
-        <div class="phase-num">05<small>— Fase cinco · clímax —</small></div>
+        <div class="phase-num">
+          <span class="phase-num-tag">F4</span>
+          <span class="phase-num-label">Fase cuatro</span>
+        </div>
         <div>
-          <h3 class="phase-title">AI <em>Agents</em>.</h3>
-          <p class="phase-meta-line">Duración 5 meses (3 olas) · DTC chatbot · B2B lead qualifier · Compliance Monitor + R&amp;D Research Assistant</p>
+          <h3 class="phase-title">Business Intelligence + <em>Empresa Queryable</em></h3>
+          <p class="phase-meta-line">2 meses · Dashboard ejecutivo · semantic data layer · ER diagrams · natural-language queries</p>
+          <p class="phase-subtitle">Toda la operación, una sola pregunta de distancia. Datos como código.</p>
         </div>
         <div class="phase-price">
-          <div class="phase-price-num">$340<em>K</em></div>
-          <div class="phase-price-label">MXN · 5 meses · 3 olas</div>
+          <div class="phase-price-num">$220<em>K</em></div>
+          <div class="phase-price-label">MXN · 2 MESES</div>
         </div>
       </header>
       <div class="phase-body">
         <div class="phase-prose">
-          <p>Tres olas de agentes operativos. <strong>Ola A:</strong> chatbot DTC para The Skin Club, 24/7, con matching de fórmula por tipo de piel y conversación post-compra. <strong>Ola B:</strong> lead qualification B2B que filtra talents inbound y agenda únicamente cuando hay fit real.</p>
-          <p><strong>Ola C:</strong> Compliance Monitor + R&amp;D Research Assistant con alertas en menos de 24 horas cuando COFEPRIS o cualquier NOM relevante actualiza, y un asistente de investigación que rastrea papers científicos, activos emergentes y movimientos regulatorios de competidores globales.</p>
+          <p>TSC LABS deja de ser una colección de Excels y carpetas. Pasamos a una <strong>arquitectura de datos completa</strong>: entity-relationship diagrams formales, base de datos transaccional + analítica separadas, semantic layer que permite cualquier pregunta de negocio en lenguaje natural.</p>
+          <p><strong>Dashboard ejecutivo</strong> con margen real-time por SKU, por canal y por talento. <strong>Ad performance integrada</strong> de Meta, TikTok y Google con attribution multi-touch. <strong>Modelo predictivo</strong> de retención y LTV por marca-talento. Margin calculator productivizada en versión pública para pitch + privada interna con costos reales.</p>
+          <p><strong>Empresa totalmente queryable:</strong> cualquier ejecutivo puede preguntar "¿cuánto entregamos del Suero Vit C en marzo en TikTok?" y recibir respuesta directa, sin pasar por nadie. Cada decisión de negocio se convierte en una pregunta SQL — la operación deja de depender de quién tiene el Excel correcto.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
-            <div class="phase-block-label">Entregables</div>
-            <div class="phase-block-body">Ola A Chatbot DTC Skin Club · Ola B Lead qualification B2B · Ola C Compliance Monitor + R&amp;D Research Assistant.</div>
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
+            <div class="phase-block-body">Dashboard ejecutivo · Ad attribution multi-touch · LTV/Retention modelo · Margin calculator · <strong>Semantic data layer · ER diagrams + arquitectura completa · Natural-language queries del negocio</strong>.</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Stack</div>
-            <div class="phase-stack">Eigen Agents framework · CF Workers · Durable Objects · Workers AI (Llama 4) · Claude API · MCP servers</div>
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
+            <div class="phase-stack">CF Workers Analytics Engine · R2 data lake · D1 transactional + analytical · Plotly/Observable · Meta + TikTok + Google APIs · LLM gateway para semantic queries</div>
           </div>
           <div class="phase-block">
-            <div class="phase-block-label">Métricas de cierre</div>
-            <div class="phase-block-body">3 agents productivizados · SLA 99.5% · −70% tiempo de qualification · alertas COFEPRIS &lt;24h.</div>
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
+            <div class="phase-block-body">Dashboard live · 4 plataformas conectadas · margen real-time por SKU · queries de negocio operando en lenguaje natural.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <header class="phase-head">
+        <div class="phase-num">
+          <span class="phase-num-tag">F5</span>
+          <span class="phase-num-label">Fase cinco · clímax</span>
+        </div>
+        <div>
+          <h3 class="phase-title">AI <em>Agents</em> · 4 olas</h3>
+          <p class="phase-meta-line">5 meses · 4 olas · DTC chatbot · Lead qualifier · Outbound agents · Compliance + R&amp;D</p>
+          <p class="phase-subtitle">Cuatro agentes que operan como empleados senior, sin sueldo.</p>
+        </div>
+        <div class="phase-price">
+          <div class="phase-price-num">$440<em>K</em></div>
+          <div class="phase-price-label">MXN · 5 MESES · 4 OLAS</div>
+        </div>
+      </header>
+      <div class="phase-body">
+        <div class="phase-prose">
+          <p>Cuatro olas de agentes operativos que convierten IA en senior staff que opera 24/7. <strong>Ola A — DTC Chatbot Skin Club</strong> (1 mes · $90K): chatbot 24/7 con matching de fórmula por tipo de piel + conversación post-compra. <strong>Ola B — Lead Qualification B2B</strong> (1 mes · $90K): filtra talents inbound y agenda solo cuando hay fit real.</p>
+          <p><strong>Ola C — Outbound Sales Agents</strong> (1.5 meses · $130K): agentes que hacen primeros acercamientos a talents potenciales — research preliminary, redactan email, envían WhatsApp inicial, escalan a humano cuando hay interés. Multi-canal: email, WhatsApp y llamadas voz vía Twilio + ElevenLabs. <strong>Convierte el pipeline B2B en motor outbound 24/7.</strong></p>
+          <p><strong>Ola D — Compliance Monitor + R&amp;D Research</strong> (1.5 meses · $130K): alertas en menos de 24 horas cuando COFEPRIS o cualquier NOM relevante actualiza, y asistente de investigación que rastrea papers científicos, activos emergentes y movimientos regulatorios de competidores globales.</p>
+        </div>
+        <div class="phase-side">
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
+            <div class="phase-block-body">4 agentes productivizados · SLA 99.5% · −70% tiempo qualification · alertas COFEPRIS &lt;24h · outbound ejecutado en 3 canales (email + WhatsApp + voz).</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
+            <div class="phase-stack">Eigen Agents framework · CF Workers · Durable Objects · Workers AI (Llama 4) · Claude API · MCP servers · Twilio · ElevenLabs</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
+            <div class="phase-block-body">4 agentes en producción · SLA 99.5% · −70% qualification · outbound multi-canal operando · alertas COFEPRIS &lt;24h.</div>
           </div>
         </div>
       </div>
@@ -1226,11 +1586,390 @@ a:hover{border-bottom-color:var(--oxblood)}
   </div>
 </section>
 
-<!-- § III · INVERSIÓN TOTAL -->
+<!-- § III · DASHBOARD EJECUTIVO MOCK -->
+<section class="section" id="dashboard-mock">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">§ III<small>BI · DASHBOARD</small></div>
+      <h2 class="section-title">Dashboard ejecutivo <em>en vivo</em> (preview).</h2>
+      <p class="section-deck">El dashboard que TSC LABS tendrá al cierre de Fase 04. Cualquier pregunta del negocio, una visualización. Mock representativo del producto final.</p>
+    </header>
+
+    <div class="bi-frame">
+      <div class="bi-intro">
+        <h3>El dashboard que TSC LABS tendrá <em>al cierre de Fase 04</em>.</h3>
+        <p>Cualquier pregunta del negocio, una visualización. Margen, stock, ads y LTV — sin abrir un Excel.</p>
+      </div>
+
+      <div class="bi-dashboard">
+        <div class="bi-bar">
+          <div class="bi-bar-mark">TSC LABS · BI Console</div>
+          <div class="bi-bar-meta">
+            <span>Q2 · 2027</span>
+            <span>Live · semantic layer</span>
+            <span>v1.0.0</span>
+          </div>
+        </div>
+
+        <div class="bi-grid">
+
+          <!-- CELL 1 · Margin per SKU -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Margen real-time por SKU<small>F4 · DTC + B2B · margen %</small></div>
+              <span class="bi-cell-tag">LIVE</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
+                <text x="0" y="20">80%</text>
+                <text x="0" y="80">60%</text>
+                <text x="0" y="140">40%</text>
+                <text x="0" y="200">20%</text>
+              </g>
+              <g stroke="rgba(10,10,10,0.08)" stroke-width="1">
+                <line x1="32" y1="16" x2="460" y2="16"/>
+                <line x1="32" y1="76" x2="460" y2="76"/>
+                <line x1="32" y1="136" x2="460" y2="136"/>
+                <line x1="32" y1="196" x2="460" y2="196"/>
+              </g>
+              <!-- Bars: 7 SKUs -->
+              <g fill="#1E40AF">
+                <rect x="48" y="38" width="38" height="158"/>
+                <rect x="108" y="62" width="38" height="134"/>
+                <rect x="168" y="20" width="38" height="176"/>
+                <rect x="228" y="74" width="38" height="122"/>
+                <rect x="288" y="50" width="38" height="146"/>
+                <rect x="348" y="92" width="38" height="104"/>
+                <rect x="408" y="44" width="38" height="152"/>
+              </g>
+              <g fill="#0A0A0A" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
+                <text x="67" y="212" text-anchor="middle">SUERO·VC</text>
+                <text x="127" y="212" text-anchor="middle">CR·REPAR</text>
+                <text x="187" y="212" text-anchor="middle">TÓNICO</text>
+                <text x="247" y="212" text-anchor="middle">FPS·50</text>
+                <text x="307" y="212" text-anchor="middle">SERUM·B</text>
+                <text x="367" y="212" text-anchor="middle">LIMPIA</text>
+                <text x="427" y="212" text-anchor="middle">MASCAR</text>
+              </g>
+              <g fill="#FAFAF7" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500">
+                <text x="67" y="54" text-anchor="middle">66%</text>
+                <text x="127" y="78" text-anchor="middle">56%</text>
+                <text x="187" y="36" text-anchor="middle">73%</text>
+                <text x="247" y="90" text-anchor="middle">51%</text>
+                <text x="307" y="66" text-anchor="middle">61%</text>
+                <text x="367" y="108" text-anchor="middle">43%</text>
+                <text x="427" y="60" text-anchor="middle">63%</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- CELL 2 · Stock prediction with re-stock alert -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Stock predicho · próximos 30 días<small>F3 · ERP · alerta de re-stock</small></div>
+              <span class="bi-cell-tag">ALERT</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
+                <text x="0" y="20">2400</text>
+                <text x="0" y="80">1600</text>
+                <text x="0" y="140">800</text>
+                <text x="0" y="200">0</text>
+              </g>
+              <g stroke="rgba(10,10,10,0.08)" stroke-width="1">
+                <line x1="32" y1="16" x2="460" y2="16"/>
+                <line x1="32" y1="76" x2="460" y2="76"/>
+                <line x1="32" y1="136" x2="460" y2="136"/>
+                <line x1="32" y1="196" x2="460" y2="196"/>
+              </g>
+              <!-- Re-stock threshold dashed -->
+              <line x1="32" y1="148" x2="460" y2="148" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="36" y="142" font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.6">RE-STOCK · 720u</text>
+              <!-- Stock decline curve -->
+              <path d="M 40 30 L 90 38 L 140 50 L 190 70 L 240 96 L 290 122 L 340 152 L 390 174 L 440 188" fill="none" stroke="#1E40AF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Crossing point with alert dot -->
+              <circle cx="340" cy="152" r="5" fill="#B91C1C"/>
+              <circle cx="340" cy="152" r="9" fill="none" stroke="#B91C1C" stroke-width="1.2" opacity="0.5"/>
+              <text x="350" y="142" font-family="JetBrains Mono, monospace" font-size="8" fill="#B91C1C" letter-spacing="0.6">D22 · ORDEN AUTO</text>
+              <g fill="#6E6E70" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
+                <text x="40" y="212">D01</text>
+                <text x="140" y="212">D08</text>
+                <text x="240" y="212">D15</text>
+                <text x="340" y="212" text-anchor="middle">D22</text>
+                <text x="440" y="212" text-anchor="end">D30</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- CELL 3 · Donut: Ad performance -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Performance ads multi-touch<small>F4 · attribution · Q2 2027</small></div>
+              <span class="bi-cell-tag">MULTI</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Donut: 4 segments. Total circumference for r=70 ≈ 439.82.
+                   Meta 38% (167.13), TikTok 27% (118.75), Google 21% (92.36), DTC 14% (61.58) -->
+              <g transform="translate(160 110)">
+                <circle r="70" fill="none" stroke="rgba(10,10,10,0.06)" stroke-width="28"/>
+                <!-- segments using stroke-dasharray. Start at top by rotating -90 -->
+                <g transform="rotate(-90)" fill="none" stroke-width="28">
+                  <!-- Meta -->
+                  <circle r="70" stroke="#1E40AF" stroke-dasharray="167.13 439.82" stroke-dashoffset="0"/>
+                  <!-- TikTok -->
+                  <circle r="70" stroke="#0A0A0A" stroke-dasharray="118.75 439.82" stroke-dashoffset="-167.13"/>
+                  <!-- Google -->
+                  <circle r="70" stroke="#2563EB" stroke-dasharray="92.36 439.82" stroke-dashoffset="-285.88"/>
+                  <!-- DTC organic -->
+                  <circle r="70" stroke="#6E6E70" stroke-dasharray="61.58 439.82" stroke-dashoffset="-378.24"/>
+                </g>
+                <text y="-4" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#0A0A0A" text-anchor="middle">$2.4M</text>
+                <text y="14" font-family="JetBrains Mono, monospace" font-size="8" fill="#6E6E70" text-anchor="middle" letter-spacing="1">REVENUE Q2</text>
+              </g>
+              <!-- Legend -->
+              <g font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.6" fill="#0A0A0A">
+                <g transform="translate(280 50)">
+                  <rect width="10" height="10" fill="#1E40AF"/>
+                  <text x="18" y="9">META · 38%</text>
+                </g>
+                <g transform="translate(280 78)">
+                  <rect width="10" height="10" fill="#0A0A0A"/>
+                  <text x="18" y="9">TIKTOK · 27%</text>
+                </g>
+                <g transform="translate(280 106)">
+                  <rect width="10" height="10" fill="#2563EB"/>
+                  <text x="18" y="9">GOOGLE · 21%</text>
+                </g>
+                <g transform="translate(280 134)">
+                  <rect width="10" height="10" fill="#6E6E70"/>
+                  <text x="18" y="9">DTC · 14%</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <!-- CELL 4 · LTV per talent -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">LTV proyectado por talento<small>F4 · modelo predictivo · 12 meses</small></div>
+              <span class="bi-cell-tag">PRED</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Horizontal bars · 6 talents -->
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.6">
+                <text x="0" y="22">N. CENTELLA</text>
+                <text x="0" y="52">TALENT · B</text>
+                <text x="0" y="82">TALENT · C</text>
+                <text x="0" y="112">TALENT · D</text>
+                <text x="0" y="142">TALENT · E</text>
+                <text x="0" y="172">TALENT · F</text>
+              </g>
+              <g stroke="rgba(10,10,10,0.06)" stroke-width="1">
+                <line x1="100" y1="14" x2="100" y2="190"/>
+                <line x1="200" y1="14" x2="200" y2="190"/>
+                <line x1="300" y1="14" x2="300" y2="190"/>
+                <line x1="400" y1="14" x2="400" y2="190"/>
+              </g>
+              <g fill="#1E40AF">
+                <rect x="100" y="12" width="320" height="14"/>
+                <rect x="100" y="42" width="240" height="14"/>
+                <rect x="100" y="72" width="200" height="14"/>
+                <rect x="100" y="102" width="160" height="14"/>
+                <rect x="100" y="132" width="120" height="14"/>
+                <rect x="100" y="162" width="90" height="14"/>
+              </g>
+              <g font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">
+                <text x="430" y="23">$1.6M</text>
+                <text x="350" y="53">$1.2M</text>
+                <text x="310" y="83">$1.0M</text>
+                <text x="270" y="113">$820K</text>
+                <text x="230" y="143">$610K</text>
+                <text x="200" y="173">$450K</text>
+              </g>
+              <g fill="#6E6E70" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
+                <text x="100" y="208">$0</text>
+                <text x="200" y="208" text-anchor="middle">$500K</text>
+                <text x="300" y="208" text-anchor="middle">$1M</text>
+                <text x="400" y="208" text-anchor="middle">$1.5M</text>
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="bi-caption">Mock representativo. La versión real lee data en tiempo real desde el ERP + Workers Analytics, con queries en lenguaje natural sobre el semantic layer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- § IV · ROADMAP MENSUAL -->
+<section class="section muted" id="roadmap">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">§ IV<small>ROADMAP</small></div>
+      <h2 class="section-title">Roadmap — <em>12 meses, mes a mes</em>.</h2>
+      <p class="section-deck">Cada mes una entrega tangible. Sin meses vacíos.</p>
+    </header>
+
+    <div class="roadmap-frame">
+      <div class="roadmap-list">
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M01</strong>MAY 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Diagnóstico + onboarding</div>
+            <div class="roadmap-summary">Diagnóstico técnico completo, kickoff F1.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f1">F1 · onboarding</span>
+            <div class="roadmap-deliv-text">NDA firmado · acceso a sistemas TSC · auditoría infra actual · roadmap detallado validado.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M02</strong>JUN 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Landing + Portal live</div>
+            <div class="roadmap-summary">F1 entrega completa.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f1">F1 · entrega</span>
+            <div class="roadmap-deliv-text">The Skin Club landing rebuilt y live · tsc-labs.com.mx portal B2B unificado · Email Routing 4 prefijos · WhatsApp Business API operando con 2 flujos.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M03</strong>JUL 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Talent Portal MVP</div>
+            <div class="roadmap-summary">F2 arranque.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f2">F2 · arranque</span>
+            <div class="roadmap-deliv-text">Portal de talento con login magic-link · estado de fórmula visible · Stripe + MP integration en construcción.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M04</strong>AGO 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">CRM + automation live</div>
+            <div class="roadmap-summary">F2 entrega + F3 arranque.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f2">F2 · entrega</span>
+            <div class="roadmap-deliv-text">CRM lead pipeline funcional con 5 leads · email automation por hito (concepto, prototipo, lote, retail) · Stripe + MP IVA-compliant CFDI 4.0 emitiendo · primera Formula DB migration de 6 fórmulas.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M05</strong>SEP 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Formula DB completa</div>
+            <div class="roadmap-summary">F3 medio.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f3">F3 · medio</span>
+            <div class="roadmap-deliv-text">18 fórmulas migradas a DB versionada con NOMs · ingredientes catalogados con sustitutos · primer Document Vault COFEPRIS importado.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M06</strong>OCT 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Batch tracking + Dashboard MVP</div>
+            <div class="roadmap-summary">F3 entrega + F4 arranque.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f3">F3 · entrega</span>
+            <div class="roadmap-deliv-text">Trazabilidad lot→cliente final live · 1 lote completo trackeado end-to-end · documentos COFEPRIS 100% digitalizados · Dashboard ejecutivo MVP con margen real-time por SKU.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M07</strong>NOV 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Analytics + ads attribution</div>
+            <div class="roadmap-summary">F4 entrega.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f4">F4 · entrega</span>
+            <div class="roadmap-deliv-text">Dashboard ejecutivo completo · Meta + TikTok + Google attribution multi-touch · margin calculator productivizada (pública + privada) · LTV/Retention modelo predictivo en producción.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M08</strong>DIC 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Chatbot DTC live</div>
+            <div class="roadmap-summary">F5 Wave A.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f5">F5 · Wave A</span>
+            <div class="roadmap-deliv-text">Skin Club chatbot 24/7 productivizado · matching de fórmula por tipo de piel · respuestas post-compra automatizadas · primer mes de métricas de conversión.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M09</strong>ENE 2027</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">B2B Lead Qualification agent</div>
+            <div class="roadmap-summary">F5 Wave B.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f5">F5 · Wave B</span>
+            <div class="roadmap-deliv-text">Agente filtra talents inbound · agenda solo si fit real · −70% tiempo de qualification medido · 10 leads procesados en piloto.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M10</strong>FEB 2027</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">Compliance Monitor beta</div>
+            <div class="roadmap-summary">F5 Wave C arranque.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f5">F5 · Wave C</span>
+            <div class="roadmap-deliv-text">Compliance Monitor agent en beta · alertas &lt;24h cuando COFEPRIS o NOMs actualizan · primera detección real validada.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M11</strong>MAR 2027</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">R&amp;D Research Assistant live</div>
+            <div class="roadmap-summary">F5 Wave C entrega.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f5">F5 · Wave C</span>
+            <div class="roadmap-deliv-text">R&amp;D agent rastreando papers científicos, activos emergentes, regulación competidores · primer reporte semanal automatizado · 3 agentes productivizados con SLA 99.5%.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row final">
+          <div class="roadmap-month"><strong>M12</strong>ABR 2027</div>
+          <div class="roadmap-content">
+            <div class="roadmap-checkmark">ECOSISTEMA COMPLETO</div>
+            <div class="roadmap-theme">Ecosistema completo + retainer activates</div>
+            <div class="roadmap-summary">Cierre F5 + handoff.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f5">F5 · cierre</span>
+            <div class="roadmap-deliv-text">5 fases cerradas · 9 entregables digitales operando · documentación técnica completa · review 1Y de estabilidad · retainer $60K/mes activa · roadmap Año 2 propuesto.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § V · INVERSIÓN TOTAL -->
 <section class="section" id="inversion">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">03.<small>— § III · Inversión total —</small></div>
+      <div class="section-num">§ V<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
       <p class="section-deck">Setup acumulado de las cinco fases más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
     </header>
@@ -1262,98 +2001,96 @@ a:hover{border-bottom-color:var(--oxblood)}
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 03 · Producción &amp; Compliance<em>Formula DB · batch tracking · Document Vault · trazabilidad</em></div></td>
+            <td><div class="fin-line-label">Fase 03 · ERP &amp; Producción Digital<em>Formula DB · ERP propio (inventario, predicción, proveedores) · Document Vault · trazabilidad</em></div></td>
+            <td class="right">$300K</td>
+            <td class="right">2.5 mo</td>
+            <td class="fin-line-pct">23.1%</td>
+            <td class="fin-yoy">05 entregas</td>
+          </tr>
+          <tr>
+            <td><div class="fin-line-label">Fase 04 · BI + Empresa Queryable<em>Dashboard · ad attribution · LTV · semantic data layer · ER diagrams · NL queries</em></div></td>
             <td class="right">$220K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">20.8%</td>
-            <td class="fin-yoy">04 entregas</td>
+            <td class="fin-line-pct">16.9%</td>
+            <td class="fin-yoy">06 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 04 · Analytics &amp; Intelligence<em>Dashboard · ad performance · LTV · margin calculator</em></div></td>
-            <td class="right">$160K</td>
-            <td class="right">1.5 mo</td>
-            <td class="fin-line-pct">15.1%</td>
-            <td class="fin-yoy">04 entregas</td>
-          </tr>
-          <tr>
-            <td><div class="fin-line-label">Fase 05 · AI Agents<em>3 olas · DTC chatbot · B2B qualifier · Compliance + R&amp;D</em></div></td>
-            <td class="right">$340K</td>
+            <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Outbound agents · Compliance + R&amp;D</em></div></td>
+            <td class="right">$440K</td>
             <td class="right">5 mo</td>
-            <td class="fin-line-pct">32.1%</td>
-            <td class="fin-yoy">03 olas</td>
+            <td class="fin-line-pct">33.8%</td>
+            <td class="fin-yoy">04 olas</td>
           </tr>
           <tr class="subtotal">
             <td><strong>Setup acumulado · 5 fases</strong></td>
-            <td class="right">$1.06M</td>
-            <td class="right">12 mo</td>
+            <td class="right">$1.30M</td>
+            <td class="right">13 mo</td>
             <td class="fin-line-pct">100%</td>
-            <td class="fin-yoy">19 entregas</td>
+            <td class="fin-yoy">23 entregas</td>
           </tr>
-
           <tr>
-            <td><div class="fin-line-label">Retainer Año 1 post-launch<em>$50K MXN/mes × 12 meses · monitoreo + hotfix + features</em></div></td>
-            <td class="right">$600K</td>
+            <td><div class="fin-line-label">Retainer Año 1 post-launch<em>$60K MXN/mes × 12 meses · monitoreo + hotfix + features</em></div></td>
+            <td class="right">$720K</td>
             <td class="right">12 mo</td>
             <td class="fin-line-pct">—</td>
             <td class="fin-yoy">SLA</td>
           </tr>
-
           <tr class="total">
             <td><strong>Total · Año 1+2</strong></td>
-            <td class="right">$1.66M</td>
-            <td class="right">24 mo</td>
+            <td class="right">$2.02M</td>
+            <td class="right">25 mo</td>
             <td class="fin-line-pct">—</td>
             <td class="fin-yoy">end-to-end</td>
           </tr>
         </tbody>
       </table>
-      <p class="financials-note"><strong>Pagos.</strong> 30% al inicio de cada fase + 70% al cierre con hitos validados. Sin intereses, sin cargos por adelantado, sin pagos por fases que no se han ejecutado.</p>
-      <p class="financials-note"><strong>Retainer.</strong> Mínimo 12 meses post-deployment. Incluye monitoreo de infra, hotfix &lt;4h, dos features chicos al mes, security patches, backups y soporte chat directo. Renovable anual por mutuo acuerdo.</p>
-      <p class="financials-note"><strong>Confidencialidad.</strong> Toda figura económica es indicativa hasta firma de work order. NDA aplica desde recepción de este documento. Propuesta válida 30 días.</p>
+      <p class="financials-note"><strong>Pagos</strong>30% al inicio de cada fase + 70% al cierre con hitos validados. Sin intereses, sin cargos por adelantado, sin pagos por fases que no se han ejecutado.</p>
+      <p class="financials-note"><strong>Retainer</strong>Mínimo 12 meses post-deployment. Incluye monitoreo de infra, hotfix &lt;4h, dos features chicos al mes, security patches, backups y soporte chat directo. Renovable anual por mutuo acuerdo.</p>
+      <p class="financials-note"><strong>Confidencialidad</strong>Toda figura económica es indicativa hasta firma de work order. NDA aplica desde recepción de este documento. Propuesta válida 30 días.</p>
     </div>
 
     <div class="retainer-callout">
       <div>
-        <div class="retainer-tag">// Retainer · post-launch</div>
-        <h3 class="retainer-title">Operación continua, <em>$50K MXN/mes</em>, 12 meses.</h3>
+        <div class="retainer-tag">RETAINER · POST-LAUNCH</div>
+        <h3 class="retainer-title">Operación continua, <em>$60K MXN/mes</em>, 12 meses.</h3>
         <p class="retainer-prose">Monitoreo de infra · hotfix crítico &lt;4h · dos features chicos al mes · security patches · backups · soporte chat directo. Renovable anual por mutuo acuerdo, sin lock-in multi-año.</p>
       </div>
       <div>
-        <div class="retainer-num">$600<em>K</em></div>
-        <div class="retainer-num-label">MXN · Año 1 post-launch</div>
+        <div class="retainer-num">$720<em>K</em></div>
+        <div class="retainer-num-label">MXN · AÑO 1 POST-LAUNCH</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- § IV · POR QUÉ EIGEN -->
+<!-- § VI · POR QUÉ EIGEN -->
 <section class="section muted" id="por-que-eigen">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">04.<small>— § IV · Por qué Eigen —</small></div>
+      <div class="section-num">§ VI<small>POR QUÉ EIGEN</small></div>
       <h2 class="section-title">Cuatro razones, <em>defendibles</em>.</h2>
       <p class="section-deck">El stack, el playbook, el framework propietario y la operación 100% México. Cada una de las cuatro es defendible en una sala con CTO de cualquier vertical.</p>
     </header>
 
     <div class="governance-grid">
       <div class="gov-card">
-        <div class="gov-tag">Razón · I</div>
-        <h3 class="gov-title">Stack <em>Cloudflare-nativo</em>.</h3>
+        <div class="gov-tag">RAZÓN · I</div>
+        <h3 class="gov-title">Stack <em>Cloudflare-nativo</em></h3>
         <p class="gov-prose">Workers + Durable Objects + R2 + Email Service + Workers AI. Edge global, costo-eficiente vs AWS clásico, sin vendor lock-in. <strong>Deploy en menos de 60 segundos, rollback instantáneo, latencia &lt;70ms p50.</strong></p>
       </div>
       <div class="gov-card">
-        <div class="gov-tag">Razón · II</div>
-        <h3 class="gov-title">Playbook <em>vertical-onboarding</em> probado.</h3>
+        <div class="gov-tag">RAZÓN · II</div>
+        <h3 class="gov-title">Playbook <em>vertical-onboarding</em> probado</h3>
         <p class="gov-prose">Dr. Marcos (medical), Cosalá Hotels (hospitality) y Farmacia Económica (pharma retail) ya operan en este stack. <strong>TSC se onboardea en tres semanas calendario.</strong> No es teoría, es un playbook de seis fases con tres semanas de cycle time.</p>
       </div>
       <div class="gov-card">
-        <div class="gov-tag">Razón · III</div>
-        <h3 class="gov-title">AI agents framework <em>propietario</em>.</h3>
+        <div class="gov-tag">RAZÓN · III</div>
+        <h3 class="gov-title">AI agents framework <em>propietario</em></h3>
         <p class="gov-prose">Multi-tenant. Durable Object por cliente, isolated state, MCP servers, escalamiento lineal sin re-arquitectura. <strong>El framework es el moat. La infraestructura es el activo.</strong> Ningún competidor reescribe lo que ya tenemos productivizado.</p>
       </div>
       <div class="gov-card">
-        <div class="gov-tag">Razón · IV</div>
-        <h3 class="gov-title">Operación 100% <em>México</em>.</h3>
+        <div class="gov-tag">RAZÓN · IV</div>
+        <h3 class="gov-title">Operación 100% <em>México</em></h3>
         <p class="gov-prose">Equipo técnico local, COFEPRIS-aware, IVA-compliant, español + inglés. <strong>Conocemos NOMs y SAT.</strong> Los CFDI 4.0 se emiten correctamente desde día uno. Las auditorías hablan español. Las llamadas son en hora local.</p>
       </div>
     </div>
@@ -1369,22 +2106,22 @@ a:hover{border-bottom-color:var(--oxblood)}
       <tbody>
         <tr>
           <td>Uptime infraestructura</td>
-          <td class="gold">99.9%</td>
+          <td class="metric">99.9%</td>
           <td>1 mes de retainer gratis si baja del SLA</td>
         </tr>
         <tr>
           <td>Hotfix crítico</td>
-          <td class="gold">&lt;4h</td>
+          <td class="metric">&lt;4h</td>
           <td>Escalación CTO automática</td>
         </tr>
         <tr>
           <td>Entrega de hito de fase</td>
-          <td class="gold">fecha pactada</td>
+          <td class="metric">FECHA PACTADA</td>
           <td>−5% por semana de retraso (max −20%)</td>
         </tr>
         <tr>
           <td>Confidencialidad</td>
-          <td class="gold">NDA + delete-on-request</td>
+          <td class="metric">NDA + DELETE-ON-REQUEST</td>
           <td>Indemnización contractual</td>
         </tr>
       </tbody>
@@ -1392,48 +2129,121 @@ a:hover{border-bottom-color:var(--oxblood)}
   </div>
 </section>
 
-<!-- § V · PRÓXIMOS PASOS -->
-<section class="section" id="proximos">
+<!-- § VII · CAPACIDADES QUE SE CONSTRUYEN -->
+<section class="section" id="capacidades">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">05.<small>— § V · Próximos pasos —</small></div>
+      <div class="section-num">§ VII<small>CAPACIDADES</small></div>
+      <h2 class="section-title">Capacidades <em>que se construyen</em>.</h2>
+      <p class="section-deck">Lo que TSC LABS recibe al cierre de los 12 meses. No es un paquete técnico — es ocho capacidades operando como pilares de la empresa.</p>
+    </header>
+
+    <div class="cap-frame">
+      <div class="cap-grid">
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 8h18"/><path d="M8 12h6"/></svg></div>
+          <div class="cap-num">CAP · 01</div>
+          <div class="cap-title">Sitios web automatizados</div>
+          <p class="cap-prose">Pipelines que regeneran landings con data de catálogo · A/B test built-in · deploy edge en menos de 60s. <strong>Tu marca pública nunca se desactualiza.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></div>
+          <div class="cap-num">CAP · 02</div>
+          <div class="cap-title">Sistemas agénticos</div>
+          <p class="cap-prose">Agentes que operan 24/7 como senior staff · multi-tenant · Eigen Agents framework. <strong>Empleados sin sueldo, con SLA contractual.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 9h18M9 3v18"/><circle cx="14" cy="14" r="1.6" fill="currentColor"/></svg></div>
+          <div class="cap-num">CAP · 03</div>
+          <div class="cap-title">ERP propio</div>
+          <p class="cap-prose">Inventario auto-descontando con cada producción · predicción de agotamiento por SKU · órdenes de compra · gestión de proveedores. <strong>Operación trazable, sin Excel.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="18" cy="18" r="2.5"/><path d="M20 20l2 2"/></svg></div>
+          <div class="cap-num">CAP · 04</div>
+          <div class="cap-title">Empresa queryable</div>
+          <p class="cap-prose">Toda la data como código · cualquier pregunta de negocio respondida directamente · ER diagrams + arquitectura formal. <strong>Cada decisión, una pregunta SQL.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="cap-num">CAP · 05</div>
+          <div class="cap-title">Compliance auditable</div>
+          <p class="cap-prose">COFEPRIS digitalizado · trazabilidad lot→cliente · NOMs version-controlled. <strong>Litigio-ready, audit-trail completo.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20V8M9 20V4M15 20v-9M21 20v-6"/></svg></div>
+          <div class="cap-num">CAP · 06</div>
+          <div class="cap-title">Business intelligence</div>
+          <p class="cap-prose">Dashboards real-time · attribution multi-touch · LTV predictivo · queries en lenguaje natural. <strong>Margen, ads y retención sin abrir un Excel.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l4-8 4 8 5-4 5 12-9-2-9 2z"/></svg></div>
+          <div class="cap-num">CAP · 07</div>
+          <div class="cap-title">Outbound agents</div>
+          <p class="cap-prose">Primeros acercamientos automatizados via email + WhatsApp + voz · escalación a humano cuando hay fit. <strong>Pipeline B2B convertido en motor outbound 24/7.</strong></p>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.6 6h6.8M8.6 18h6.8M6 8.6v6.8M18 8.6v6.8"/></svg></div>
+          <div class="cap-num">CAP · 08</div>
+          <div class="cap-title">Arquitectura completa</div>
+          <p class="cap-prose">Entidades, diagramas, bases de datos, lógica de negocio · expertise combinada negocio + tecnología. <strong>El laboratorio queda diseñado como sistema, no como Excel.</strong></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § VIII · PRÓXIMOS PASOS -->
+<section class="section muted" id="proximos">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">§ VIII<small>PRÓXIMOS PASOS</small></div>
       <h2 class="section-title">Tres pasos, <em>siete días</em>.</h2>
       <p class="section-deck">Una secuencia explícita para pasar de propuesta firmada a Fase 1 en operación. Sin renegociación de scope, sin sorpresas, sin diluir el calendario.</p>
     </header>
 
     <div class="outlook-grid">
       <div class="outlook-cell">
-        <div class="outlook-q">i</div>
-        <div class="outlook-tag">— Paso 01 · Revisión —</div>
-        <h4 class="outlook-title">Reunión de 60 minutos.</h4>
+        <div class="outlook-q">01</div>
+        <div class="outlook-tag">PASO 01 · REVISIÓN</div>
+        <h4 class="outlook-title">Reunión de 60 minutos</h4>
         <p class="outlook-prose">Repaso completo de la propuesta con TSC LABS. Ajustes de scope, prioridades por fase, preguntas técnicas, validación de calendario. Sin compromiso, sin venta encima.</p>
       </div>
       <div class="outlook-cell">
-        <div class="outlook-q">ii</div>
-        <div class="outlook-tag">— Paso 02 · Contrato —</div>
-        <h4 class="outlook-title">NDA + work order.</h4>
+        <div class="outlook-q">02</div>
+        <div class="outlook-tag">PASO 02 · CONTRATO</div>
+        <h4 class="outlook-title">NDA + work order</h4>
         <p class="outlook-prose">NDA mutuo y work order Fase 1 redactados en 48 horas. Firma electrónica. 30% de Fase 1 al inicio, 70% al cierre con hitos validados. Sin lock-in multi-año.</p>
       </div>
       <div class="outlook-cell">
-        <div class="outlook-q">iii</div>
-        <div class="outlook-tag">— Paso 03 · Kickoff —</div>
-        <h4 class="outlook-title">Fase 1 arranca.</h4>
+        <div class="outlook-q">03</div>
+        <div class="outlook-tag">PASO 03 · KICKOFF</div>
+        <h4 class="outlook-title">Fase 1 arranca</h4>
         <p class="outlook-prose">Siete días post-firma. Sprint 0 = setup de cuentas, accesos, repos. Sprint 1 = landing The Skin Club + portal B2B en staging. Demo semanal. Cierre Fase 1 a 60 días.</p>
       </div>
     </div>
 
     <div class="contact-frame">
-      <div>
-        <div class="contact-cell-label">Email</div>
-        <div class="contact-cell-value">rc@eigenatlas.com</div>
+      <div class="contact-cell">
+        <div class="contact-cell-label">EMAIL</div>
+        <a href="mailto:rc@eigenatlas.com" class="contact-cell-value">rc@eigenatlas.com</a>
       </div>
-      <div>
-        <div class="contact-cell-label">WhatsApp</div>
-        <div class="contact-cell-value">33 3301 6642</div>
+      <div class="contact-cell">
+        <div class="contact-cell-label">WHATSAPP</div>
+        <a href="https://wa.me/523333016642" class="contact-cell-value">33 3301 6642</a>
       </div>
-      <div>
-        <div class="contact-cell-label">Teléfono</div>
-        <div class="contact-cell-value">+52 33 3301 6642</div>
+      <div class="contact-cell">
+        <div class="contact-cell-label">TELÉFONO</div>
+        <a href="tel:+523333016642" class="contact-cell-value">+52 33 3301 6642</a>
       </div>
     </div>
   </div>
@@ -1444,28 +2254,30 @@ a:hover{border-bottom-color:var(--oxblood)}
   <div class="colophon-frame">
     <div class="colophon-grid">
       <div>
-        <h4 class="colophon-brand">EIGEN · ATLAS <em>Practice</em></h4>
-        <p class="colophon-tag">Una arquitectura para el laboratorio, la marca y la plataforma B2B. Propuesta MMXXVI para TSC LABS.</p>
+        <h4 class="colophon-brand">EIGEN <em>ATLAS</em></h4>
+        <p class="colophon-tag">Una arquitectura para el laboratorio, la marca y la plataforma B2B. Propuesta V2.0 para TSC LABS.</p>
         <div class="colophon-meta">
           Atlas Studios · Guadalajara · MX<br>
-          Vol. V1.0 · MMXXVI · Propuesta TSC<br>
-          Set in GT Sectra &amp; Crimson Pro<br>
-          Composed at 1280 mm folio width<br>
+          V2.0 · Mayo 2026 · Propuesta TSC<br>
+          Set in Inter Tight + JetBrains Mono<br>
           EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL
         </div>
       </div>
       <div>
-        <h4 class="colophon-col-title">// Secciones</h4>
+        <h4 class="colophon-col-title">Secciones</h4>
         <ul class="colophon-list">
           <li><a href="#diagnostico">§ I · Diagnóstico</a></li>
           <li><a href="#fases">§ II · Cinco fases</a></li>
-          <li><a href="#inversion">§ III · Inversión total</a></li>
-          <li><a href="#por-que-eigen">§ IV · Por qué Eigen</a></li>
-          <li><a href="#proximos">§ V · Próximos pasos</a></li>
+          <li><a href="#dashboard-mock">§ III · Dashboard mock</a></li>
+          <li><a href="#roadmap">§ IV · Roadmap</a></li>
+          <li><a href="#inversion">§ V · Inversión total</a></li>
+          <li><a href="#por-que-eigen">§ VI · Por qué Eigen</a></li>
+          <li><a href="#capacidades">§ VII · Capacidades</a></li>
+          <li><a href="#proximos">§ VIII · Próximos pasos</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="colophon-col-title">// Práctica</h4>
+        <h4 class="colophon-col-title">Práctica</h4>
         <ul class="colophon-list">
           <li><a href="#">Working principles</a></li>
           <li><a href="#">Engagement terms</a></li>
@@ -1474,54 +2286,54 @@ a:hover{border-bottom-color:var(--oxblood)}
         </ul>
       </div>
       <div>
-        <h4 class="colophon-col-title">// Oficina</h4>
+        <h4 class="colophon-col-title">Oficina</h4>
         <ul class="colophon-list">
           <li><a href="mailto:rc@eigenatlas.com">rc@eigenatlas.com</a></li>
-          <li><a href="#">+52 33 3301 6642</a></li>
-          <li><a href="#">WhatsApp 33 3301 6642</a></li>
+          <li><a href="tel:+523333016642">+52 33 3301 6642</a></li>
+          <li><a href="https://wa.me/523333016642">WhatsApp 33 3301 6642</a></li>
           <li><a href="#">Por presentación</a></li>
         </ul>
       </div>
     </div>
     <div class="colophon-bottom">
-      <span>© Eigen Atlas Practice · MMXXVI · EIGEN-PROP-TSC-2026/01</span>
-      <span>Filed 2026.05.01 · Válida 30 días desde firma</span>
-      <span>Documento confidencial · Set in GT Sectra and Crimson Pro</span>
+      <span>&copy; Eigen Atlas &middot; 2026 &middot; EIGEN-PROP-TSC-2026/01</span>
+      <span>Filed 2026.05.01 &middot; Valida 30 dias desde firma</span>
+      <span>Set in Inter Tight + JetBrains Mono. EIGEN-PROP-TSC-2026/01.</span>
     </div>
   </div>
 </footer>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
+// Roadmap reveal on scroll (IntersectionObserver, no GSAP)
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rows = document.querySelectorAll('.roadmap-row');
+  if (reduced){
+    rows.forEach(function(r){ r.classList.add('in'); });
+    return;
+  }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          var el = e.target;
+          var i = parseInt(el.getAttribute('data-i') || '0', 10);
+          setTimeout(function(){ el.classList.add('in'); }, i * 60);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    rows.forEach(function(r, i){
+      r.setAttribute('data-i', String(i % 6));
+      io.observe(r);
+    });
+  } else {
+    rows.forEach(function(r){ r.classList.add('in'); });
+  }
+})();
 
-// Cover entrance
-gsap.from('.cover-eyebrow,.cover-volume,.cover-title,.cover-subtitle,.cover-rule,.cover-headline-stats',{
-  y:30,opacity:0,duration:1,stagger:0.12,ease:'power2.out'
-});
-
-// Letter
-gsap.from('.letter-head > *,.letter-body > p,.letter-sign',{
-  y:24,opacity:0,duration:0.9,stagger:0.1,
-  scrollTrigger:{trigger:'.letter',start:'top 75%'}
-});
-
-// Section headers
-gsap.utils.toArray('.section-header').forEach(h=>{
-  gsap.from(h.children,{
-    y:20,opacity:0,duration:0.8,stagger:0.1,
-    scrollTrigger:{trigger:h,start:'top 85%'}
-  });
-});
-
-// Phase chapters · governance cards · outlook cells · finance rows · contact cells
-gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.sla-table tbody tr,.retainer-callout,.contact-frame > div').forEach((el,i)=>{
-  gsap.from(el,{
-    y:24,opacity:0,duration:0.7,delay:i*0.04,
-    scrollTrigger:{trigger:el,start:'top 88%'}
-  });
-});
-
-// === ASCII 3D HERO (three.js + custom canvas-sampling AsciiEffect) ===
+// ASCII 3D HERO (three.js + canvas-sampling) — 3D rotating world (sphere)
+// GLTF override: append ?gltf=1 to the URL to defer to a future GLTF asset hook.
 (function(){
   var host = document.getElementById('ascii-hero');
   var out  = document.getElementById('ascii-hero-out');
@@ -1531,241 +2343,134 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
   var smallVP = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
   if(smallVP){ return; }
 
-  // --- Char palette: low-density → high-density ---
-  // index 0 = darkest (here = paper, blank), last = densest (= ink heavy)
-  var PAL = ' .:-=+*#%@';
-  var COLS = 120; // ~chars wide
-  var ROWS = 60;  // ~chars tall (aspect ~ 2:1 char-cell, container is 4:3)
+  // Back-compat: if user opts into ?gltf=1 we just skip the procedural world
+  // (callers can later attach their own GLTFLoader-driven scene to #ascii-hero).
+  try {
+    var qs = (window.location && window.location.search) || '';
+    if (/[?&]gltf=1\b/.test(qs)) {
+      host.setAttribute('data-mode', 'gltf');
+      return;
+    }
+  } catch(_) {}
 
-  // --- THREE setup (offscreen) ---
-  var W = COLS * 2;   // pixels wide (each char samples a 2x2 block ~ enough)
+  var PAL = ' .:-=+*#%@';
+  var COLS = 180;
+  var ROWS = 90;
+
+  var W = COLS * 2;
   var H = ROWS * 2;
   var scene = new THREE.Scene();
   scene.background = null;
 
-  var camera = new THREE.PerspectiveCamera(55, COLS / ROWS, 0.1, 100);
-  camera.position.set(0, 0, 25);
+  var camera = new THREE.PerspectiveCamera(50, COLS / ROWS, 0.1, 100);
+  camera.position.set(0, 0, 14);
   camera.lookAt(0, 0, 0);
 
   var renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, preserveDrawingBuffer: true });
   renderer.setSize(W, H, false);
   renderer.setClearColor(0x000000, 0);
 
-  // Lighting: ambient + directional from top-left (consistent with brief)
-  var ambLight = new THREE.AmbientLight(0xffffff, 0.8);
-  var dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+  var ambLight = new THREE.AmbientLight(0xffffff, 0.85);
+  var dirLight = new THREE.DirectionalLight(0xffffff, 0.55);
   dirLight.position.set(-6, 8, 6);
   scene.add(ambLight); scene.add(dirLight);
 
-  // --- Procedural ORIENTAL DRAGON (龍): 22 segments, head leads, body trails ---
-  // Each segment = THREE.Group (sphere torso + scale ridge box). Head segment
-  // gets horns, whiskers, eyes, snout. Tail tapers + ends in flattened fin.
-  var SEGMENTS = 22;
-  var dragonRoot = new THREE.Group();
-  scene.add(dragonRoot);
+  // === 3D ROTATING WORLD ===
+  // Sphere geometry · radius 6 · 64×32 segments · MeshNormalMaterial gives
+  // a continent-like color gradient when sampled into ASCII.
+  var worldRoot = new THREE.Group();
+  scene.add(worldRoot);
 
-  var dragonBody = [];           // array of segment Groups
-  var trail = [];                // THREE.Vector3 positions (head=index 0)
-  var prevTrail = [];            // previous-frame snapshot for delayed follow
-  var bodyMat = new THREE.MeshNormalMaterial({ flatShading: true });
-  var darkMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a });
+  var earthMat = new THREE.MeshNormalMaterial({ flatShading: false });
+  var earth = new THREE.Mesh(new THREE.SphereGeometry(6, 64, 32), earthMat);
+  worldRoot.add(earth);
 
-  function segmentScale(i){
-    // Head=1.1, body taper 0.9→0.4 across middle, tail fades to 0.2 in last 4
-    if (i === 0) return 1.1;
-    var tailStart = SEGMENTS - 4;
-    if (i >= tailStart){
-      var t = (i - tailStart) / 3; // 0..1 across last 4
-      return 0.4 + (0.2 - 0.4) * t;
+  // Procedural "continent" suggestion: 7 great-circle / small-circle TubeGeometry
+  // rings tilted at varied lat/lon, sitting on the sphere surface (r ≈ 6.02).
+  var contourMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a });
+  function makeRing(latOffset, lonOffset, tilt, radiusFactor){
+    // Build a circle in XY plane, then rotate to position on sphere surface
+    var pts = [];
+    var rr = 6.02 * (radiusFactor || 1);
+    for (var k = 0; k <= 48; k++){
+      var th = (k / 48) * Math.PI * 2;
+      pts.push(new THREE.Vector3(Math.cos(th) * rr, Math.sin(th) * rr, 0));
     }
-    var k = (i - 1) / Math.max(1, tailStart - 1);
-    return 0.9 + (0.4 - 0.9) * k;
+    var curve = new THREE.CatmullRomCurve3(pts, true);
+    var tubeGeo = new THREE.TubeGeometry(curve, 96, 0.06, 6, true);
+    var tube = new THREE.Mesh(tubeGeo, contourMat);
+    tube.rotation.x = latOffset;
+    tube.rotation.y = lonOffset;
+    tube.rotation.z = tilt;
+    return tube;
   }
+  // 7 rings approximating continent edges + meridians/parallels
+  worldRoot.add(makeRing(  0.0,    0.0,   0.0, 1.000)); // equator-like
+  worldRoot.add(makeRing(  Math.PI/2, 0.0, 0.0, 1.000)); // prime-meridian
+  worldRoot.add(makeRing(  0.6,    0.4,   0.2, 0.78));   // north-temperate ring
+  worldRoot.add(makeRing( -0.55,  -0.3,  -0.15,0.82));   // south-temperate ring
+  worldRoot.add(makeRing(  1.05,   0.9,   0.0, 0.55));   // arctic-ish
+  worldRoot.add(makeRing( -1.0,    0.6,   0.1, 0.55));   // antarctic-ish
+  worldRoot.add(makeRing(  0.25,   1.6,  -0.35,0.94));   // diagonal great-circle
 
-  function buildSegment(i){
-    var g = new THREE.Group();
-    var s = segmentScale(i);
-    // Torso sphere
-    var torso = new THREE.Mesh(new THREE.SphereGeometry(s, 14, 10), bodyMat);
-    g.add(torso);
-    // Scale ridge — 3 small boxes along the top (organic spinal feel)
-    for (var k = -1; k <= 1; k++){
-      var ridge = new THREE.Mesh(new THREE.BoxGeometry(s*0.18, s*0.34, s*0.22), bodyMat);
-      ridge.position.set(k * s * 0.35, s * 0.85, 0);
-      g.add(ridge);
-    }
-    // Head ornaments (segment 0 only)
-    if (i === 0){
-      // Two horns (cones swept back over the head)
-      var hornGeo = new THREE.ConeGeometry(0.22, 1.4, 10);
-      var hornL = new THREE.Mesh(hornGeo, bodyMat);
-      hornL.position.set(-0.45, 0.85, -0.15);
-      hornL.rotation.x = -Math.PI / 2.6;   // sweep back over head
-      hornL.rotation.z =  0.18;
-      g.add(hornL);
-      var hornR = hornL.clone();
-      hornR.position.x = 0.45; hornR.rotation.z = -0.18;
-      g.add(hornR);
-      // Two whiskers (thin curved cylinders extending forward)
-      var whiskGeo = new THREE.CylinderGeometry(0.045, 0.025, 2.6, 6);
-      var whiskL = new THREE.Mesh(whiskGeo, bodyMat);
-      whiskL.geometry.translate(0, 1.3, 0);   // pivot at base
-      whiskL.position.set(-0.35, -0.15, 0.55);
-      whiskL.rotation.x =  Math.PI / 2.05;    // forward
-      whiskL.rotation.z = -0.22;              // slight outward curve
-      g.add(whiskL);
-      var whiskR = whiskL.clone();
-      whiskR.position.x = 0.35; whiskR.rotation.z = 0.22;
-      g.add(whiskR);
-      // Eyes (small dark spheres)
-      var eyeGeo = new THREE.SphereGeometry(0.16, 10, 8);
-      var eyeL = new THREE.Mesh(eyeGeo, darkMat);
-      eyeL.position.set(-0.5, 0.25, 0.85);
-      g.add(eyeL);
-      var eyeR = eyeL.clone(); eyeR.position.x = 0.5; g.add(eyeR);
-      // Snout (small cone protruding forward)
-      var snout = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.95, 12), bodyMat);
-      snout.rotation.x = Math.PI / 2;
-      snout.position.set(0, -0.05, 1.05);
-      g.add(snout);
-    }
-    // Tail fin on the last segment (flattened box)
-    if (i === SEGMENTS - 1){
-      var fin = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.95, 1.2), bodyMat);
-      fin.position.set(0, 0, -0.5);
-      g.add(fin);
-    }
-    return g;
-  }
-
-  // Initialize a coiled-S idle pose along x with gentle y wave (used for
-  // reduced-motion static frame and as starting trail state).
-  for (var i = 0; i < SEGMENTS; i++){
-    var seg = buildSegment(i);
-    dragonRoot.add(seg);
-    dragonBody.push(seg);
-    var x = -i * 1.05 + 8;            // string from right→left
-    var y = Math.sin(i * 0.55) * 1.6;  // S-coil
-    var z = Math.cos(i * 0.45) * 0.6;
-    var p = new THREE.Vector3(x, y, z);
-    trail.push(p);
-    prevTrail.push(p.clone());
-    seg.position.copy(p);
-  }
-  // Orient initial pose so each segment looks at the one ahead
-  for (var j = SEGMENTS - 1; j > 0; j--){
-    dragonBody[j].lookAt(trail[j-1]);
-  }
-  // Head looks forward by default
-  dragonBody[0].lookAt(trail[0].clone().add(new THREE.Vector3(1, 0, 0)));
-
-  // --- Optional GLTF upgrade: gated behind ?gltf=1 so default = procedural dragon ---
-  function tryLoadGLTF(){
-    if (window.__noGLTF || typeof THREE.GLTFLoader === 'undefined') return;
-    try {
-      var qs = new URLSearchParams(window.location.search || '');
-      if (qs.get('gltf') !== '1') return; // disabled by default
-    } catch(_e){ return; }
-    var urls = [
-      'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb',
-      'https://threejs.org/examples/models/gltf/LeePerrySmith/LeePerrySmith.glb'
-    ];
-    var loader = new THREE.GLTFLoader();
-    function tryNext(i){
-      if (i >= urls.length) return;
-      loader.load(urls[i], function(gltf){
-        var loaded = gltf.scene || gltf.scenes && gltf.scenes[0];
-        if (!loaded) return tryNext(i+1);
-        var box = new THREE.Box3().setFromObject(loaded);
-        var size = new THREE.Vector3(); box.getSize(size);
-        var center = new THREE.Vector3(); box.getCenter(center);
-        loaded.position.sub(center);
-        var fit = 10 / Math.max(size.x, size.y, size.z);
-        loaded.scale.multiplyScalar(fit);
-        loaded.traverse(function(o){
-          if (o.isMesh) o.material = new THREE.MeshNormalMaterial({ flatShading: false });
-        });
-        scene.remove(dragonRoot);
-        scene.add(loaded);
-      }, undefined, function(){ tryNext(i+1); });
-    }
-    tryNext(0);
-  }
-  try { tryLoadGLTF(); } catch(_e) { /* keep procedural dragon */ }
-
-  // --- Sampling canvas: read GPU output via renderer.domElement ---
   var glCanvas = renderer.domElement;
   var sampler = document.createElement('canvas');
   sampler.width = W; sampler.height = H;
   var sctx = sampler.getContext('2d');
 
-  // --- Cursor tracking: head leads, body trails (snake physics) ---
-  // mx,my normalized [-1,1] from viewport center; head target = (mx*14, -my*6, 0).
+  // Cursor-reactive lat/lon: rotation tracks cursor relative to the ASCII
+  // container center (not window center) — so the world rotates correctly
+  // regardless of where the hero sits in the page.
   var mx = 0, my = 0;
   var lastMoveT = performance.now();
   var hasMoved = false;
   function onPointerMove(e){
-    var cx = window.innerWidth  / 2;
-    var cy = window.innerHeight / 2;
-    mx = (e.clientX - cx) / (window.innerWidth  / 2);
-    my = (e.clientY - cy) / (window.innerHeight / 2);
-    if (mx < -1) mx = -1; else if (mx > 1) mx = 1;
-    if (my < -1) my = -1; else if (my > 1) my = 1;
+    var rect = host.getBoundingClientRect();
+    var cx = rect.left + rect.width  / 2;
+    var cy = rect.top  + rect.height / 2;
+    var nx = (e.clientX - cx) / (rect.width  / 2 || 1);
+    var ny = (e.clientY - cy) / (rect.height / 2 || 1);
+    if (nx < -1) nx = -1; else if (nx > 1) nx = 1;
+    if (ny < -1) ny = -1; else if (ny > 1) ny = 1;
+    mx = nx; my = ny;
     lastMoveT = performance.now();
     hasMoved = true;
   }
   window.addEventListener('mousemove', onPointerMove);
   window.addEventListener('pointermove', onPointerMove);
 
-  // --- Render → ASCII ---
-  var HEAD_DAMP = 0.10;   // head lerps toward target
-  var BODY_DAMP = 0.18;   // each body segment lerps toward previous-frame pos of segment[i-1]
-  var headTarget = new THREE.Vector3(8, 0, 0);
-  var idleT = 0;
-  var tmpV = new THREE.Vector3();
+  var ROT_LERP = 0.075;          // smoothing factor toward target
+  var IDLE_SPIN = 0.003;         // auto-rotate base speed when idle
+  var MAX_LON = Math.PI / 3;     // ±60° lat/lon mapping
+  var MAX_LAT = Math.PI / 6;     // ±30° tilt
+  var rotYTarget = 0, rotXTarget = 0;
+
   function frame(){
     var now = performance.now();
     var idle = !hasMoved || (now - lastMoveT > 2000);
+
     if (idle){
-      // Lissajous figure-8 over 8s period: x = sin(t)*8, y = sin(2t)*3
-      idleT += 0.0078;                  // ~8s period at 30fps (2π/0.0078≈805 frames ≈ 26.8s @30fps; but with 2π over t loop)
-      headTarget.set(Math.sin(idleT) * 8, Math.sin(idleT * 2) * 3, 0);
+      // Continue auto-rotate at default speed; tilt eases back to neutral.
+      worldRoot.rotation.y += IDLE_SPIN;
+      rotXTarget = 0;
+      worldRoot.rotation.x += (rotXTarget - worldRoot.rotation.x) * ROT_LERP;
     } else {
-      headTarget.set(mx * 14, -my * 6, 0);
-    }
-
-    // Snapshot current trail positions BEFORE updates — body follows the
-    // previous-frame position of the segment ahead (creates visible delay).
-    for (var s = 0; s < SEGMENTS; s++){ prevTrail[s].copy(trail[s]); }
-
-    // Head: lerp toward headTarget
-    trail[0].lerp(headTarget, HEAD_DAMP);
-    // Body: each segment lerps toward previous-frame pos of segment[i-1]
-    for (var i = 1; i < SEGMENTS; i++){
-      trail[i].lerp(prevTrail[i-1], BODY_DAMP);
-    }
-
-    // Apply to meshes + orient each segment toward the segment ahead
-    dragonBody[0].position.copy(trail[0]);
-    // Head looks toward where it's heading (target direction)
-    tmpV.copy(headTarget).sub(trail[0]);
-    if (tmpV.lengthSq() > 1e-4){
-      dragonBody[0].lookAt(tmpV.add(trail[0]));
-    }
-    for (var b = 1; b < SEGMENTS; b++){
-      dragonBody[b].position.copy(trail[b]);
-      // face the segment ahead so body undulates naturally
-      dragonBody[b].lookAt(trail[b-1]);
+      // Cursor parallax: lerp toward target lat/lon.
+      rotYTarget = mx * MAX_LON;
+      rotXTarget = my * MAX_LAT;
+      // Auto-rotate is layered on top so the world keeps gentle motion
+      // even while the cursor holds it steady.
+      worldRoot.rotation.y += IDLE_SPIN * 0.4;
+      worldRoot.rotation.y += (rotYTarget - worldRoot.rotation.y) * ROT_LERP * 0.5;
+      worldRoot.rotation.x += (rotXTarget - worldRoot.rotation.x) * ROT_LERP;
     }
 
     renderer.render(scene, camera);
 
-    // Copy GL canvas to sampler
     sctx.clearRect(0, 0, W, H);
     sctx.drawImage(glCanvas, 0, 0, W, H);
     var img = sctx.getImageData(0, 0, W, H).data;
 
-    // Sample: for each (col,row) average a 2x2 block, take alpha-weighted lum
     var lines = new Array(ROWS);
     for(var r = 0; r < ROWS; r++){
       var line = '';
@@ -1774,23 +2479,20 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
         var sum = 0, hits = 0;
         for(var dy = 0; dy < 2; dy++){
           for(var dx = 0; dx < 2; dx++){
-            var i = ((sy + dy) * W + (sx + dx)) * 4;
-            var a = img[i+3];
+            var iii = ((sy + dy) * W + (sx + dx)) * 4;
+            var a = img[iii+3];
             if(a > 8){
-              // wireframe is white-on-transparent; brighter alpha = denser line
-              var lum = (img[i] + img[i+1] + img[i+2]) / 3;
+              var lum = (img[iii] + img[iii+1] + img[iii+2]) / 3;
               sum += (lum * (a / 255));
               hits++;
             }
           }
         }
-        var v = hits ? (sum / hits) / 255 : 0;       // 0..1
-        // Bias darker (more empty space, paper-feel)
+        var v = hits ? (sum / hits) / 255 : 0;
         v = Math.pow(v, 0.85);
         var idx = Math.min(PAL.length - 1, Math.floor(v * PAL.length));
         var ch = PAL.charAt(idx);
         if(idx >= PAL.length - 2 && ch !== ' '){
-          // top-tier brightness: oxblood accent
           line += '<span class="hi">' + ch + '</span>';
         } else {
           line += ch;
@@ -1801,7 +2503,6 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
     out.innerHTML = lines.join('\n');
   }
 
-  // Throttled RAF (~30fps)
   var last = 0, RUN = true, INVIEW = true;
   function loop(t){
     if(!RUN){ return; }
@@ -1809,25 +2510,21 @@ gsap.utils.toArray('.phase,.gov-card,.outlook-cell,.financials-table tbody tr,.s
     requestAnimationFrame(loop);
   }
 
-  // Render one frame immediately (so static fallback is meaningful)
   frame();
 
   if(reduced){
-    // Static snapshot only — no loop
     return;
   }
 
-  // IntersectionObserver: pause when off-screen
   if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
+    var io2 = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ INVIEW = e.isIntersecting; });
     }, { threshold: 0.05 });
-    io.observe(host);
+    io2.observe(host);
   }
 
   requestAnimationFrame(loop);
 
-  // Memoized resize (only re-aspect camera; sampling grid is char-fixed)
   var ro;
   function onResize(){
     if(ro) clearTimeout(ro);
