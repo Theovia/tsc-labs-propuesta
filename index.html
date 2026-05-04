@@ -497,7 +497,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 }
 .block-ico svg{width:14px;height:14px;display:block}
 
-/* === BUSINESS INTELLIGENCE DASHBOARD MOCK === */
+/* === BI COMMAND CENTER · 5-YEAR VISION MOCK === */
 .bi-frame{max-width:1180px;margin:0 auto}
 .bi-intro{
   text-align:center;
@@ -517,7 +517,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-family:'Inter',sans-serif;
   font-size:16px;
   color:var(--ink-mute);
-  max-width:640px;
+  max-width:680px;
   margin:0 auto;
   line-height:1.55;
 }
@@ -526,7 +526,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   background:var(--bg);
   padding:0;
   display:grid;
-  grid-template-rows:auto 1fr;
+  grid-template-rows:auto 1fr auto;
 }
 .bi-bar{
   display:flex;
@@ -541,32 +541,94 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   text-transform:uppercase;
   background:var(--bg-2);
 }
-.bi-bar-mark{
+.bi-bar-mark{display:flex;gap:10px;align-items:center;color:var(--ink)}
+.bi-bar-mark .bi-bar-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#16A34A;
+  box-shadow:0 0 0 3px rgba(22,163,74,0.18);
+}
+.bi-bar-mark strong{font-weight:600;letter-spacing:0.16em}
+.bi-bar-mark span{color:var(--ink-mute)}
+.bi-bar-meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.bi-bar-meta-item{display:flex;align-items:center;gap:6px}
+.bi-bar-meta-item .bi-pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;
+}
+
+/* North-star KPI strip */
+.bi-kpi-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--rule-strong);
+}
+.bi-kpi{
+  padding:20px 22px 22px;
+  border-right:1px solid var(--rule);
   display:flex;
-  gap:8px;
+  flex-direction:column;
+  gap:10px;
+  min-height:140px;
+}
+.bi-kpi:last-child{border-right:none}
+.bi-kpi-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  display:flex;
+  justify-content:space-between;
   align-items:center;
+}
+.bi-kpi-label .bi-kpi-delta{
+  color:#16A34A;font-weight:600;letter-spacing:0.12em;
+}
+.bi-kpi-label .bi-kpi-delta.neg{color:#B91C1C}
+.bi-kpi-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:700;
+  font-size:32px;
+  line-height:1;
+  letter-spacing:-0.025em;
   color:var(--ink);
 }
-.bi-bar-mark::before{
-  content:'';
-  width:6px;height:6px;
-  border-radius:50%;
-  background:var(--accent);
-  display:inline-block;
+.bi-kpi-num em{font-style:normal;color:var(--accent)}
+.bi-kpi-foot{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.12em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  margin-top:auto;
 }
-.bi-bar-meta{display:flex;gap:24px}
+.bi-kpi-foot .bi-dot-ok{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#16A34A;margin-right:6px;vertical-align:middle;
+  box-shadow:0 0 0 2px rgba(22,163,74,0.18);
+}
+.bi-kpi-spark{display:block;width:100%;height:34px}
+.bi-kpi-progress{
+  height:6px;background:var(--bg-3);position:relative;overflow:hidden;
+}
+.bi-kpi-progress span{
+  position:absolute;top:0;left:0;bottom:0;background:var(--accent);
+}
+
+/* Main grid */
 .bi-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  grid-template-rows:auto auto;
+  grid-template-rows:auto auto auto;
 }
 .bi-cell{
-  padding:24px;
+  padding:22px 24px 24px;
   border-right:1px solid var(--rule);
   border-bottom:1px solid var(--rule);
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:14px;
+  min-width:0;
 }
 .bi-cell:nth-child(2n){border-right:none}
 .bi-cell:nth-last-child(-n+2){border-bottom:none}
@@ -603,25 +665,73 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-weight:500;
   padding:3px 7px;
   border:1px solid var(--accent);
+  white-space:nowrap;
 }
+.bi-cell-tag.alert{color:#B91C1C;border-color:#B91C1C}
+.bi-cell-tag.live{color:#16A34A;border-color:#16A34A}
 .bi-chart{width:100%;height:auto;display:block}
-.bi-legend{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px 18px;
+.bi-cell-foot{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:9px;
-  letter-spacing:0.1em;
+  letter-spacing:0.12em;
   color:var(--ink-mute);
   text-transform:uppercase;
-  font-weight:500;
+  margin-top:auto;
+  padding-top:6px;
+  line-height:1.5;
 }
-.bi-legend-item{display:flex;align-items:center;gap:6px}
-.bi-legend-dot{
-  width:9px;height:9px;
-  border-radius:2px;
-  display:inline-block;
+.bi-cell-foot strong{color:var(--ink);font-weight:600}
+.bi-cell-foot em{font-style:normal;color:#B91C1C;font-weight:600}
+
+/* Agent feed */
+.bi-feed{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  line-height:1.55;
+  letter-spacing:0.04em;
+  color:var(--ink-soft);
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  max-height:230px;
+  overflow:hidden;
 }
+.bi-feed-row{
+  display:grid;
+  grid-template-columns:auto auto 1fr;
+  gap:10px;
+  align-items:baseline;
+}
+.bi-feed-time{color:var(--ink-mute);font-weight:500}
+.bi-feed-agent{
+  color:var(--accent);
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.bi-feed-agent.compliance{color:#B45309}
+.bi-feed-agent.batch{color:#16A34A}
+.bi-feed-agent.lead{color:var(--ink-soft)}
+.bi-feed-msg{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Footer source ticker */
+.bi-foot-sources{
+  border-top:1px solid var(--rule-strong);
+  padding:12px 22px;
+  background:var(--bg-2);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.bi-foot-sources strong{color:var(--ink);font-weight:600;letter-spacing:0.16em}
+
 .bi-caption{
   margin-top:18px;
   font-family:'Inter',sans-serif;
@@ -629,6 +739,20 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink-mute);
   text-align:center;
   font-style:italic;
+  max-width:760px;
+  margin-left:auto;margin-right:auto;
+}
+
+@media (max-width:880px){
+  .bi-kpi-row{grid-template-columns:repeat(2,1fr)}
+  .bi-kpi{border-bottom:1px solid var(--rule)}
+  .bi-kpi:nth-child(2n){border-right:none}
+  .bi-kpi:nth-last-child(-n+2){border-bottom:none}
+  .bi-grid{grid-template-columns:1fr}
+  .bi-cell{border-right:none}
+  .bi-cell:nth-last-child(n+2){border-bottom:1px solid var(--rule)}
+  .bi-bar-meta{justify-content:flex-start}
+  .bi-foot-sources{flex-direction:column;align-items:flex-start;gap:8px}
 }
 
 /* === CAPABILITIES === */
@@ -2215,219 +2339,610 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </section>
 
-<!-- § V · DASHBOARD EJECUTIVO MOCK (was § IV) -->
+<!-- § V · BI COMMAND CENTER · 5-YEAR VISION MOCK -->
 <section class="section muted" id="dashboard-mock">
   <div class="section-frame">
     <header class="section-header">
-      <div class="section-num">05<small>BI · DASHBOARD</small></div>
-      <h2 class="section-title">Dashboard ejecutivo <em>en vivo</em> (preview).</h2>
-      <p class="section-deck">El dashboard que TSC LABS tendrá al cierre de Fase 04. Cualquier pregunta del negocio, una visualización. Mock representativo del producto final.</p>
+      <div class="section-num">05<small>BI · COMMAND CENTER</small></div>
+      <h2 class="section-title">Command center — la visión <em>año 5</em>.</h2>
+      <p class="section-deck">Lo que TSC LABS leerá cada mañana cuando F4 esté en producción y la operación tenga 5 años de data acumulada.</p>
     </header>
 
     <div class="bi-frame">
       <div class="bi-intro">
-        <h3>El dashboard que TSC LABS tendrá <em>al cierre de Fase 04</em>.</h3>
-        <p>Cualquier pregunta del negocio, una visualización. Margen, stock, ads y LTV — queryable directo contra D1.</p>
+        <h3>El dashboard que TSC LABS lee al <em>año 5</em>.</h3>
+        <p>30+ marcas, 40+ fórmulas, manufactura a escala, exportación USMCA, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics.</p>
       </div>
 
       <div class="bi-dashboard">
+
+        <!-- HEADER BAR -->
         <div class="bi-bar">
-          <div class="bi-bar-mark">TSC LABS · BI Console</div>
+          <div class="bi-bar-mark">
+            <span class="bi-bar-dot" aria-hidden="true"></span>
+            <strong>COMMAND CENTER</strong>
+            <span>· TSC LABS · OPERATIONS · LIVE</span>
+          </div>
           <div class="bi-bar-meta">
-            <span>Q2 · 2027</span>
-            <span>Live · semantic layer</span>
-            <span>v1.0.0</span>
+            <span class="bi-bar-meta-item"><span class="bi-pulse" aria-hidden="true"></span>CONNECTED</span>
+            <span class="bi-bar-meta-item">32 SOURCES</span>
+            <span class="bi-bar-meta-item">UPDATED 14:22:08</span>
           </div>
         </div>
 
+        <!-- TOP ROW · NORTH-STAR KPIs -->
+        <div class="bi-kpi-row">
+          <!-- KPI 1 · ARR -->
+          <div class="bi-kpi">
+            <div class="bi-kpi-label"><span>ARR · ANNUAL RECURRING</span><span class="bi-kpi-delta">+12% YoY</span></div>
+            <div class="bi-kpi-num">$28.4<em>M</em></div>
+            <svg class="bi-kpi-spark" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+              <path d="M0 28 L20 26 L40 24 L60 22 L80 19 L100 17 L120 15 L140 12 L160 10 L180 8 L200 6 L220 4" fill="none" stroke="#1E40AF" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M0 28 L20 26 L40 24 L60 22 L80 19 L100 17 L120 15 L140 12 L160 10 L180 8 L200 6 L220 4 L220 34 L0 34 Z" fill="#1E40AF" opacity="0.08"/>
+              <circle cx="220" cy="4" r="2.4" fill="#1E40AF"/>
+            </svg>
+            <div class="bi-kpi-foot">12 meses · Q3 2030</div>
+          </div>
+
+          <!-- KPI 2 · Talents activos -->
+          <div class="bi-kpi">
+            <div class="bi-kpi-label"><span>TALENTS ACTIVOS</span><span class="bi-kpi-delta">28 / 32</span></div>
+            <div class="bi-kpi-num">28<em>/32</em></div>
+            <div class="bi-kpi-progress" aria-hidden="true"><span style="width:87.5%"></span></div>
+            <div class="bi-kpi-foot">87.5% utilización · 4 onboarding · Q3 2030</div>
+          </div>
+
+          <!-- KPI 3 · Lots producidos YTD (stacked bar by quarter) -->
+          <div class="bi-kpi">
+            <div class="bi-kpi-label"><span>LOTS PRODUCIDOS · YTD</span><span class="bi-kpi-delta">+18% QoQ</span></div>
+            <div class="bi-kpi-num">1,247</div>
+            <svg class="bi-kpi-spark" viewBox="0 0 220 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+              <g fill="#1E40AF">
+                <rect x="6" y="14" width="44" height="20"/>
+                <rect x="58" y="10" width="44" height="24"/>
+                <rect x="110" y="6" width="44" height="28"/>
+                <rect x="162" y="2" width="44" height="32" opacity="0.55"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6E6E70" letter-spacing="0.4">
+                <text x="28" y="32" text-anchor="middle">Q1</text>
+                <text x="80" y="32" text-anchor="middle">Q2</text>
+                <text x="132" y="32" text-anchor="middle">Q3</text>
+                <text x="184" y="32" text-anchor="middle">Q4*</text>
+              </g>
+            </svg>
+            <div class="bi-kpi-foot">4 plantas · 6 turnos · run-rate 1,650</div>
+          </div>
+
+          <!-- KPI 4 · COFEPRIS compliance -->
+          <div class="bi-kpi">
+            <div class="bi-kpi-label"><span>COFEPRIS COMPLIANCE</span><span class="bi-kpi-delta">100%</span></div>
+            <div class="bi-kpi-num">100<em>%</em></div>
+            <div class="bi-kpi-foot"><span class="bi-dot-ok"></span>40 fórmulas vigentes · last audit 2030-09-12</div>
+          </div>
+        </div>
+
+        <!-- MAIN GRID · 6 PANELS -->
         <div class="bi-grid">
 
-          <!-- CELL 1 · Margin per SKU -->
+          <!-- PANEL A · Revenue heatmap (Talent × SKU) -->
           <div class="bi-cell">
             <div class="bi-cell-head">
-              <div class="bi-cell-title">Margen real-time por SKU<small>F4 · DTC + B2B · margen %</small></div>
-              <span class="bi-cell-tag">LIVE</span>
+              <div class="bi-cell-title">Revenue heatmap · Talent × SKU<small>F4 · ARR contribution · Q3 2030</small></div>
+              <span class="bi-cell-tag live">LIVE</span>
             </div>
-            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
-                <text x="0" y="20">80%</text>
-                <text x="0" y="80">60%</text>
-                <text x="0" y="140">40%</text>
-                <text x="0" y="200">20%</text>
+            <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <!-- 5-step cobalt scale: lightest -> darkest -->
+              </defs>
+              <!-- SKU labels (top, 8 cols) -->
+              <g font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6E6E70" letter-spacing="0.4">
+                <text x="120" y="14" text-anchor="middle">SUERO·VC</text>
+                <text x="156" y="14" text-anchor="middle">CR·REP</text>
+                <text x="192" y="14" text-anchor="middle">TÓNICO</text>
+                <text x="228" y="14" text-anchor="middle">FPS·50</text>
+                <text x="264" y="14" text-anchor="middle">SERUM·B</text>
+                <text x="300" y="14" text-anchor="middle">LIMPIA</text>
+                <text x="336" y="14" text-anchor="middle">MASK·R</text>
+                <text x="372" y="14" text-anchor="middle">EXFOL</text>
               </g>
-              <g stroke="rgba(10,10,10,0.08)" stroke-width="1">
-                <line x1="32" y1="16" x2="460" y2="16"/>
-                <line x1="32" y1="76" x2="460" y2="76"/>
-                <line x1="32" y1="136" x2="460" y2="136"/>
-                <line x1="32" y1="196" x2="460" y2="196"/>
+              <!-- Talent labels (left, 12 rows) -->
+              <g font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0A0A0A" letter-spacing="0.3">
+                <text x="0" y="34">T. CAROLINA M.</text>
+                <text x="0" y="52">B. SKIN CO.</text>
+                <text x="0" y="70">AURORA ROS</text>
+                <text x="0" y="88">N. CENTELLA</text>
+                <text x="0" y="106">M. SOLER</text>
+                <text x="0" y="124">VEGA · LAB</text>
+                <text x="0" y="142">PALOMA F.</text>
+                <text x="0" y="160">RIVA · CO</text>
+                <text x="0" y="178">DUNAS BRAND</text>
+                <text x="0" y="196">SOLAZ MX</text>
+                <text x="0" y="214">CIELO M.</text>
+                <text x="0" y="232">FLORA·8</text>
               </g>
-              <!-- Bars: 7 SKUs -->
-              <g fill="#1E40AF">
-                <rect x="48" y="38" width="38" height="158"/>
-                <rect x="108" y="62" width="38" height="134"/>
-                <rect x="168" y="20" width="38" height="176"/>
-                <rect x="228" y="74" width="38" height="122"/>
-                <rect x="288" y="50" width="38" height="146"/>
-                <rect x="348" y="92" width="38" height="104"/>
-                <rect x="408" y="44" width="38" height="152"/>
+              <!-- Cells: 12 rows × 8 cols. Cobalt opacity scaled to ARR contribution.
+                   Color stops: 0.10, 0.22, 0.36, 0.55, 0.78. -->
+              <g>
+                <!-- Row 1 · CAROLINA M. (top contributor) -->
+                <rect x="102" y="22" width="36" height="18" fill="#1E40AF" opacity="0.78"/>
+                <rect x="138" y="22" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="174" y="22" width="36" height="18" fill="#1E40AF" opacity="0.78"/>
+                <rect x="210" y="22" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="246" y="22" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="282" y="22" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="318" y="22" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="22" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <!-- Row 2 · B. SKIN CO. -->
+                <rect x="102" y="40" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="138" y="40" width="36" height="18" fill="#1E40AF" opacity="0.78"/>
+                <rect x="174" y="40" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="210" y="40" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="246" y="40" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="282" y="40" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="318" y="40" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="40" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <!-- Row 3 · AURORA ROS -->
+                <rect x="102" y="58" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="138" y="58" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="174" y="58" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="210" y="58" width="36" height="18" fill="#1E40AF" opacity="0.78"/>
+                <rect x="246" y="58" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="282" y="58" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="318" y="58" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="354" y="58" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <!-- Row 4 · N. CENTELLA -->
+                <rect x="102" y="76" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="138" y="76" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="174" y="76" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="210" y="76" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="246" y="76" width="36" height="18" fill="#1E40AF" opacity="0.78"/>
+                <rect x="282" y="76" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="318" y="76" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="354" y="76" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <!-- Row 5 · M. SOLER -->
+                <rect x="102" y="94" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="138" y="94" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="174" y="94" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="210" y="94" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="246" y="94" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="282" y="94" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="318" y="94" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="94" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <!-- Row 6 · VEGA LAB -->
+                <rect x="102" y="112" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="138" y="112" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="174" y="112" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="210" y="112" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="246" y="112" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="282" y="112" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="318" y="112" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="354" y="112" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <!-- Row 7 · PALOMA F. -->
+                <rect x="102" y="130" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="138" y="130" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="174" y="130" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="210" y="130" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="246" y="130" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="282" y="130" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="318" y="130" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="130" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <!-- Row 8 · RIVA CO -->
+                <rect x="102" y="148" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="138" y="148" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="174" y="148" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="210" y="148" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="246" y="148" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="282" y="148" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="318" y="148" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="354" y="148" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <!-- Row 9 · DUNAS -->
+                <rect x="102" y="166" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="138" y="166" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="174" y="166" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="210" y="166" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="246" y="166" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="282" y="166" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="318" y="166" width="36" height="18" fill="#1E40AF" opacity="0.55"/>
+                <rect x="354" y="166" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <!-- Row 10 · SOLAZ -->
+                <rect x="102" y="184" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="138" y="184" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="174" y="184" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="210" y="184" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="246" y="184" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="282" y="184" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="318" y="184" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="184" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <!-- Row 11 · CIELO -->
+                <rect x="102" y="202" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="138" y="202" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="174" y="202" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="210" y="202" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="246" y="202" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="282" y="202" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="318" y="202" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="202" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <!-- Row 12 · FLORA·8 -->
+                <rect x="102" y="220" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="138" y="220" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="174" y="220" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="210" y="220" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="246" y="220" width="36" height="18" fill="#1E40AF" opacity="0.36"/>
+                <rect x="282" y="220" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
+                <rect x="318" y="220" width="36" height="18" fill="#1E40AF" opacity="0.22"/>
+                <rect x="354" y="220" width="36" height="18" fill="#1E40AF" opacity="0.10"/>
               </g>
-              <g fill="#0A0A0A" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
-                <text x="67" y="212" text-anchor="middle">SUERO·VC</text>
-                <text x="127" y="212" text-anchor="middle">CR·REPAR</text>
-                <text x="187" y="212" text-anchor="middle">TÓNICO</text>
-                <text x="247" y="212" text-anchor="middle">FPS·50</text>
-                <text x="307" y="212" text-anchor="middle">SERUM·B</text>
-                <text x="367" y="212" text-anchor="middle">LIMPIA</text>
-                <text x="427" y="212" text-anchor="middle">MASCAR</text>
+              <!-- Annotation: top contributor -->
+              <g>
+                <rect x="102" y="22" width="36" height="18" fill="none" stroke="#0A0A0A" stroke-width="1.4"/>
+                <line x1="138" y1="22" x2="160" y2="6" stroke="#0A0A0A" stroke-width="0.8"/>
+                <text x="162" y="6" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0A0A0A" letter-spacing="0.4">TOP · $2.02M ARR</text>
               </g>
-              <g fill="#FAFAF7" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500">
-                <text x="67" y="54" text-anchor="middle">66%</text>
-                <text x="127" y="78" text-anchor="middle">56%</text>
-                <text x="187" y="36" text-anchor="middle">73%</text>
-                <text x="247" y="90" text-anchor="middle">51%</text>
-                <text x="307" y="66" text-anchor="middle">61%</text>
-                <text x="367" y="108" text-anchor="middle">43%</text>
-                <text x="427" y="60" text-anchor="middle">63%</text>
+              <!-- Scale legend -->
+              <g transform="translate(102 248)">
+                <text x="0" y="6" font-family="JetBrains Mono, monospace" font-size="7" fill="#6E6E70" letter-spacing="0.5">ARR · LOW</text>
+                <rect x="58" y="0" width="14" height="8" fill="#1E40AF" opacity="0.10"/>
+                <rect x="74" y="0" width="14" height="8" fill="#1E40AF" opacity="0.22"/>
+                <rect x="90" y="0" width="14" height="8" fill="#1E40AF" opacity="0.36"/>
+                <rect x="106" y="0" width="14" height="8" fill="#1E40AF" opacity="0.55"/>
+                <rect x="122" y="0" width="14" height="8" fill="#1E40AF" opacity="0.78"/>
+                <text x="142" y="6" font-family="JetBrains Mono, monospace" font-size="7" fill="#6E6E70" letter-spacing="0.5">HIGH</text>
               </g>
             </svg>
+            <div class="bi-cell-foot"><strong>Revenue concentration</strong> · top 3 talents = 42% ARR · 28 marcas en mix</div>
           </div>
 
-          <!-- CELL 2 · Stock prediction with re-stock alert -->
+          <!-- PANEL B · Margin per channel + cohort retention -->
           <div class="bi-cell">
             <div class="bi-cell-head">
-              <div class="bi-cell-title">Stock predicho · próximos 30 días<small>F3 · ERP · alerta de re-stock</small></div>
-              <span class="bi-cell-tag">ALERT</span>
+              <div class="bi-cell-title">Margen por canal · cohort retention<small>F4 · DTC + B2B + Retail + USMCA · % gross margin</small></div>
+              <span class="bi-cell-tag">MIX</span>
             </div>
-            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
-                <text x="0" y="20">2400</text>
-                <text x="0" y="80">1600</text>
-                <text x="0" y="140">800</text>
-                <text x="0" y="200">0</text>
-              </g>
-              <g stroke="rgba(10,10,10,0.08)" stroke-width="1">
-                <line x1="32" y1="16" x2="460" y2="16"/>
-                <line x1="32" y1="76" x2="460" y2="76"/>
-                <line x1="32" y1="136" x2="460" y2="136"/>
-                <line x1="32" y1="196" x2="460" y2="196"/>
-              </g>
-              <!-- Re-stock threshold dashed -->
-              <line x1="32" y1="148" x2="460" y2="148" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="3 3"/>
-              <text x="36" y="142" font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.6">RE-STOCK · 720u</text>
-              <!-- Stock decline curve -->
-              <path d="M 40 30 L 90 38 L 140 50 L 190 70 L 240 96 L 290 122 L 340 152 L 390 174 L 440 188" fill="none" stroke="#1E40AF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-              <!-- Crossing point with alert dot -->
-              <circle cx="340" cy="152" r="5" fill="#B91C1C"/>
-              <circle cx="340" cy="152" r="9" fill="none" stroke="#B91C1C" stroke-width="1.2" opacity="0.5"/>
-              <text x="350" y="142" font-family="JetBrains Mono, monospace" font-size="8" fill="#B91C1C" letter-spacing="0.6">D22 · ORDEN AUTO</text>
-              <g fill="#6E6E70" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
-                <text x="40" y="212">D01</text>
-                <text x="140" y="212">D08</text>
-                <text x="240" y="212">D15</text>
-                <text x="340" y="212" text-anchor="middle">D22</text>
-                <text x="440" y="212" text-anchor="end">D30</text>
-              </g>
-            </svg>
-          </div>
-
-          <!-- CELL 3 · Donut: Ad performance -->
-          <div class="bi-cell">
-            <div class="bi-cell-head">
-              <div class="bi-cell-title">Performance ads multi-touch<small>F4 · attribution · Q2 2027</small></div>
-              <span class="bi-cell-tag">MULTI</span>
-            </div>
-            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Donut: 4 segments. Total circumference for r=70 ≈ 439.82.
-                   Meta 38% (167.13), TikTok 27% (118.75), Google 21% (92.36), DTC 14% (61.58) -->
-              <g transform="translate(160 110)">
-                <circle r="70" fill="none" stroke="rgba(10,10,10,0.06)" stroke-width="28"/>
-                <!-- segments using stroke-dasharray. Start at top by rotating -90 -->
-                <g transform="rotate(-90)" fill="none" stroke-width="28">
-                  <!-- Meta -->
-                  <circle r="70" stroke="#1E40AF" stroke-dasharray="167.13 439.82" stroke-dashoffset="0"/>
-                  <!-- TikTok -->
-                  <circle r="70" stroke="#0A0A0A" stroke-dasharray="118.75 439.82" stroke-dashoffset="-167.13"/>
-                  <!-- Google -->
-                  <circle r="70" stroke="#2563EB" stroke-dasharray="92.36 439.82" stroke-dashoffset="-285.88"/>
-                  <!-- DTC organic -->
-                  <circle r="70" stroke="#6E6E70" stroke-dasharray="61.58 439.82" stroke-dashoffset="-378.24"/>
-                </g>
-                <text y="-4" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#0A0A0A" text-anchor="middle">$2.4M</text>
-                <text y="14" font-family="JetBrains Mono, monospace" font-size="8" fill="#6E6E70" text-anchor="middle" letter-spacing="1">REVENUE Q2</text>
-              </g>
-              <!-- Legend -->
-              <g font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.6" fill="#0A0A0A">
-                <g transform="translate(280 50)">
-                  <rect width="10" height="10" fill="#1E40AF"/>
-                  <text x="18" y="9">META · 38%</text>
-                </g>
-                <g transform="translate(280 78)">
-                  <rect width="10" height="10" fill="#0A0A0A"/>
-                  <text x="18" y="9">TIKTOK · 27%</text>
-                </g>
-                <g transform="translate(280 106)">
-                  <rect width="10" height="10" fill="#2563EB"/>
-                  <text x="18" y="9">GOOGLE · 21%</text>
-                </g>
-                <g transform="translate(280 134)">
-                  <rect width="10" height="10" fill="#6E6E70"/>
-                  <text x="18" y="9">DTC · 14%</text>
-                </g>
-              </g>
-            </svg>
-          </div>
-
-          <!-- CELL 4 · LTV per talent -->
-          <div class="bi-cell">
-            <div class="bi-cell-head">
-              <div class="bi-cell-title">LTV proyectado por talento<small>F4 · modelo predictivo · 12 meses</small></div>
-              <span class="bi-cell-tag">PRED</span>
-            </div>
-            <svg class="bi-chart" viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Horizontal bars · 6 talents -->
-              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.6">
-                <text x="0" y="22">N. CENTELLA</text>
-                <text x="0" y="52">TALENT · B</text>
-                <text x="0" y="82">TALENT · C</text>
-                <text x="0" y="112">TALENT · D</text>
-                <text x="0" y="142">TALENT · E</text>
-                <text x="0" y="172">TALENT · F</text>
+            <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Stacked horizontal bars · 4 channels -->
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.4">
+                <text x="0" y="22">DTC</text>
+                <text x="0" y="50">B2B · TALENT</text>
+                <text x="0" y="78">RETAIL</text>
+                <text x="0" y="106">EXPORT · USMCA</text>
               </g>
               <g stroke="rgba(10,10,10,0.06)" stroke-width="1">
-                <line x1="100" y1="14" x2="100" y2="190"/>
-                <line x1="200" y1="14" x2="200" y2="190"/>
-                <line x1="300" y1="14" x2="300" y2="190"/>
-                <line x1="400" y1="14" x2="400" y2="190"/>
+                <line x1="100" y1="10" x2="100" y2="118"/>
+                <line x1="200" y1="10" x2="200" y2="118"/>
+                <line x1="300" y1="10" x2="300" y2="118"/>
+                <line x1="400" y1="10" x2="400" y2="118"/>
               </g>
-              <g fill="#1E40AF">
-                <rect x="100" y="12" width="320" height="14"/>
-                <rect x="100" y="42" width="240" height="14"/>
-                <rect x="100" y="72" width="200" height="14"/>
-                <rect x="100" y="102" width="160" height="14"/>
-                <rect x="100" y="132" width="120" height="14"/>
-                <rect x="100" y="162" width="90" height="14"/>
+              <!-- Bars: full width = 100% · cobalt = margin · gray = costs -->
+              <g>
+                <!-- DTC · 68% margin -->
+                <rect x="100" y="12" width="272" height="14" fill="#1E40AF"/>
+                <rect x="372" y="12" width="28" height="14" fill="#0A0A0A" opacity="0.18"/>
+                <text x="378" y="22" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">68%</text>
+                <!-- B2B Talent · 54% -->
+                <rect x="100" y="40" width="216" height="14" fill="#1E40AF"/>
+                <rect x="316" y="40" width="84" height="14" fill="#0A0A0A" opacity="0.18"/>
+                <text x="322" y="50" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">54%</text>
+                <!-- Retail · 38% (Liverpool / Sephora) -->
+                <rect x="100" y="68" width="152" height="14" fill="#1E40AF" opacity="0.65"/>
+                <rect x="252" y="68" width="148" height="14" fill="#0A0A0A" opacity="0.18"/>
+                <text x="258" y="78" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">38%</text>
+                <!-- Export USMCA · 47% -->
+                <rect x="100" y="96" width="188" height="14" fill="#1E40AF" opacity="0.85"/>
+                <rect x="288" y="96" width="112" height="14" fill="#0A0A0A" opacity="0.18"/>
+                <text x="294" y="106" font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">47%</text>
               </g>
-              <g font-family="Inter Tight, sans-serif" font-size="10" font-weight="500" fill="#0A0A0A">
-                <text x="430" y="23">$1.6M</text>
-                <text x="350" y="53">$1.2M</text>
-                <text x="310" y="83">$1.0M</text>
-                <text x="270" y="113">$820K</text>
-                <text x="230" y="143">$610K</text>
-                <text x="200" y="173">$450K</text>
+              <!-- Channel revenue side annotations -->
+              <g font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6E6E70" letter-spacing="0.4">
+                <text x="100" y="124">$0</text>
+                <text x="200" y="124" text-anchor="middle">25%</text>
+                <text x="300" y="124" text-anchor="middle">50%</text>
+                <text x="400" y="124" text-anchor="end">100%</text>
+                <text x="408" y="22">$11.2M</text>
+                <text x="408" y="50">$8.4M</text>
+                <text x="408" y="78">$5.1M</text>
+                <text x="408" y="106">$3.7M</text>
               </g>
-              <g fill="#6E6E70" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
-                <text x="100" y="208">$0</text>
-                <text x="200" y="208" text-anchor="middle">$500K</text>
-                <text x="300" y="208" text-anchor="middle">$1M</text>
-                <text x="400" y="208" text-anchor="middle">$1.5M</text>
+              <!-- Divider line -->
+              <line x1="0" y1="146" x2="480" y2="146" stroke="rgba(10,10,10,0.10)" stroke-width="1"/>
+              <!-- Cohort retention sub-chart · 4 cohorts × 6 quarters -->
+              <text x="0" y="162" font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.4">COHORT RETENTION · DTC</text>
+              <g font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6E6E70" letter-spacing="0.4">
+                <text x="0" y="180">100%</text>
+                <text x="0" y="220">50%</text>
+                <text x="0" y="258">0%</text>
+              </g>
+              <g stroke="rgba(10,10,10,0.06)" stroke-width="1">
+                <line x1="36" y1="178" x2="480" y2="178"/>
+                <line x1="36" y1="216" x2="480" y2="216"/>
+                <line x1="36" y1="254" x2="480" y2="254"/>
+              </g>
+              <!-- 4 cohort lines -->
+              <path d="M 50 180 L 130 192 L 210 200 L 290 206 L 370 210 L 450 213" fill="none" stroke="#1E40AF" stroke-width="1.6"/>
+              <path d="M 50 180 L 130 196 L 210 206 L 290 214 L 370 220 L 450 224" fill="none" stroke="#0A0A0A" stroke-width="1.4" opacity="0.55"/>
+              <path d="M 50 180 L 130 200 L 210 214 L 290 224 L 370 232 L 450 236" fill="none" stroke="#2563EB" stroke-width="1.4" opacity="0.7"/>
+              <path d="M 50 180 L 130 204 L 210 222 L 290 234 L 370 244 L 450 248" fill="none" stroke="#6E6E70" stroke-width="1.4"/>
+              <g font-family="JetBrains Mono, monospace" font-size="7" fill="#6E6E70" letter-spacing="0.4">
+                <text x="50" y="262">Q0</text>
+                <text x="130" y="262" text-anchor="middle">+1</text>
+                <text x="210" y="262" text-anchor="middle">+2</text>
+                <text x="290" y="262" text-anchor="middle">+3</text>
+                <text x="370" y="262" text-anchor="middle">+4</text>
+                <text x="450" y="262" text-anchor="end">+5</text>
+              </g>
+              <!-- Cohort legend -->
+              <g font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.5">
+                <g transform="translate(140 162)"><rect width="8" height="3" fill="#1E40AF"/><text x="12" y="5" fill="#0A0A0A">2030 Q1</text></g>
+                <g transform="translate(220 162)"><rect width="8" height="3" fill="#0A0A0A" opacity="0.55"/><text x="12" y="5" fill="#0A0A0A">2029 Q1</text></g>
+                <g transform="translate(300 162)"><rect width="8" height="3" fill="#2563EB" opacity="0.7"/><text x="12" y="5" fill="#0A0A0A">2028 Q1</text></g>
+                <g transform="translate(380 162)"><rect width="8" height="3" fill="#6E6E70"/><text x="12" y="5" fill="#0A0A0A">2027 Q1</text></g>
               </g>
             </svg>
+            <div class="bi-cell-foot"><strong>Channel mix</strong> · DTC dominante en margen · Retail crece volumen · USMCA upside</div>
+          </div>
+
+          <!-- PANEL C · Predictive Inventory (30/60/90-day) -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Predictive inventory · 30/60/90<small>F3 · ERP · auto-restock triggers</small></div>
+              <span class="bi-cell-tag alert">ALERT</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="#6E6E70" letter-spacing="1">
+                <text x="0" y="20">3.2K</text>
+                <text x="0" y="68">2.4K</text>
+                <text x="0" y="116">1.6K</text>
+                <text x="0" y="164">0.8K</text>
+                <text x="0" y="212">0</text>
+              </g>
+              <g stroke="rgba(10,10,10,0.06)" stroke-width="1">
+                <line x1="32" y1="16" x2="480" y2="16"/>
+                <line x1="32" y1="64" x2="480" y2="64"/>
+                <line x1="32" y1="112" x2="480" y2="112"/>
+                <line x1="32" y1="160" x2="480" y2="160"/>
+                <line x1="32" y1="208" x2="480" y2="208"/>
+              </g>
+              <!-- Re-stock threshold dashed -->
+              <line x1="32" y1="160" x2="480" y2="160" stroke="#0A0A0A" stroke-width="1" stroke-dasharray="3 3"/>
+              <text x="36" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.6">RE-STOCK · 800u</text>
+              <!-- 6 SKU decline curves over 90 days (x: 32 -> 470) -->
+              <!-- SKU 1 SUERO·VC (red dot at d22) -->
+              <path d="M 40 26 L 90 36 L 140 50 L 190 70 L 240 96 L 290 120 L 340 148 L 390 168 L 440 188 L 470 198" fill="none" stroke="#1E40AF" stroke-width="1.8" stroke-linejoin="round"/>
+              <circle cx="290" cy="160" r="4.5" fill="#B91C1C"/>
+              <circle cx="290" cy="160" r="9" fill="none" stroke="#B91C1C" stroke-width="1.2" opacity="0.5"/>
+              <text x="298" y="148" font-family="JetBrains Mono, monospace" font-size="7" fill="#B91C1C" letter-spacing="0.4">D27 · SUERO·VC · ORDEN AUTO</text>
+              <!-- SKU 2 CR·REP -->
+              <path d="M 40 38 L 90 46 L 140 58 L 190 78 L 240 100 L 290 124 L 340 152 L 390 174 L 440 194 L 470 204" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-linejoin="round" opacity="0.85"/>
+              <circle cx="340" cy="160" r="4" fill="#B91C1C"/>
+              <text x="348" y="166" font-family="JetBrains Mono, monospace" font-size="7" fill="#B91C1C" letter-spacing="0.4">D31 · CR·REP</text>
+              <!-- SKU 3 TÓNICO -->
+              <path d="M 40 50 L 90 60 L 140 74 L 190 92 L 240 110 L 290 130 L 340 150 L 390 168 L 440 184 L 470 192" fill="none" stroke="#0A0A0A" stroke-width="1.4" stroke-linejoin="round" opacity="0.55"/>
+              <circle cx="390" cy="160" r="4" fill="#B91C1C" opacity="0.65"/>
+              <!-- SKU 4 FPS·50 (safe) -->
+              <path d="M 40 70 L 90 78 L 140 88 L 190 102 L 240 116 L 290 130 L 340 146 L 390 158 L 440 170 L 470 178" fill="none" stroke="#6E6E70" stroke-width="1.3" stroke-linejoin="round"/>
+              <!-- SKU 5 SERUM·B (safe) -->
+              <path d="M 40 92 L 90 100 L 140 108 L 190 118 L 240 128 L 290 140 L 340 152 L 390 164 L 440 176 L 470 184" fill="none" stroke="#6E6E70" stroke-width="1.3" stroke-linejoin="round" opacity="0.65"/>
+              <!-- SKU 6 LIMPIA (safe-ish) -->
+              <path d="M 40 110 L 90 118 L 140 126 L 190 134 L 240 142 L 290 152 L 340 162 L 390 172 L 440 180 L 470 186" fill="none" stroke="#6E6E70" stroke-width="1.3" stroke-linejoin="round" opacity="0.45"/>
+              <!-- X axis -->
+              <g fill="#6E6E70" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
+                <text x="40" y="226">D01</text>
+                <text x="190" y="226" text-anchor="middle">D30</text>
+                <text x="340" y="226" text-anchor="middle">D60</text>
+                <text x="470" y="226" text-anchor="end">D90</text>
+              </g>
+            </svg>
+            <div class="bi-cell-foot"><strong>3 SKUs</strong> trigger orden automática esta semana · <em>SUERO·VC crítico D27</em></div>
+          </div>
+
+          <!-- PANEL D · R&D Pipeline funnel -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">R&amp;D pipeline · stages activos<small>F3 · concept → production · 2030</small></div>
+              <span class="bi-cell-tag">PIPELINE</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Funnel: 5 trapezoids stacked vertically, narrowing -->
+              <g>
+                <!-- Concepts · 28 -->
+                <polygon points="40,20 440,20 410,52 70,52" fill="#1E40AF" opacity="0.22"/>
+                <text x="240" y="40" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#0A0A0A">CONCEPTS · 28</text>
+                <!-- Prototyping · 12 -->
+                <polygon points="70,56 410,56 380,88 100,88" fill="#1E40AF" opacity="0.36"/>
+                <text x="240" y="76" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#0A0A0A">PROTOTYPING · 12</text>
+                <!-- Validation · 6 -->
+                <polygon points="100,92 380,92 340,124 140,124" fill="#1E40AF" opacity="0.55"/>
+                <text x="240" y="112" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#FAFAF7">VALIDATION · 6</text>
+                <!-- COFEPRIS · 3 -->
+                <polygon points="140,128 340,128 300,160 180,160" fill="#1E40AF" opacity="0.78"/>
+                <text x="240" y="148" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#FAFAF7">COFEPRIS · 3</text>
+                <!-- Production · 2 -->
+                <polygon points="180,164 300,164 270,196 210,196" fill="#1E40AF"/>
+                <text x="240" y="184" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#FAFAF7">PRODUCTION · 2</text>
+              </g>
+              <!-- Side annotations: conversion % per stage -->
+              <g font-family="JetBrains Mono, monospace" font-size="8" fill="#6E6E70" letter-spacing="0.5">
+                <text x="450" y="40" text-anchor="end">100%</text>
+                <text x="450" y="76" text-anchor="end">43%</text>
+                <text x="450" y="112" text-anchor="end">21%</text>
+                <text x="450" y="148" text-anchor="end">11%</text>
+                <text x="450" y="184" text-anchor="end">7%</text>
+              </g>
+              <!-- Footer summary -->
+              <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.5">
+                <text x="40" y="220">CICLO PROMEDIO · CONCEPT → PROD · 11 MESES</text>
+                <text x="40" y="232" fill="#6E6E70">2 LANZAMIENTOS Q4 2030 · 1 USMCA · 1 EU</text>
+              </g>
+            </svg>
+            <div class="bi-cell-foot"><strong>Conversion concept→prod 7%</strong> · 2 fórmulas listas para Q4 · 1 export-ready</div>
+          </div>
+
+          <!-- PANEL E · Agent activity feed -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Agent layer · last 15 min<small>F5 · 4 olas activas · 60-70% routine ops</small></div>
+              <span class="bi-cell-tag live">LIVE</span>
+            </div>
+            <div class="bi-feed" role="log" aria-live="off">
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:21:55</span>
+                <span class="bi-feed-agent">OUTBOUND-AGENT</span>
+                <span class="bi-feed-msg">Talent J.M. — initial reach via WhatsApp · qualified</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:21:42</span>
+                <span class="bi-feed-agent compliance">COMPLIANCE-MONITOR</span>
+                <span class="bi-feed-msg">NOM-141 update detected · 4 SKUs flagged for review</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:20:18</span>
+                <span class="bi-feed-agent">DTC-CHATBOT</span>
+                <span class="bi-feed-msg">Customer #4892 — match Suero Vit C · upsell tonic 200ml</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:18:03</span>
+                <span class="bi-feed-agent">SUPPLIER-AGENT</span>
+                <span class="bi-feed-msg">Reorder PO-2030-441 · Niacinamide 5kg · ETA 8d</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:15:30</span>
+                <span class="bi-feed-agent lead">LEAD-QUALIFIER</span>
+                <span class="bi-feed-msg">Inbound talent — declined (audience &lt;500K)</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:12:11</span>
+                <span class="bi-feed-agent">R&amp;D-RESEARCH</span>
+                <span class="bi-feed-msg">3 papers nuevos · ácido kojic — alternativas</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:09:47</span>
+                <span class="bi-feed-agent batch">BATCH-MONITOR</span>
+                <span class="bi-feed-msg">Lot L-2030-887 — QA pass · ready for ship</span>
+              </div>
+              <div class="bi-feed-row">
+                <span class="bi-feed-time">14:08:02</span>
+                <span class="bi-feed-agent">RETAIL-PARTNER</span>
+                <span class="bi-feed-msg">Liverpool · re-order auto-confirmed · 8 SKUs · $1.30M MXN</span>
+              </div>
+            </div>
+            <div class="bi-cell-foot"><strong>312 acciones</strong> autónomas hoy · 0 escalaciones humanas · agent uptime 99.94%</div>
+          </div>
+
+          <!-- PANEL F · Compliance heat map (8 brands × 4 NOMs) -->
+          <div class="bi-cell">
+            <div class="bi-cell-head">
+              <div class="bi-cell-title">Compliance heat map · NOM × brand<small>F2 · COFEPRIS + FDA + EU · status real-time</small></div>
+              <span class="bi-cell-tag live">100%</span>
+            </div>
+            <svg class="bi-chart" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Column headers · 4 NOMs + FDA -->
+              <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.4">
+                <text x="180" y="14" text-anchor="middle">NOM-259</text>
+                <text x="240" y="14" text-anchor="middle">NOM-141</text>
+                <text x="300" y="14" text-anchor="middle">NOM-089</text>
+                <text x="360" y="14" text-anchor="middle">NOM-251</text>
+                <text x="420" y="14" text-anchor="middle">FDA·USMCA</text>
+              </g>
+              <!-- Row labels -->
+              <g font-family="JetBrains Mono, monospace" font-size="8" fill="#0A0A0A" letter-spacing="0.3">
+                <text x="0" y="36">T. CAROLINA M.</text>
+                <text x="0" y="60">B. SKIN CO.</text>
+                <text x="0" y="84">AURORA ROS</text>
+                <text x="0" y="108">N. CENTELLA</text>
+                <text x="0" y="132">M. SOLER</text>
+                <text x="0" y="156">VEGA · LAB</text>
+                <text x="0" y="180">PALOMA F.</text>
+                <text x="0" y="204">RIVA · CO</text>
+              </g>
+              <!-- Cells: green / amber / red dots -->
+              <!-- Helper: green=#16A34A amber=#D97706 red=#B91C1C -->
+              <g>
+                <!-- Row 1 -->
+                <circle cx="180" cy="32" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="32" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="32" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="32" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="32" r="6" fill="#16A34A"/>
+                <!-- Row 2 -->
+                <circle cx="180" cy="56" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="56" r="6" fill="#D97706"/>
+                <circle cx="300" cy="56" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="56" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="56" r="6" fill="#16A34A"/>
+                <!-- Row 3 -->
+                <circle cx="180" cy="80" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="80" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="80" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="80" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="80" r="6" fill="#D97706"/>
+                <!-- Row 4 -->
+                <circle cx="180" cy="104" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="104" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="104" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="104" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="104" r="6" fill="#16A34A"/>
+                <!-- Row 5 -->
+                <circle cx="180" cy="128" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="128" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="128" r="6" fill="#D97706"/>
+                <circle cx="360" cy="128" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="128" r="6" fill="#6E6E70" opacity="0.35"/>
+                <!-- Row 6 -->
+                <circle cx="180" cy="152" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="152" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="152" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="152" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="152" r="6" fill="#16A34A"/>
+                <!-- Row 7 -->
+                <circle cx="180" cy="176" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="176" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="176" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="176" r="6" fill="#D97706"/>
+                <circle cx="420" cy="176" r="6" fill="#6E6E70" opacity="0.35"/>
+                <!-- Row 8 -->
+                <circle cx="180" cy="200" r="6" fill="#16A34A"/>
+                <circle cx="240" cy="200" r="6" fill="#16A34A"/>
+                <circle cx="300" cy="200" r="6" fill="#16A34A"/>
+                <circle cx="360" cy="200" r="6" fill="#16A34A"/>
+                <circle cx="420" cy="200" r="6" fill="#16A34A"/>
+              </g>
+              <!-- Footer scale -->
+              <g font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.5">
+                <g transform="translate(0 232)">
+                  <circle cx="6" cy="0" r="5" fill="#16A34A"/>
+                  <text x="18" y="4" fill="#0A0A0A">VIGENTE</text>
+                </g>
+                <g transform="translate(110 232)">
+                  <circle cx="6" cy="0" r="5" fill="#D97706"/>
+                  <text x="18" y="4" fill="#0A0A0A">RENOVAR &lt;90D</text>
+                </g>
+                <g transform="translate(260 232)">
+                  <circle cx="6" cy="0" r="5" fill="#B91C1C"/>
+                  <text x="18" y="4" fill="#0A0A0A">VENCIDO</text>
+                </g>
+                <g transform="translate(370 232)">
+                  <circle cx="6" cy="0" r="5" fill="#6E6E70" opacity="0.35"/>
+                  <text x="18" y="4" fill="#0A0A0A">N/A</text>
+                </g>
+              </g>
+              <!-- Big number stat -->
+              <g>
+                <text x="240" y="252" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#0A0A0A" letter-spacing="0.5">37 / 40 VIGENTES · 3 EN RENOVACIÓN AUTOMÁTICA</text>
+              </g>
+            </svg>
+            <div class="bi-cell-foot"><strong>3 NOM-141 renewals</strong> en pipeline · <strong>Document Vault</strong> R2 versionado · 0 vencidas</div>
           </div>
 
         </div>
+
+        <!-- FOOTER · DATA SOURCES TICKER -->
+        <div class="bi-foot-sources">
+          <div><strong>DATA SOURCES</strong> · D1 transaccional · R2 documental · Workers Analytics · Meta Ads · TikTok Ads · Google Ads · Stripe · MercadoPago · COFEPRIS portal feed · Supplier API · OpenWeather · Liverpool EDI · Sephora API · …</div>
+          <div><strong>REAL-TIME</strong> · last query 14:22:08</div>
+        </div>
+
       </div>
 
-      <p class="bi-caption">Mock representativo. La versión real lee data en tiempo real desde el ERP + Workers Analytics, con queries en lenguaje natural sobre el semantic layer.</p>
+      <p class="bi-caption">Mock representativo del state target. Datos sintéticos. La versión real lee de D1 + R2 + Workers Analytics + integraciones de canal — cada KPI queryable en lenguaje natural sobre el semantic layer.</p>
     </div>
   </div>
 </section>
