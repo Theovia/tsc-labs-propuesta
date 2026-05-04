@@ -755,6 +755,122 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 }
 .cap-prose strong{font-weight:600;color:var(--ink)}
 
+/* === UPLIFT (operational) === */
+.uplift-frame{
+  max-width:1280px;
+  margin:72px auto 0;
+  padding-top:56px;
+  border-top:1px solid var(--rule-strong);
+}
+.uplift-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  margin-bottom:16px;
+  font-weight:500;
+}
+.uplift-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:32px;
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 10px;
+  max-width:760px;
+}
+.uplift-title em{font-style:italic;color:var(--accent);font-weight:500}
+.uplift-sub{
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--ink-mute);
+  max-width:680px;
+  margin:0 0 36px;
+}
+.uplift-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+.uplift-card{
+  padding:28px 26px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.uplift-card-title{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.uplift-card-prose{
+  font-family:'Inter',sans-serif;
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.uplift-card-prose strong{font-weight:600;color:var(--ink)}
+@media (max-width:980px){
+  .uplift-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .uplift-grid{grid-template-columns:1fr}
+  .uplift-title{font-size:26px}
+}
+
+/* === EXPERTISE INSET (CTO Fractional) === */
+.expertise-inset{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(250,250,247,0.18);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.expertise-inset-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:500;
+}
+.expertise-inset-list{
+  list-style:none;
+  margin:4px 0 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  line-height:1.55;
+  color:rgba(250,250,247,0.85);
+}
+.expertise-inset-list li{
+  position:relative;
+  padding-left:18px;
+}
+.expertise-inset-list li::before{
+  content:"—";
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:500;
+}
+.expertise-inset-list li strong{color:var(--bg);font-weight:600}
+
 /* === ROADMAP === */
 .roadmap-frame{max-width:1180px;margin:0 auto}
 .roadmap-list{
@@ -1765,9 +1881,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         <p>El <strong>batch tracking</strong> no está sistematizado contra la NOM-259-SSA1-2022. Cada auditoría COFEPRIS — vigente o futura — toma semanas en preparación porque no hay un único origen de verdad sobre lotes, controles de calidad y caducidades.</p>
 
-        <div class="diag-pull">The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención sigue siendo manual.</div>
-
-        <p><strong>The Skin Club</strong> demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. Pero la maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</p>
+        <div class="diag-pull">The Skin Club demostró que una marca formulada honestamente puede competir con Kiehl's, Clinique, L'Oréal y The Ordinary. La maquinaria de retención — email lifecycle, attribution multi-touch, LTV predictivo — sigue siendo manual.</div>
 
         <p>El <strong>pipeline B2B con management de talento</strong> está abriéndose. Sin un Talent Portal, un CRM real y contratos generados desde template, no es replicable. Cada nuevo talent que entra repite el ciclo manualmente.</p>
 
@@ -2755,7 +2869,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="gov-card gov-card-emph">
         <div class="gov-tag">RAZÓN · 00 · CTO FRACTIONAL</div>
         <h3 class="gov-title">Eigen entra como <em>capa de dirección técnica</em> integrada al equipo TSC LABS</h3>
-        <p class="gov-prose">Eigen entra como dirección técnica integrada al equipo TSC LABS. Raul Chio opera como <strong>CTO Fractional</strong> durante los 12 meses de construcción y todo el período de retainer. La continuidad del sistema queda con quien lo construyó: arquitectura, schemas, decisiones de stack, onboarding de talent técnico futuro, y reporting técnico-ejecutivo a leadership TSC.</p>
+        <p class="gov-prose">Eigen entra como dirección técnica integrada al equipo TSC LABS. <strong>Raul Chio</strong>, fundador, opera como <strong>CTO Fractional</strong> durante los 12 meses de construcción y todo el período de retainer — combinando expertise en estrategia de negocio, transformación digital, business intelligence e inteligencia artificial. La continuidad del sistema queda con quien lo construyó.</p>
         <ul class="cto-fractional-list">
           <li>Arquitectura técnica end-to-end</li>
           <li>Roadmap evolutivo del producto</li>
@@ -2764,6 +2878,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <li>Reporting técnico-ejecutivo a leadership TSC</li>
           <li>Liaison con compliance + auditorías COFEPRIS</li>
         </ul>
+        <div class="expertise-inset">
+          <div class="expertise-inset-tag">EXPERTISE COMBINADA · NEGOCIOS + TECNOLOGÍA + IA</div>
+          <ul class="expertise-inset-list">
+            <li><strong>Estrategia de negocio</strong> · diagnóstico, modelo de operación, pricing, escalamiento</li>
+            <li><strong>Transformación digital</strong> · desde data architecture hasta capa agéntica</li>
+            <li><strong>Business intelligence</strong> · semantic data layers, dashboards, queries de negocio en lenguaje natural</li>
+            <li><strong>Inteligencia artificial</strong> · multi-agent frameworks, MCP servers, LLM gateway, agents productivizados</li>
+            <li><strong>Compliance regulatorio</strong> · COFEPRIS, NOMs, IVA-compliant</li>
+            <li><strong>3 verticals operando este stack en MX</strong> · medical, hospitality, pharma retail</li>
+          </ul>
+        </div>
       </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · 0 · PARTNERSHIP</div>
@@ -2908,6 +3033,39 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p class="cap-prose">Entidades, diagramas, bases de datos, lógica de negocio · expertise combinada negocio + tecnología. <strong>F1-F5 entregan TSC LABS operando sobre D1 + R2 con audit trail unificado.</strong></p>
         </div>
 
+      </div>
+    </div>
+
+    <div class="uplift-frame">
+      <div class="uplift-eyebrow">10.B / OPERACIÓN · LO QUE SUBE DE NIVEL</div>
+      <h3 class="uplift-title">Lo que sube de nivel <em>cuando entra el sistema</em>.</h3>
+      <p class="uplift-sub">No es solo software nuevo. Es cómo se opera la empresa.</p>
+
+      <div class="uplift-grid">
+        <div class="uplift-card">
+          <div class="uplift-card-title">ONBOARDING INTERNO</div>
+          <p class="uplift-card-prose">De semanas explicando Excel + carpetas + procesos manuales a horas de tour por el portal. Cualquier nuevo empleado entiende el sistema porque cada decisión está versionada y auditada. <strong>Documentación viva en el repo, no en cabezas.</strong></p>
+        </div>
+        <div class="uplift-card">
+          <div class="uplift-card-title">CAPACITACIÓN DE TALENT MANAGERS</div>
+          <p class="uplift-card-prose">En vez de PDFs estáticos, cada talent manager recibe acceso a su Talent Portal con guía contextual. <strong>Onboard en 30 minutos.</strong> Self-service de status y documentos, sin escalar a un humano para cada consulta operativa.</p>
+        </div>
+        <div class="uplift-card">
+          <div class="uplift-card-title">CONTROLES DE CALIDAD</div>
+          <p class="uplift-card-prose">Checklist por lote vinculado a NOM-259-SSA1-2022. Cada batch pasa por validación digital antes de cerrarse en sistema. QA recibe alerta si un KPI sale de rango. <strong>Rastreabilidad inmediata si surge desviación.</strong></p>
+        </div>
+        <div class="uplift-card">
+          <div class="uplift-card-title">DIRECCIÓN Y ESTRATEGIA</div>
+          <p class="uplift-card-prose">El leadership opera con dashboards en vivo, no con reportes mensuales. Decisiones de pricing, mix de SKU, expansión de canal — todas con data del momento, <strong>no de hace 4 semanas.</strong></p>
+        </div>
+        <div class="uplift-card">
+          <div class="uplift-card-title">OPERACIÓN DÍA A DÍA</div>
+          <p class="uplift-card-prose">Procesos repetitivos automatizados — factura por hito, restock por threshold, comunicación a talent en milestone. <strong>El equipo deja de pelear con admin y enfoca en R&amp;D, ventas y relaciones.</strong></p>
+        </div>
+        <div class="uplift-card">
+          <div class="uplift-card-title">AUDITORÍAS Y COMPLIANCE</div>
+          <p class="uplift-card-prose">Lo que antes tomaba 3 semanas pre-auditoría COFEPRIS pasa a 2 días: todo el archivo está versionado, etiquetado, exportable a PDF. <strong>El audit log responde por sí solo.</strong></p>
+        </div>
       </div>
     </div>
   </div>
