@@ -6,7 +6,7 @@
 <title>Eigen Atlas · Propuesta V2.0 · TSC LABS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAFAF7;
@@ -16,9 +16,10 @@
   --ink-soft:#2A2A2A;
   --ink-mute:#6E6E70;
   --ink-light:#B8B8B8;
-  --accent:#1E40AF;
-  --accent-bright:#2563EB;
-  --accent-deep:#1E3A8A;
+  --accent:#5C5C66;
+  --accent-bright:#8B8B95;
+  --accent-deep:#2E2E36;
+  --accent-warm:#B5A48A;
   --success:#15803D;
   --rule:rgba(10,10,10,0.10);
   --rule-strong:rgba(10,10,10,0.20);
@@ -36,7 +37,7 @@ body{
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
 }
-::selection{background:var(--accent);color:var(--bg)}
+::selection{background:var(--ink);color:var(--bg)}
 a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .2s,color .2s}
 a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
@@ -81,24 +82,24 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   will-change:transform;
 }
 .cover::before{
-  background:radial-gradient(circle, rgba(30,64,175,0.55) 0%, rgba(30,64,175,0) 70%);
-  top:-10%;left:-10%;
-  opacity:0.08;
-  animation:coverBlobA 40s ease-in-out infinite;
+  background:radial-gradient(circle, rgba(140,140,150,0.50) 0%, rgba(140,140,150,0) 70%);
+  top:-12%;left:-12%;
+  opacity:0.10;
+  animation:coverBlobA 60s ease-in-out infinite;
 }
 .cover::after{
-  background:radial-gradient(circle, rgba(217,119,6,0.55) 0%, rgba(217,119,6,0) 70%);
-  bottom:-15%;right:-12%;
-  opacity:0.06;
-  animation:coverBlobB 40s ease-in-out infinite;
+  background:radial-gradient(circle, rgba(181,164,138,0.45) 0%, rgba(181,164,138,0) 70%);
+  bottom:-18%;right:-14%;
+  opacity:0.07;
+  animation:coverBlobB 60s ease-in-out infinite;
 }
 @keyframes coverBlobA{
   0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(80px,60px) scale(1.08)}
+  50%{transform:translate(60px,40px) scale(1.05)}
 }
 @keyframes coverBlobB{
   0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(-70px,-50px) scale(1.06)}
+  50%{transform:translate(-50px,-35px) scale(1.04)}
 }
 .cover-top, .cover-center, .cover-bottom, .cover-stamp, .hero-rule-wrap{position:relative;z-index:1}
 @media (prefers-reduced-motion: reduce){
@@ -110,21 +111,21 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   position:absolute;
   top:88px; right:60px;
   padding:14px 18px;
-  border:1px solid var(--rule-strong);
-  background:rgba(255,255,255,0.55);
-  backdrop-filter:blur(2px);
+  border:1px solid rgba(92,92,102,0.35);
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:blur(3px);
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:9px;
   letter-spacing:0.18em;
   color:var(--ink-mute);
   text-transform:uppercase;
-  transform:rotate(-3deg);
+  transform:rotate(-2deg);
   display:flex;flex-direction:column;gap:6px;
   z-index:2;
   pointer-events:none;
   max-width:200px;
 }
-.cover-stamp strong{color:var(--accent);font-weight:600;letter-spacing:0.16em;font-size:10px}
+.cover-stamp strong{color:var(--accent-deep);font-weight:600;letter-spacing:0.16em;font-size:10px}
 .cover-stamp .stamp-rule{height:1px;background:var(--rule-strong);width:100%;margin:2px 0}
 .cover-stamp .stamp-id{color:var(--ink);font-weight:500;letter-spacing:0.14em}
 
@@ -161,11 +162,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   background:var(--ink-mute);
   opacity:0.5;
 }
-.cover-annotation .ann-arrow{color:var(--accent);font-weight:700}
-.ann-1{top:38%;right:6%}
-.ann-2{top:48%;right:4%}
-.ann-3{top:60%;right:8%}
-.ann-4{top:69%;right:5%}
+.cover-annotation .ann-arrow{color:var(--accent-warm);font-weight:700}
+.ann-1{top:42%;right:6%}
+.ann-2{top:62%;right:5%}
 
 /* Hero SVG hairline rules + cobalt rule above stats */
 .hero-rule-wrap{position:relative;width:100%;max-width:1080px;height:1px;margin-top:8px}
@@ -259,7 +258,14 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   max-width:1280px;
 }
 .cover-title strong{font-weight:500;color:var(--ink)}
-.cover-title em{font-style:normal;color:var(--accent);font-weight:500}
+.cover-title em{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 96;
+  color:var(--accent-warm);
+  letter-spacing:-0.01em;
+}
 .cover-title .word{display:inline-block;will-change:transform,opacity}
 .cover-subtitle{
   font-family:'Inter',sans-serif;
@@ -276,7 +282,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink);
   font-weight:500;
   letter-spacing:-0.005em;
-  border-left:2px solid var(--accent);
+  border-left:2px solid var(--accent-warm);
   padding-left:14px;
   margin-bottom:48px;
 }
@@ -305,7 +311,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink);
   margin-bottom:10px;
 }
-.cover-stat-num em{font-style:normal;color:var(--accent)}
+.cover-stat-num em{font-style:normal;color:var(--accent-warm);font-weight:500}
 .cover-stat-num .sm{font-size:16px;color:var(--ink-mute);font-weight:400}
 .cover-stat-label{
   font-family:'JetBrains Mono',ui-monospace,monospace;
@@ -383,7 +389,14 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   color:var(--ink);
 }
 .section-title strong{font-weight:500}
-.section-title em{font-style:normal;color:var(--accent);font-weight:500}
+.section-title em{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 60;
+  color:var(--accent-warm);
+  letter-spacing:-0.005em;
+}
 .section-deck{
   font-family:'Inter',sans-serif;
   font-size:15px;
@@ -413,7 +426,14 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   margin-bottom:24px;
 }
 .diag-title strong{font-weight:500;color:var(--ink)}
-.diag-title em{font-style:normal;color:var(--accent);font-weight:500}
+.diag-title em{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 72;
+  color:var(--accent-warm);
+  letter-spacing:-0.005em;
+}
 .diag-date{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
@@ -2570,77 +2590,458 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .retainer-callout{background:#fff !important;color:#000 !important;border:1px solid #000}
   .retainer-callout *{color:#000 !important}
   .phase-num-tag{background:#fff !important;color:#000 !important;border:1px solid #000}
+  .cover-cinema{min-height:auto;page-break-after:always}
+  .fluid-canvas, .hud, .cinema-foot .scroll-cue::after{display:none !important}
+  .hero-monument{filter:none !important;font-size:96pt !important}
+}
+
+/* ============================================================
+   COVER CINEMA · monumental editorial · Fraunces italic + mercury fluid + lab HUD
+   ============================================================ */
+.cover-cinema{
+  position:relative;
+  background:var(--bg);
+  overflow:hidden;
+  border-bottom:1px solid var(--rule-strong);
+}
+.cover-cinema .pin-stage{
+  height:100vh;
+  min-height:760px;
+  position:relative;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  padding:30px 56px 24px;
+  overflow:hidden;
+  z-index:1;
+}
+
+/* Mercury particle canvas — full bleed behind everything */
+.fluid-canvas{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  z-index:0;
+  pointer-events:none;
+  mix-blend-mode:multiply;
+  opacity:0.62;
+}
+
+/* SVG filter defs (offscreen) */
+.cinema-svg-defs{ position:absolute; width:0; height:0; overflow:hidden }
+
+/* Top metadata strip */
+.cinema-meta{
+  position:relative; z-index:5;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+}
+.cinema-meta-mark{
+  display:flex; align-items:center; gap:10px;
+  color:var(--ink); font-weight:500;
+  font-family:'Inter Tight',sans-serif;
+  font-size:14px; letter-spacing:-0.005em; text-transform:none;
+}
+.cinema-meta-mark::before{
+  content:''; width:7px; height:7px; border-radius:50%;
+  background:var(--accent-warm);
+  box-shadow:0 0 14px var(--accent-warm), 0 0 4px var(--accent-warm);
+}
+.cinema-meta-cells{ display:flex; gap:32px; align-items:baseline }
+.cinema-meta-cells span{ display:flex; gap:8px }
+.cinema-meta-cells strong{ color:var(--ink); font-weight:500 }
+
+/* Lab HUD — instrument readout */
+.hud{
+  position:absolute;
+  top:84px; right:56px;
+  z-index:6;
+  display:grid; gap:11px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  pointer-events:none;
+  padding:18px 22px 20px;
+  background:rgba(252,252,248,0.78);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(92,92,102,0.22);
+  border-radius:2px;
+  min-width:248px;
+  box-shadow:0 1px 0 rgba(255,255,255,0.6) inset, 0 24px 60px -30px rgba(46,46,54,0.18);
+}
+.hud::before{
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent 0%,var(--accent-warm) 30%,var(--accent-warm) 70%,transparent 100%);
+  opacity:0.85;
+}
+.hud-title{
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:9px; letter-spacing:0.22em;
+  color:var(--ink); font-weight:600;
+  padding-bottom:8px;
+  border-bottom:1px dashed rgba(92,92,102,0.24);
+  margin-bottom:2px;
+}
+.hud-title .live{
+  display:flex; align-items:center; gap:6px;
+  color:var(--accent-warm);
+  font-size:9px; font-weight:600;
+}
+.hud-title .live::before{
+  content:''; width:7px; height:7px; border-radius:50%;
+  background:var(--accent-warm);
+  animation:hudPulse 1.6s ease-in-out infinite;
+  box-shadow:0 0 10px var(--accent-warm);
+}
+@keyframes hudPulse{
+  0%,100%{ opacity:1; transform:scale(1) }
+  50%{ opacity:0.35; transform:scale(0.78) }
+}
+.hud-row{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:18px;
+}
+.hud-row .label{ font-size:9px; color:var(--ink-mute); white-space:nowrap }
+.hud-row .value{
+  font-family:'Inter Tight',sans-serif;
+  font-size:14px; font-weight:500;
+  letter-spacing:-0.005em;
+  color:var(--ink);
+  text-transform:none;
+  font-variant-numeric:tabular-nums;
+}
+.hud-row .value em{
+  font-style:normal; font-size:10px;
+  color:var(--ink-mute); font-weight:400;
+  margin-left:4px;
+  text-transform:uppercase; letter-spacing:0.06em;
+}
+.hud-foot{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:8px;
+  border-top:1px dashed rgba(92,92,102,0.24);
+  font-size:9px; letter-spacing:0.18em;
+  color:var(--ink-mute);
+}
+.hud-foot .ts{ color:var(--accent-deep); font-variant-numeric:tabular-nums }
+
+/* Hero stage — center */
+.hero-stage{
+  position:relative; z-index:4;
+  display:flex; flex-direction:column;
+  justify-content:center;
+  padding:18px 0 24px;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--accent-deep);
+  font-weight:600;
+  margin-bottom:18px;
+  display:flex; align-items:center; gap:14px;
+  opacity:0;
+}
+.hero-eyebrow::before{
+  content:''; flex:0 0 24px; height:1px;
+  background:var(--accent-warm);
+}
+.hero-eyebrow::after{
+  content:''; flex:1 1 auto; height:1px;
+  background:linear-gradient(90deg, var(--accent-warm) 0%, transparent 100%);
+  max-width:240px;
+}
+
+/* Monumental h1 — Fraunces italic 22vw */
+.hero-monument{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic;
+  font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(120px, 22vw, 360px);
+  line-height:0.86;
+  letter-spacing:-0.04em;
+  color:var(--ink);
+  margin:0;
+  filter:url(#liquidDistort);
+  display:flex; flex-direction:column; gap:0;
+}
+.hero-monument .line{
+  display:block;
+  overflow:hidden;
+  position:relative;
+}
+.hero-monument .line .char{
+  display:inline-block;
+  will-change:transform;
+}
+.hero-monument .line.line-2{
+  text-align:right;
+  color:var(--accent-warm);
+  font-weight:400;
+}
+.hero-monument .line.line-2::before{
+  content:'';
+  display:inline-block;
+  width:24vw; height:6px;
+  background:var(--accent-warm);
+  vertical-align:0.36em;
+  margin-right:30px;
+  opacity:0.92;
+  transform-origin:left center;
+}
+
+/* Thesis line — under monument */
+.hero-thesis{
+  margin-top:30px;
+  max-width:820px;
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(18px, 1.6vw, 24px);
+  line-height:1.4;
+  letter-spacing:-0.005em;
+  color:var(--ink-soft);
+  opacity:0;
+}
+.hero-thesis em{
+  font-family:'Fraunces',Georgia,serif;
+  font-style:italic; font-weight:400;
+  font-variation-settings:"opsz" 36;
+  color:var(--accent-warm);
+  letter-spacing:0;
+}
+
+/* Hairlines layer — DrawSVG */
+.hero-hairlines{
+  position:absolute;
+  left:0; right:0;
+  bottom:172px;
+  width:100%; height:1px;
+  z-index:3;
+  pointer-events:none;
+  overflow:visible;
+}
+.hero-hairlines line{
+  stroke:var(--accent-warm);
+  stroke-width:1;
+  fill:none;
+  opacity:0.85;
+}
+
+/* Stats row — bottom */
+.hero-stats{
+  position:relative; z-index:5;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+  border-top:1px solid var(--rule-strong);
+  padding-top:20px;
+  margin-top:24px;
+}
+.hero-stat{
+  padding:0 28px 0 0;
+  border-right:1px solid var(--rule);
+  position:relative;
+  opacity:0;
+}
+.hero-stat:last-child{ border-right:none; padding-right:0 }
+.hero-stat-rule{ display:block; width:100%; height:1px; margin-bottom:14px }
+.hero-stat-rule line{ stroke:var(--accent-warm); stroke-width:1 }
+.hero-stat-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+  margin-bottom:10px;
+  display:flex; align-items:baseline; gap:1px;
+  font-variant-numeric:tabular-nums;
+}
+.hero-stat-num .prefix{ font-size:22px; color:var(--ink-mute); font-weight:400; margin-right:3px }
+.hero-stat-num em{
+  font-style:italic;
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:"opsz" 36;
+  color:var(--accent-warm);
+  font-weight:300;
+  font-size:24px;
+  margin-left:6px;
+}
+.hero-stat-num .sm{
+  font-size:13px; color:var(--ink-mute); font-weight:400;
+  margin-left:6px; letter-spacing:0;
+}
+.hero-stat-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+
+/* Bottom imprint */
+.cinema-foot{
+  position:relative; z-index:5;
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9px;
+  letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  padding-top:14px;
+  border-top:1px solid var(--rule);
+}
+.cinema-foot strong{
+  color:var(--ink);
+  font-family:'Inter Tight',sans-serif;
+  font-size:12px; font-weight:500;
+  letter-spacing:0; text-transform:none;
+}
+.cinema-foot .scroll-cue{
+  display:flex; align-items:center; gap:10px;
+  color:var(--accent-deep);
+}
+.cinema-foot .scroll-cue::after{
+  content:'↓'; display:inline-block;
+  animation:scrollCue 1.8s ease-in-out infinite;
+  color:var(--accent-warm);
+  font-size:14px;
+}
+@keyframes scrollCue{
+  0%,100%{ transform:translateY(0); opacity:0.7 }
+  50%{ transform:translateY(5px); opacity:1 }
+}
+
+/* Reduced-motion guards */
+@media (prefers-reduced-motion: reduce){
+  .hud::before, .cinema-meta-mark::before{ animation:none }
+  .cinema-foot .scroll-cue::after{ animation:none }
+  .hero-monument{ filter:none }
+  .fluid-canvas{ display:none }
+}
+
+/* Mobile collapse */
+@media (max-width: 920px){
+  .cover-cinema .pin-stage{ height:auto; min-height:auto; padding:24px 24px 32px }
+  .hud{ display:none }
+  .hero-monument{ font-size:clamp(72px, 18vw, 140px) }
+  .hero-monument .line.line-2{ text-align:left }
+  .hero-monument .line.line-2::before{ display:none }
+  .hero-stats{ grid-template-columns:repeat(1,1fr); gap:18px }
+  .hero-stat{ padding:0 0 16px; border-right:none; border-bottom:1px solid var(--rule) }
+  .hero-stat:last-child{ border-bottom:none }
+  .cinema-meta-cells{ display:none }
+  .hero-thesis{ font-size:16px }
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
 </head>
 <body>
 
-<!-- COVER -->
-<header class="cover">
-  <div class="cover-top">
-    <div class="cover-top-mark">EIGEN ATLAS</div>
-    <div class="cover-top-meta">
-      <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
-      <span><strong>Filed</strong>2026.05.04</span>
-      <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
-    </div>
-  </div>
+<!-- COVER · CINEMA · MONUMENTAL HERO -->
+<header class="cover-cinema">
 
-  <!-- Doc stamp top-right -->
-  <div class="cover-stamp" aria-hidden="true">
-    <strong>CONFIDENTIAL</strong>
-    <div class="stamp-rule"></div>
-    <span class="stamp-id">EIGEN-PROP-TSC-2026/01</span>
-    <span>FILED 2026.05.04</span>
-    <span>FOR PRINCIPALS ONLY</span>
-  </div>
+  <!-- SVG filter defs (liquid distortion on monument text) -->
+  <svg class="cinema-svg-defs" aria-hidden="true">
+    <defs>
+      <filter id="liquidDistort" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="3" result="turb">
+          <animate attributeName="seed" values="3;9;3" dur="16s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="turb" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
 
-  <!-- Floating scientific annotations -->
-  <div class="cover-annotations" aria-hidden="true">
-    <div class="cover-annotation ann-1"><span class="ann-arrow">↳</span> ÚNICA FUENTE DE VERDAD</div>
-    <div class="cover-annotation ann-2"><span class="ann-arrow">↗</span> MULTI-TENANT DO</div>
-    <div class="cover-annotation ann-3"><span class="ann-arrow">↳</span> AUDIT TRAIL</div>
-    <div class="cover-annotation ann-4"><span class="ann-arrow">↗</span> AGÉNTICO 24/7</div>
-  </div>
+  <!-- Mercury particle field (Canvas 2D, set up via JS) -->
+  <canvas class="fluid-canvas" aria-hidden="true"></canvas>
 
-  <div class="cover-center">
-    <div class="cover-copy">
-      <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
-      <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em data-scramble="queryable">queryable</em> en una sola arquitectura.</h1>
-      <p class="cover-subtitle">12 meses · 6 fases con ejecución paralela · una arquitectura unificada. F0 Discovery fija el modelo maestro las primeras 3 semanas; F1-F5 se ejecutan con overlap calendario para cerrar todo en 12 meses, dejando a TSC LABS operando sobre un solo data substrate con ERP, BI y capa agéntica activos.</p>
-      <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Operations registry, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
+  <div class="pin-stage">
 
-      <!-- Cobalt hairline rule above stats -->
-      <div class="hero-rule-wrap" aria-hidden="true">
-        <svg viewBox="0 0 1080 1" preserveAspectRatio="none"><line class="hero-rule" x1="0" y1="0.5" x2="1080" y2="0.5"/></svg>
-        <div class="hero-rule-pulse"></div>
-      </div>
-
-      <div class="cover-headline-stats">
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-prefix">$</span><span class="cover-stat-value" data-count-to="2.08" data-count-decimals="2">0.00</span><em>M</em><span class="sm"> MXN</span></div>
-          <div class="cover-stat-label">Inversión Año 1+2</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="12" data-count-decimals="0">0</span><em> mo</em></div>
-          <div class="cover-stat-label">Roadmap mensual</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="10" data-count-decimals="0">0</span></div>
-          <div class="cover-stat-label">Entregas · productos digitales</div>
-        </div>
+    <!-- Top metadata strip -->
+    <div class="cinema-meta">
+      <div class="cinema-meta-mark">EIGEN ATLAS</div>
+      <div class="cinema-meta-cells">
+        <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
+        <span><strong>Filed</strong>2026.05.04</span>
+        <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
       </div>
     </div>
-  </div>
 
-  <div class="cover-bottom">
-    <span>Atlas Studios · GDL · MX</span>
-    <span class="cover-imprint-mark">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
-    <span>For TSC LABS &amp; principals only</span>
+    <!-- Lab HUD readout (RAF-driven) -->
+    <aside class="hud" aria-hidden="true">
+      <div class="hud-title">
+        <span>EMULSION · BATCH 047</span>
+        <span class="live">LIVE</span>
+      </div>
+      <div class="hud-row"><span class="label">TEMP</span><span class="value" data-hud="temp">65.4<em>°C</em></span></div>
+      <div class="hud-row"><span class="label">pH</span><span class="value" data-hud="ph">5.62</span></div>
+      <div class="hud-row"><span class="label">VISCOSITY</span><span class="value" data-hud="visc">1247<em>cP</em></span></div>
+      <div class="hud-row"><span class="label">RPM</span><span class="value" data-hud="rpm">340</span></div>
+      <div class="hud-row"><span class="label">THROUGHPUT</span><span class="value" data-hud="thr">28.4<em>k/mo</em></span></div>
+      <div class="hud-foot">
+        <span>SUBSTRATE · D1+R2</span>
+        <span class="ts" data-hud="ts">15:42:08</span>
+      </div>
+    </aside>
+
+    <!-- Center stage -->
+    <div class="hero-stage">
+      <div class="hero-eyebrow"><span data-eyebrow>LABORATORIO QUERYABLE · COSMETIC SUBSTRATE</span></div>
+      <h1 class="hero-monument" aria-label="TSC LABS">
+        <span class="line line-1">TSC</span>
+        <span class="line line-2">LABS</span>
+      </h1>
+      <p class="hero-thesis">Laboratorio, marca, plataforma B2B y empresa <em data-scramble="queryable">queryable</em> sobre un solo data substrate — F0–F5 cierran en doce meses con ERP, BI y capa agéntica operando.</p>
+    </div>
+
+    <!-- Hairline rule above stats (DrawSVG target) -->
+    <svg class="hero-hairlines" viewBox="0 0 1440 1" preserveAspectRatio="none" aria-hidden="true">
+      <line class="hairline-a" x1="0" y1="0.5" x2="1440" y2="0.5"/>
+    </svg>
+
+    <!-- Stats row -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
+        <div class="hero-stat-num"><span class="prefix">$</span><span class="val" data-count-to="2.08" data-count-decimals="2">0.00</span><em>M</em><span class="sm">MXN</span></div>
+        <div class="hero-stat-label">INVERSIÓN · AÑO 1+2</div>
+      </div>
+      <div class="hero-stat">
+        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
+        <div class="hero-stat-num"><span class="val" data-count-to="12" data-count-decimals="0">0</span><em>mo</em></div>
+        <div class="hero-stat-label">ROADMAP · CALENDARIO</div>
+      </div>
+      <div class="hero-stat">
+        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
+        <div class="hero-stat-num"><span class="val" data-count-to="10" data-count-decimals="0">0</span><em>productos</em></div>
+        <div class="hero-stat-label">ENTREGAS DIGITALES</div>
+      </div>
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="cinema-foot">
+      <span><strong>Atlas Studios</strong> · GDL · MX</span>
+      <span>EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL · PRINCIPALS ONLY</span>
+      <span class="scroll-cue">SCROLL · DIAGNÓSTICO</span>
+    </div>
+
   </div>
 </header>
 
@@ -3188,10 +3589,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="phase-body">
         <div class="phase-prose">
           <p>Los agentes <strong>no son productos sueltos</strong>. Son la voz del sistema: cada uno comparte el mismo data substrate de las fases 1-4, escribe al mismo audit log, y se comunica internamente para no actuar contra políticas. El equipo TSC interactúa con ellos como con un colega más; los talents y clientes interactúan con ellos como con la marca.</p>
-          <p><strong>Ola A · DTC Chatbot Skin Club</strong> (1 mes · $130K). Chatbot 24/7 que responde a clientes finales del Shopify Skin Club. Matching de fórmula por tipo de piel, seguimiento post-compra, recovery de carritos abandonados. Hoy son ~5 mensajes/mes que Diego responde manualmente con ticket promedio de $858; la capa escala ese volumen a ~50 mensajes/mes sin costo lineal en su tiempo. <strong>Built sobre Cloudflare Workers AI (Llama 4) + Durable Object por sesión de cliente</strong> (preserva contexto conversacional). Conectado a Shopify API para historia de compras y Workers KV para preferencias. Fallback a humano (Diego/Kaori) cuando confidence &lt;0.7.</p>
-          <p><strong>Ola B · B2B Lead Qualifier</strong> (1 mes · $130K). Agente que filtra los 30 leads/mes detenidos por saturación. Lee descripción del proyecto, capacidad mL, precio objetivo, marcas like/dislike — descarta cliente pequeño/incompatible, agenda con Diego/Kaori solo si fit real. <strong>Built sobre Workers + Claude API + MCP server</strong> (acceso a Calendly + CRM + checklist de fit criteria). Notifica vía WhatsApp Business cuando hay match. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
-          <p><strong>Ola C · Proveeduría Agent</strong> (1.5 meses · $190K · prioridad). Agente que automatiza el dolor #1 de Natalia/Kaori. Cuando F3 dispara draft de PO, el agente busca proveedores en su base + scrape competidores web, solicita cotizaciones por WhatsApp/email, agrega resultados en tabla comparable, entrega shortlist con recomendación. <strong>Built sobre Workers + Durable Object por orden de compra</strong> (preserva estado de cada solicitud) + Claude API para parsing de respuestas + MCP server para WhatsApp Cloud API + Resend SMTP. Natalia recibe 3 opciones evaluadas, no busca de cero.</p>
-          <p><strong>Ola D · Compliance Monitor + Social Media</strong> (1.5 meses · $190K). Dos agentes en paralelo. <em>Compliance Monitor:</em> lee feeds COFEPRIS + actualizaciones NOMs, alerta a Diego si hay actualización relevante en &lt;24h. <strong>Built sobre Workers Cron Trigger + Claude API</strong> para evaluación de relevancia + R2 para archivo histórico. <em>Social Media Generator:</em> genera contenido scheduled para IG/TikTok/Facebook a partir de prompts del equipo, programación automática vía Buffer-like custom. <strong>Built sobre Workers + Workers AI (Llama 4) + Cloudflare Image Resizing</strong> + integraciones Meta Graph API + TikTok API.</p>
+          <p><strong>Ola A · DTC Chatbot Skin Club</strong> (1 mes). Chatbot 24/7 que responde a clientes finales del Shopify Skin Club. Matching de fórmula por tipo de piel, seguimiento post-compra, recovery de carritos abandonados. Hoy son ~5 mensajes/mes que Diego responde manualmente con ticket promedio de $858; la capa escala ese volumen a ~50 mensajes/mes sin costo lineal en su tiempo. <strong>Built sobre Cloudflare Workers AI (Llama 4) + Durable Object por sesión de cliente</strong> (preserva contexto conversacional). Conectado a Shopify API para historia de compras y Workers KV para preferencias. Fallback a humano (Diego/Kaori) cuando confidence &lt;0.7.</p>
+          <p><strong>Ola B · B2B Lead Qualifier</strong> (1 mes). Agente que filtra los 30 leads/mes detenidos por saturación. Lee descripción del proyecto, capacidad mL, precio objetivo, marcas like/dislike — descarta cliente pequeño/incompatible, agenda con Diego/Kaori solo si fit real. <strong>Built sobre Workers + Claude API + MCP server</strong> (acceso a Calendly + CRM + checklist de fit criteria). Notifica vía WhatsApp Business cuando hay match. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
+          <p><strong>Ola C · Proveeduría Agent</strong> (1.5 meses · prioridad). Agente que automatiza el dolor #1 de Natalia/Kaori. Cuando F3 dispara draft de PO, el agente busca proveedores en su base + scrape competidores web, solicita cotizaciones por WhatsApp/email, agrega resultados en tabla comparable, entrega shortlist con recomendación. <strong>Built sobre Workers + Durable Object por orden de compra</strong> (preserva estado de cada solicitud) + Claude API para parsing de respuestas + MCP server para WhatsApp Cloud API + Resend SMTP. Natalia recibe 3 opciones evaluadas, no busca de cero.</p>
+          <p><strong>Ola D · Compliance Monitor + Social Media</strong> (1.5 meses). Dos agentes en paralelo. <em>Compliance Monitor:</em> lee feeds COFEPRIS + actualizaciones NOMs, alerta a Diego si hay actualización relevante en &lt;24h. <strong>Built sobre Workers Cron Trigger + Claude API</strong> para evaluación de relevancia + R2 para archivo histórico. <em>Social Media Generator:</em> genera contenido scheduled para IG/TikTok/Facebook a partir de prompts del equipo, programación automática vía Buffer-like custom. <strong>Built sobre Workers + Workers AI (Llama 4) + Cloudflare Image Resizing</strong> + integraciones Meta Graph API + TikTok API.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
@@ -5192,148 +5593,163 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 </footer>
 
 <script>
-// === HERO ENTRANCE TIMELINE — monumental cinematic typography (entrance only, no scroll-tied effects, no smooth-scroll lib) ===
+// === COVER CINEMA · MASTER TIMELINE · entrance + scroll-scrub + scramble cycle ===
 (function(){
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
 
-  // Stat counter helper — runs always (even reduced/mobile we just snap to final)
-  function setStatsFinal(){
-    document.querySelectorAll('.cover-stat-value').forEach(function(el){
-      var target = parseFloat(el.getAttribute('data-count-to') || '0');
-      var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
-      el.textContent = target.toFixed(dec);
+  function statsSnap(){
+    document.querySelectorAll('.hero-stat .val').forEach(function(el){
+      var t = parseFloat(el.getAttribute('data-count-to') || '0');
+      var d = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+      el.textContent = t.toFixed(d);
+    });
+  }
+  function showAll(){
+    document.querySelectorAll('.hero-eyebrow, .hero-thesis, .hero-stat, .cinema-meta, .cinema-foot, .hud').forEach(function(n){
+      n.style.opacity = 1;
     });
   }
 
-  if (reduced || isMobile || typeof gsap === 'undefined'){
-    setStatsFinal();
-    // Make sure no opacity:0 leftovers if GSAP failed to load
-    var leftovers = document.querySelectorAll('.cover-title, .cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation');
-    leftovers.forEach(function(n){ n.style.opacity = 1; });
+  if (typeof gsap === 'undefined'){
+    statsSnap(); showAll();
     return;
   }
 
-  // Register optional plugins
   try {
+    if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
     if (window.SplitText) gsap.registerPlugin(SplitText);
     if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
     if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
   } catch(e){}
 
-  // Pre-set initial states (avoid FOUC flicker)
-  gsap.set('.cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation, .cover-stat', { opacity: 0 });
-  gsap.set('.cover-title', { opacity: 1 });
-
-  // Word splitting — fallback if SplitText not loaded: wrap by whitespace manually
-  var titleEl = document.querySelector('.cover-title');
-  var words = [];
-  if (titleEl){
-    if (window.SplitText){
-      try {
-        var split = new SplitText(titleEl, { type: 'words', wordsClass: 'word' });
-        words = split.words;
-      } catch(e){ words = []; }
-    }
-    if (!words.length){
-      // Manual fallback: wrap each text node word in a .word span (preserve <em> children)
-      var manualWrap = function(node){
-        if (node.nodeType === 3){
-          var frag = document.createDocumentFragment();
-          var parts = node.nodeValue.split(/(\s+)/);
-          parts.forEach(function(p){
-            if (/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(p)); }
-            else if (p.length){
-              var sp = document.createElement('span');
-              sp.className = 'word';
-              sp.textContent = p;
-              frag.appendChild(sp);
-            }
-          });
-          node.parentNode.replaceChild(frag, node);
-        } else if (node.nodeType === 1){
-          // descend into element children (e.g. <em>) and wrap their text nodes
-          var kids = Array.prototype.slice.call(node.childNodes);
-          kids.forEach(manualWrap);
-        }
-      };
-      var children = Array.prototype.slice.call(titleEl.childNodes);
-      children.forEach(manualWrap);
-      words = titleEl.querySelectorAll('.word');
-    }
+  if (reduced){
+    statsSnap(); showAll();
+    gsap.set('.hero-eyebrow, .hero-thesis, .hero-stat', { opacity: 1, y: 0, clearProps: 'all' });
+    return;
   }
 
+  // ---- char split for monumental h1 ----
+  var monumentLines = document.querySelectorAll('.hero-monument .line');
+  var allChars = [];
+  monumentLines.forEach(function(line){
+    var text = line.textContent;
+    line.textContent = '';
+    text.split('').forEach(function(ch){
+      var sp = document.createElement('span');
+      sp.className = 'char';
+      sp.textContent = ch === ' ' ? ' ' : ch;
+      line.appendChild(sp);
+      allChars.push(sp);
+    });
+  });
+
+  // ---- initial states ----
+  gsap.set(allChars, { yPercent: 115, opacity: 0 });
+  gsap.set('.hero-eyebrow', { opacity: 0, y: -10 });
+  gsap.set('.hero-thesis', { opacity: 0, y: 18 });
+  gsap.set('.hero-stat', { opacity: 0, y: 22 });
+  gsap.set('.cinema-meta', { opacity: 0, y: -10 });
+  gsap.set('.cinema-foot', { opacity: 0, y: 10 });
+  gsap.set('.hud', { opacity: 0, x: 24 });
+
+  // ---- ENTRANCE TIMELINE ----
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' }});
 
-  // Hairline cobalt rule draws in (uses DrawSVGPlugin if available, else fallback to scaleX)
+  tl.to('.cinema-meta', { opacity: 1, y: 0, duration: 0.7 }, 0);
+
   if (window.DrawSVGPlugin){
-    tl.fromTo('.hero-rule', { drawSVG: '0%' }, { drawSVG: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.0);
-  } else {
-    var ruleEl = document.querySelector('.hero-rule-wrap svg');
-    if (ruleEl){
-      tl.fromTo(ruleEl, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.0);
-    }
-  }
-  // Pulse line above stats (delayed entrance)
-  tl.fromTo('.hero-rule-pulse', { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.4);
-
-  // Eyebrow fade
-  tl.to('.cover-eyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0.2)
-    .from('.cover-eyebrow', { y: -8, duration: 0.7 }, 0.2);
-
-  // H1 word stagger (monumental entrance)
-  if (words && words.length){
-    tl.from(words, { opacity: 0, y: 40, duration: 0.95, stagger: 0.045 }, 0.4);
+    tl.fromTo('.hero-hairlines line.hairline-a',
+      { drawSVG: '50% 50%' },
+      { drawSVG: '0% 100%', duration: 1.5, ease: 'power3.inOut' },
+      0.15);
+    tl.fromTo('.hero-stat-rule line',
+      { drawSVG: '0%' },
+      { drawSVG: '100%', duration: 1.0, ease: 'power2.inOut', stagger: 0.14 },
+      0.7);
   }
 
-  // Body copy fade
-  tl.to('.cover-subtitle', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
-    .from('.cover-subtitle', { y: 20, duration: 0.7, stagger: 0.08 }, '-=1.1');
+  tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.65 }, 0.35);
 
-  // Stats fade in container
-  tl.to('.cover-stat', { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
-    .from('.cover-stat', { y: 14, duration: 0.6, stagger: 0.08 }, '-=1.0');
+  tl.to(allChars, {
+    yPercent: 0,
+    opacity: 1,
+    duration: 1.15,
+    ease: 'expo.out',
+    stagger: 0.045
+  }, 0.5);
 
-  // Counter tweens (run inside the timeline so they sync with stats reveal)
-  document.querySelectorAll('.cover-stat-value').forEach(function(el, i){
+  tl.to('.hero-thesis', { opacity: 1, y: 0, duration: 0.85 }, 1.05);
+
+  tl.to('.hud', { opacity: 1, x: 0, duration: 0.9, ease: 'power2.out' }, 0.85);
+
+  tl.to('.hero-stat', { opacity: 1, y: 0, duration: 0.75, stagger: 0.11 }, 1.25);
+
+  document.querySelectorAll('.hero-stat .val').forEach(function(el){
     var target = parseFloat(el.getAttribute('data-count-to') || '0');
     var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
     var obj = { v: 0 };
     tl.to(obj, {
       v: target,
-      duration: dec === 0 ? 1.0 : 1.6,
+      duration: dec === 0 ? 0.95 : 1.4,
       ease: 'power2.out',
       onUpdate: function(){ el.textContent = obj.v.toFixed(dec); }
-    }, '-=0.5');
+    }, 1.35);
   });
 
-  // Doc stamp rotate-in (settles at -3deg via CSS)
-  tl.fromTo('.cover-stamp',
-    { opacity: 0, rotate: -8, scale: 0.95 },
-    { opacity: 1, rotate: -3, scale: 1, duration: 1.0, ease: 'power2.out' },
-    0.5);
+  tl.to('.cinema-foot', { opacity: 1, y: 0, duration: 0.6 }, 1.6);
 
-  // Floating annotations stagger
-  tl.to('.cover-annotation', { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 1.0)
-    .from('.cover-annotation', { y: 6, duration: 0.7, stagger: 0.12 }, 1.0);
-
-  // Optional ScrambleText on "queryable"
+  // ScrambleText queryable (synced to thesis reveal)
   if (window.ScrambleTextPlugin){
-    var sc = document.querySelector('[data-scramble="queryable"]');
-    if (sc){
-      tl.to(sc, {
-        duration: 1.2,
-        scrambleText: { text: 'queryable', chars: 'lowerCase', revealDelay: 0.3, speed: 0.6 },
+    var qEl = document.querySelector('.hero-thesis [data-scramble="queryable"]');
+    if (qEl){
+      tl.to(qEl, {
+        duration: 1.0,
+        scrambleText: { text: 'queryable', chars: 'lowerCase', revealDelay: 0.25, speed: 0.6 },
         ease: 'none'
-      }, '-=0.4');
+      }, 1.15);
+    }
+
+    // Eyebrow scramble cycle ES↔EN (loop)
+    var ebTarget = document.querySelector('[data-eyebrow]');
+    if (ebTarget){
+      var phrases = [
+        'LABORATORIO QUERYABLE · COSMETIC SUBSTRATE',
+        'QUERYABLE LABORATORY · UNIFIED SUBSTRATE',
+        'PLATAFORMA UNIFICADA · MULTI-TENANT',
+        'AGENTIC RUNTIME · 24/7 OPERATIONS'
+      ];
+      var idx = 0;
+      function scrambleNext(){
+        idx = (idx + 1) % phrases.length;
+        gsap.to(ebTarget, {
+          duration: 1.5,
+          scrambleText: { text: phrases[idx], chars: 'upperAndLowerCase', revealDelay: 0.4, speed: 0.45 },
+          ease: 'none',
+          onComplete: function(){ gsap.delayedCall(3.8, scrambleNext); }
+        });
+      }
+      gsap.delayedCall(2.8, scrambleNext);
     }
   }
 
-  // Cleanup will-change after timeline complete
-  tl.eventCallback('onComplete', function(){
-    if (window.DrawSVGPlugin) gsap.set('.hero-rule', { clearProps: 'drawSVG' });
-    gsap.set('.cover-title .word, .cover-eyebrow, .cover-subtitle, .cover-stat, .cover-stamp, .cover-annotation', { clearProps: 'transform,opacity,willChange' });
-  });
+  // ---- SCROLL-SCRUB · subtle exit ----
+  if (window.ScrollTrigger){
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '.cover-cinema',
+        start: 'top top',
+        end: '+=85%',
+        scrub: 1.0
+      }
+    })
+    .to('.hero-monument', { y: -80, scale: 0.94, ease: 'none' }, 0)
+    .to('.hud', { y: -40, opacity: 0.25, ease: 'none' }, 0)
+    .to('.hero-thesis', { opacity: 0.35, y: -20, ease: 'none' }, 0.15)
+    .to('.fluid-canvas', { opacity: 0.18, ease: 'none' }, 0)
+    .to('.hero-stat', { opacity: 0.45, y: -10, ease: 'none', stagger: 0.05 }, 0.2);
+
+    window.addEventListener('resize', function(){ ScrollTrigger.refresh(); });
+  }
 })();
 </script>
 
@@ -5367,5 +5783,204 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 })();
 
 </script>
+
+<script>
+// === COVER CINEMA · MERCURY PARTICLE FIELD (Canvas 2D, cursor-reactive) ===
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.querySelector('.fluid-canvas');
+  if (!canvas || reduced) return;
+
+  var ctx = canvas.getContext('2d', { alpha: true });
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W = 0, H = 0;
+  function resize(){
+    var parent = canvas.parentElement;
+    var rect = parent.getBoundingClientRect();
+    W = Math.max(rect.width, 1);
+    H = Math.max(rect.height, 1);
+    canvas.width = Math.floor(W * DPR);
+    canvas.height = Math.floor(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // adaptive count
+  var COUNT = Math.min(2400, Math.max(800, Math.floor((W * H) / 1200)));
+
+  // Perlin-style value noise (small inline impl)
+  var perm = new Uint8Array(512);
+  (function(){
+    var p = [];
+    for (var i = 0; i < 256; i++) p.push(i);
+    for (var i = 255; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tt = p[i]; p[i] = p[j]; p[j] = tt;
+    }
+    for (var i = 0; i < 512; i++) perm[i] = p[i & 255];
+  })();
+  function fade(t){ return t*t*t*(t*(t*6-15)+10); }
+  function lerp(a,b,t){ return a + t*(b-a); }
+  function grad(h,x,y){
+    var v = (h & 1) === 0 ? x : -x;
+    var u = (h & 2) === 0 ? y : -y;
+    return v + u;
+  }
+  function pnoise(x,y){
+    var X = Math.floor(x) & 255;
+    var Y = Math.floor(y) & 255;
+    var xf = x - Math.floor(x);
+    var yf = y - Math.floor(y);
+    var u = fade(xf), v = fade(yf);
+    var aa = perm[perm[X] + Y];
+    var ab = perm[perm[X] + Y + 1];
+    var ba = perm[perm[X + 1] + Y];
+    var bb = perm[perm[X + 1] + Y + 1];
+    var x1 = lerp(grad(aa, xf, yf),     grad(ba, xf - 1, yf),     u);
+    var x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
+    return (lerp(x1, x2, v) + 1) * 0.5;
+  }
+
+  // particle pool
+  var particles = new Array(COUNT);
+  for (var i = 0; i < COUNT; i++){
+    particles[i] = {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: 0, vy: 0,
+      r: 0.55 + Math.random() * 1.5,
+      shade: Math.floor(Math.random() * 4)
+    };
+  }
+
+  // cursor + smoothed
+  var mouse = { x: -9999, y: -9999, active: false };
+  var smooth = { x: -9999, y: -9999 };
+  function setMouse(e){
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.active = true;
+  }
+  var host = canvas.parentElement;
+  host.addEventListener('pointermove', setMouse);
+  host.addEventListener('pointerleave', function(){ mouse.active = false });
+
+  // palette: platinum · mercury · champagne · graphite
+  var col = [
+    'rgba(140,140,150,',
+    'rgba(180,180,190,',
+    'rgba(181,164,138,',
+    'rgba(92,92,102,'
+  ];
+
+  var t = 0;
+  var raf = 0;
+  function frame(){
+    t += 0.0035;
+    ctx.clearRect(0, 0, W, H);
+
+    smooth.x += (mouse.x - smooth.x) * 0.08;
+    smooth.y += (mouse.y - smooth.y) * 0.08;
+
+    ctx.globalCompositeOperation = 'multiply';
+
+    for (var i = 0; i < COUNT; i++){
+      var p = particles[i];
+
+      var n = pnoise(p.x * 0.0028 + t, p.y * 0.0028 - t);
+      var ang = n * Math.PI * 2;
+      p.vx += Math.cos(ang) * 0.085;
+      p.vy += Math.sin(ang) * 0.085;
+
+      if (mouse.active){
+        var dx = smooth.x - p.x;
+        var dy = smooth.y - p.y;
+        var d2 = dx*dx + dy*dy;
+        if (d2 < 40000){
+          var d = Math.sqrt(d2) + 0.001;
+          var f = 1 - d / 200;
+          p.vx += (-dy / d) * f * 1.5 + (dx / d) * f * 0.35;
+          p.vy += ( dx / d) * f * 1.5 + (dy / d) * f * 0.35;
+        }
+      }
+
+      p.vx *= 0.92;
+      p.vy *= 0.92;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < -10) p.x = W + 10;
+      else if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      else if (p.y > H + 10) p.y = -10;
+
+      var alpha = 0.10 + (i % 8) / 100;
+      ctx.fillStyle = col[p.shade] + alpha + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){ cancelAnimationFrame(raf); }
+    else { raf = requestAnimationFrame(frame); }
+  });
+})();
+</script>
+
+<script>
+// === COVER CINEMA · LAB HUD · running instrument values ===
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  var hud = {
+    temp: { el: document.querySelector('[data-hud="temp"]'), base: 65.4, drift: 1.2, dec: 1, unit: '°C' },
+    ph:   { el: document.querySelector('[data-hud="ph"]'),   base: 5.62, drift: 0.06, dec: 2, unit: '' },
+    visc: { el: document.querySelector('[data-hud="visc"]'), base: 1247, drift: 28,   dec: 0, unit: 'cP' },
+    rpm:  { el: document.querySelector('[data-hud="rpm"]'),  base: 340,  drift: 16,   dec: 0, unit: '' },
+    thr:  { el: document.querySelector('[data-hud="thr"]'),  base: 28.4, drift: 0.5,  dec: 1, unit: 'k/mo' }
+  };
+  var ts = document.querySelector('[data-hud="ts"]');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function rand(){ return Math.random() * 2 - 1; }
+
+  var last = 0;
+  var raf = 0;
+  function tick(now){
+    if (now - last > 280){
+      Object.keys(hud).forEach(function(k){
+        var h = hud[k];
+        if (!h.el) return;
+        var v = h.base + rand() * h.drift * 0.55;
+        var txt = h.dec === 0 ? Math.round(v).toString() : v.toFixed(h.dec);
+        h.el.innerHTML = txt + (h.unit ? '<em>' + h.unit + '</em>' : '');
+      });
+      if (ts){
+        var d = new Date();
+        ts.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      }
+      last = now;
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  raf = requestAnimationFrame(tick);
+
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){ cancelAnimationFrame(raf); }
+    else { last = 0; raf = requestAnimationFrame(tick); }
+  });
+})();
+</script>
+
 </body>
 </html>
