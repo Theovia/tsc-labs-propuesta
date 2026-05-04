@@ -1117,6 +1117,190 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   display:inline-block;
 }
 
+/* === TL;DR EXECUTIVE SUMMARY === */
+.tldr-frame{
+  border:1px solid var(--rule-strong);
+  background:#fff;
+  padding:0;
+}
+.tldr-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.tldr-card{
+  padding:32px 36px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.tldr-card:nth-child(2n){border-right:none}
+.tldr-card:nth-last-child(-n+2){border-bottom:none}
+.tldr-tag{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:10.5px;
+  letter-spacing:1.4px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  font-weight:600;
+}
+.tldr-prose{
+  font-size:15.5px;
+  line-height:1.65;
+  color:var(--ink);
+  margin:0;
+}
+.tldr-prose strong{font-weight:600;color:var(--ink)}
+.tldr-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.tldr-list li{
+  padding:10px 0;
+  border-bottom:1px solid var(--rule);
+  font-size:14.5px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:8px;
+}
+.tldr-list li:last-child{border-bottom:none}
+.tldr-list li.tldr-list-foot{
+  font-size:13px;
+  color:var(--ink-mute);
+  border-bottom:none;
+  padding-top:14px;
+  display:block;
+}
+.tldr-num{
+  font-family:'Inter Tight', sans-serif;
+  font-weight:700;
+  font-size:18px;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+}
+.tldr-num-emph{
+  color:var(--accent);
+  font-size:22px;
+}
+.tldr-num-note{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:11px;
+  color:var(--ink-mute);
+  letter-spacing:0.3px;
+  flex-basis:100%;
+}
+@media (max-width:760px){
+  .tldr-grid{grid-template-columns:1fr}
+  .tldr-card{
+    border-right:none;
+    border-bottom:1px solid var(--rule);
+    padding:26px 22px;
+  }
+  .tldr-card:last-child{border-bottom:none}
+}
+
+/* === BUILD VS BUY ANCHOR TABLE === */
+.anchor-frame{
+  margin-top:42px;
+  border:1px solid var(--rule-strong);
+  background:#fff;
+  padding:30px 32px;
+}
+.anchor-tag{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:10.5px;
+  letter-spacing:1.6px;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.anchor-title{
+  font-family:'Inter Tight', sans-serif;
+  font-weight:600;
+  font-size:24px;
+  line-height:1.25;
+  letter-spacing:-0.012em;
+  color:var(--ink);
+  margin:0 0 22px 0;
+}
+.anchor-title em{font-style:normal;color:var(--accent);font-weight:500}
+.anchor-table{
+  width:100%;
+  border-collapse:collapse;
+  border-top:1px solid var(--rule-strong);
+  border-bottom:1px solid var(--rule-strong);
+  font-size:13.5px;
+}
+.anchor-table thead th{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:10px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  font-weight:600;
+  padding:12px 10px;
+  text-align:left;
+  border-bottom:1px solid var(--rule);
+  vertical-align:bottom;
+}
+.anchor-table thead th.right{text-align:right}
+.anchor-table tbody td{
+  padding:16px 10px;
+  border-bottom:1px solid var(--rule);
+  vertical-align:top;
+  line-height:1.5;
+  color:var(--ink);
+}
+.anchor-table tbody td.right{text-align:right;font-family:'Inter Tight', sans-serif}
+.anchor-table tbody tr:last-child td{border-bottom:none}
+.anchor-opt strong{
+  display:block;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:4px;
+}
+.anchor-opt em{
+  font-style:normal;
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:11px;
+  color:var(--ink-mute);
+  letter-spacing:0.2px;
+}
+.anchor-sub{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:10.5px;
+  color:var(--ink-mute);
+  letter-spacing:0.2px;
+  font-weight:400;
+}
+.anchor-row-eigen td{background:rgba(67,56,202,0.04)}
+.anchor-num-eigen{color:var(--accent);font-size:18px}
+.anchor-caveat{
+  margin-top:14px;
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-size:11.5px;
+  color:var(--ink-mute);
+  letter-spacing:0.2px;
+}
+@media (max-width:760px){
+  .anchor-frame{padding:22px 18px}
+  .anchor-table,.anchor-table tbody td{font-size:12.5px}
+  .anchor-table thead{display:none}
+  .anchor-table tbody tr{
+    display:block;
+    border-bottom:1px solid var(--rule);
+    padding:12px 0;
+  }
+  .anchor-table tbody td{
+    display:block;
+    border-bottom:none;
+    padding:6px 0;
+    text-align:left !important;
+  }
+}
+
 /* === FINANCIAL TABLE === */
 .financials-table{
   width:100%;
@@ -1963,12 +2147,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="cover-copy">
       <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
       <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em>queryable</em> en una sola arquitectura.</h1>
-      <p class="cover-subtitle">12 meses · 5 fases · una arquitectura unificada. F1-F5 dejan a TSC LABS operando sobre un solo data substrate, con audit trail, ERP, BI y capa agéntica activos.</p>
+      <p class="cover-subtitle">F0 + 12 meses · 6 fases · una arquitectura unificada. F0 fija el modelo maestro; F1-F5 dejan a TSC LABS operando sobre un solo data substrate, con audit trail, ERP, BI y capa agéntica activos.</p>
       <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Document Vault, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
 
       <div class="cover-headline-stats">
         <div class="cover-stat">
-          <div class="cover-stat-num">$2.02<em>M</em><span class="sm"> MXN</span></div>
+          <div class="cover-stat-num">$2.08<em>M</em><span class="sm"> MXN</span></div>
           <div class="cover-stat-label">Inversión Año 1+2</div>
         </div>
         <div class="cover-stat">
@@ -1989,6 +2173,43 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <span>For TSC LABS &amp; principals only</span>
   </div>
 </header>
+
+<!-- § 0 · TL;DR EXECUTIVE SUMMARY -->
+<section class="section" id="tldr">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">00<small>RESUMEN</small></div>
+      <h2 class="section-title">Resumen ejecutivo · <em>60 segundos</em>.</h2>
+      <p class="section-deck">Una página. Cuatro preguntas. Sin notas al pie.</p>
+    </header>
+
+    <div class="tldr-frame">
+      <div class="tldr-grid">
+        <div class="tldr-card">
+          <div class="tldr-tag">QUÉ ES ESTO</div>
+          <p class="tldr-prose">Propuesta de Eigen Atlas para construir el <strong>sistema operativo digital de TSC LABS</strong> — laboratorio biotec, marca DTC validada (The Skin Club), pipeline B2B con management de talento abriéndose. <strong>12 meses de construcción + retainer de operación conjunta.</strong></p>
+        </div>
+        <div class="tldr-card">
+          <div class="tldr-tag">QUÉ SE ENTREGA · ALTO NIVEL</div>
+          <p class="tldr-prose">Sistema unificado sobre un solo data substrate: <strong>ERP propio + dashboards en vivo + Talent Portal multi-tenant + capa agéntica de 4 olas</strong> (DTC chatbot · B2B qualification · outbound multi-canal · compliance + R&amp;D research). Arquitectura formal documentada — ER diagrams, master schema, modelo maestro.</p>
+        </div>
+        <div class="tldr-card">
+          <div class="tldr-tag">CUÁNTO CUESTA</div>
+          <ul class="tldr-list">
+            <li>Setup: <strong class="tldr-num">$1.36M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.30M</span></li>
+            <li>Retainer Año 1: <strong class="tldr-num">$720K MXN</strong><span class="tldr-num-note">$60K/mes × 12 meses post-launch</span></li>
+            <li>Total Año 1+2: <strong class="tldr-num tldr-num-emph">$2.08M MXN</strong></li>
+            <li class="tldr-list-foot">Pagos: 30% inicio fase + 70% al cierre con hitos validados · Net 15.</li>
+          </ul>
+        </div>
+        <div class="tldr-card">
+          <div class="tldr-tag">QUÉ HACE RAUL</div>
+          <p class="tldr-prose">Funciona como <strong>CTO Fractional integrado al equipo TSC LABS</strong> los 12 meses de construcción y todo el período de retainer. Estrategia + arquitectura técnica + dirección de roadmap + selección de talent técnico futuro. Combina expertise en negocios, transformación digital, business intelligence e inteligencia artificial.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- § I · DIAGNÓSTICO -->
 <section class="section" id="diagnostico">
@@ -2225,7 +2446,45 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="section-deck">Cinco capítulos acumulativos. Cada fase se construye encima de la anterior, sin re-trabajo. Stack único, deliverables auditables, métricas de cierre por hito.</p>
     </header>
 
-    <div class="fases-intro">Las cinco fases que siguen <strong>no son productos sueltos</strong>. Son las capas de construcción de <em>una sola aplicación</em>: cada fase añade un sub-sistema que se enchufa al data substrate común. Al cierre de F5, TSC LABS es una empresa-aplicación operando con un solo origen de verdad.</div>
+    <div class="fases-intro">Las cinco fases que siguen <strong>no son productos sueltos</strong>. Son las capas de construcción de <em>una sola aplicación</em>: cada fase añade un sub-sistema que se enchufa al data substrate común. Al cierre de F5, TSC LABS es una empresa-aplicación operando con un solo origen de verdad. <strong>Antes de F1, F0 fija el modelo maestro.</strong></div>
+
+    <article class="phase">
+      <header class="phase-head">
+        <div class="phase-num">
+          <span class="phase-num-tag">F0</span>
+          <span class="phase-num-label">Fase cero</span>
+        </div>
+        <div>
+          <h3 class="phase-title">Discovery &amp; <em>Modelo Maestro</em></h3>
+          <p class="phase-meta-line">3 semanas · auditoría completa + arquitectura de datos · prerequisito de F1-F5</p>
+          <p class="phase-subtitle">Antes de construir cualquier fase F1-F5 hay que llamar a la operación actual por su nombre. Sin esto, cada fase posterior arranca con datos ambiguos.</p>
+        </div>
+        <div class="phase-price">
+          <div class="phase-price-num">$60<em>K</em></div>
+          <div class="phase-price-label">MXN · 3 SEMANAS</div>
+        </div>
+      </header>
+      <div class="phase-body">
+        <div class="phase-prose">
+          <p>Auditoría completa de la información existente — fórmulas, lotes, talents, proveedores, documentos COFEPRIS, comunicaciones, accesos, software actual — y arquitectura del <strong>modelo maestro</strong> al que F1-F5 conectarán. Lo que vive en Excels, carpetas locales, USBs, sistemas activos, suscripciones y documentación dispersa se inventaria, se clasifica y se mapea al data substrate.</p>
+          <p>El cierre es un <strong>master schema firmado</strong>: tablas, FKs, constraints, índices, taxonomías canónicas y un plan de migración de cómo y cuándo cada fase F1-F5 se conecta al modelo maestro. El sistema no se diseña dos veces.</p>
+        </div>
+        <div class="phase-side">
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
+            <div class="phase-block-body">Auditoría completa de información (fórmulas Excel, carpetas locales, USBs, sistemas activos, suscripciones, accesos, documentación dispersa) · ER diagrams formales (entidades + relaciones + cardinalidades) · taxonomías canónicas (fórmulas · lotes · talents · proveedores · documentos COFEPRIS · canales de venta · SKUs) · master schema (tablas, FKs, constraints, índices) · plan de migración F1-F5 al modelo maestro · audit de accesos + seguridad de la operación actual.</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
+            <div class="phase-stack">Discovery sessions (Diego, Kaori, Natalia, equipo extendido) · ER tooling (dbdiagram, Lucidchart, schema visualizers) · audit framework</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
+            <div class="phase-block-body">ER diagram aprobado · master schema firmado · plan de migración 5 fases validado · audit report de accesos.</div>
+          </div>
+        </div>
+      </div>
+    </article>
 
     <article class="phase">
       <header class="phase-head">
@@ -2659,7 +2918,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <g>
                 <rect x="102" y="22" width="36" height="18" fill="none" stroke="#0A0A0A" stroke-width="1.4"/>
                 <line x1="138" y1="22" x2="160" y2="6" stroke="#0A0A0A" stroke-width="0.8"/>
-                <text x="162" y="6" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0A0A0A" letter-spacing="0.4">TOP · $2.02M ARR</text>
+                <text x="162" y="6" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0A0A0A" letter-spacing="0.4">TOP · $2.4M ARR</text>
               </g>
               <!-- Scale legend -->
               <g transform="translate(102 248)">
@@ -3043,14 +3302,26 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="roadmap-list">
 
         <div class="roadmap-row">
-          <div class="roadmap-month"><strong>M01</strong>MAY 2026</div>
+          <div class="roadmap-month"><strong>M00</strong>3 SEM PREVIAS</div>
           <div class="roadmap-content">
-            <div class="roadmap-theme">Diagnóstico + onboarding</div>
-            <div class="roadmap-summary">Diagnóstico técnico completo, kickoff F1.</div>
+            <div class="roadmap-theme">F0 Discovery &amp; Modelo Maestro</div>
+            <div class="roadmap-summary">Auditoría completa + ER diagrams + master schema firmado.</div>
           </div>
           <div class="roadmap-deliverables">
-            <span class="roadmap-phase-chip f1">F1 · onboarding</span>
-            <div class="roadmap-deliv-text">NDA firmado · acceso a sistemas TSC · auditoría infra actual · roadmap detallado validado.</div>
+            <span class="roadmap-phase-chip f1">F0 · discovery</span>
+            <div class="roadmap-deliv-text">Auditoría de fórmulas, lotes, talents, proveedores, COFEPRIS, accesos · ER diagrams formales · taxonomías canónicas · master schema (tablas, FKs, constraints) · plan de migración F1-F5 al modelo maestro.</div>
+          </div>
+        </div>
+
+        <div class="roadmap-row">
+          <div class="roadmap-month"><strong>M01</strong>MAY 2026</div>
+          <div class="roadmap-content">
+            <div class="roadmap-theme">F1 arranque · Foundation Digital</div>
+            <div class="roadmap-summary">Landing premium + portal B2B work begins, conectados al modelo maestro.</div>
+          </div>
+          <div class="roadmap-deliverables">
+            <span class="roadmap-phase-chip f1">F1 · arranque</span>
+            <div class="roadmap-deliv-text">NDA firmado · acceso a sistemas TSC validado contra modelo maestro · landing Skin Club rebuild en construcción · portal B2B layout aprobado · email infra setup.</div>
           </div>
         </div>
 
@@ -3268,7 +3539,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <header class="section-header">
       <div class="section-num">08<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
-      <p class="section-deck">Setup acumulado de las cinco fases más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
+      <p class="section-deck">Setup acumulado de F0 Discovery más las cinco fases F1-F5, más retainer Año 1 post-launch. Pagos 30% al inicio de cada fase, 70% al cierre con hitos validados.</p>
     </header>
 
     <div class="financials-frame">
@@ -3284,46 +3555,53 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </thead>
         <tbody>
           <tr>
+            <td><div class="fin-line-label">Fase 00 · Discovery &amp; Modelo Maestro<em>Auditoría · ER diagrams · taxonomías · master schema · plan de migración</em></div></td>
+            <td class="right">$60K</td>
+            <td class="right">3 sem</td>
+            <td class="fin-line-pct">4.4%</td>
+            <td class="fin-yoy">04 entregas</td>
+          </tr>
+          <tr>
             <td><div class="fin-line-label">Fase 01 · Foundation Digital<em>Landing Skin Club · Portal B2B · email infra · WA</em></div></td>
             <td class="right">$200K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">18.9%</td>
+            <td class="fin-line-pct">14.7%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 02 · Sales &amp; CRM<em>Talent Portal · CRM · email automation · CFDI 4.0</em></div></td>
             <td class="right">$140K</td>
             <td class="right">1.5 mo</td>
-            <td class="fin-line-pct">13.2%</td>
+            <td class="fin-line-pct">10.3%</td>
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 03 · ERP &amp; Producción Digital<em>Formula DB · ERP propio (inventario, predicción, proveedores) · Document Vault · trazabilidad</em></div></td>
             <td class="right">$300K</td>
             <td class="right">2.5 mo</td>
-            <td class="fin-line-pct">23.1%</td>
+            <td class="fin-line-pct">22.1%</td>
             <td class="fin-yoy">05 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 04 · BI + Empresa Queryable<em>Dashboard · ad attribution · LTV · semantic data layer · ER diagrams · NL queries</em></div></td>
             <td class="right">$220K</td>
             <td class="right">2 mo</td>
-            <td class="fin-line-pct">16.9%</td>
+            <td class="fin-line-pct">16.2%</td>
             <td class="fin-yoy">06 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Outbound agents · Compliance + R&amp;D</em></div></td>
             <td class="right">$440K</td>
             <td class="right">5 mo</td>
-            <td class="fin-line-pct">33.8%</td>
+            <td class="fin-line-pct">32.3%</td>
             <td class="fin-yoy">04 olas</td>
           </tr>
           <tr class="subtotal">
-            <td><strong>Setup acumulado · 5 fases</strong></td>
-            <td class="right">$1.30M</td>
-            <td class="right">13 mo</td>
+            <td><strong>Setup acumulado · F0 + 5 fases</strong></td>
+            <td class="right">$1.36M</td>
+            <td class="right">~13.7 mo</td>
             <td class="fin-line-pct">100%</td>
-            <td class="fin-yoy">23 entregas</td>
+            <td class="fin-yoy">27 entregas</td>
           </tr>
           <tr>
             <td><div class="fin-line-label">Retainer Año 1 post-launch<em>$60K MXN/mes × 12 meses · monitoreo + hotfix + features</em></div></td>
@@ -3334,8 +3612,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </tr>
           <tr class="total">
             <td><strong>Total · Año 1+2</strong></td>
-            <td class="right">$2.02M</td>
-            <td class="right">25 mo</td>
+            <td class="right">$2.08M</td>
+            <td class="right">~25.7 mo</td>
             <td class="fin-line-pct">—</td>
             <td class="fin-yoy">end-to-end</td>
           </tr>
@@ -3344,6 +3622,48 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="financials-note"><strong>Pagos</strong>30% al inicio de cada fase + 70% al cierre con hitos validados. Sin intereses, sin cargos por adelantado, sin pagos por fases que no se han ejecutado.</p>
       <p class="financials-note"><strong>Retainer</strong>Mínimo 12 meses post-deployment. Incluye monitoreo de infra, hotfix &lt;4h, dos features chicos al mes, security patches, backups y soporte chat directo. Renovable anual por mutuo acuerdo.</p>
       <p class="financials-note"><strong>Confidencialidad</strong>Toda figura económica es indicativa hasta firma de work order. NDA aplica desde recepción de este documento. Propuesta válida 30 días.</p>
+
+      <div class="anchor-frame">
+        <div class="anchor-tag">ANCLAJE · EIGEN VS ALTERNATIVAS</div>
+        <h3 class="anchor-title">El costo real de las cuatro rutas posibles, <em>sin asteriscos</em>.</h3>
+        <table class="anchor-table">
+          <thead>
+            <tr>
+              <th style="width:30%">Opción</th>
+              <th style="width:18%">Setup año 1</th>
+              <th style="width:20%">Costo continuo</th>
+              <th>Estado en 12 meses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="anchor-opt"><strong>Hiring CTO + 3 ingenieros internos</strong><em>1 senior CTO + 2 mid + 1 design</em></td>
+              <td class="right">~<strong>$3.6M</strong><br><span class="anchor-sub">$0 setup · ~$300K/mes salarios año 1</span></td>
+              <td>~$300K/mes continuo</td>
+              <td>Equipo en formación · stack a elegir · 12 meses para producto MVP · operación de equipo a montar (HR, recruiting, equipo técnico).</td>
+            </tr>
+            <tr>
+              <td class="anchor-opt"><strong>Licensing stack genérico</strong><em>Salesforce + Shopify Plus + Klaviyo + Zoho ERP + custom dev</em></td>
+              <td class="right"><strong>~$480K</strong><br><span class="anchor-sub">~$200K setup integración · $40K/mes licencias</span></td>
+              <td>$40K/mes licencias + dev manual</td>
+              <td>Stack desconectado · cada decisión cruza 3-4 herramientas · sin ERP integrado a Formula DB · sin agentic layer · sin queryable.</td>
+            </tr>
+            <tr class="anchor-row-eigen">
+              <td class="anchor-opt"><strong>Eigen Atlas · esta propuesta</strong><em>F0 Discovery + F1-F5 + retainer integrado</em></td>
+              <td class="right"><strong class="anchor-num-eigen">$2.08M</strong><br><span class="anchor-sub">$1.36M setup + $720K retainer Año 1+2</span></td>
+              <td>$60K/mes retainer</td>
+              <td>Sistema operacional unificado · ERP integrado · capa agéntica · Talent Portal · queryable enterprise · CTO Fractional integrado · IP 100% TSC.</td>
+            </tr>
+            <tr>
+              <td class="anchor-opt"><strong>No hacer nada</strong><em>operar sobre Excels + carpetas + USBs</em></td>
+              <td class="right"><strong>$0</strong><br><span class="anchor-sub">directo</span></td>
+              <td>Costo invisible · deuda operacional creciente</td>
+              <td>TSC sigue operando con Excel + carpetas + USBs · auditorías COFEPRIS 3+ semanas · pipeline B2B no replicable · cada nueva fórmula/talent/lote suma carga manual lineal · perdiendo ventana 2026-2028.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="anchor-caveat">Comparación referencial. Cada opción tiene tradeoffs distintos en velocidad, control, IP y riesgo.</p>
+      </div>
 
       <div class="payment-terms-frame">
         <div class="payment-terms-tag">TÉRMINOS DE PAGO</div>
@@ -3420,7 +3740,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · II</div>
         <h3 class="gov-title">Playbook <em>vertical-onboarding</em> probado</h3>
-        <p class="gov-prose">Dr. Marcos (medical), Cosalá Hotels (hospitality) y Farmacia Económica (pharma retail) ya operan en este stack. <strong>TSC se onboardea en tres semanas calendario.</strong> No es teoría, es un playbook de seis fases con tres semanas de cycle time.</p>
+        <p class="gov-prose">Verticales de medical, hospitality y pharma retail ya operan en este stack. <strong>TSC se onboardea en tres semanas calendario.</strong> No es teoría, es un playbook de seis fases con tres semanas de cycle time.</p>
       </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · III</div>
