@@ -6,7 +6,7 @@
 <title>Eigen Atlas · Propuesta V2.0 · TSC LABS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAFAF7;
@@ -3380,6 +3380,477 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .dr-title{font-size:18px}
 }
 
+/* === PRICING PAIR · SETUP / RETAINER (§08) === */
+.pricing-pair-frame{
+  margin-top:48px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+.pricing-block{
+  position:relative;
+  padding:36px 32px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  gap:14px;
+}
+.pricing-block.pp-setup{
+  background:var(--ink);
+  color:var(--bg);
+  border-color:var(--ink);
+}
+.pricing-block.pp-setup .pp-tag{color:var(--accent-bright)}
+.pricing-block.pp-setup .pp-title{color:var(--bg)}
+.pricing-block.pp-setup .pp-title em{color:var(--accent-bright)}
+.pricing-block.pp-setup .pp-listed-label{color:rgba(250,250,247,0.55)}
+.pricing-block.pp-setup .pp-listed{color:rgba(250,250,247,0.42)}
+.pricing-block.pp-setup .pp-offer-num{color:var(--bg)}
+.pricing-block.pp-setup .pp-offer-cur,
+.pricing-block.pp-setup .pp-offer-per{color:rgba(250,250,247,0.55)}
+.pricing-block.pp-setup .pp-divider{background:rgba(250,250,247,0.18)}
+.pricing-block.pp-setup .pp-term{color:rgba(250,250,247,0.78)}
+.pricing-block.pp-setup .pp-term em{color:rgba(250,250,247,0.45)}
+.pricing-block.pp-setup .pp-badge{background:var(--accent-bright);color:var(--ink)}
+.pp-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:600;
+}
+.pp-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:22px;line-height:1.25;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 4px;
+}
+.pp-title em{font-style:normal;color:var(--accent);font-weight:500}
+.pp-listed-row{
+  display:flex;align-items:baseline;gap:12px;
+  margin-top:12px;
+}
+.pp-listed-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:9.5px;letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.pp-listed{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:18px;
+  color:var(--ink-mute);
+  text-decoration:line-through;
+  text-decoration-thickness:1px;
+}
+.pp-listed em{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-style:normal;font-size:9.5px;
+  letter-spacing:0.14em;margin-left:4px;
+  text-decoration:none;
+}
+.pp-offer-row{
+  display:flex;align-items:baseline;gap:6px;
+  margin-top:2px;flex-wrap:wrap;
+}
+.pp-offer-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(40px, 5vw, 60px);
+  line-height:1;letter-spacing:-0.028em;
+  color:var(--ink);
+}
+.pp-offer-cur{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.16em;
+  color:var(--ink-mute);
+  font-weight:500;
+  margin-left:6px;
+}
+.pp-offer-per{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.14em;
+  color:var(--ink-mute);
+  font-weight:500;
+}
+.pp-badge{
+  display:inline-block;
+  align-self:flex-start;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.16em;
+  font-weight:600;
+  padding:6px 14px;
+  background:var(--accent);
+  color:var(--bg);
+  text-transform:uppercase;
+  border-radius:2px;
+  margin-top:4px;
+}
+.pp-divider{
+  height:1px;background:var(--rule);
+  margin:14px 0 6px;
+}
+.pp-term{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:14px;
+  font-family:'Inter',sans-serif;
+  font-size:13.5px;line-height:1.5;
+  color:var(--ink-soft);
+}
+.pp-term em{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-style:normal;font-size:9.5px;
+  letter-spacing:0.14em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  padding-top:3px;
+}
+@media(max-width:900px){
+  .pricing-pair-frame{grid-template-columns:1fr}
+  .pricing-block{padding:28px 22px}
+  .pp-term{grid-template-columns:1fr;gap:2px}
+  .pp-term em{padding-top:0;margin-bottom:2px}
+}
+
+/* === CRONOGRAMA · DOS FASES (§08) === */
+.cronograma-frame{
+  margin-top:48px;
+  padding:32px 28px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+}
+.cronograma-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:10px;
+}
+.cronograma-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:24px;line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 22px;
+}
+.cronograma-title em{font-style:normal;color:var(--accent);font-weight:500}
+.cronograma-list{
+  list-style:none;padding:0;margin:0;
+  border-top:1px solid var(--rule);
+}
+.cronograma-row{
+  display:grid;
+  grid-template-columns:120px 1fr 220px;
+  gap:24px;
+  padding:20px 0;
+  border-bottom:1px solid var(--rule);
+  align-items:start;
+}
+.cron-phase{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.18em;
+  color:var(--accent-deep);
+  text-transform:uppercase;
+  font-weight:600;
+  padding-top:3px;
+}
+.cron-name{
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.5;
+  color:var(--ink);
+  font-weight:500;
+}
+.cron-name span{
+  display:block;
+  font-weight:400;
+  color:var(--ink-soft);
+  font-size:13.5px;
+  margin-top:6px;
+  line-height:1.55;
+}
+.cron-duration{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:18px;
+  color:var(--ink);
+  text-align:right;
+}
+.cron-duration em{
+  display:block;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-style:normal;
+  font-size:9.5px;letter-spacing:0.16em;
+  color:var(--ink-mute);
+  font-weight:500;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+@media(max-width:900px){
+  .cronograma-frame{padding:24px 20px}
+  .cronograma-row{grid-template-columns:1fr;gap:6px}
+  .cron-duration{text-align:left}
+}
+
+/* === RETAINER INCLUDES · 6 CELLS (§08) === */
+.retainer-includes-frame{
+  margin-top:32px;
+  padding:32px 28px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg-2);
+}
+.ri-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:10px;
+}
+.ri-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:24px;line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin:0 0 22px;
+}
+.ri-title em{font-style:normal;color:var(--accent);font-weight:500}
+.ri-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.ri-cell{
+  display:grid;
+  grid-template-columns:32px 1fr;
+  gap:14px;
+  padding:20px 18px;
+  border:1px solid var(--rule);
+  background:var(--bg);
+}
+.ri-num{
+  font-family:'Inter Tight',sans-serif;
+  font-style:italic;font-weight:300;
+  font-size:24px;line-height:1;
+  color:var(--accent);
+  letter-spacing:-0.02em;
+}
+.ri-body strong{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--ink);
+  margin-bottom:6px;
+  line-height:1.35;
+}
+.ri-body p{
+  font-family:'Inter',sans-serif;
+  font-size:12.5px;line-height:1.55;
+  color:var(--ink-soft);
+  margin:0;
+}
+@media(max-width:900px){
+  .ri-grid{grid-template-columns:1fr}
+  .retainer-includes-frame{padding:24px 20px}
+}
+
+/* === PERMANENCE · 2x2 GRID (§13) === */
+.permanence-frame{
+  margin-bottom:48px;
+  padding:44px 36px;
+  border:1px solid var(--accent);
+  background:var(--bg);
+  position:relative;
+}
+.permanence-frame::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:4px;height:100%;
+  background:linear-gradient(180deg, var(--accent) 0%, var(--accent-bright) 100%);
+}
+.permanence-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:14px;
+}
+.permanence-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(34px, 4.4vw, 56px);
+  line-height:1.05;
+  letter-spacing:-0.034em;
+  color:var(--ink);
+  margin:0 0 18px;
+}
+.permanence-title em{font-style:italic;font-weight:300;color:var(--accent)}
+.permanence-lede{
+  font-family:'Inter',sans-serif;
+  font-size:16px;line-height:1.65;
+  color:var(--ink-soft);
+  max-width:820px;
+  margin:0 0 32px;
+}
+.permanence-lede strong{color:var(--ink);font-weight:600}
+.permanence-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.permanence-card{
+  padding:26px 24px;
+  border:1px solid var(--rule);
+  background:var(--bg-2);
+  display:flex;flex-direction:column;gap:10px;
+}
+.permanence-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:600;
+}
+.permanence-card h5{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:18px;line-height:1.3;
+  letter-spacing:-0.018em;
+  color:var(--ink);
+  margin:0;
+}
+.permanence-card p{
+  font-family:'Inter',sans-serif;
+  font-size:14px;line-height:1.6;
+  color:var(--ink-soft);
+  margin:0;
+}
+.permanence-coda{
+  margin-top:32px;
+  padding-top:24px;
+  border-top:1px solid var(--rule);
+  font-family:'Inter Tight',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:18px;line-height:1.5;
+  color:var(--ink-soft);
+  max-width:820px;
+}
+.permanence-coda strong{color:var(--ink);font-weight:500;font-style:normal}
+@media(max-width:900px){
+  .permanence-frame{padding:30px 22px}
+  .permanence-grid{grid-template-columns:1fr;gap:14px}
+  .permanence-title{font-size:30px}
+}
+
+/* === FOUNDER BIO · 3 PLANOS GRID (§09) === */
+.founder-frame{
+  margin-top:48px;
+  padding:48px 36px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg);
+  position:relative;
+}
+.founder-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:14px;
+}
+.founder-name{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(32px, 4vw, 48px);
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+  margin:0 0 6px;
+}
+.founder-role{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.16em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:24px;
+}
+.founder-prose{
+  font-family:'Inter',sans-serif;
+  font-size:16px;line-height:1.65;
+  color:var(--ink-soft);
+  max-width:780px;
+  margin:0 0 36px;
+}
+.founder-prose strong{color:var(--ink);font-weight:600}
+.founder-planos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-bottom:36px;
+}
+.founder-plano{
+  padding:24px 22px;
+  border-top:2px solid var(--accent);
+  background:var(--bg-2);
+}
+.founder-plano-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:600;
+  margin-bottom:10px;
+}
+.founder-plano h5{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:17px;line-height:1.3;
+  letter-spacing:-0.018em;
+  color:var(--ink);
+  margin:0 0 10px;
+}
+.founder-plano p{
+  font-family:'Inter',sans-serif;
+  font-size:13.5px;line-height:1.6;
+  color:var(--ink-soft);
+  margin:0;
+}
+.founder-coda{
+  font-family:'Inter Tight',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:17px;line-height:1.55;
+  color:var(--ink-soft);
+  max-width:780px;
+  margin:0 0 28px;
+}
+.founder-wordmark{
+  font-family:'Allura',cursive;
+  font-size:48px;line-height:1;
+  color:var(--accent);
+  margin-top:8px;
+  letter-spacing:0;
+}
+@media(max-width:900px){
+  .founder-frame{padding:32px 22px}
+  .founder-planos{grid-template-columns:1fr;gap:14px}
+  .founder-name{font-size:32px}
+}
+
 @media(prefers-reduced-motion:reduce){
   .roadmap-row{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
@@ -3631,8 +4102,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="tldr-card">
           <div class="tldr-tag">CUÁNTO CUESTA</div>
           <ul class="tldr-list">
-            <li>Setup: <strong class="tldr-num tldr-num-emph">$1.76M MXN</strong><span class="tldr-num-note">F0 Discovery $60K + F1-F5 $1.70M</span></li>
-            <li class="tldr-list-foot">Pagos: 50% inicio fase + 50% al cierre con hitos validados · Net 15.</li>
+            <li>Setup Fase 01: <strong class="tldr-num tldr-num-emph">$1.76M MXN</strong><span class="tldr-num-note">12 meses · F0 Discovery $60K + F1-F5 $1.70M · −27% vs listado $2.4M</span></li>
+            <li>Retainer Fase 02: <strong class="tldr-num">$100K MXN/mes</strong><span class="tldr-num-note">Desde mes 13 · cancelable mes a mes · −33% vs listado $150K</span></li>
+            <li class="tldr-list-foot">Pagos Fase 01: 50% inicio fase + 50% al cierre con hitos validados · Net 15. Fase 02 cancelable con 30 días notificación.</li>
           </ul>
         </div>
         <div class="tldr-card">
@@ -5166,7 +5638,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <header class="section-header">
       <div class="section-num">08<small>INVERSIÓN</small></div>
       <h2 class="section-title">El detalle <em>económico</em>, sin notas al pie.</h2>
-      <p class="section-deck">Setup acumulado de F0 Discovery más las cinco fases F1-F5. Pagos 50% al inicio de cada fase, 50% al cierre con hitos validados.</p>
+      <p class="section-deck">Dos fases. Setup acumulado de F0 Discovery más las cinco fases F1-F5 durante 12 meses. Operación continua mensual desde el mes 13 — cancelable, sin permanencia. Ambas con descuento deliberado contra los precios listados.</p>
     </header>
 
     <div class="financials-frame">
@@ -5235,6 +5707,114 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="financials-note"><strong>Pagos</strong>50% al inicio de cada fase + 50% al cierre con hitos validados. Sin intereses, sin cargos por adelantado, sin pagos por fases que no se han ejecutado.</p>
       <p class="financials-note"><strong>Confidencialidad</strong>Toda figura económica es indicativa hasta firma de work order. NDA aplica desde recepción de este documento. Propuesta válida 30 días.</p>
 
+      <!-- PRICING PAIR · SETUP / RETAINER -->
+      <div class="pricing-pair-frame">
+        <div class="pricing-block pp-setup">
+          <div class="pp-tag">Fase 01 · Build &amp; Delivery</div>
+          <h3 class="pp-title">Setup completo del sistema<br>en <em>doce meses</em></h3>
+          <div class="pp-listed-row">
+            <span class="pp-listed-label">Listado · 12 meses</span>
+            <span class="pp-listed">$2,400,000<em>MXN</em></span>
+          </div>
+          <div class="pp-offer-row">
+            <span class="pp-offer-num">$1.76M</span>
+            <span class="pp-offer-cur">MXN</span>
+          </div>
+          <span class="pp-badge">−27% deliberado</span>
+          <div class="pp-divider"></div>
+          <div class="pp-term">Duración<em>12 meses</em>F0 Discovery (3 sem) + F1 a F5 acumulativas hasta sistema operacional completo.</div>
+          <div class="pp-term">Pago<em>Por fase</em>50% al firmar work order de la fase + 50% al cierre con hitos validados. Net 15.</div>
+          <div class="pp-term">Hitos<em>27 entregas</em>Sign-off escrito de Raul Chio (Eigen) + Diego Nuño (TSC) sobre los entregables específicos de cada fase.</div>
+        </div>
+
+        <div class="pricing-block">
+          <div class="pp-tag">Fase 02 · Operación continua</div>
+          <h3 class="pp-title">Soporte + dirección técnica<br><em>continuada</em></h3>
+          <div class="pp-listed-row">
+            <span class="pp-listed-label">Listado · mensual</span>
+            <span class="pp-listed">$150,000<em>MXN/mes</em></span>
+          </div>
+          <div class="pp-offer-row">
+            <span class="pp-offer-num">$100K</span>
+            <span class="pp-offer-cur">MXN</span>
+            <span class="pp-offer-per">/ mes</span>
+          </div>
+          <span class="pp-badge">−33% deliberado</span>
+          <div class="pp-divider"></div>
+          <div class="pp-term">Inicia<em>Mes 13</em>Una vez F5 cierra y el sistema queda en producción bajo cuenta TSC LABS.</div>
+          <div class="pp-term">Compromiso<em>Mes a mes</em>Cancelable con 30 días de notificación. Sin lock-in, sin permanencia, sin penalización.</div>
+          <div class="pp-term">Alcance<em>6 ejes</em>Hosting + soporte SLA + dirección técnica + optimización agentes + reportes + iteración del sistema.</div>
+        </div>
+      </div>
+
+      <!-- CRONOGRAMA · DOS FASES -->
+      <div class="cronograma-frame">
+        <div class="cronograma-tag">CRONOGRAMA DEL ENGAGEMENT</div>
+        <h3 class="cronograma-title">Dos fases. <em>Doce meses + operación continua.</em></h3>
+        <ul class="cronograma-list">
+          <li class="cronograma-row">
+            <div class="cron-phase">Fase 01</div>
+            <div class="cron-name">Build + Delivery del sistema completo<span>F0 Discovery + F1-F5 acumulativas. Cierre: TSC LABS opera sobre data substrate único, capa de servicios encima, capa agéntica activa, infraestructura transferida a cuenta Cloudflare TSC, repositorio en GitHub TSC.</span></div>
+            <div class="cron-duration">Meses<em>1 — 12</em></div>
+          </li>
+          <li class="cronograma-row">
+            <div class="cron-phase">Fase 02</div>
+            <div class="cron-name">Operación + evolución continua<span>Sistema vivo en producción bajo cuenta TSC. Soporte SLA, dirección técnica continuada, optimización de agentes, reportes mensuales, iteración del sistema con uso real, evolución según el negocio. Cancelable mes a mes.</span></div>
+            <div class="cron-duration">Mes a mes<em>desde mes 13</em></div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RETAINER INCLUDES · 6 CELLS -->
+      <div class="retainer-includes-frame">
+        <div class="ri-tag">QUÉ INCLUYE EL RETAINER MENSUAL · $100K MXN</div>
+        <h3 class="ri-title">Seis ejes operando, <em>todos los meses</em>.</h3>
+        <div class="ri-grid">
+          <div class="ri-cell">
+            <span class="ri-num">i.</span>
+            <div class="ri-body">
+              <strong>Hosting + infraestructura Cloudflare</strong>
+              <p>Workers, D1, R2, Durable Objects, Workers AI hasta volumen razonable de operación TSC. Sin cobros adicionales por consumo edge dentro del rango operativo de un laboratorio biotech en escalamiento.</p>
+            </div>
+          </div>
+          <div class="ri-cell">
+            <span class="ri-num">ii.</span>
+            <div class="ri-body">
+              <strong>Soporte técnico SLA empresarial</strong>
+              <p>Canal directo con CTO Fractional. Hotfix crítico &lt;4h. Uptime infraestructura 99.9% contractual. Escalación automática si SLA cae bajo el compromiso.</p>
+            </div>
+          </div>
+          <div class="ri-cell">
+            <span class="ri-num">iii.</span>
+            <div class="ri-body">
+              <strong>Dirección técnica continuada</strong>
+              <p>Raul Chio sigue como CTO Fractional sobre el sistema. Decisiones de stack, scaling, schemas, seguridad, integración de talent técnico nuevo. La continuidad de la dirección técnica queda con quien construyó el sistema.</p>
+            </div>
+          </div>
+          <div class="ri-cell">
+            <span class="ri-num">iv.</span>
+            <div class="ri-body">
+              <strong>Optimización de agentes con uso real</strong>
+              <p>Refinamiento del DTC chatbot Skin Club, B2B qualifier, Proveeduría agent, Compliance + Social Media generator y R&amp;D Scout con data acumulada de operación. Ajuste de prompts, post-processors y guardrails contra drift observado.</p>
+            </div>
+          </div>
+          <div class="ri-cell">
+            <span class="ri-num">v.</span>
+            <div class="ri-body">
+              <strong>Reportes mensuales + reunión de calibración</strong>
+              <p>KPIs operacionales del mes, BI insights del data substrate, performance de agentes, pipeline B2B, métricas Skin Club. Reunión de una hora al mes con leadership TSC para revisar y ajustar prioridades.</p>
+            </div>
+          </div>
+          <div class="ri-cell">
+            <span class="ri-num">vi.</span>
+            <div class="ri-body">
+              <strong>Iteración y evolución del sistema</strong>
+              <p>Features nuevas según uso real del laboratorio, no estancamiento en estado de entrega. El sistema evoluciona con TSC: nuevos clientes B2B, nuevos canales, nuevos SKUs, nuevas integraciones que aparezcan en el roadmap operativo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="anchor-frame">
         <div class="anchor-tag">ANCLAJE · EIGEN VS ALTERNATIVAS</div>
         <h3 class="anchor-title">El costo real de las tres rutas posibles, <em>sin asteriscos</em>.</h3>
@@ -5261,9 +5841,9 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
               <td>Stack desconectado · cada decisión cruza 3-4 herramientas · sin ERP integrado a Formula DB · sin agentic layer · sin queryable.</td>
             </tr>
             <tr class="anchor-row-eigen">
-              <td class="anchor-opt"><strong>Eigen Atlas · esta propuesta</strong><em>F0 Discovery + F1-F5</em></td>
-              <td class="right"><strong class="anchor-num-eigen">$1.76M</strong><br><span class="anchor-sub">Setup completo, 12 meses</span></td>
-              <td>Post-launch fuera de scope · work order separado · infra CF directa ~$200-400 USD/mes</td>
+              <td class="anchor-opt"><strong>Eigen Atlas · esta propuesta</strong><em>F0 Discovery + F1-F5 + Fase 02 retainer</em></td>
+              <td class="right"><strong class="anchor-num-eigen">$1.76M</strong><br><span class="anchor-sub">Fase 01 setup completo, 12 meses · −27% deliberado</span></td>
+              <td><strong>$100K MXN/mes</strong><br><span class="anchor-sub">Fase 02 retainer · cancelable mes a mes · hosting + soporte + dirección técnica</span></td>
               <td>Sistema operacional unificado · ERP integrado · capa agéntica · Talent Portal · queryable enterprise · CTO Fractional integrado · IP 100% TSC.</td>
             </tr>
           </tbody>
@@ -5347,6 +5927,36 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <h3 class="gov-title">Operación 100% <em>México</em></h3>
         <p class="gov-prose">Equipo técnico local, español + inglés. <strong>Trabajamos con tu contabilidad existente.</strong> El sistema integra status de CFDIs emitidos por tu equipo contable, no emite ni intermedia el flujo fiscal. Las auditorías hablan español. Las llamadas son en hora local.</p>
       </div>
+    </div>
+
+    <!-- FOUNDER BIO · 3 PLANOS -->
+    <div class="founder-frame">
+      <div class="founder-eyebrow">El Fundador · Quién construye</div>
+      <div class="founder-name">Raúl Chío León</div>
+      <div class="founder-role">Fundador · Eigen Atlas · CTO Fractional para TSC LABS</div>
+      <p class="founder-prose">Ingeniero biotecnólogo de formación con maestría en Inteligencia Artificial Aplicada por el Tecnológico de Monterrey. Originario de Mazatlán, basado en Zapopan. El currículum no es lo que más importa para esta propuesta — lo que sí importa es cómo opero en la intersección entre ciencia, negocio y software. <strong>No como tres disciplinas separadas, sino como una sola capacidad para tomar problemas vagos y entregarlos resueltos.</strong></p>
+
+      <div class="founder-planos">
+        <div class="founder-plano">
+          <div class="founder-plano-num">— 01</div>
+          <h5>Capacidad de construcción técnica</h5>
+          <p>Diseño y escribo cada línea de código que entrego. Stack Cloudflare nativo (Workers, Durable Objects, D1, R2, Workers AI, Vectorize, Agents SDK), arquitectura edge-first, agentes LLM con guardrails productivos, multi-tenant a nivel de plataforma. No subcontrato. No ensamblo no-code con Bubble + Make. Construyo.</p>
+        </div>
+        <div class="founder-plano">
+          <div class="founder-plano-num">— 02</div>
+          <h5>Inteligencia de negocios aplicada</h5>
+          <p>Antes de proponer arquitectura, entiendo el embudo de conversión, las palancas de revenue y dónde se pierde el dinero. Por eso esta propuesta empieza hablando de tu bottleneck real — envasado, etiquetado y proveeduría — y no del stack. El sistema sólo importa si mueve la aguja del negocio.</p>
+        </div>
+        <div class="founder-plano">
+          <div class="founder-plano-num">— 03</div>
+          <h5>Resolución generalista de problemas</h5>
+          <p>Ciencia, marketing, regulación COFEPRIS, operación de laboratorio, infraestructura, contenido editorial, marca — los abordo como un solo problema interconectado, no como silos. Background biotec ITESM (la misma formación que Diego, Kaori y Natalia) + maestría IA Aplicada. Años entendiendo flujos farmacéuticos y de manufactura antes de tocar una línea de código de IA.</p>
+        </div>
+      </div>
+
+      <p class="founder-coda">La diferencia entre un proveedor que entiende el negocio del cliente y uno que solo entiende su propio toolkit es exactamente la diferencia entre las propuestas que has visto y la que tienes en tus manos ahora.</p>
+
+      <div class="founder-wordmark">eigenatlas</div>
     </div>
 
     <table class="sla-table">
@@ -5564,8 +6174,38 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <header class="section-header">
       <div class="section-num">13<small>PROPIEDAD INTELECTUAL Y SALIDA</small></div>
       <h2 class="section-title">El sistema es de TSC LABS, <em>titularidad contractual desde el primer commit</em>.</h2>
-      <p class="section-deck">Propiedad del código, ownership de schemas y data, transferencia operacional al cierre, continuidad si Eigen no puede continuar. Sin lock-in.</p>
+      <p class="section-deck">Permanencia + ownership como contexto crítico antes del detalle técnico. Sistema queda con TSC al cierre del proyecto. La capacidad de extenderlo también. Sin lock-in.</p>
     </header>
+
+    <!-- PERMANENCIA · 2x2 GRID -->
+    <div class="permanence-frame">
+      <div class="permanence-eyebrow">Permanencia + Ownership · contexto crítico</div>
+      <h3 class="permanence-title">Esto persiste<br><em>sin Eigen.</em></h3>
+      <p class="permanence-lede">No estás contratando dependencia eterna a un proveedor. Estás construyendo <strong>infraestructura que se transfiere a tu nombre al cierre del proyecto</strong> — código, repositorio, agentes, base de datos, hosting. Bajo propiedad completa de TSC LABS. Si decides separar caminos con Eigen después de la entrega, el sistema sigue funcionando — y cualquier programador competente del mundo lo puede recoger y continuar sin fricción.</p>
+      <div class="permanence-grid">
+        <div class="permanence-card">
+          <span class="permanence-num">— 01</span>
+          <h5>Repositorio transferido a TSC LABS</h5>
+          <p>Durante el desarrollo, el código vive en organización GitHub de Eigen Atlas para iterar rápido sin fricción de permisos. Al cierre de F5, el repositorio Git completo con todo el código fuente, historial, issues, PRs y documentación técnica se transfiere a la organización GitHub de TSC LABS. Stack Cloudflare estándar — talento global lo entiende, no es propietario ni cerrado.</p>
+        </div>
+        <div class="permanence-card">
+          <span class="permanence-num">— 02</span>
+          <h5>Infraestructura transferida a cuenta TSC</h5>
+          <p>Al cierre de F5, toda la infraestructura (Workers, Durable Objects, D1, R2, Workers Analytics, dominios) se migra a cuenta Cloudflare de TSC LABS bajo credenciales TSC. Cero downtime garantizado por arquitectura blue-green. A partir de ese momento, si TSC decide separar caminos con Eigen, el sistema sigue corriendo sin interrupción ni necesidad de migración. Cero lock-in.</p>
+        </div>
+        <div class="permanence-card">
+          <span class="permanence-num">— 03</span>
+          <h5>Ventaja competitiva durable</h5>
+          <p>Ningún laboratorio cosmético en México opera con esta infraestructura hoy. El que sí va a estar operando dentro de cinco años va a estar muy adelante de la curva — y va a ser muy difícil de alcanzar para quien empiece después. Talent Portal multi-tenant, ERP propio, capa agéntica con R&amp;D Scout, BI queryable: activo digital durable para TSC LABS.</p>
+        </div>
+        <div class="permanence-card">
+          <span class="permanence-num">— 04</span>
+          <h5>Continuidad sin dependencia personal</h5>
+          <p>Si en algún momento TSC decide no continuar la relación de operación con Eigen, el sistema no se detiene. Stack Cloudflare estándar + documentación técnica completa + repositorio Git en cuenta TSC + decision logs + runbooks operacionales — cualquier programador competente con experiencia en infraestructura edge puede recoger el sistema y operarlo sin fricción. Sin tecnología propietaria de Eigen, sin licencias cerradas, sin amarres contractuales.</p>
+        </div>
+      </div>
+      <div class="permanence-coda">Lo que recibes no es un servicio que dependa de mi presencia perpetua.<br>Es <strong>un activo digital propio</strong> con valor independiente y vida más larga que cualquier engagement.</div>
+    </div>
 
     <div class="ip-frame">
       <div class="ip-card">
