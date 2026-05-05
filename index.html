@@ -2274,7 +2274,99 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .fases-intro strong{font-weight:600;color:var(--ink)}
 .fases-intro em{font-style:normal;color:var(--accent);font-weight:500}
 
-/* === CAPABILITY DECLARATION · BLUEPRINT === */
+/* === CAPABILITY DECLARATION · CLEAN === */
+.cdec-head{margin-bottom:24px}
+.cdec-arch{
+  margin:8px 0 64px;
+  padding:24px 0 12px;
+}
+.cdec-arch-svg{width:100%;height:auto;max-height:380px;display:block}
+.cdec-arch-cap{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-light);font-weight:500;
+  text-align:center;margin:14px 0 0;
+}
+.cdec-rows{
+  display:grid;grid-template-columns:1fr;gap:0;
+  margin:0 0 56px;
+  border-top:1px solid var(--rule);
+}
+.cdec-row{
+  display:grid;
+  grid-template-columns:72px 1fr 200px;
+  gap:32px;
+  padding:32px 0;
+  border-bottom:1px solid var(--rule);
+  align-items:start;
+}
+.cdec-row-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-light);
+  padding-top:6px;
+}
+.cdec-row-body{
+  min-width:0;
+  max-width:720px;
+}
+.cdec-row-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:clamp(20px,2vw,26px);
+  line-height:1.2;letter-spacing:-0.018em;
+  color:var(--ink);
+  margin:0 0 10px;
+}
+.cdec-row-title em{
+  font-style:italic;font-weight:300;
+  color:var(--accent);
+  font-size:0.78em;letter-spacing:0;
+}
+.cdec-row-prose{
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.65;
+  color:var(--ink-mute);
+  margin:0;max-width:680px;
+}
+.cdec-row-prose strong{color:var(--ink);font-weight:600}
+.cdec-row-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.16em;font-weight:500;
+  color:var(--ink-mute);
+  text-align:right;
+  padding-top:8px;
+  text-transform:uppercase;
+}
+.cdec-row-emph{
+  background:rgba(30,64,175,0.04);
+  border-left:3px solid var(--accent);
+  padding-left:24px;
+  padding-right:24px;
+  margin:8px -24px;
+  border-radius:2px;
+  border-top:1px solid var(--rule);
+}
+.cdec-row-emph .cdec-row-num{color:var(--accent)}
+.cdec-row-emph .cdec-row-title{color:var(--accent-deep)}
+.cdec-row-emph .cdec-row-tag{color:var(--accent);font-weight:600}
+.cdec-close-clean{
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.7;
+  color:var(--ink-mute);
+  margin:0;padding:32px 0 0;
+  border-top:1px solid var(--rule-strong);
+  max-width:860px;
+}
+.cdec-close-clean em{font-style:italic;color:var(--accent)}
+
+@media (max-width:760px){
+  .cdec-row{grid-template-columns:48px 1fr;gap:18px;padding:24px 0}
+  .cdec-row-tag{display:none}
+  .cdec-row-emph{margin:0;padding-left:18px;padding-right:18px}
+}
+
+/* === LEGACY BLUEPRINT (unused) === */
 .cbp-blueprint{
   position:relative;
   margin:0 0 16px;
@@ -3143,6 +3235,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
@@ -3214,39 +3307,18 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </header>
 
-<!-- § 0a · DECLARACIÓN DE CAPACIDAD · BLUEPRINT -->
+<!-- § 0a · DECLARACIÓN DE CAPACIDAD · CLEAN -->
 <section class="section" id="capacidad-declaracion">
   <div class="section-frame">
 
-    <header class="section-header">
+    <header class="section-header cdec-head">
       <div class="section-num">00a<small>CAPACIDAD</small></div>
       <h2 class="section-title">Indexamos <em>toda</em> la operación de TSC LABS sobre un solo data substrate y construimos encima todo lo que el laboratorio necesita.</h2>
       <p class="section-deck">Seis módulos. Una arquitectura. Un solo equipo responsable.</p>
     </header>
 
-    <div class="cbp-blueprint">
-
-      <!-- TITLE BLOCK · drafting convention -->
-      <div class="cbp-titleblock">
-        <div class="cbp-tb-stamp">
-          <div class="cbp-tb-firm">EIGEN · ATLAS</div>
-          <div class="cbp-tb-set">DRAWING SET · TSC-MMXXVI</div>
-        </div>
-        <div class="cbp-tb-mid">
-          <div class="cbp-tb-eyebrow">— PLAN · SECTION · ELEVATION —</div>
-          <h3 class="cbp-tb-title">Plano de <em>capacidad</em>.</h3>
-          <p class="cbp-tb-deck">Convención de dibujo: cota en milímetros, escala de plano 1:1 (nativo). Substrate único · seis módulos · construidos sin reescribir la base.</p>
-        </div>
-        <div class="cbp-tb-right">
-          <div class="cbp-tb-row"><strong>SHEET</strong><span>00a</span></div>
-          <div class="cbp-tb-row"><strong>SCALE</strong><span>1:1</span></div>
-          <div class="cbp-tb-row"><strong>REV</strong><span>A</span></div>
-          <div class="cbp-tb-row"><strong>DATE</strong><span>05.MMXXVI</span></div>
-        </div>
-      </div>
-
-    <!-- ARCHITECTURE DIAGRAM · drafting style cobalt-on-cream · DrawSVG on enter -->
-    <figure class="cdec-arch cbp-drawing" aria-label="Arquitectura de capacidad">
+    <!-- ARCHITECTURE DIAGRAM · light cobalt · GSAP draws on enter -->
+    <figure class="cdec-arch" aria-label="Arquitectura de capacidad">
       <svg class="cdec-arch-svg" viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="cdec-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -3307,78 +3379,69 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </g>
 
       </svg>
-      <figcaption class="cdec-arch-cap">FIG. 00 · CAPACITY ARCHITECTURE · CLOUDFLARE-NATIVE · MULTI-TENANT</figcaption>
+      <figcaption class="cdec-arch-cap">Substrate único · seis módulos sobre Cloudflare Workers · multi-tenant</figcaption>
     </figure>
 
-      <!-- DRAWING INDEX · index of modules in drafting convention -->
-      <div class="cbp-index">
-        <div class="cbp-index-eyebrow">— DRAWING SET · INDEX · SIX MODULES —</div>
+    <!-- 6 CAPABILITY ROWS · friendly horizontal blocks -->
+    <div class="cdec-rows">
 
-        <div class="cbp-index-list">
-
-          <div class="cbp-row head">
-            <span>CODE</span>
-            <span>MÓDULO · DESCRIPCIÓN</span>
-            <span>CAPA</span>
-            <span>REV</span>
-            <span>STATUS</span>
-          </div>
-
-          <div class="cbp-row">
-            <span class="cbp-num">00a-01</span>
-            <span class="cbp-name"><strong>Operaciones internas.</strong> Cola de envasado, status de lotes, pedidos en curso, ERP de inventario, cargas a becarios — una sola pantalla por persona, contexto siempre fresco.</span>
-            <span class="cbp-cap">PORTAL INTERNO</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">SPEC</span>
-          </div>
-
-          <div class="cbp-row">
-            <span class="cbp-num">00a-02</span>
-            <span class="cbp-name"><strong>Business intelligence.</strong> Forecasting predictivo (Prophet/ARIMA), detección de anomalías en lotes (isolation forest), cohort retention, queries de negocio en lenguaje natural sobre cinco años de data.</span>
-            <span class="cbp-cap">BI · DATA SCIENCE</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">SPEC</span>
-          </div>
-
-          <div class="cbp-row">
-            <span class="cbp-num">00a-03</span>
-            <span class="cbp-name"><strong>Talent / clientes B2B.</strong> Cada talent manager o cliente B2B ve su brand, sus fórmulas, sus hitos, sus documentos. Login con link mágico, sin acceso cruzado entre marcas.</span>
-            <span class="cbp-cap">PORTAL EXTERNO</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">SPEC</span>
-          </div>
-
-          <div class="cbp-row emph">
-            <span class="cbp-num">00a-04</span>
-            <span class="cbp-name"><strong>Distribución habilitada para cualquiera.</strong> Cualquier persona o socio comercial distribuye productos TSC con una facilidad que ningún competidor iguala — paneles ya construidos, comunicación directa, pagos enlazados, tratos y contratos firmados desde el portal. El distribuidor sólo vende; la operación corre sola.</span>
-            <span class="cbp-cap">EXTENSIÓN B2B</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">CRITICAL</span>
-          </div>
-
-          <div class="cbp-row">
-            <span class="cbp-num">00a-05</span>
-            <span class="cbp-name"><strong>Cinco agentes productivizados.</strong> DTC chatbot Skin Club · B2B Lead Qualifier · Proveeduría Agent · Compliance + Social Media Generator · R&amp;D Scout sobre activos nuevos del mercado.</span>
-            <span class="cbp-cap">CAPA AGÉNTICA</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">SPEC</span>
-          </div>
-
-          <div class="cbp-row">
-            <span class="cbp-num">00a-06</span>
-            <span class="cbp-name"><strong>ERP + Document Vault + supply chain.</strong> Lot lifecycle, auto-descuento de inventario contra producción registrada, draft de PO disparado por demanda, shipment via Skydropx, archivo regulatorio BPF cosméticos COFEPRIS.</span>
-            <span class="cbp-cap">CAPA OPERACIONAL</span>
-            <span class="cbp-rev">A</span>
-            <span class="cbp-st">SPEC</span>
-          </div>
-
+      <div class="cdec-row">
+        <div class="cdec-row-num">01</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">Operaciones internas</h3>
+          <p class="cdec-row-prose">Cola de envasado, status de lotes, pedidos en curso, ERP de inventario, cargas a becarios. Una sola pantalla por persona, contexto siempre fresco.</p>
         </div>
+        <div class="cdec-row-tag">Portal interno</div>
       </div>
 
-      <!-- CLOSE · note inside drafting frame -->
-      <p class="cbp-close">Nada de esto es ensamblar herramientas de terceros. Indexamos la operación, definimos el modelo maestro, construimos sobre Cloudflare Workers + D1 + R2 + Durable Objects + Workers AI + Claude API. <em>El sistema queda con TSC al final del proyecto. La capacidad de extenderlo también.</em></p>
+      <div class="cdec-row">
+        <div class="cdec-row-num">02</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">Business intelligence <em>· potenciado por IA</em></h3>
+          <p class="cdec-row-prose">Margen real por cliente, forecasting predictivo, detección de anomalías en lotes, cohort retention, queries de negocio en lenguaje natural sobre cinco años de data.</p>
+        </div>
+        <div class="cdec-row-tag">BI · data science</div>
+      </div>
 
-    </div><!-- /.cbp-blueprint -->
+      <div class="cdec-row">
+        <div class="cdec-row-num">03</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">Talent &amp; clientes B2B</h3>
+          <p class="cdec-row-prose">Cada talent manager o cliente B2B ve su marca, sus fórmulas, sus hitos, sus documentos. Login con link mágico, sin acceso cruzado entre marcas.</p>
+        </div>
+        <div class="cdec-row-tag">Portal externo</div>
+      </div>
+
+      <div class="cdec-row cdec-row-emph">
+        <div class="cdec-row-num">04</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">Distribución habilitada para cualquiera <em>· extensión B2B</em></h3>
+          <p class="cdec-row-prose">Cualquier persona o socio comercial puede distribuir productos TSC con una facilidad que ningún competidor puede igualar — los paneles ya están construidos, la comunicación es directa, los pagos están enlazados, los tratos y contratos quedan firmados desde el portal. <strong>El distribuidor sólo tiene que vender; toda la operación detrás corre sola.</strong></p>
+        </div>
+        <div class="cdec-row-tag">Extensión B2B</div>
+      </div>
+
+      <div class="cdec-row">
+        <div class="cdec-row-num">05</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">Cinco agentes productivizados</h3>
+          <p class="cdec-row-prose">DTC chatbot Skin Club · B2B Lead Qualifier · Proveeduría Agent · Compliance + Social Media Generator · <strong>R&amp;D Scout</strong> sobre activos nuevos del mercado.</p>
+        </div>
+        <div class="cdec-row-tag">Capa agéntica</div>
+      </div>
+
+      <div class="cdec-row">
+        <div class="cdec-row-num">06</div>
+        <div class="cdec-row-body">
+          <h3 class="cdec-row-title">ERP + Document Vault + supply chain</h3>
+          <p class="cdec-row-prose">Lot lifecycle, auto-descuento de inventario contra producción, draft de PO disparado por demanda, shipment via Skydropx, archivo regulatorio bajo BPF cosméticos COFEPRIS.</p>
+        </div>
+        <div class="cdec-row-tag">Capa operacional</div>
+      </div>
+
+    </div>
+
+    <p class="cdec-close-clean">Nada de esto es ensamblar herramientas de terceros. Indexamos la operación, definimos el modelo maestro, construimos sobre Cloudflare Workers + D1 + R2 + Durable Objects + Workers AI + Claude API. <em>El sistema queda con TSC al final del proyecto. La capacidad de extenderlo también.</em></p>
 
   </div>
 </section>
@@ -6073,21 +6136,60 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 </script>
 
 <script>
-// §0a Capability architecture · single trigger SVG line draw + fade-in
+// §0a Capability · GSAP ScrollTrigger reveals (scoped to one section only)
 (function(){
-  var arch = document.querySelector('.cdec-arch');
-  if (!arch) return;
+  var section = document.getElementById('capacidad-declaracion');
+  if (!section) return;
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced){ arch.classList.add('is-in'); return; }
-  if ('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ arch.classList.add('is-in'); io.unobserve(arch); }
-      });
-    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
-    io.observe(arch);
-  } else {
-    arch.classList.add('is-in');
+  if (reduced || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
+    var arch = section.querySelector('.cdec-arch');
+    if (arch) arch.classList.add('is-in');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Section header children stagger
+  var head = section.querySelector('.cdec-head');
+  if (head){
+    gsap.from(head.children, {
+      y:24, opacity:0, duration:0.8, stagger:0.12, ease:'power2.out',
+      scrollTrigger:{ trigger:head, start:'top 82%' }
+    });
+  }
+
+  // Architecture SVG · draw lines + fade core + nodes
+  var arch = section.querySelector('.cdec-arch');
+  if (arch){
+    var lines = arch.querySelectorAll('.cdec-arch-line');
+    gsap.set(lines, { strokeDasharray:1000, strokeDashoffset:1000 });
+    gsap.set(arch.querySelector('.cdec-arch-core'), { opacity:0 });
+    gsap.set(arch.querySelector('.cdec-arch-nodes'), { opacity:0, y:8 });
+
+    var tl = gsap.timeline({
+      scrollTrigger:{ trigger:arch, start:'top 78%', once:true }
+    });
+    tl.to(lines, { strokeDashoffset:0, duration:1.0, stagger:0.07, ease:'power2.out' })
+      .to(arch.querySelector('.cdec-arch-core'), { opacity:1, duration:0.55, ease:'power1.out' }, '-=0.4')
+      .to(arch.querySelector('.cdec-arch-nodes'), { opacity:1, y:0, duration:0.6, ease:'power2.out' }, '-=0.3')
+      .from(arch.querySelector('.cdec-arch-cap'), { y:10, opacity:0, duration:0.5 }, '-=0.2');
+  }
+
+  // 6 capability rows · fade up stagger
+  var rows = section.querySelectorAll('.cdec-row');
+  rows.forEach(function(r, i){
+    gsap.from(r, {
+      y:32, opacity:0, duration:0.7, ease:'power2.out',
+      scrollTrigger:{ trigger:r, start:'top 88%' }
+    });
+  });
+
+  // Close note
+  var close = section.querySelector('.cdec-close-clean');
+  if (close){
+    gsap.from(close, {
+      y:18, opacity:0, duration:0.7, ease:'power2.out',
+      scrollTrigger:{ trigger:close, start:'top 92%' }
+    });
   }
 })();
 </script>
