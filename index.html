@@ -2280,15 +2280,16 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   margin:0 auto;
   max-width:1240px;
   padding:88px 56px 96px;
-  background:#0A0A0A;
+  background:var(--ink);
   color:var(--bg);
   border-radius:2px;
   overflow:hidden;
   isolation:isolate;
 }
-.cdec-bg{
-  position:absolute;inset:0;width:100%;height:100%;
-  z-index:0;pointer-events:none;
+.cdec-stage::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent-bright,var(--accent)) 100%);
+  z-index:1;
 }
 .cdec-meta{
   position:relative;z-index:2;
@@ -3035,22 +3036,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   <div class="section-frame">
     <div class="cdec-stage">
 
-      <!-- Layer 1 · ambient grid -->
-      <svg class="cdec-bg" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <pattern id="cdec-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(250,250,247,0.045)" stroke-width="1"/>
-          </pattern>
-          <radialGradient id="cdec-glow" cx="50%" cy="50%" r="55%">
-            <stop offset="0%" stop-color="rgba(67,56,202,0.35)"/>
-            <stop offset="100%" stop-color="rgba(67,56,202,0)"/>
-          </radialGradient>
-        </defs>
-        <rect width="1400" height="800" fill="url(#cdec-grid)"/>
-        <circle cx="700" cy="400" r="420" fill="url(#cdec-glow)"/>
-      </svg>
-
-      <!-- Layer 2 · meta strip -->
+      <!-- Meta strip -->
       <div class="cdec-meta">
         <span class="cdec-meta-tag">DECLARACIÓN · 00</span>
         <span class="cdec-meta-rule"></span>
@@ -3153,8 +3139,8 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <li class="cdec-emph">
           <span class="cdec-num">04</span>
           <div class="cdec-entry">
-            <h3>Tecnología que TSC le da a sus clientes <em>· extensión B2B</em></h3>
-            <p>Cada cliente B2B grande recibe su propio sub-dashboard sobre el mismo substrate — con tracking, funnel de conversión, forecasting predictivo y recomendaciones de R&amp;D Scout. <strong>TSC deja de ser sólo proveedor de fórmula y se vuelve plataforma para el cliente.</strong> Es lo que abre tratos grandes — Liverpool, Sephora, CVS — y justifica retainer mensual, no orden de compra puntual.</p>
+            <h3>Distribución habilitada para cualquiera <em>· extensión B2B</em></h3>
+            <p>Cualquier persona o socio comercial puede distribuir productos TSC con una facilidad que ningún competidor puede igualar — porque los paneles ya están construidos, la comunicación es directa, los pagos están enlazados, los tratos y contratos quedan firmados desde el portal. <strong>El distribuidor sólo tiene que vender; toda la operación detrás corre sola.</strong> Esa capacidad de habilitación masiva sobre la misma infraestructura es lo que libera el techo comercial de TSC.</p>
           </div>
         </li>
         <li>
@@ -4380,17 +4366,17 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="bi-caption">Mock representativo del state target. Datos sintéticos. La versión real lee de D1 + R2 + Workers Analytics + integraciones de canal — cada KPI queryable en lenguaje natural sobre el semantic layer.</p>
 
       <div class="bi-extension-callout">
-        <div class="bi-extension-tag">EXTENSIÓN B2B · MOAT COMERCIAL</div>
-        <h3 class="bi-extension-headline">El mismo dashboard, <em>empaquetado para tus clientes B2B grandes</em>.</h3>
+        <div class="bi-extension-tag">EXTENSIÓN B2B · DISTRIBUCIÓN HABILITADA</div>
+        <h3 class="bi-extension-headline">El mismo dashboard, <em>habilitado para cualquier distribuidor</em>.</h3>
         <div class="bi-extension-body">
-          <p>El sistema multi-tenant permite que TSC ofrezca a cada cliente B2B grande su propia versión del dashboard — corriendo sobre el mismo substrate, con su data aislada por Durable Object. El cliente recibe su propio sub-dashboard con:</p>
+          <p>El sistema multi-tenant permite que TSC le entregue a cada socio comercial — distribuidor, talent, marca aliada, vendedor independiente — su propio sub-dashboard sobre el mismo substrate, con data aislada por Durable Object. Cada distribuidor recibe la operación completa lista:</p>
           <ul class="bi-extension-list">
-            <li><strong>Tracking de pipeline propio</strong> — sus fórmulas en desarrollo, sus lotes producidos, sus pagos.</li>
-            <li><strong>Funnel de conversión</strong> — desde brief hasta retail, qué SKUs convierten más.</li>
-            <li><strong>Forecasting predictivo</strong> — qué activos del catálogo TSC le conviene producir el próximo trimestre con base en su histórico de ventas.</li>
-            <li><strong>Recomendaciones de R&amp;D Scout</strong> — los activos nuevos del mercado filtrados por su segmento de marca.</li>
+            <li><strong>Tracking de pipeline propio</strong> · sus pedidos, sus lotes, sus pagos en tiempo real.</li>
+            <li><strong>Comunicación directa con TSC</strong> · sin email back-and-forth, conversación archivada con audit log.</li>
+            <li><strong>Pagos enlazados</strong> · Stripe + MercadoPago integrados, factura registrada por contabilidad TSC visible en el portal.</li>
+            <li><strong>Tratos y contratos firmados desde el portal</strong> · addendums, términos comerciales, cláusulas de exclusividad — todo magic-link.</li>
           </ul>
-          <p class="bi-extension-close"><strong>El cierre comercial:</strong> ya no vas con un PDF de tarifa de fórmula a un Liverpool, Sephora o CVS. Vas con <em>"contrátanos como tu lab y te incluimos esta plataforma para que veas cada SKU, cada lote, cada predicción en tiempo real"</em>. Es el tipo de propuesta que justifica retainer mensual, no orden de compra puntual. Eso es lo que abre tratos grandes.</p>
+          <p class="bi-extension-close"><strong>La capacidad real:</strong> cualquier persona o socio que quiera distribuir TSC se enchufa al sistema y la operación corre sola. Los paneles ya están construidos, la comunicación lista, los pagos enlazados, los contratos firmables. <em>El distribuidor sólo tiene que vender — toda la maquinaria que normalmente toma meses montar, ya está esperándolo.</em> Esa es la facilidad que nadie más en el mercado puede ofrecer.</p>
         </div>
       </div>
     </div>
