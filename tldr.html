@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eigen Atlas · feat. TSC LABS · TL;DR</title>
+<meta name="description" content="Manifiesto en 5 minutos · 8 actos · arquitectura técnica para TSC LABS">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+<style>
+:root{
+  --paper: #F4EFE5;
+  --ink: #0A0A0A;
+  --ink-2: rgba(10,10,10,0.6);
+  --ink-3: rgba(10,10,10,0.32);
+  --line: rgba(10,10,10,0.12);
+  --coral: #C2410C;
+  --indigo: #1E40AF;
+  --amber: #B45309;
+  --gold: #A16207;
+  --teal: #0F766E;
+  --crimson: #B91C1C;
+  --rose: #BE185D;
+  --plum: #581C87;
+  --mercury: #8B8B95;
+  --champagne: #B5A48A;
+  --f-d: 'Fraunces', Georgia, serif;
+  --f-m: 'IBM Plex Mono', ui-monospace, monospace;
+}
+*{ margin:0; padding:0; box-sizing:border-box }
+html{ scroll-behavior:auto }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-d);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  cursor:none;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    radial-gradient(ellipse at top right, rgba(194,65,12,0.05), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(30,64,175,0.04), transparent 70%);
+}
+
+/* ============ MERCURY FLUID CANVAS (background, persistent) ============ */
+.fluid-canvas{
+  position:fixed;
+  inset:0;
+  width:100%; height:100%;
+  z-index:1;
+  pointer-events:none;
+  mix-blend-mode:multiply;
+  opacity:0.5;
+}
+
+/* ============ CUSTOM CURSOR (laboratory crosshair) ============ */
+.cursor-ring{
+  position:fixed;
+  width:30px; height:30px;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:1000;
+  transform:translate(-50%,-50%);
+  mix-blend-mode:difference;
+  transition:width 0.25s, height 0.25s, opacity 0.2s;
+  will-change:transform;
+}
+.cursor-dot{
+  position:fixed;
+  width:4px; height:4px;
+  background:var(--coral);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:1001;
+  transform:translate(-50%,-50%);
+  will-change:transform;
+}
+.cursor-cross{
+  position:fixed;
+  pointer-events:none;
+  z-index:999;
+  width:60px; height:60px;
+  transform:translate(-50%,-50%);
+  opacity:0.4;
+}
+.cursor-cross svg{ width:100%; height:100% }
+.cursor-cross line{ stroke:var(--ink); stroke-width:0.5 }
+.is-hovering .cursor-ring{ width:50px; height:50px; border-color:var(--coral) }
+.is-hovering .cursor-dot{ width:8px; height:8px }
+
+/* ============ HUD (persistent) ============ */
+.hud{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:50;
+}
+.hud-tl{
+  position:absolute;
+  top:32px; left:40px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-family:var(--f-d);
+  font-size:22px;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+}
+.brand-mark{
+  position:relative;
+  width:20px; height:20px;
+  flex-shrink:0;
+  display:inline-block;
+}
+.brand-mark::before,
+.brand-mark::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:0.5px solid var(--ink);
+  border-radius:50%;
+}
+.brand-mark::after{
+  inset:5px;
+  background:var(--coral);
+  border:none;
+}
+.brand-name{
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  font-weight:300;
+  color:var(--ink);
+  letter-spacing:-0.03em;
+}
+.feat{
+  font-family:var(--f-m);
+  font-size:9px;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
+  position:relative;
+  top:1px;
+}
+.collab{
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 60, 'WONK' 0;
+  font-weight:400;
+  color:var(--coral);
+  letter-spacing:-0.025em;
+}
+
+.hud-tr{
+  position:absolute;
+  top:36px; right:40px;
+  font-family:var(--f-m);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.hud-tr .meta-1{ display:flex; align-items:center; gap:8px }
+.hud-tr .meta-1::before{
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--coral);
+  box-shadow:0 0 10px var(--coral);
+  animation:livePulse 1.6s ease-in-out infinite;
+}
+@keyframes livePulse{ 0%,100%{opacity:1} 50%{opacity:0.4} }
+.hud-tr .counter{ color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums }
+
+.hud-progress{
+  position:absolute;
+  right:40px; top:50%;
+  transform:translateY(-50%);
+  width:1px; height:280px;
+  background:var(--line);
+}
+.hud-progress-fill{
+  position:absolute;
+  top:0; left:-1px;
+  width:3px; height:0%;
+  background:var(--coral);
+}
+.hud-progress-marks{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hud-progress-marks span{
+  width:9px; height:1px;
+  background:var(--ink-3);
+  margin-left:-4px;
+  position:relative;
+}
+.hud-progress-marks span::after{
+  content:attr(data-act);
+  position:absolute;
+  left:-44px; top:-5px;
+  font-family:var(--f-m);
+  font-size:8px;
+  letter-spacing:0.18em;
+  color:var(--ink-3);
+  text-align:right;
+  width:36px;
+}
+
+.hud-bl{
+  position:absolute;
+  bottom:36px; left:40px;
+  font-family:var(--f-m);
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex; flex-direction:column; gap:4px;
+}
+.hud-bl strong{ color:var(--ink); font-weight:500 }
+
+.hud-br{
+  position:absolute;
+  bottom:36px; right:40px;
+  font-family:var(--f-m);
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.hud-br .arrow{
+  display:inline-block;
+  animation:nudge 2.4s ease-in-out infinite;
+}
+@keyframes nudge{
+  0%,100%{ transform:translateY(0) }
+  50%{ transform:translateY(4px) }
+}
+
+/* ============ MANIFESTO STAGE ============ */
+.manifesto{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  z-index:2;
+}
+.stage{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.act{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 80px;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+}
+.act.is-active{ opacity:1; pointer-events:auto }
+.act-heading{
+  font-family:var(--f-d);
+  font-weight:200;
+  line-height:0.92;
+  letter-spacing:-0.045em;
+  color:var(--ink);
+  will-change:transform, opacity;
+}
+
+/* ---- ACT 1 · BRAND · "tsc labs." monumental ---- */
+.act-1 .accent-mark{
+  display:block;
+  font-family:var(--f-m);
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin-bottom:28px;
+  font-weight:500;
+}
+.act-1 .act-heading{
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(72px, 18vw, 320px);
+  text-transform:lowercase;
+  letter-spacing:-0.07em;
+  filter:url(#liquidDistort);
+}
+.act-1 .thesis-line{
+  margin-top:24px;
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 36, 'SOFT' 60, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(16px, 1.6vw, 22px);
+  color:var(--ink-2);
+  letter-spacing:-0.01em;
+}
+
+/* ---- ACT 2 · DIAGNÓSTICO FLASH (3 stat blocks rapid) ---- */
+.act-2{ flex-direction:column; gap:24px }
+.act-2 .stat-row{
+  display:flex;
+  align-items:baseline;
+  gap:36px;
+  font-family:var(--f-d);
+  font-weight:300;
+}
+.act-2 .stat-num{
+  font-variation-settings:'opsz' 144, 'SOFT' 20, 'WONK' 1;
+  font-size:clamp(80px, 16vw, 220px);
+  line-height:0.85;
+  letter-spacing:-0.06em;
+  color:var(--ink);
+}
+.act-2 .stat-num em{
+  font-style:italic;
+  font-variation-settings:'opsz' 96, 'SOFT' 80, 'WONK' 1;
+  color:var(--teal);
+}
+.act-2 .stat-label{
+  font-family:var(--f-m);
+  font-size:13px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  max-width:240px;
+  text-align:left;
+  line-height:1.5;
+}
+.act-2 .stat-closer{
+  margin-top:36px;
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 60, 'SOFT' 70, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(20px, 2.4vw, 34px);
+  color:var(--coral);
+  letter-spacing:-0.02em;
+}
+
+/* ---- ACT 3 · TESIS · "El stack cambia. El substrate permanece." ---- */
+.act-3{ flex-direction:column; gap:8px }
+.act-3 .act-heading{
+  font-variation-settings:'opsz' 96, 'SOFT' 60, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(48px, 8vw, 140px);
+  line-height:1.02;
+}
+.act-3 .h-key-changes{
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  color:var(--teal);
+  font-weight:300;
+}
+.act-3 .h-key-stays{
+  font-weight:600;
+  font-variation-settings:'opsz' 96, 'SOFT' 20, 'WONK' 0;
+  color:var(--ink);
+  background-image:linear-gradient(transparent 70%, var(--coral) 70%);
+  background-size:0% 100%;
+  background-repeat:no-repeat;
+}
+
+/* ---- ACT 4 · 6 MÓDULOS GRID ---- */
+.act-4{ flex-direction:column; gap:32px; padding:0 60px }
+.act-4 .act-num{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(120px, 22vw, 360px);
+  color:var(--amber);
+  line-height:0.85;
+  letter-spacing:-0.07em;
+}
+.act-4 .modulos-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:0;
+  max-width:1200px;
+  width:100%;
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.act-4 .modulo{
+  padding:18px 22px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-family:var(--f-d);
+  position:relative;
+  background:rgba(255,255,255,0.35);
+}
+.act-4 .modulo .num{
+  font-family:var(--f-m);
+  font-size:10px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--coral);
+  font-weight:600;
+  margin-bottom:8px;
+  display:block;
+}
+.act-4 .modulo .name{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 24, 'SOFT' 50, 'WONK' 0;
+  font-size:clamp(16px, 1.5vw, 22px);
+  font-weight:400;
+  color:var(--ink);
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  margin-bottom:6px;
+}
+.act-4 .modulo .stack{
+  font-family:var(--f-m);
+  font-size:9px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+.act-4 .modulo.emph{
+  background:rgba(194,65,12,0.06);
+}
+.act-4 .modulo.emph .name{ color:var(--coral); font-weight:500 }
+.act-4 .closer{
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 36, 'SOFT' 70, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(16px, 1.4vw, 22px);
+  color:var(--ink-2);
+  margin-top:12px;
+}
+
+/* ---- ACT 5 · ROADMAP TIMELINE ---- */
+.act-5{ flex-direction:column; gap:28px }
+.act-5 .act-num{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(140px, 26vw, 440px);
+  color:var(--indigo);
+  line-height:0.85;
+  letter-spacing:-0.07em;
+}
+.act-5 .act-sub{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 36, 'SOFT' 50, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(20px, 2.6vw, 38px);
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.act-5 .act-sub em{
+  font-style:italic;
+  color:var(--indigo);
+}
+.act-5 .timeline-svg{
+  width:min(900px, 90vw);
+  height:64px;
+  overflow:visible;
+}
+.act-5 .timeline-rail{ stroke:var(--line); stroke-width:1; fill:none }
+.act-5 .timeline-fill{ stroke:var(--indigo); stroke-width:2; fill:none; stroke-linecap:round }
+.act-5 .timeline-tick{ stroke:var(--ink); stroke-width:1 }
+.act-5 .timeline-label{
+  font-family:var(--f-m);
+  font-size:9px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  fill:var(--ink-2);
+}
+.act-5 .timeline-phase{
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 24, 'SOFT' 60, 'WONK' 0;
+  font-size:11px;
+  fill:var(--coral);
+}
+
+/* ---- ACT 6 · CINCO AGENTES (MotionPath curve) ---- */
+.act-6{ flex-direction:column; gap:18px; position:relative }
+.act-6 .act-heading{
+  font-variation-settings:'opsz' 144, 'SOFT' 40, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(72px, 14vw, 220px);
+  font-style:italic;
+  color:var(--crimson);
+  line-height:0.92;
+  letter-spacing:-0.05em;
+}
+.act-6 .agentes-curve-wrap{
+  position:relative;
+  width:min(960px, 92vw);
+  height:140px;
+}
+.act-6 .agentes-curve-svg{
+  width:100%; height:100%;
+  overflow:visible;
+}
+.act-6 .agentes-curve-path{
+  stroke:var(--ink-3);
+  stroke-width:1;
+  stroke-dasharray:2 4;
+  fill:none;
+}
+.act-6 .agente-label{
+  position:absolute;
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 24, 'SOFT' 60, 'WONK' 0;
+  font-size:14px;
+  font-weight:400;
+  color:var(--ink);
+  background:rgba(244,239,229,0.85);
+  padding:6px 12px;
+  border:0.5px solid var(--line);
+  border-radius:2px;
+  white-space:nowrap;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  font-style:italic;
+}
+.act-6 .closer{
+  font-family:var(--f-m);
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
+}
+
+/* ---- ACT 7 · INVERSIÓN ---- */
+.act-7{ flex-direction:column; gap:20px }
+.act-7 .price-prefix{
+  font-family:var(--f-m);
+  font-size:14px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
+}
+.act-7 .price{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(120px, 22vw, 380px);
+  color:var(--gold);
+  line-height:0.85;
+  letter-spacing:-0.07em;
+  font-variant-numeric:tabular-nums;
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+}
+.act-7 .price .currency{
+  font-size:0.45em;
+  color:var(--ink-2);
+  font-weight:300;
+  font-style:normal;
+}
+.act-7 .price em{
+  font-style:italic;
+  font-variation-settings:'opsz' 96, 'SOFT' 80, 'WONK' 1;
+  font-size:0.55em;
+  color:var(--ink);
+  margin-left:6px;
+  align-self:center;
+}
+.act-7 .price-meta{
+  display:flex;
+  gap:32px;
+  font-family:var(--f-m);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.act-7 .price-meta strong{ color:var(--ink); font-weight:500 }
+.act-7 .price-fineprint{
+  font-family:var(--f-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 24, 'SOFT' 60, 'WONK' 0;
+  font-size:14px;
+  color:var(--ink-3);
+  margin-top:8px;
+}
+
+/* ---- ACT 8 · FINALE / CTA ---- */
+.act-8{ flex-direction:column; gap:24px }
+.act-8 .act-heading{
+  font-variation-settings:'opsz' 144, 'SOFT' 80, 'WONK' 1;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(60px, 12vw, 220px);
+  line-height:1;
+  color:var(--ink);
+}
+.act-8 .underline-svg{
+  width:clamp(220px, 36vw, 540px);
+  height:36px;
+  overflow:visible;
+}
+.act-8 .underline-path{
+  stroke:var(--gold);
+  stroke-width:2.5;
+  fill:none;
+  stroke-linecap:round;
+}
+.act-8 .cta-actions{
+  display:flex;
+  gap:24px;
+  margin-top:32px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.act-8 .cta-btn{
+  font-family:var(--f-m);
+  font-size:12px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--ink);
+  text-decoration:none;
+  padding:18px 28px;
+  border:0.5px solid var(--ink);
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-weight:500;
+  background:rgba(255,255,255,0.55);
+  position:relative;
+  transition:transform 0.4s cubic-bezier(.16,1,.3,1);
+  will-change:transform;
+}
+.act-8 .cta-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform 0.5s cubic-bezier(.65,0,.35,1);
+  z-index:-1;
+}
+.act-8 .cta-btn:hover{ color:var(--paper) }
+.act-8 .cta-btn:hover::before{ transform:scaleX(1) }
+.act-8 .cta-btn.alt{
+  border-color:var(--coral);
+  color:var(--coral);
+}
+.act-8 .cta-btn.alt::before{ background:var(--coral) }
+.act-8 .cta-meta{
+  margin-top:18px;
+  font-family:var(--f-m);
+  font-size:10px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+
+/* ============ MORPHING SHAPE (drifts between acts) ============ */
+.shape-canvas{
+  position:absolute;
+  bottom:11vh;
+  left:50%;
+  transform:translateX(-50%);
+  width:64px;
+  height:64px;
+  z-index:4;
+  opacity:0;
+  pointer-events:none;
+}
+.shape-canvas svg{
+  width:100%; height:100%;
+  overflow:visible;
+}
+.shape-path{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.5;
+}
+.shape-path.fill-mode{ fill:rgba(194,65,12,0.1) }
+
+/* ============ SVG FILTER DEFS (offscreen) ============ */
+.svg-defs{ position:absolute; width:0; height:0; overflow:hidden }
+
+/* ============ MOBILE ============ */
+@media (max-width: 900px){
+  body{ cursor:auto }
+  .cursor-ring, .cursor-dot, .cursor-cross{ display:none }
+  .hud-tl{ top:18px; left:20px; font-size:14px; gap:8px }
+  .brand-mark{ width:14px; height:14px }
+  .brand-mark::after{ inset:3px }
+  .feat{ font-size:8px }
+  .hud-tr{ top:22px; right:20px; font-size:9px; gap:8px }
+  .hud-tr .meta-1 strong{ display:none }
+  .hud-progress{ display:none }
+  .hud-bl, .hud-br{ left:20px; right:20px; bottom:20px; font-size:8px }
+  .act{ padding:0 24px }
+  .act-1 .act-heading{ font-size:clamp(56px, 22vw, 160px) }
+  .act-2 .stat-row{ flex-direction:column; gap:8px; align-items:flex-start }
+  .act-2 .stat-num{ font-size:clamp(56px, 22vw, 100px) }
+  .act-4 .modulos-grid{ grid-template-columns:repeat(2,1fr) }
+  .act-4 .act-num{ font-size:clamp(80px, 22vw, 160px) }
+  .act-5 .act-num{ font-size:clamp(96px, 26vw, 200px) }
+  .act-5 .timeline-svg{ width:90vw; height:72px }
+  .act-6 .act-heading{ font-size:clamp(48px, 16vw, 100px) }
+  .act-6 .agentes-curve-wrap{ height:280px }
+  .act-7 .price{ font-size:clamp(72px, 22vw, 160px) }
+  .act-7 .price-meta{ gap:14px; flex-direction:column; align-items:center; text-align:center }
+  .act-8 .act-heading{ font-size:clamp(44px, 14vw, 90px) }
+  .act-8 .cta-actions{ flex-direction:column; width:100%; gap:14px }
+  .act-8 .cta-btn{ justify-content:space-between }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .fluid-canvas{ display:none }
+  .cursor-ring, .cursor-dot, .cursor-cross{ display:none }
+  body{ cursor:auto }
+  *, *::before, *::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+  .act{ opacity:1 !important; position:relative; padding:80px 24px; height:auto; pointer-events:auto }
+  .manifesto{ height:auto; overflow:visible }
+  .stage{ position:relative; flex-direction:column; gap:40px }
+  .act-1 .act-heading{ filter:none }
+  .hud-progress, .hud-br{ display:none }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG filter defs -->
+<svg class="svg-defs" aria-hidden="true">
+  <defs>
+    <filter id="liquidDistort" x="-3%" y="-3%" width="106%" height="106%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.013 0.020" numOctaves="2" seed="3" result="turb">
+        <animate attributeName="seed" values="3;9;3" dur="14s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Mercury fluid background -->
+<canvas class="fluid-canvas" aria-hidden="true"></canvas>
+
+<!-- Custom cursor -->
+<div class="cursor-cross" aria-hidden="true">
+  <svg viewBox="0 0 60 60"><line x1="30" y1="0" x2="30" y2="60"/><line x1="0" y1="30" x2="60" y2="30"/></svg>
+</div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-tl">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">eigen atlas</span>
+    <span class="feat">feat.</span>
+    <span class="collab">tsc labs</span>
+  </div>
+  <div class="hud-tr">
+    <span class="meta-1"><strong>TL;DR</strong> · 5 min · MMXXVI</span>
+    <span><span class="counter" id="counter">01</span> / 08</span>
+  </div>
+  <div class="hud-progress">
+    <div class="hud-progress-marks">
+      <span data-act="01"></span>
+      <span data-act="02"></span>
+      <span data-act="03"></span>
+      <span data-act="04"></span>
+      <span data-act="05"></span>
+      <span data-act="06"></span>
+      <span data-act="07"></span>
+      <span data-act="08"></span>
+    </div>
+    <div class="hud-progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="hud-bl">
+    <span><strong>EIGEN-PROP-TSC-2026/01</strong></span>
+    <span>confidencial · principals only</span>
+  </div>
+  <div class="hud-br" id="hud-br">
+    <span>scroll</span>
+    <span class="arrow">↓</span>
+  </div>
+</div>
+
+<!-- MANIFESTO STAGE · 8 acts pinned -->
+<section class="manifesto" id="manifesto">
+  <div class="stage">
+
+    <!-- ACT 1 · BRAND -->
+    <div class="act act-1 is-active">
+      <div>
+        <span class="accent-mark" data-eyebrow>tl;dr · ocho actos · cinco minutos</span>
+        <h1 class="act-heading"><span class="word">tsc labs.</span></h1>
+        <p class="thesis-line">laboratorio cosmético · biotec · jalisco · mmxxvi</p>
+      </div>
+    </div>
+
+    <!-- ACT 2 · DIAGNÓSTICO FLASH -->
+    <div class="act act-2">
+      <div class="stat-row">
+        <span class="stat-num"><em id="stat-50">50</em></span>
+        <span class="stat-label">Fórmulas activas en Sheets · sin substrate</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num"><em id="stat-13">13</em></span>
+        <span class="stat-label">Clientes B2B · sin portal multi-tenant</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num"><em id="stat-30">30</em></span>
+        <span class="stat-label">Leads/mes detenidos · pauta apagada por saturación operacional</span>
+      </div>
+      <div class="stat-closer">El stack está distribuido. Falta el substrate.</div>
+    </div>
+
+    <!-- ACT 3 · TESIS -->
+    <div class="act act-3">
+      <h2 class="act-heading">El <span class="h-key-changes" id="key-changes">stack</span><br>cambia.</h2>
+      <h2 class="act-heading">El <span class="h-key-stays" id="key-stays">substrate</span><br>permanece.</h2>
+    </div>
+
+    <!-- ACT 4 · 6 MÓDULOS -->
+    <div class="act act-4">
+      <span class="act-num" id="act4-num">06</span>
+      <div class="modulos-grid">
+        <div class="modulo">
+          <span class="num">01 · PORTAL</span>
+          <div class="name">Operaciones internas</div>
+          <div class="stack">D1 · DO · WORKERS</div>
+        </div>
+        <div class="modulo">
+          <span class="num">02 · BI</span>
+          <div class="name">Business intelligence + Data Science</div>
+          <div class="stack">WORKERS ANALYTICS · CLAUDE</div>
+        </div>
+        <div class="modulo">
+          <span class="num">03 · PORTAL</span>
+          <div class="name">Talent / clientes B2B</div>
+          <div class="stack">DO · MULTI-TENANT</div>
+        </div>
+        <div class="modulo emph">
+          <span class="num">04 · EXTENSIÓN</span>
+          <div class="name">Distribución habilitada</div>
+          <div class="stack">DEALS · CONTRATOS · PAGOS</div>
+        </div>
+        <div class="modulo">
+          <span class="num">05 · CAPA</span>
+          <div class="name">Cinco agentes productivizados</div>
+          <div class="stack">CRON · CLAUDE · MCP</div>
+        </div>
+        <div class="modulo">
+          <span class="num">06 · CAPA</span>
+          <div class="name">ERP + Vault + supply chain</div>
+          <div class="stack">D1 · R2 · NOM-141</div>
+        </div>
+      </div>
+      <p class="closer">Una arquitectura. Un equipo. Un substrate.</p>
+    </div>
+
+    <!-- ACT 5 · ROADMAP -->
+    <div class="act act-5">
+      <span class="act-num" id="act5-num">12</span>
+      <span class="act-sub"><em>meses</em> a producción · F0 → F5.</span>
+      <svg class="timeline-svg" viewBox="0 0 900 64" preserveAspectRatio="xMidYMid meet">
+        <!-- Rail -->
+        <line class="timeline-rail" x1="0" y1="32" x2="900" y2="32"/>
+        <!-- Fill (drawn) -->
+        <line class="timeline-fill" id="timeline-fill-line" x1="0" y1="32" x2="900" y2="32"/>
+        <!-- Phase ticks -->
+        <g id="timeline-ticks">
+          <g transform="translate(20, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F0</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">discovery</text>
+          </g>
+          <g transform="translate(180, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F1</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">substrate</text>
+          </g>
+          <g transform="translate(340, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F2</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">portales</text>
+          </g>
+          <g transform="translate(500, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F3</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">erp + vault</text>
+          </g>
+          <g transform="translate(680, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F4</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">bi · queryable</text>
+          </g>
+          <g transform="translate(880, 32)">
+            <line class="timeline-tick" y1="-8" y2="8"/>
+            <text class="timeline-label" x="0" y="-14" text-anchor="middle">F5</text>
+            <text class="timeline-phase" x="0" y="26" text-anchor="middle">agentes</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ACT 6 · CINCO AGENTES (MotionPath labels) -->
+    <div class="act act-6">
+      <h2 class="act-heading">cinco agentes.</h2>
+      <div class="agentes-curve-wrap">
+        <svg class="agentes-curve-svg" viewBox="0 0 960 140" preserveAspectRatio="xMidYMid meet">
+          <path id="agentes-path" class="agentes-curve-path" d="M 40 100 Q 220 0, 480 70 T 920 40"/>
+        </svg>
+        <span class="agente-label" id="ag-1">Lead Qualifier</span>
+        <span class="agente-label" id="ag-2">Proveeduría</span>
+        <span class="agente-label" id="ag-3">Social Media</span>
+        <span class="agente-label" id="ag-4">R&amp;D Scout</span>
+        <span class="agente-label" id="ag-5">Internal Ops</span>
+      </div>
+      <p class="closer">capa agéntica · F5 · workers + claude + mcp</p>
+    </div>
+
+    <!-- ACT 7 · INVERSIÓN -->
+    <div class="act act-7">
+      <span class="price-prefix">setup completo · 12 meses</span>
+      <span class="price">
+        <span class="currency">$</span><span id="price-num">1.76</span><em>M MXN</em>
+      </span>
+      <div class="price-meta">
+        <span><strong>50%</strong> firma</span>
+        <span><strong>50%</strong> hitos validados</span>
+        <span><strong>Net 15</strong></span>
+        <span><strong>IP 100%</strong> TSC</span>
+      </div>
+      <p class="price-fineprint">retainer post-launch se discute aparte · operación continua</p>
+    </div>
+
+    <!-- ACT 8 · FINALE / CTA -->
+    <div class="act act-8">
+      <h2 class="act-heading">Para siempre queryable.</h2>
+      <svg class="underline-svg" viewBox="0 0 540 36" preserveAspectRatio="none">
+        <path class="underline-path" id="finale-underline" d="M 6 22 C 90 4, 200 28, 280 14 S 440 28, 534 12"/>
+      </svg>
+      <div class="cta-actions">
+        <a class="cta-btn" data-magnetic href="index.html"><span>← propuesta completa</span></a>
+        <a class="cta-btn alt" data-magnetic href="mailto:rc@eigenatlas.com?subject=Discovery%20TSC%20LABS"><span>agendar discovery →</span></a>
+      </div>
+      <div class="cta-meta">eigen atlas · gdl · mx · raul chio león</div>
+    </div>
+
+  </div>
+
+  <!-- Morphing shape -->
+  <div class="shape-canvas" id="shape-canvas">
+    <svg viewBox="0 0 64 64">
+      <path class="shape-path" id="shape-path" d="M 32 4 A 28 28 0 1 0 32 60 A 28 28 0 1 0 32 4 Z"/>
+    </svg>
+  </div>
+</section>
+
+<script>
+// ============= MERCURY PARTICLE FIELD (Canvas 2D, persistent background) =============
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+  var canvas = document.querySelector('.fluid-canvas');
+  if (!canvas) return;
+
+  var ctx = canvas.getContext('2d', { alpha:true });
+  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  var W=0, H=0;
+  function resize(){
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W*DPR);
+    canvas.height = Math.floor(H*DPR);
+    canvas.style.width = W+'px';
+    canvas.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var COUNT = Math.min(2200, Math.max(700, Math.floor((W*H)/1400)));
+
+  // Perlin-style value noise
+  var perm = new Uint8Array(512);
+  (function(){
+    var p = [];
+    for (var i=0;i<256;i++) p.push(i);
+    for (var i=255;i>0;i--){ var j = Math.floor(Math.random()*(i+1)); var tt=p[i];p[i]=p[j];p[j]=tt; }
+    for (var i=0;i<512;i++) perm[i] = p[i&255];
+  })();
+  function fade(t){ return t*t*t*(t*(t*6-15)+10) }
+  function lerp(a,b,t){ return a + t*(b-a) }
+  function grad(h,x,y){ var v = (h&1)===0?x:-x; var u = (h&2)===0?y:-y; return v+u; }
+  function pnoise(x,y){
+    var X = Math.floor(x)&255, Y = Math.floor(y)&255;
+    var xf = x - Math.floor(x), yf = y - Math.floor(y);
+    var u = fade(xf), v = fade(yf);
+    var aa = perm[perm[X]+Y], ab = perm[perm[X]+Y+1];
+    var ba = perm[perm[X+1]+Y], bb = perm[perm[X+1]+Y+1];
+    var x1 = lerp(grad(aa,xf,yf), grad(ba,xf-1,yf), u);
+    var x2 = lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
+    return (lerp(x1,x2,v)+1)*0.5;
+  }
+
+  var particles = new Array(COUNT);
+  for (var i=0;i<COUNT;i++){
+    particles[i] = {
+      x: Math.random()*W, y: Math.random()*H,
+      vx:0, vy:0,
+      r: 0.5 + Math.random()*1.6,
+      shade: Math.floor(Math.random()*5)
+    };
+  }
+
+  // mouse
+  var mouse = { x:-9999, y:-9999, active:false };
+  var smooth = { x:-9999, y:-9999 };
+  window.addEventListener('pointermove', function(e){
+    mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true;
+  });
+  window.addEventListener('pointerleave', function(){ mouse.active = false });
+
+  // palette: ink · mercury · champagne · coral-soft · gold-soft
+  var col = [
+    'rgba(10,10,10,',
+    'rgba(140,140,150,',
+    'rgba(181,164,138,',
+    'rgba(194,65,12,',
+    'rgba(161,98,7,'
+  ];
+
+  var t = 0, raf=0;
+  function frame(){
+    t += 0.0035;
+    ctx.clearRect(0,0,W,H);
+
+    smooth.x += (mouse.x - smooth.x)*0.08;
+    smooth.y += (mouse.y - smooth.y)*0.08;
+
+    ctx.globalCompositeOperation = 'multiply';
+
+    for (var i=0;i<COUNT;i++){
+      var p = particles[i];
+      var n = pnoise(p.x*0.0028 + t, p.y*0.0028 - t);
+      var ang = n * Math.PI * 2;
+      p.vx += Math.cos(ang)*0.08;
+      p.vy += Math.sin(ang)*0.08;
+
+      if (mouse.active){
+        var dx = smooth.x - p.x, dy = smooth.y - p.y;
+        var d2 = dx*dx + dy*dy;
+        if (d2 < 50000){
+          var d = Math.sqrt(d2)+0.001;
+          var f = 1 - d/224;
+          p.vx += (-dy/d)*f*1.6 + (dx/d)*f*0.3;
+          p.vy += ( dx/d)*f*1.6 + (dy/d)*f*0.3;
+        }
+      }
+
+      p.vx *= 0.92; p.vy *= 0.92;
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = W+10; else if (p.x > W+10) p.x = -10;
+      if (p.y < -10) p.y = H+10; else if (p.y > H+10) p.y = -10;
+
+      var alpha = 0.07 + (i%9)/110;
+      ctx.fillStyle = col[p.shade] + alpha + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) cancelAnimationFrame(raf);
+    else raf = requestAnimationFrame(frame);
+  });
+})();
+</script>
+
+<script>
+// ============= CUSTOM CURSOR =============
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || window.innerWidth < 900) return;
+
+  var ring = document.querySelector('.cursor-ring');
+  var dot = document.querySelector('.cursor-dot');
+  var cross = document.querySelector('.cursor-cross');
+  if (!ring || !dot || !cross) return;
+
+  var mx = window.innerWidth/2, my = window.innerHeight/2;
+  var rx = mx, ry = my;
+  var cx = mx, cy = my;
+
+  document.addEventListener('pointermove', function(e){
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = 'translate('+ (mx-2) +'px,'+ (my-2) +'px)';
+  });
+
+  function tick(){
+    rx += (mx - rx)*0.18;
+    ry += (my - ry)*0.18;
+    cx += (mx - cx)*0.10;
+    cy += (my - cy)*0.10;
+    ring.style.transform = 'translate('+ (rx-15) +'px,'+ (ry-15) +'px)';
+    cross.style.transform = 'translate('+ (cx-30) +'px,'+ (cy-30) +'px) rotate('+ ((rx+ry)*0.05) +'deg)';
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // hover affordance on links + buttons
+  document.querySelectorAll('a, button, [data-magnetic]').forEach(function(el){
+    el.addEventListener('pointerenter', function(){ document.body.classList.add('is-hovering'); });
+    el.addEventListener('pointerleave', function(){ document.body.classList.remove('is-hovering'); });
+  });
+})();
+</script>
+
+<script>
+// ============= MAGNETIC BUTTONS =============
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+  document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+    btn.addEventListener('pointermove', function(e){
+      var rect = btn.getBoundingClientRect();
+      var x = e.clientX - rect.left - rect.width/2;
+      var y = e.clientY - rect.top - rect.height/2;
+      btn.style.transform = 'translate('+ (x*0.15) +'px,'+ (y*0.15) +'px)';
+    });
+    btn.addEventListener('pointerleave', function(){
+      btn.style.transform = 'translate(0,0)';
+    });
+  });
+})();
+</script>
+
+<script>
+// ============= MASTER MANIFESTO TIMELINE · 8 ACTS =============
+(function(){
+  if (typeof gsap === 'undefined') return;
+
+  try {
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.SplitText) gsap.registerPlugin(SplitText);
+    if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
+    if (window.MorphSVGPlugin) gsap.registerPlugin(MorphSVGPlugin);
+    if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
+    if (window.MotionPathPlugin) gsap.registerPlugin(MotionPathPlugin);
+  } catch(e){}
+
+  var counter = document.getElementById('counter');
+  var progressFill = document.getElementById('progress-fill');
+  var shapeCanvas = document.getElementById('shape-canvas');
+  var shapePath = document.getElementById('shape-path');
+
+  // Shapes: 9 forms drift through transitions
+  var SHAPES = {
+    circle:   'M 32 4 A 28 28 0 1 0 32 60 A 28 28 0 1 0 32 4 Z',
+    square:   'M 4 4 L 60 4 L 60 60 L 4 60 Z',
+    triangle: 'M 32 4 L 60 56 L 4 56 Z',
+    diamond:  'M 32 4 L 60 32 L 32 60 L 4 32 Z',
+    hex:      'M 32 4 L 56 18 L 56 46 L 32 60 L 8 46 L 8 18 Z',
+    octagon:  'M 22 4 L 42 4 L 60 22 L 60 42 L 42 60 L 22 60 L 4 42 L 4 22 Z',
+    cross:    'M 26 4 L 38 4 L 38 26 L 60 26 L 60 38 L 38 38 L 38 60 L 26 60 L 26 38 L 4 38 L 4 26 L 26 26 Z',
+    star:     'M 32 4 L 38 24 L 60 24 L 42 38 L 50 60 L 32 46 L 14 60 L 22 38 L 4 24 L 26 24 Z',
+    flower:   'M 32 4 Q 44 16 44 32 Q 44 48 32 60 Q 20 48 20 32 Q 20 16 32 4 Z'
+  };
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced){
+    document.querySelectorAll('.act').forEach(function(a){ a.classList.add('is-active') });
+    return;
+  }
+
+  var run = function(){
+    if (!window.SplitText) return;
+
+    // Pre-split chars/words per act
+    var split1 = new SplitText('.act-1 .word', { type:'chars' });
+    var split2 = new SplitText('.act-2 .stat-label', { type:'chars' });
+    var split3a = new SplitText('.act-3 h2:nth-child(1)', { type:'chars,words' });
+    var split3b = new SplitText('.act-3 h2:nth-child(2)', { type:'chars,words' });
+    var split6 = new SplitText('.act-6 .act-heading', { type:'chars' });
+    var split8 = new SplitText('.act-8 .act-heading', { type:'chars' });
+
+    // Initial states
+    gsap.set([split2.chars, split3a.chars, split3b.chars, split6.chars, split8.chars], { opacity:0, y:30 });
+    gsap.set('.act-2 .stat-num em, .act-2 .stat-closer', { opacity:0, y:30 });
+    gsap.set('.act-4 #act4-num, .act-4 .modulo, .act-4 .closer', { opacity:0, y:30 });
+    gsap.set('.act-5 #act5-num, .act-5 .act-sub, .act-5 .timeline-svg', { opacity:0, y:30 });
+    gsap.set('.act-6 .agente-label', { opacity:0 });
+    gsap.set('.act-6 .closer', { opacity:0 });
+    gsap.set('.act-7 .price-prefix, .act-7 .price, .act-7 .price-meta, .act-7 .price-fineprint', { opacity:0, y:30 });
+    gsap.set('.act-8 .underline-svg, .act-8 .cta-actions, .act-8 .cta-meta', { opacity:0, y:30 });
+    gsap.set('.act-1 .accent-mark, .act-1 .thesis-line', { opacity:0, y:12 });
+    gsap.set('#finale-underline', { drawSVG:'0%' });
+    gsap.set('#timeline-fill-line', { drawSVG:'0%' });
+
+    // ============ INTRO ============
+    var intro = gsap.timeline({ delay:0.2 });
+    intro
+      .from('.hud-tl, .hud-tr', { opacity:0, y:-10, duration:0.6, stagger:0.08, ease:'power3.out' })
+      .from('.hud-progress', { opacity:0, scaleY:0.4, transformOrigin:'top center', duration:0.7, ease:'power3.out' }, '<0.1')
+      .from('.hud-bl, .hud-br', { opacity:0, y:10, duration:0.5, ease:'power3.out' }, '<')
+      .to('.act-1 .accent-mark', { opacity:1, y:0, duration:0.6, ease:'power3.out' }, '-=0.3')
+      .from(split1.chars, {
+        opacity:0, y:80, rotationZ:-8,
+        duration:0.95, stagger:0.04, ease:'power3.out'
+      }, '-=0.3')
+      .to('.act-1 .thesis-line', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, '-=0.2');
+
+    // ============ MASTER SCROLL TIMELINE ============
+    var masterTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.manifesto',
+        start: 'top top',
+        end: '+=700%',
+        pin: true,
+        scrub: 1.2,
+        anticipatePin: 1,
+        onUpdate: function(self){
+          if (progressFill) progressFill.style.height = (self.progress*100) + '%';
+          var actIdx = Math.min(Math.floor(self.progress*8) + 1, 8);
+          var padded = String(actIdx).padStart(2,'0');
+          if (counter && counter.textContent !== padded) counter.textContent = padded;
+        }
+      }
+    });
+
+    masterTl.to(shapeCanvas, { opacity:0.7, duration:0.4 }, 0);
+
+    // ---------- T1 · Act 1 → Act 2 (diagnóstico flash) ----------
+    var T1 = 0;
+    masterTl
+      .to(split1.chars, {
+        opacity:0, y:-80, rotationZ:6,
+        duration:1, stagger:{ each:0.025, from:'random' },
+        ease:'power2.in'
+      }, T1)
+      .to('.act-1 .accent-mark, .act-1 .thesis-line', { opacity:0, duration:0.4 }, T1)
+      .set('.act-1', { className:'act act-1' }, T1+0.99)
+      .set('.act-2', { className:'act act-2 is-active' }, T1+1)
+      // Stat numbers count up + scramble
+      .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.18, ease:'power3.out' }, T1+1)
+      .to('#stat-50', { scrambleText:{ text:'50', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.1)
+      .to('#stat-13', { scrambleText:{ text:'13', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.3)
+      .to('#stat-30', { scrambleText:{ text:'30', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.5)
+      .to(split2.chars, {
+        opacity:1, y:0, duration:0.7, stagger:0.005, ease:'power3.out'
+      }, T1+1.2)
+      .to('.act-2 .stat-closer', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+1.9);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.square }, duration:1.4, ease:'power2.inOut' }, T1+0.4);
+    }
+
+    // ---------- T2 · Act 2 → Act 3 (tesis bilingüe) ----------
+    var T2 = 3;
+    masterTl
+      .to('.act-2 .stat-num em, .act-2 .stat-label, .act-2 .stat-closer', {
+        opacity:0, y:-40, duration:0.7, stagger:0.04, ease:'power2.in'
+      }, T2)
+      .set('.act-2', { className:'act act-2' }, T2+0.79)
+      .set('.act-3', { className:'act act-3 is-active' }, T2+0.8)
+      .to(split3a.chars, {
+        opacity:1, y:0, duration:1.1, stagger:0.025, ease:'power3.out'
+      }, T2+0.8)
+      .to('#key-changes', {
+        scrambleText:{ text:'stack', chars:'lowerCase', revealDelay:0.1 },
+        duration:1.0, ease:'none'
+      }, T2+1.5)
+      .to(split3b.chars, {
+        opacity:1, y:0, duration:1.1, stagger:0.022, ease:'power3.out'
+      }, T2+1.8)
+      .to('#key-stays', {
+        scrambleText:{ text:'substrate', chars:'lowerCase', revealDelay:0.1 },
+        duration:1.2, ease:'none'
+      }, T2+2.5)
+      .to('.act-3 .h-key-stays', {
+        backgroundSize:'100% 100%',
+        duration:0.7, ease:'power3.inOut'
+      }, T2+3.0);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.triangle }, duration:1.6, ease:'power2.inOut' }, T2+1);
+    }
+
+    // ---------- T3 · Act 3 → Act 4 (06 módulos grid) ----------
+    var T3 = 7;
+    masterTl
+      .to([split3a.chars, split3b.chars], {
+        opacity:0, y:-50, rotationZ:-3,
+        duration:0.8, stagger:{ each:0.015, from:'random' }, ease:'power2.in'
+      }, T3)
+      .set('.act-3', { className:'act act-3' }, T3+0.79)
+      .set('.act-4', { className:'act act-4 is-active' }, T3+0.8)
+      .fromTo('#act4-num',
+        { opacity:0, y:60, scale:0.6 },
+        { opacity:1, y:0, scale:1, duration:1.1, ease:'power3.out' },
+        T3+0.8)
+      .to('#act4-num', {
+        scrambleText:{ text:'06', chars:'0123456789', revealDelay:0.3 },
+        duration:1.4, ease:'none'
+      }, T3+0.8)
+      .to('.act-4 .modulo', {
+        opacity:1, y:0, duration:0.55,
+        stagger:{ each:0.07, from:'start' },
+        ease:'power3.out'
+      }, T3+1.6)
+      .to('.act-4 .closer', { opacity:1, y:0, duration:0.6, ease:'power3.out' }, T3+2.4);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.diamond }, duration:1.4, ease:'power2.inOut' }, T3+0.6);
+    }
+
+    // ---------- T4 · Act 4 → Act 5 (roadmap timeline) ----------
+    var T4 = 10;
+    masterTl
+      .to('.act-4 #act4-num, .act-4 .modulo, .act-4 .closer', {
+        opacity:0, y:-40, duration:0.7, stagger:0.02, ease:'power2.in'
+      }, T4)
+      .set('.act-4', { className:'act act-4' }, T4+0.79)
+      .set('.act-5', { className:'act act-5 is-active' }, T4+0.8)
+      .fromTo('#act5-num',
+        { opacity:0, y:60, scale:0.6 },
+        { opacity:1, y:0, scale:1, duration:1.1, ease:'power3.out' },
+        T4+0.8)
+      .to('#act5-num', {
+        scrambleText:{ text:'12', chars:'0123456789', revealDelay:0.3 },
+        duration:1.2, ease:'none'
+      }, T4+0.8)
+      .to('.act-5 .act-sub', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T4+1.4)
+      .to('.act-5 .timeline-svg', { opacity:1, y:0, duration:0.5, ease:'power3.out' }, T4+1.6);
+
+    if (window.DrawSVGPlugin){
+      masterTl.fromTo('#timeline-fill-line',
+        { drawSVG:'0%' },
+        { drawSVG:'100%', duration:1.4, ease:'power2.inOut' },
+        T4+1.7);
+    }
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.hex }, duration:1.4, ease:'power2.inOut' }, T4+0.6);
+    }
+
+    // ---------- T5 · Act 5 → Act 6 (cinco agentes MotionPath) ----------
+    var T5 = 13;
+    masterTl
+      .to('.act-5 #act5-num, .act-5 .act-sub, .act-5 .timeline-svg', {
+        opacity:0, y:-40, duration:0.7, stagger:0.04, ease:'power2.in'
+      }, T5)
+      .set('.act-5', { className:'act act-5' }, T5+0.79)
+      .set('.act-6', { className:'act act-6 is-active' }, T5+0.8)
+      .fromTo(split6.chars,
+        { opacity:0, y:50, scale:0.95 },
+        { opacity:1, y:0, scale:1, duration:1.0, stagger:0.03, ease:'power3.out' },
+        T5+0.8);
+
+    // MotionPath labels along curve
+    if (window.MotionPathPlugin){
+      var labels = ['#ag-1','#ag-2','#ag-3','#ag-4','#ag-5'];
+      labels.forEach(function(sel, i){
+        var startProg = 0.04 + i*0.22;
+        masterTl.fromTo(sel,
+          { opacity:0 },
+          {
+            opacity:1, duration:0.5,
+            motionPath:{
+              path:'#agentes-path',
+              align:'#agentes-path',
+              alignOrigin:[0.5,0.5],
+              start:startProg,
+              end:startProg+0.001
+            },
+            ease:'none'
+          },
+          T5+1.7+i*0.15);
+      });
+    } else {
+      // Fallback: simple stagger reveal
+      masterTl.to('.act-6 .agente-label', { opacity:1, duration:0.5, stagger:0.12, ease:'power3.out' }, T5+1.7);
+    }
+
+    masterTl.to('.act-6 .closer', { opacity:1, duration:0.6, ease:'power3.out' }, T5+2.6);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.octagon }, duration:1.4, ease:'power2.inOut' }, T5+0.6);
+    }
+
+    // ---------- T6 · Act 6 → Act 7 (inversión $1.76M) ----------
+    var T6 = 16;
+    masterTl
+      .to(split6.chars, {
+        opacity:0, y:-60, rotationZ:-4,
+        duration:0.8, stagger:{ each:0.015, from:'end' }, ease:'power2.in'
+      }, T6)
+      .to('.act-6 .agente-label, .act-6 .closer', { opacity:0, duration:0.5, stagger:0.04, ease:'power2.in' }, T6)
+      .set('.act-6', { className:'act act-6' }, T6+0.79)
+      .set('.act-7', { className:'act act-7 is-active' }, T6+0.8)
+      .to('.act-7 .price-prefix', { opacity:1, y:0, duration:0.6, ease:'power3.out' }, T6+0.9)
+      .fromTo('.act-7 .price',
+        { opacity:0, y:60, scale:0.7 },
+        { opacity:1, y:0, scale:1, duration:1.2, ease:'power3.out' },
+        T6+1.0)
+      .to('#price-num', {
+        scrambleText:{ text:'1.76', chars:'0123456789.', revealDelay:0.3 },
+        duration:1.4, ease:'none'
+      }, T6+1.0)
+      .to('.act-7 .price-meta', { opacity:1, y:0, duration:0.6, ease:'power3.out' }, T6+2.0)
+      .to('.act-7 .price-fineprint', { opacity:1, y:0, duration:0.6, ease:'power3.out' }, T6+2.3);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.star }, duration:1.4, ease:'power2.inOut' }, T6+0.6);
+    }
+
+    // ---------- T7 · Act 7 → Act 8 (finale + CTA) ----------
+    var T7 = 19;
+    masterTl
+      .to('.act-7 .price-prefix, .act-7 .price, .act-7 .price-meta, .act-7 .price-fineprint', {
+        opacity:0, y:-50, duration:0.7, stagger:0.04, ease:'power2.in'
+      }, T7)
+      .set('.act-7', { className:'act act-7' }, T7+0.79)
+      .set('.act-8', { className:'act act-8 is-active' }, T7+0.8)
+      .fromTo(split8.chars,
+        { opacity:0, y:50, scale:0.94 },
+        { opacity:1, y:0, scale:1, duration:1.4, stagger:0.04, ease:'power4.out' },
+        T7+0.8)
+      .to('.act-8 .underline-svg', { opacity:1, y:0, duration:0.4, ease:'power3.out' }, T7+1.6);
+
+    if (window.DrawSVGPlugin){
+      masterTl.to('#finale-underline', {
+        drawSVG:'100%',
+        duration:1.6, ease:'power3.inOut'
+      }, T7+1.7);
+    }
+
+    masterTl
+      .to('.act-8 .cta-actions', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T7+2.4)
+      .to('.act-8 .cta-meta', { opacity:1, y:0, duration:0.5, ease:'power3.out' }, T7+2.7);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.circle }, duration:1.6, ease:'power2.inOut' }, T7+1);
+    }
+
+    masterTl.to(shapeCanvas, { opacity:0, duration:0.6 }, T7+3);
+
+    // Hide scroll arrow after first scroll
+    ScrollTrigger.create({
+      trigger:'.manifesto',
+      start:'top+=20vh top',
+      onEnter:function(){ gsap.to('#hud-br', { opacity:0, duration:0.4 }); },
+      onLeaveBack:function(){ gsap.to('#hud-br', { opacity:1, duration:0.4 }); }
+    });
+
+    // Bilingual scramble cycle on intro accent-mark
+    if (window.ScrambleTextPlugin){
+      var ebTarget = document.querySelector('[data-eyebrow]');
+      if (ebTarget){
+        var phrases = [
+          'tl;dr · ocho actos · cinco minutos',
+          'tl;dr · eight acts · five minutes',
+          'manifiesto · arquitectura técnica · mmxxvi',
+          'manifesto · technical architecture · mmxxvi'
+        ];
+        var idx = 0;
+        function scrambleNext(){
+          idx = (idx+1) % phrases.length;
+          gsap.to(ebTarget, {
+            duration:1.5,
+            scrambleText:{ text:phrases[idx], chars:'lowerCase', revealDelay:0.4, speed:0.45 },
+            ease:'none',
+            onComplete:function(){ gsap.delayedCall(4.0, scrambleNext); }
+          });
+        }
+        gsap.delayedCall(3.0, scrambleNext);
+      }
+    }
+  };
+
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      run();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
+  } else {
+    run();
+  }
+})();
+</script>
+
+</body>
+</html>
