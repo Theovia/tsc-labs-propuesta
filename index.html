@@ -3496,32 +3496,44 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         <div class="diag-pull">El bottleneck real <strong>no está en formulación</strong> — las 50 fórmulas viven sistematizadas. <strong>No está en producción</strong> — la capacidad instalada es ~28K productos/mes y apenas se usa. El bottleneck está en <em>envasado, etiquetado y proveeduría manual</em>, en social media que el equipo odia hacer, y en 30 leads/mes que se quedan sin atender porque el equipo no da más.</p>
 
-        <div class="diag-audit-head">Lo que F0 Discovery audita en concreto</div>
+        <div class="diag-audit-head">Cada hecho de TSC, traducido al módulo que lo resuelve</div>
 
         <ul class="diag-audit-list">
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Fórmulas — 50 sistematizadas</div>
-            <p class="diag-audit-q">Las 50 fórmulas viven en Google Sheets sistematizado — Sheets es bueno para staging early, no para producción versionada. F0 audita el schema actual y diseña la migración a D1 + R2 con audit log inmutable. <span class="diag-audit-tag">F0 mapea</span></p>
+            <div class="diag-audit-label">50 fórmulas en Google Sheets</div>
+            <p class="diag-audit-q">Sheets sirvió para sistematizar; no escala como fuente operacional. Eigen las migra a una <strong>Formula DB versionada en D1 + R2</strong> que el ERP, los dashboards y los cinco agentes consultan en tiempo real — sin reescribir lo que Diego ya documentó. <span class="diag-audit-tag">F3 · Formula DB</span></p>
           </li>
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Bottleneck operacional real</div>
-            <p class="diag-audit-q">~10 lotes/mes producidos · cliente Fer demanda 7,000 productos/mes · capacidad ~28K/mes. El cuello no es producir — es envasar, etiquetar y coordinar proveeduría sin un sistema central. F0 cuantifica horas/semana perdidas en estas tareas. <span class="diag-audit-tag">F0 audita</span></p>
+            <div class="diag-audit-label">13 clientes activos · pipeline B2B</div>
+            <p class="diag-audit-q">Cada cliente entra a su propio espacio en el <strong>Talent Portal multi-tenant</strong> con magic-link login: ve su marca, sus fórmulas, sus hitos, sus pagos. Eigen también deja la <em>extensión B2B</em> activa — cualquier distribuidor o socio comercial recibe el mismo portal listo. <span class="diag-audit-tag">F2 · Talent Portal</span></p>
           </li>
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Stack desconectado</div>
-            <p class="diag-audit-q">Shopify (Skin Club · 5 pedidos/mes · $858 ticket promedio) + Landingi (landing TSC) + WhatsApp Business + META + Skydropx + IG/TikTok/Facebook. Ningún sistema habla con otro. F0 mapea cada integración faltante. <span class="diag-audit-tag">F0 inventaria</span></p>
+            <div class="diag-audit-label">30 leads/mes detenidos · 50% close rate</div>
+            <p class="diag-audit-q">Pipeline existió y funcionó; se detuvo por saturación operativa. Eigen lo reactiva con un <strong>B2B Lead Qualifier (Workers + Claude API + MCP)</strong> que lee descripción del proyecto, capacidad mL, precio objetivo, marcas de referencia, descarta cliente pequeño/incompatible y agenda directo con Diego/Kaori sólo si hay fit real. <span class="diag-audit-tag">F5 · Ola B</span></p>
           </li>
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Pipeline B2B detenido</div>
-            <p class="diag-audit-q">30 leads/mes entran. 50% close rate cuando se atienden. Saturación operacional impide procesarlos. F0 estructura el qualifier que filtra volumen alto y descarta pequeños — sin perder lo bueno. <span class="diag-audit-tag">F0 estructura</span></p>
+            <div class="diag-audit-label">~28K productos/mes de capacidad ociosa</div>
+            <p class="diag-audit-q">El cuello no es producir; es coordinar envasado y etiquetado a 2-3 becarios entrantes sin perder trazabilidad de lote. Eigen entrega el <strong>Portal interno de operaciones</strong> con cola visible, asignación role-based y audit por lote — los becarios entran sin training largo y la capacidad se desbloquea sin contratar más senior. <span class="diag-audit-tag">F2 · Portal interno</span></p>
           </li>
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Proveeduría manual</div>
-            <p class="diag-audit-q">Natalia coordina proveedores manualmente — cotizaciones, POs, ETAs, recepciones. Es el dolor #1 reportado. F0 audita el ciclo completo y diseña automatización draft-to-firma. <span class="diag-audit-tag">F0 audita</span></p>
+            <div class="diag-audit-label">Proveeduría manual · dolor #1 reportado</div>
+            <p class="diag-audit-q">Natalia coordina cotizaciones, POs, ETAs y recepciones a mano. Eigen entrega un <strong>Proveeduría Agent (Workers + Durable Object por orden + Claude API + WhatsApp Cloud + Resend SMTP)</strong> que dispara la búsqueda, agrega cotizaciones en tabla comparable y entrega shortlist con recomendación. Natalia decide; el agente busca. <span class="diag-audit-tag">F5 · Ola C</span></p>
           </li>
           <li class="diag-audit-item">
-            <div class="diag-audit-label">Compliance &amp; lot records</div>
-            <p class="diag-audit-q">COFEPRIS vigente, continuidad de fórmulas resuelta. F0 verifica cómo se mantienen lot records, micro tests, etiquetado bajo NOM-141 — y los lleva a Document Vault con trazabilidad. <span class="diag-audit-tag">F0 verifica</span></p>
+            <div class="diag-audit-label">Stack distribuido sin orquestación</div>
+            <p class="diag-audit-q">Shopify (Skin Club, $858 ticket) · Landingi · WhatsApp Business · META · Skydropx · IG/TikTok/Facebook. Cada uno funciona aislado. Eigen mantiene lo que TSC ya conoce y los une bajo un <strong>data substrate único (D1 + R2 + Workers Analytics)</strong> con audit trail compartido — la operación pasa de "cruzar 3 herramientas" a "una sola query". <span class="diag-audit-tag">F1-F4 · arquitectura</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Social media que el equipo odia hacer</div>
+            <p class="diag-audit-q">Generación manual de contenido para IG/TikTok/Facebook quita horas. Eigen entrega un <strong>Social Media Generator (Workers AI Llama 4 + Cloudflare Image Resizing + Meta Graph API + TikTok API)</strong> que prepara contenido scheduled a partir de prompts del equipo y publica con un click de aprobación. <span class="diag-audit-tag">F5 · Ola D</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">Activos nuevos del mercado · sin radar</div>
+            <p class="diag-audit-q">Hoy nadie en TSC vigila papers, patentes y feeds de proveedores estratégicos. Eigen entrega un <strong>R&amp;D Scout (Workers Cron + Claude API + scraping orquestado + DO por hilo)</strong> que vigila vocabulario configurable y entrega cada lunes 3 oportunidades de activo evaluadas: ficha técnica + mapeo de proveedores + brief de estrategia. <span class="diag-audit-tag">F5 · Ola E</span></p>
+          </li>
+          <li class="diag-audit-item">
+            <div class="diag-audit-label">COFEPRIS vigente · lot records dispersos</div>
+            <p class="diag-audit-q">El cumplimiento existe; lo que falta es trazabilidad consolidada. Eigen entrega un <strong>Document Vault</strong> que centraliza lot records, micro tests, etiquetado NOM-141, BPF cosméticos COFEPRIS — versionado, queryable, listo para auditoría sin armar carpetas a mano. <span class="diag-audit-tag">F3 · Document Vault</span></p>
           </li>
         </ul>
 
