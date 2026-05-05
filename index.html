@@ -101,17 +101,60 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .m-hud-tl{
   position:absolute;
   top:32px; left:40px;
+  display:flex;
+  align-items:center;
+  gap:14px;
   font-family:var(--m-font-d);
-  font-variation-settings:'opsz' 144, 'SOFT' 50, 'WONK' 0;
-  font-weight:200;
   font-size:22px;
   letter-spacing:-0.025em;
   color:var(--m-ink);
 }
-.m-hud-tl em{
+.m-brand-mark{
+  position:relative;
+  width:20px; height:20px;
+  flex-shrink:0;
+  display:inline-block;
+}
+.m-brand-mark::before,
+.m-brand-mark::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:0.5px solid var(--m-ink);
+  border-radius:50%;
+}
+.m-brand-mark::after{
+  inset:5px;
+  background:var(--m-coral);
+  border:none;
+}
+.m-brand-name{
+  font-family:var(--m-font-d);
   font-style:italic;
-  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 0;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  font-weight:300;
+  color:var(--m-ink);
+  letter-spacing:-0.03em;
+  line-height:1;
+}
+.m-feat{
+  font-family:var(--m-font-m);
+  font-size:9px;
+  letter-spacing:0.24em;
+  text-transform:uppercase;
+  color:var(--m-ink-3);
+  font-weight:500;
+  position:relative;
+  top:1px;
+}
+.m-collab{
+  font-family:var(--m-font-d);
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 60, 'WONK' 0;
+  font-weight:400;
   color:var(--m-coral);
+  letter-spacing:-0.025em;
+  line-height:1;
 }
 .m-hud-tr{
   position:absolute;
@@ -370,7 +413,10 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
 /* ============ MOBILE ============ */
 @media (max-width: 900px){
-  .m-hud-tl{ top:18px; left:20px; font-size:18px; }
+  .m-hud-tl{ top:18px; left:20px; font-size:16px; gap:10px; }
+  .m-brand-mark{ width:16px; height:16px; }
+  .m-brand-mark::after{ inset:4px; }
+  .m-feat{ font-size:8px; letter-spacing:0.20em; }
   .m-hud-tr{ top:22px; right:20px; gap:10px; font-size:9px; }
   .m-hud-tr .m-meta-1{ display:none; }
   .m-hud-progress{ display:none; }
@@ -3927,7 +3973,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <header class="manifesto-cover">
 
   <div class="m-hud">
-    <div class="m-hud-tl">eigen atlas <em>/ tsc labs</em></div>
+    <div class="m-hud-tl">
+      <span class="m-brand-mark" aria-hidden="true"></span>
+      <span class="m-brand-name">eigen atlas</span>
+      <span class="m-feat">feat.</span>
+      <span class="m-collab">tsc labs</span>
+    </div>
     <div class="m-hud-tr">
       <span class="m-meta-1">PROPUESTA · V2.0 · MMXXVI</span>
       <span><span class="m-counter" id="m-counter">01</span> / 06</span>
