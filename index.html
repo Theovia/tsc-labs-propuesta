@@ -2275,6 +2275,62 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .fases-intro em{font-style:normal;color:var(--accent);font-weight:500}
 
 /* === CAPABILITY DECLARATION === */
+.cdec-arch{
+  margin:8px 0 56px;
+  padding:32px 0 18px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.cdec-arch-svg{
+  width:100%;height:auto;
+  max-height:380px;
+  display:block;
+}
+.cdec-arch-line{
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+}
+.cdec-arch-core,
+.cdec-arch-nodes{
+  opacity:0;
+}
+.cdec-arch.is-in .cdec-arch-line{
+  animation:cdecLineDraw 1.0s ease-out forwards;
+}
+.cdec-arch.is-in .cdec-arch-line:nth-child(1){animation-delay:0.05s}
+.cdec-arch.is-in .cdec-arch-line:nth-child(2){animation-delay:0.12s}
+.cdec-arch.is-in .cdec-arch-line:nth-child(3){animation-delay:0.19s}
+.cdec-arch.is-in .cdec-arch-line:nth-child(4){animation-delay:0.26s}
+.cdec-arch.is-in .cdec-arch-line:nth-child(5){animation-delay:0.33s}
+.cdec-arch.is-in .cdec-arch-line:nth-child(6){animation-delay:0.40s}
+.cdec-arch.is-in .cdec-arch-core{
+  animation:cdecFade 0.6s ease-out 0.55s forwards;
+}
+.cdec-arch.is-in .cdec-arch-nodes{
+  animation:cdecFade 0.7s ease-out 0.75s forwards;
+}
+@keyframes cdecLineDraw{
+  to{stroke-dashoffset:0}
+}
+@keyframes cdecFade{
+  to{opacity:1}
+}
+.cdec-arch-cap{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--ink-light);font-weight:500;
+  text-align:center;
+  margin:8px 0 0;
+}
+@media (max-width:760px){
+  .cdec-arch{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .cdec-arch-line,.cdec-arch-core,.cdec-arch-nodes{
+    stroke-dashoffset:0;opacity:1;
+  }
+}
+
 .cdec-list{
   list-style:none;padding:0;margin:0 0 64px;
   display:grid;grid-template-columns:repeat(2,1fr);
@@ -2960,6 +3016,71 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <h2 class="section-title">Indexamos <em>toda</em> la operación de TSC LABS sobre un solo data substrate y construimos encima todo lo que el laboratorio necesita.</h2>
       <p class="section-deck">Seis módulos. Una arquitectura. Un solo equipo responsable.</p>
     </header>
+
+    <!-- ARCHITECTURE DIAGRAM · light cobalt · DrawSVG on enter -->
+    <figure class="cdec-arch" aria-label="Arquitectura de capacidad">
+      <svg class="cdec-arch-svg" viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="cdec-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(30,64,175,0.0)"/>
+            <stop offset="50%" stop-color="rgba(30,64,175,0.55)"/>
+            <stop offset="100%" stop-color="rgba(30,64,175,0.0)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 6 connector lines (drawn on enter) -->
+        <g class="cdec-arch-lines" stroke="var(--accent)" stroke-width="1.1" fill="none" opacity="0.55">
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="72"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="180"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="288"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="72"/>
+          <line class="cdec-arch-line cdec-arch-line-emph" x1="540" y1="180" x2="860" y2="180" stroke-width="1.6" opacity="0.95"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="288"/>
+        </g>
+
+        <!-- Substrate core ellipse -->
+        <g class="cdec-arch-core">
+          <ellipse cx="540" cy="180" rx="160" ry="38" fill="rgba(30,64,175,0.06)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="540" y="178" text-anchor="middle" fill="var(--accent-deep)" style="font:500 13px 'JetBrains Mono',monospace;letter-spacing:0.2em">DATA SUBSTRATE</text>
+          <text x="540" y="196" text-anchor="middle" fill="var(--ink-mute)" style="font:400 10.5px 'JetBrains Mono',monospace;letter-spacing:0.14em">D1 · R2 · WORKERS ANALYTICS</text>
+        </g>
+
+        <!-- 6 nodes -->
+        <g class="cdec-arch-nodes">
+          <!-- LEFT TOP · Operaciones -->
+          <circle cx="220" cy="72" r="5" fill="var(--accent)"/>
+          <text x="206" y="56" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Operaciones internas</text>
+          <text x="206" y="72" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 01</text>
+
+          <!-- LEFT MID · BI -->
+          <circle cx="220" cy="180" r="5" fill="var(--accent)"/>
+          <text x="206" y="170" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Business intelligence</text>
+          <text x="206" y="186" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 02 · IA + DATA SCIENCE</text>
+
+          <!-- LEFT BOTTOM · Talent -->
+          <circle cx="220" cy="288" r="5" fill="var(--accent)"/>
+          <text x="206" y="278" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Talent / clientes B2B</text>
+          <text x="206" y="294" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 03</text>
+
+          <!-- RIGHT TOP · Agentes -->
+          <circle cx="860" cy="72" r="5" fill="var(--accent)"/>
+          <text x="874" y="56" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Cinco agentes productivizados</text>
+          <text x="874" y="72" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA AGÉNTICA · 05</text>
+
+          <!-- RIGHT MID · Distribución (emphasis) -->
+          <circle cx="860" cy="180" r="6" fill="var(--accent)" stroke="var(--accent-deep)" stroke-width="1.5"/>
+          <text x="874" y="170" text-anchor="start" fill="var(--accent-deep)" style="font:600 13px 'Inter Tight',sans-serif">Distribución habilitada</text>
+          <text x="874" y="186" text-anchor="start" fill="var(--accent)" style="font:600 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">EXTENSIÓN B2B · 04</text>
+
+          <!-- RIGHT BOTTOM · ERP -->
+          <circle cx="860" cy="288" r="5" fill="var(--accent)"/>
+          <text x="874" y="278" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">ERP + Vault + supply chain</text>
+          <text x="874" y="294" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA OPERACIONAL · 06</text>
+        </g>
+
+      </svg>
+      <figcaption class="cdec-arch-cap">FIG. 00 · ARQUITECTURA DE CAPACIDAD · CLOUDFLARE-NATIVE · MULTI-TENANT</figcaption>
+    </figure>
 
     <ol class="cdec-list">
       <li>
@@ -5698,7 +5819,26 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     rows.forEach(function(r){ r.classList.add('in'); });
   }
 })();
+</script>
 
+<script>
+// §0a Capability architecture · single trigger SVG line draw + fade-in
+(function(){
+  var arch = document.querySelector('.cdec-arch');
+  if (!arch) return;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced){ arch.classList.add('is-in'); return; }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ arch.classList.add('is-in'); io.unobserve(arch); }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+    io.observe(arch);
+  } else {
+    arch.classList.add('is-in');
+  }
+})();
 </script>
 </body>
 </html>
