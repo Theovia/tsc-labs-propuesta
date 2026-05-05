@@ -2882,7 +2882,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
         <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. Sin reconciliación entre canales. Sin discrepancia entre dashboard y operación. El store es la fuente. Todos los servicios leen y escriben de ahí.</p>
 
-        <p>Cómo se compone por fase: las fórmulas viven en D1 versionada (F3), el inventario se descuenta contra producción registrada (F3), las facturas se emiten contra hito en CFDI 4.0 (F2), los dashboards consultan el mismo data layer (F4) y los agentes responden leyendo el mismo store (F5). Cada fase es un sub-sistema sobre el substrate común — no un entregable aislado.</p>
+        <p>Cómo se compone por fase: las fórmulas viven en D1 versionada (F3), el inventario se descuenta contra producción registrada (F3), las facturas registradas por contabilidad TSC se reflejan contra hito en el dashboard (F2), los dashboards consultan el mismo data layer (F4) y los agentes responden leyendo el mismo store (F5). Cada fase es un sub-sistema sobre el substrate común — no un entregable aislado.</p>
 
         <div class="tesis-pull">Las consultas de margen, las consultas del chatbot DTC y las consultas del CFO van al mismo store. La respuesta es la misma.</div>
 
@@ -3047,7 +3047,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </div>
         <div>
           <h3 class="phase-title">Sales &amp; <em>CRM</em></h3>
-          <p class="phase-meta-line">1.5 meses · Talent Portal · CRM lead pipeline · email automation · Stripe + MP CFDI 4.0</p>
+          <p class="phase-meta-line">1.5 meses · Talent Portal · CRM lead pipeline · email automation · Stripe + MP + tracking CFDI</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$240<em>K</em></div>
@@ -3058,7 +3058,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         <div class="phase-prose">
           <p><strong>Talent Portal (cliente-facing).</strong> Cada talent manager y cliente externo tiene acceso con login magic-link a un portal donde ve el estado real de su producto: progreso de R&amp;D, batch listo, status de envío, link de pago, factura, y conversación archivada. <strong>Pueden adjuntar documentos</strong> (imágenes de inspiración, briefs, refs de marca, contratos firmados) sin email back-and-forth. Built sobre <strong>Cloudflare Durable Objects</strong> — un DO por cliente, isolated state, que preserva la sesión, los documentos adjuntos y el audit trail de cada interacción.</p>
           <p><strong>Portal interno de operación.</strong> Vista paralela para Diego, Kaori, Natalia y becarios entrantes. Queue de envasado/etiquetado priorizado, lista de POs pendientes con Natalia, dashboards de leads en pipeline, alertas operativas en vivo. Built sobre <strong>Workers + KV</strong> con role-based access (admin · ops · finance · talent-read), de modo que el becario del lunes ve la cola que le toca sin acceder a margen ni a contratos.</p>
-          <p><strong>CRM lead pipeline</strong> para escalar del primer talent a las próximas diez agencias. <strong>Email automation</strong> por hito (concepto aprobado, prototipo listo, lote producido, listo para retail). <strong>Stripe + MercadoPago</strong> con factura IVA-compliant CFDI 4.0 emitida automáticamente por hito.</p>
+          <p><strong>CRM lead pipeline</strong> para escalar del primer talent a las próximas diez agencias. <strong>Email automation</strong> por hito (concepto aprobado, prototipo listo, lote producido, listo para retail). <strong>Stripe + MercadoPago</strong> capturan el pago; el dashboard refleja el status de CFDI emitido por contabilidad TSC en su sistema actual (visibilización, no emisión — Eigen no toca el flujo fiscal).</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
@@ -3995,7 +3995,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
           <div class="roadmap-deliverables">
             <span class="roadmap-phase-chip f2">F2 · entrega</span>
-            <div class="roadmap-deliv-text">CRM lead pipeline funcional con 5 leads · email automation por hito (concepto, prototipo, lote, retail) · Stripe + MP IVA-compliant CFDI 4.0 emitiendo · primera Formula DB migration de 10 fórmulas (de las 50 sistematizadas en Sheets).</div>
+            <div class="roadmap-deliv-text">CRM lead pipeline funcional con 5 leads · email automation por hito (concepto, prototipo, lote, retail) · Stripe + MP capturando pagos · dashboard reflejando status CFDI emitido por contabilidad TSC · primera Formula DB migration de 10 fórmulas (de las 50 sistematizadas en Sheets).</div>
           </div>
         </div>
 
@@ -4207,7 +4207,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <td class="fin-yoy">04 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 02 · Sales &amp; CRM<em>Talent Portal · CRM · email automation · CFDI 4.0</em></div></td>
+            <td><div class="fin-line-label">Fase 02 · Sales &amp; CRM<em>Talent Portal · CRM · email automation · tracking CFDI</em></div></td>
             <td class="right">$240K</td>
             <td class="right">1.5 mo</td>
             <td class="fin-line-pct">13.6%</td>
@@ -4356,7 +4356,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · IV</div>
         <h3 class="gov-title">Operación 100% <em>México</em></h3>
-        <p class="gov-prose">Equipo técnico local, COFEPRIS-aware, IVA-compliant, español + inglés. <strong>Conocemos NOMs y SAT.</strong> Los CFDI 4.0 se emiten correctamente desde día uno. Las auditorías hablan español. Las llamadas son en hora local.</p>
+        <p class="gov-prose">Equipo técnico local, español + inglés. <strong>Trabajamos con tu contabilidad existente.</strong> El sistema integra status de CFDIs emitidos por tu equipo contable, no emite ni intermedia el flujo fiscal. Las auditorías hablan español. Las llamadas son en hora local.</p>
       </div>
     </div>
 
@@ -4563,7 +4563,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">CFDI 4.0</div>
-        <p class="glossary-def">Comprobante Fiscal Digital por Internet versión 4.0 (SAT). Formato obligatorio MX para facturación. Stripe + MercadoPago lo emiten via Resend templates.</p>
+        <p class="glossary-def">Comprobante Fiscal Digital por Internet versión 4.0 (SAT). Formato obligatorio MX para facturación. Eigen NO emite CFDIs — el equipo contable de TSC los emite en su sistema actual; la plataforma sólo refleja el status (emitido/timbrado/pagado) en dashboards.</p>
       </div>
     </div>
   </div>
