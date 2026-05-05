@@ -325,21 +325,24 @@ body::before{
   letter-spacing:-0.01em;
 }
 
-/* ---- ACT 2 · DIAGNÓSTICO FLASH (3 stat blocks rapid) ---- */
-.act-2{ flex-direction:column; gap:24px }
+/* ---- ACT 2 · PROMESA CORE (4 stat rows) ---- */
+.act-2{ flex-direction:column; gap:14px; max-width:1280px; width:100% }
 .act-2 .stat-row{
   display:flex;
   align-items:baseline;
-  gap:36px;
+  gap:32px;
   font-family:var(--f-d);
   font-weight:300;
 }
 .act-2 .stat-num{
   font-variation-settings:'opsz' 144, 'SOFT' 20, 'WONK' 1;
-  font-size:clamp(80px, 16vw, 220px);
-  line-height:0.85;
+  font-size:clamp(64px, 12vw, 150px);
+  line-height:0.86;
   letter-spacing:-0.06em;
   color:var(--ink);
+  flex-shrink:0;
+  min-width:200px;
+  text-align:right;
 }
 .act-2 .stat-num em{
   font-style:italic;
@@ -352,19 +355,21 @@ body::before{
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:var(--ink-2);
-  max-width:240px;
+  max-width:560px;
   text-align:left;
   line-height:1.5;
 }
 .act-2 .stat-closer{
-  margin-top:36px;
+  margin-top:24px;
   font-family:var(--f-d);
   font-style:italic;
   font-variation-settings:'opsz' 60, 'SOFT' 70, 'WONK' 0;
   font-weight:300;
-  font-size:clamp(20px, 2.4vw, 34px);
+  font-size:clamp(18px, 2.2vw, 30px);
   color:var(--coral);
   letter-spacing:-0.02em;
+  align-self:center;
+  text-align:center;
 }
 
 /* ---- ACT 3 · TESIS · "El stack cambia. El substrate permanece." ---- */
@@ -831,21 +836,25 @@ body::before{
       </div>
     </div>
 
-    <!-- ACT 2 · PROMESA CORE · Portal B2B = orden empresarial visible + dual-brand -->
+    <!-- ACT 2 · PROMESA CORE · Portal B2B = orden empresarial visible + tenant por cliente + dual-brand -->
     <div class="act act-2">
       <div class="stat-row">
         <span class="stat-num"><em id="stat-1">1</em></span>
         <span class="stat-label">Portal B2B propio · cómo entregan, con qué specs, con qué línea de calidad — todo documentado y demostrable</span>
       </div>
       <div class="stat-row">
-        <span class="stat-num"><em id="stat-2">5–10</em></span>
+        <span class="stat-num"><em id="stat-2">N</em></span>
+        <span class="stat-label">Cada cliente B2B con su propio tenant · mapea sus ventas, códigos e inventario en tiempo real desde TSC</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-num"><em id="stat-3">5–10</em></span>
         <span class="stat-label">Empresas grandes al año · firman porque ven estructura empresarial, no Sheets sueltos</span>
       </div>
       <div class="stat-row">
-        <span class="stat-num"><em id="stat-3">2</em></span>
+        <span class="stat-num"><em id="stat-4">2</em></span>
         <span class="stat-label">Marcas escalando juntas · TSC LABS + Skin Club · misma arquitectura</span>
       </div>
-      <div class="stat-closer">Orden empresarial visible · infraestructura para mil estrategias de expansión.</div>
+      <div class="stat-closer">TSC se vuelve la plataforma sobre la cual sus clientes operan · sticky por diseño.</div>
     </div>
 
     <!-- ACT 3 · TESIS · Una arquitectura · mil estrategias -->
@@ -870,8 +879,8 @@ body::before{
         </div>
         <div class="modulo">
           <span class="num">03 · PORTAL</span>
-          <div class="name">Talent / clientes B2B</div>
-          <div class="stack">DO · MULTI-TENANT</div>
+          <div class="name">Tenant por cliente B2B · mapeo de ventas, códigos, inventario en vivo</div>
+          <div class="stack">DO · MULTI-TENANT · D1</div>
         </div>
         <div class="modulo emph">
           <span class="num">04 · EXTENSIÓN</span>
@@ -1280,14 +1289,15 @@ body::before{
       .set('.act-1', { className:'act act-1' }, T1+0.99)
       .set('.act-2', { className:'act act-2 is-active' }, T1+1)
       // Stat numbers count up + scramble
-      .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.18, ease:'power3.out' }, T1+1)
+      .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.14, ease:'power3.out' }, T1+1)
       .to('#stat-1', { scrambleText:{ text:'1', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.1)
-      .to('#stat-2', { scrambleText:{ text:'5–10', chars:'0123456789–', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.3)
-      .to('#stat-3', { scrambleText:{ text:'2', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.5)
+      .to('#stat-2', { scrambleText:{ text:'N', chars:'0123456789N', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.25)
+      .to('#stat-3', { scrambleText:{ text:'5–10', chars:'0123456789–', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.4)
+      .to('#stat-4', { scrambleText:{ text:'2', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.55)
       .to(split2.chars, {
         opacity:1, y:0, duration:0.7, stagger:0.005, ease:'power3.out'
       }, T1+1.2)
-      .to('.act-2 .stat-closer', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+1.9);
+      .to('.act-2 .stat-closer', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+2.1);
 
     if (window.MorphSVGPlugin && shapePath){
       masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.square }, duration:1.4, ease:'power2.inOut' }, T1+0.4);
