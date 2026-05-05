@@ -4573,20 +4573,20 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   <div class="section-frame">
     <header class="section-header">
       <div class="section-num">13<small>PROPIEDAD INTELECTUAL Y SALIDA</small></div>
-      <h2 class="section-title">El sistema es de TSC LABS, <em>desde el primer commit</em>.</h2>
-      <p class="section-deck">Propiedad del código, ownership de schemas y data, plan de off-boarding, continuidad si Eigen no puede continuar. Sin lock-in.</p>
+      <h2 class="section-title">El sistema es de TSC LABS, <em>titularidad contractual desde el primer commit</em>.</h2>
+      <p class="section-deck">Propiedad del código, ownership de schemas y data, transferencia operacional al cierre, continuidad si Eigen no puede continuar. Sin lock-in.</p>
     </header>
 
     <div class="ip-frame">
       <div class="ip-card">
         <div class="ip-tag">IP · 01 · CÓDIGO FUENTE</div>
         <h3 class="ip-title">TSC LABS es <em>propietaria 100%</em> del código</h3>
-        <p class="ip-prose">Desde el primer commit. <strong>GitHub repo bajo organización TSC LABS</strong> (no bajo Eigen). Eigen tiene acceso de mantenimiento durante el contrato; al terminar, acceso revocado.</p>
+        <p class="ip-prose">Titularidad contractual desde el primer commit (work order garantiza propiedad irrevocable). <strong>Durante desarrollo el repo opera bajo organización GitHub de Eigen Atlas</strong> para velocidad de iteración; al cierre de F5 se transfiere a organización GitHub de TSC LABS — repo, historial completo, issues, PRs migrados intactos.</p>
       </div>
       <div class="ip-card">
         <div class="ip-tag">IP · 02 · SCHEMAS Y DATA</div>
-        <h3 class="ip-title">Cuenta Cloudflare <em>de TSC LABS</em></h3>
-        <p class="ip-prose">D1 + R2 + Workers Analytics corren bajo cuenta Cloudflare de TSC LABS. <strong>Eigen administra durante el contrato; TSC paga directo a Cloudflare</strong> (~$200-400 USD/mes infra estimado).</p>
+        <h3 class="ip-title">Infraestructura <em>bajo cuenta Eigen</em> durante desarrollo</h3>
+        <p class="ip-prose">D1 + R2 + Workers Analytics + dominios corren bajo cuenta Cloudflare de Eigen Atlas durante F1-F5. <strong>Eigen absorbe el costo de infra durante desarrollo</strong> (~$200-400 USD/mes). Al cierre de F5: migración completa a cuenta Cloudflare de TSC LABS — D1 dump+restore, R2 sync, DNS cutover, Workers redeploy bajo cuenta TSC. Cero downtime garantizado por arquitectura blue-green.</p>
       </div>
       <div class="ip-card">
         <div class="ip-tag">IP · 03 · DOCUMENTACIÓN TÉCNICA</div>
@@ -4595,18 +4595,18 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="ip-card">
         <div class="ip-tag">IP · 04 · OFF-BOARDING</div>
-        <h3 class="ip-title">Si TSC decide <em>internalizar</em> al cerrar el Año 1 de operación</h3>
-        <p class="ip-prose">Eigen entrega: código (ya es de TSC), <strong>2 semanas de handoff técnico</strong> al equipo entrante, lista de decisiones arquitectónicas con rationale, runbooks operacionales, contactos de proveedores. <strong>Sin cláusulas de no-compete sobre el código.</strong></p>
+        <h3 class="ip-title">Transferencia operacional al cierre de F5</h3>
+        <p class="ip-prose">Paquete de off-boarding cuando TSC decide internalizar: <strong>(1)</strong> migración GitHub repo a org TSC LABS, <strong>(2)</strong> migración Cloudflare account-level, <strong>(3)</strong> 2 semanas de handoff técnico al equipo entrante, <strong>(4)</strong> decision logs con rationale arquitectónico, <strong>(5)</strong> runbooks operacionales, <strong>(6)</strong> contactos proveedores y APIs externas. <strong>Sin cláusulas de no-compete sobre el código.</strong></p>
       </div>
       <div class="ip-card">
         <div class="ip-tag">IP · 05 · CONTINUIDAD</div>
         <h3 class="ip-title">Si Eigen <em>termina antes</em></h3>
-        <p class="ip-prose">Cláusula contractual: si Eigen no puede continuar (cualquier razón), <strong>TSC mantiene 100% del código, datos, schemas</strong>. Eigen entrega handoff de 2 semanas remunerado por separado.</p>
+        <p class="ip-prose">Cláusula contractual: si Eigen no puede continuar (cualquier razón), <strong>se ejecuta transferencia inmediata</strong> de repo, infra Cloudflare, schemas y datos a TSC LABS. Eigen entrega handoff técnico de 2 semanas remunerado por separado. <strong>TSC mantiene control irrevocable del sistema desde el momento de la transferencia.</strong></p>
       </div>
       <div class="ip-card">
         <div class="ip-tag">IP · 06 · SIN LOCK-IN</div>
         <h3 class="ip-title">Stack <em>portable</em>, no exclusivo</h3>
-        <p class="ip-prose">Cloudflare Workers, D1, R2 — todos servicios estándar. Schemas SQL exportables. R2 compatible S3. <strong>El sistema queda en producción al cierre de F5. Después del Año 1, TSC define la siguiente fase de operación conjunta o internalización.</strong></p>
+        <p class="ip-prose">Cloudflare Workers, D1, R2 — todos servicios estándar. Schemas SQL exportables. R2 compatible S3. <strong>El sistema queda en producción al cierre de F5 sobre la cuenta Cloudflare de TSC LABS. Después del Año 1, TSC define la siguiente fase de operación conjunta o internalización.</strong></p>
       </div>
     </div>
   </div>
