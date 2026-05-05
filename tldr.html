@@ -831,27 +831,27 @@ body::before{
       </div>
     </div>
 
-    <!-- ACT 2 · DIAGNÓSTICO FLASH -->
+    <!-- ACT 2 · PROMESA CORE · Portal B2B propio + escala dual-brand -->
     <div class="act act-2">
       <div class="stat-row">
-        <span class="stat-num"><em id="stat-50">50</em></span>
-        <span class="stat-label">Fórmulas activas en Sheets · sin substrate</span>
+        <span class="stat-num"><em id="stat-1">1</em></span>
+        <span class="stat-label">Portal B2B propio · multi-tenant · marca TSC LABS</span>
       </div>
       <div class="stat-row">
-        <span class="stat-num"><em id="stat-13">13</em></span>
-        <span class="stat-label">Clientes B2B · sin portal multi-tenant</span>
+        <span class="stat-num"><em id="stat-2">5–10</em></span>
+        <span class="stat-label">Tratos grandes al año · estilo Ferro · cotización a contrato sin fricción</span>
       </div>
       <div class="stat-row">
-        <span class="stat-num"><em id="stat-30">30</em></span>
-        <span class="stat-label">Leads/mes detenidos · pauta apagada por saturación operacional</span>
+        <span class="stat-num"><em id="stat-3">2</em></span>
+        <span class="stat-label">Marcas operando juntas · TSC LABS + Skin Club · misma arquitectura</span>
       </div>
-      <div class="stat-closer">El stack está distribuido. Falta el substrate.</div>
+      <div class="stat-closer">Infraestructura para mil estrategias de expansión.</div>
     </div>
 
-    <!-- ACT 3 · TESIS -->
+    <!-- ACT 3 · TESIS · Una arquitectura · mil estrategias -->
     <div class="act act-3">
-      <h2 class="act-heading">El <span class="h-key-changes" id="key-changes">stack</span><br>cambia.</h2>
-      <h2 class="act-heading">El <span class="h-key-stays" id="key-stays">substrate</span><br>permanece.</h2>
+      <h2 class="act-heading">Una <span class="h-key-changes" id="key-changes">arquitectura</span>.</h2>
+      <h2 class="act-heading">Mil <span class="h-key-stays" id="key-stays">estrategias</span>.</h2>
     </div>
 
     <!-- ACT 4 · 6 MÓDULOS -->
@@ -889,7 +889,7 @@ body::before{
           <div class="stack">D1 · R2 · NOM-141</div>
         </div>
       </div>
-      <p class="closer">Una arquitectura. Un equipo. Un substrate.</p>
+      <p class="closer">Una arquitectura · TSC LABS + Skin Club · un equipo.</p>
     </div>
 
     <!-- ACT 5 · ROADMAP -->
@@ -970,7 +970,7 @@ body::before{
 
     <!-- ACT 8 · FINALE / CTA -->
     <div class="act act-8">
-      <h2 class="act-heading">Para siempre queryable.</h2>
+      <h2 class="act-heading">Tu portal B2B.<br>Tu marca escalando.</h2>
       <svg class="underline-svg" viewBox="0 0 540 36" preserveAspectRatio="none">
         <path class="underline-path" id="finale-underline" d="M 6 22 C 90 4, 200 28, 280 14 S 440 28, 534 12"/>
       </svg>
@@ -1281,9 +1281,9 @@ body::before{
       .set('.act-2', { className:'act act-2 is-active' }, T1+1)
       // Stat numbers count up + scramble
       .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.18, ease:'power3.out' }, T1+1)
-      .to('#stat-50', { scrambleText:{ text:'50', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.1)
-      .to('#stat-13', { scrambleText:{ text:'13', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.3)
-      .to('#stat-30', { scrambleText:{ text:'30', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.5)
+      .to('#stat-1', { scrambleText:{ text:'1', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.1)
+      .to('#stat-2', { scrambleText:{ text:'5–10', chars:'0123456789–', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.3)
+      .to('#stat-3', { scrambleText:{ text:'2', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.5)
       .to(split2.chars, {
         opacity:1, y:0, duration:0.7, stagger:0.005, ease:'power3.out'
       }, T1+1.2)
@@ -1305,14 +1305,14 @@ body::before{
         opacity:1, y:0, duration:1.1, stagger:0.025, ease:'power3.out'
       }, T2+0.8)
       .to('#key-changes', {
-        scrambleText:{ text:'stack', chars:'lowerCase', revealDelay:0.1 },
+        scrambleText:{ text:'arquitectura', chars:'lowerCase', revealDelay:0.1 },
         duration:1.0, ease:'none'
       }, T2+1.5)
       .to(split3b.chars, {
         opacity:1, y:0, duration:1.1, stagger:0.022, ease:'power3.out'
       }, T2+1.8)
       .to('#key-stays', {
-        scrambleText:{ text:'substrate', chars:'lowerCase', revealDelay:0.1 },
+        scrambleText:{ text:'estrategias', chars:'lowerCase', revealDelay:0.1 },
         duration:1.2, ease:'none'
       }, T2+2.5)
       .to('.act-3 .h-key-stays', {
