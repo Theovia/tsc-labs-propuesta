@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eigen Atlas · Presentación · TSC LABS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAFAF7;
+  --bg-2:#F2F2EE;
+  --bg-3:#E8E8E2;
+  --ink:#0A0A0A;
+  --ink-soft:#2A2A2A;
+  --ink-mute:#6E6E70;
+  --ink-light:#B8B8B8;
+  --accent:#1E40AF;
+  --accent-bright:#2563EB;
+  --accent-deep:#1E3A8A;
+  --rule:rgba(10,10,10,0.10);
+  --rule-strong:rgba(10,10,10,0.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--ink);color:var(--bg)}
+
+/* SLIDE BASE */
+.slide{
+  position:relative;
+  min-height:100vh;
+  padding:64px 72px;
+  display:flex;flex-direction:column;justify-content:center;
+  border-bottom:1px solid var(--rule);
+  overflow:hidden;
+}
+.slide.muted{background:var(--bg-2)}
+.slide.dark{background:var(--ink);color:var(--bg)}
+.slide.dark .meta-num,.slide.dark .meta-tag{color:var(--bg)}
+.slide.dark .slide-eyebrow{color:var(--accent-bright)}
+
+/* META BAR */
+.meta-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.22em;font-weight:500;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  padding-bottom:32px;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:48px;
+}
+.meta-num{color:var(--accent)}
+.meta-tag{letter-spacing:0.2em}
+.slide.dark .meta-bar{border-bottom-color:rgba(250,250,247,0.15);color:rgba(250,250,247,0.55)}
+
+/* SLIDE EYEBROW */
+.slide-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.22em;font-weight:500;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+/* HEADLINE */
+.slide-h1{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(48px, 7vw, 116px);
+  line-height:0.96;letter-spacing:-0.035em;
+  color:var(--ink);
+  margin:0 0 32px;
+  max-width:1280px;
+}
+.slide-h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+.slide.dark .slide-h1{color:var(--bg)}
+.slide.dark .slide-h1 em{color:var(--accent-bright)}
+
+.slide-h2{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(36px, 5vw, 72px);
+  line-height:1.04;letter-spacing:-0.028em;
+  color:var(--ink);
+  margin:0 0 24px;
+  max-width:1180px;
+}
+.slide-h2 em{font-style:italic;font-weight:400;color:var(--accent)}
+.slide.dark .slide-h2{color:var(--bg)}
+.slide.dark .slide-h2 em{color:var(--accent-bright)}
+
+/* DECK */
+.slide-deck{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(16px, 1.4vw, 22px);
+  line-height:1.55;
+  color:var(--ink-soft);
+  max-width:880px;
+  margin:0 0 36px;
+}
+.slide.dark .slide-deck{color:rgba(250,250,247,0.78)}
+.slide-deck strong{color:var(--ink);font-weight:600}
+.slide.dark .slide-deck strong{color:var(--bg)}
+
+/* FOOT */
+.slide-foot{
+  margin-top:auto;
+  padding-top:32px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.2em;font-weight:500;
+  color:var(--ink-light);
+  text-transform:uppercase;
+}
+.slide.dark .slide-foot{color:rgba(250,250,247,0.45)}
+
+/* === SLIDE 01 · COVER === */
+.s-cover{padding:80px 72px 64px}
+.s-cover-firm{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.24em;font-weight:600;
+  color:var(--accent-deep);
+  margin-bottom:48px;
+}
+.s-cover-firm small{
+  display:block;
+  font-size:9px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-mute);
+  margin-top:4px;
+  text-transform:uppercase;
+}
+.s-cover-foot{
+  display:flex;justify-content:space-between;align-items:end;
+  margin-top:auto;padding-top:48px;
+  border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+
+/* === SLIDE 02 · 3 DATOS === */
+.s-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;
+  margin:48px 0 0;
+}
+.s-stat{
+  padding:32px 0 0;
+  border-top:2px solid var(--ink);
+}
+.s-stat-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(56px, 8vw, 124px);
+  line-height:0.92;letter-spacing:-0.04em;
+  color:var(--accent);
+  margin-bottom:18px;
+}
+.s-stat-num small{
+  font-size:0.36em;font-weight:400;
+  color:var(--ink-mute);
+  letter-spacing:0;
+  margin-left:4px;
+}
+.s-stat-label{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:clamp(18px, 1.6vw, 24px);
+  line-height:1.25;letter-spacing:-0.012em;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+.s-stat-prose{
+  font-family:'Inter',sans-serif;
+  font-size:14px;line-height:1.55;
+  color:var(--ink-mute);
+}
+
+/* === SLIDE 03 · TESIS · DIAGRAM === */
+.s-tesis-grid{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:64px;align-items:center;
+  margin-top:24px;
+}
+.s-tesis-svg{width:100%;height:auto;max-height:520px;display:block}
+.s-tesis-list{
+  list-style:none;padding:0;margin:0;
+  display:grid;gap:18px;
+}
+.s-tesis-list li{
+  display:grid;grid-template-columns:36px 1fr;gap:14px;
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.55;
+  color:var(--ink-soft);
+  padding-bottom:16px;
+  border-bottom:1px solid var(--rule);
+}
+.s-tesis-list li strong{color:var(--ink);font-weight:600;font-family:'Inter Tight',sans-serif}
+.s-tesis-list li span:first-child{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.16em;font-weight:500;
+  color:var(--accent);
+  padding-top:2px;
+}
+
+/* === SLIDE 04 · 6 MÓDULOS === */
+.s-modules{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;
+  margin-top:32px;
+  border-top:1px solid var(--rule);
+}
+.s-module{
+  padding:32px 28px 32px 0;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.s-module:nth-child(3n){border-right:none}
+.s-module-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-light);
+  margin-bottom:16px;
+}
+.s-module.emph .s-module-num{color:var(--accent);font-weight:700}
+.s-module-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:22px;line-height:1.2;letter-spacing:-0.012em;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+.s-module.emph .s-module-title{color:var(--accent-deep)}
+.s-module-title em{font-style:italic;color:var(--accent);font-weight:300;font-size:0.78em}
+.s-module-prose{
+  font-family:'Inter',sans-serif;
+  font-size:14.5px;line-height:1.55;
+  color:var(--ink-mute);
+}
+
+/* === SLIDE 05 · TIMELINE === */
+.s-timeline{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:0;
+  margin-top:48px;
+  position:relative;
+}
+.s-timeline::before{
+  content:"";position:absolute;
+  top:32px;left:0;right:0;height:2px;
+  background:var(--rule-strong);
+}
+.s-tl-cell{
+  position:relative;
+  padding:48px 12px 0 0;
+}
+.s-tl-cell::before{
+  content:"";position:absolute;
+  top:24px;left:0;width:18px;height:18px;
+  background:var(--bg);
+  border:2px solid var(--accent);
+  border-radius:50%;
+  z-index:1;
+}
+.s-tl-cell.start::before{background:var(--accent)}
+.s-tl-cell.end::before{background:var(--accent);border-color:var(--accent-deep)}
+.s-tl-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.16em;font-weight:600;
+  color:var(--accent);
+  margin-bottom:8px;
+}
+.s-tl-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:500;
+  font-size:16px;line-height:1.25;letter-spacing:-0.01em;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.s-tl-meta{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.12em;font-weight:500;
+  color:var(--ink-mute);
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.s-tl-prose{
+  font-family:'Inter',sans-serif;
+  font-size:13px;line-height:1.5;
+  color:var(--ink-mute);
+}
+
+/* === SLIDE 06 · MOAT (R&D + DISTRIBUCIÓN) === */
+.s-moat-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;
+  margin-top:32px;
+}
+.s-moat-card{
+  padding:36px 36px;
+  background:rgba(250,250,247,0.06);
+  border:1px solid rgba(250,250,247,0.16);
+  border-left:3px solid var(--accent-bright);
+  border-radius:2px;
+}
+.s-moat-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.22em;font-weight:600;
+  color:var(--accent-bright);
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+.s-moat-title{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:clamp(24px, 2.6vw, 36px);
+  line-height:1.15;letter-spacing:-0.018em;
+  color:var(--bg);
+  margin-bottom:18px;
+}
+.s-moat-title em{font-style:italic;font-weight:300;color:var(--accent-bright)}
+.s-moat-prose{
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.65;
+  color:rgba(250,250,247,0.78);
+}
+.s-moat-prose strong{color:var(--bg);font-weight:600}
+
+/* === SLIDE 07 · INVERSIÓN === */
+.s-inv-grid{
+  display:grid;grid-template-columns:1.4fr 1fr;
+  gap:64px;align-items:center;
+  margin-top:32px;
+}
+.s-inv-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(80px, 12vw, 200px);
+  line-height:0.9;letter-spacing:-0.045em;
+  color:var(--accent);
+  margin-bottom:24px;
+}
+.s-inv-num small{
+  font-size:0.32em;font-weight:300;
+  color:var(--ink-mute);
+  letter-spacing:0;
+  margin-left:6px;
+}
+.s-inv-label{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:400;
+  font-size:clamp(20px, 2vw, 28px);
+  color:var(--ink);
+  line-height:1.3;letter-spacing:-0.014em;
+  max-width:480px;
+}
+.s-inv-list{
+  list-style:none;padding:0;margin:0;
+  display:grid;gap:0;
+  border-top:1px solid var(--rule);
+}
+.s-inv-list li{
+  padding:16px 0;
+  border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:1fr auto;gap:16px;
+  font-family:'Inter',sans-serif;
+  font-size:15px;line-height:1.5;
+  color:var(--ink-soft);
+}
+.s-inv-list li strong{color:var(--ink);font-weight:600}
+.s-inv-list li span{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:13px;font-weight:600;
+  color:var(--accent-deep);
+  letter-spacing:0.04em;
+}
+
+/* === SLIDE 08 · CTA === */
+.s-cta-wrap{text-align:center;max-width:980px;margin:0 auto}
+.s-cta-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.24em;font-weight:500;
+  color:var(--accent-bright);
+  margin-bottom:28px;
+  text-transform:uppercase;
+}
+.s-cta-h1{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(48px, 7vw, 108px);
+  line-height:0.98;letter-spacing:-0.035em;
+  color:var(--bg);
+  margin:0 0 32px;
+}
+.s-cta-h1 em{font-style:italic;font-weight:300;color:var(--accent-bright)}
+.s-cta-deck{
+  font-family:'Inter',sans-serif;
+  font-size:18px;line-height:1.65;
+  color:rgba(250,250,247,0.78);
+  margin:0 auto 48px;
+  max-width:680px;
+}
+.s-cta-btn{
+  display:inline-block;
+  padding:18px 36px;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;letter-spacing:0.2em;font-weight:600;
+  text-decoration:none;
+  border-radius:2px;
+  text-transform:uppercase;
+  transition:transform 0.2s, background 0.2s;
+}
+.s-cta-btn:hover{
+  background:var(--accent-bright);color:var(--bg);
+  transform:translateY(-2px);
+}
+.s-cta-btn-ghost{
+  display:inline-block;
+  margin-left:14px;
+  padding:18px 28px;
+  color:rgba(250,250,247,0.78);
+  border:1px solid rgba(250,250,247,0.25);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;letter-spacing:0.2em;font-weight:500;
+  text-decoration:none;
+  border-radius:2px;
+  text-transform:uppercase;
+  transition:border-color 0.2s, color 0.2s;
+}
+.s-cta-btn-ghost:hover{
+  border-color:var(--bg);color:var(--bg);
+}
+
+/* RESPONSIVE */
+@media (max-width:980px){
+  .slide{padding:48px 28px}
+  .s-stats{grid-template-columns:1fr;gap:40px}
+  .s-tesis-grid{grid-template-columns:1fr;gap:32px}
+  .s-modules{grid-template-columns:1fr}
+  .s-module{border-right:none}
+  .s-timeline{grid-template-columns:1fr;gap:18px}
+  .s-timeline::before{display:none}
+  .s-tl-cell{padding:24px 0 24px 36px;border-left:2px solid var(--rule-strong)}
+  .s-tl-cell::before{top:18px;left:-10px}
+  .s-moat-grid{grid-template-columns:1fr;gap:24px}
+  .s-inv-grid{grid-template-columns:1fr;gap:32px}
+}
+
+/* INITIAL STATE for animations · always set */
+.slide-enter > *{opacity:0;transform:translateY(24px)}
+.slide-enter.is-in > *{opacity:1;transform:translateY(0);transition:opacity 0.7s ease, transform 0.7s ease}
+@media (prefers-reduced-motion: reduce){
+  .slide-enter > *{opacity:1 !important;transform:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SLIDE 01 · COVER ═══════════ -->
+<section class="slide s-cover slide-enter">
+  <div class="s-cover-firm">
+    EIGEN · ATLAS
+    <small>Architecture practice · Guadalajara · México</small>
+  </div>
+
+  <div class="meta-bar">
+    <span class="meta-num">01 / 08 · PORTADA</span>
+    <span class="meta-tag">PRESENTACIÓN · TSC LABS</span>
+  </div>
+
+  <div class="slide-eyebrow">— PARA TSC LABS · CONFIDENCIAL —</div>
+
+  <h1 class="slide-h1">
+    Sistema operativo digital de <em>TSC LABS</em><br>
+    en doce meses,<br>
+    sobre un solo <em>data substrate</em>.
+  </h1>
+
+  <p class="slide-deck">
+    Una sola arquitectura que indexa toda la operación — fórmulas, lotes, clientes, proveeduría, agentes — y libera el techo comercial sin sumar equipo senior.
+  </p>
+
+  <div class="s-cover-foot">
+    <span>Atlas Studios · GDL · MX</span>
+    <span>EIGEN-PROP-TSC-2026/01</span>
+    <span>For TSC LABS principals only</span>
+  </div>
+</section>
+
+
+<!-- ═══════════ SLIDE 02 · 3 DATOS ═══════════ -->
+<section class="slide muted slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">02 / 08 · DIAGNÓSTICO</span>
+    <span class="meta-tag">TRES DATOS DE TSC · APLICADOS</span>
+  </div>
+
+  <div class="slide-eyebrow">— LO QUE LA OPERACIÓN DICE HOY —</div>
+
+  <h2 class="slide-h2">
+    No buscamos justificar la digitalización con<br>benchmarks globales. <em>El argumento son tus números.</em>
+  </h2>
+
+  <div class="s-stats">
+    <div class="s-stat">
+      <div class="s-stat-num">30<small>/mes</small></div>
+      <div class="s-stat-label">Leads B2B detenidos por saturación operativa</div>
+      <div class="s-stat-prose">El pipeline existió y funcionó a 50% close rate. Se apagó porque no hay capacidad humana para procesarlos.</div>
+    </div>
+    <div class="s-stat">
+      <div class="s-stat-num">28K<small>/mes</small></div>
+      <div class="s-stat-label">Capacidad ociosa en envasado y producción</div>
+      <div class="s-stat-prose">Hay margen para 4× más volumen sin equipo nuevo si la coordinación de envasado/etiquetado se sistematiza.</div>
+    </div>
+    <div class="s-stat">
+      <div class="s-stat-num">50<small>fórmulas</small></div>
+      <div class="s-stat-label">Sistematizadas en Sheets · no centralizadas con producción</div>
+      <div class="s-stat-prose">Las fórmulas existen documentadas. Falta que el sistema operacional las consulte automáticamente.</div>
+    </div>
+  </div>
+
+  <div class="slide-foot">FUENTE · CUESTIONARIO TSC LABS · MAYO 2026</div>
+</section>
+
+
+<!-- ═══════════ SLIDE 03 · TESIS · DIAGRAM ═══════════ -->
+<section class="slide slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">03 / 08 · TESIS</span>
+    <span class="meta-tag">UN SOLO DATA SUBSTRATE</span>
+  </div>
+
+  <div class="slide-eyebrow">— LA ARQUITECTURA EN UNA FRASE —</div>
+
+  <h2 class="slide-h2">
+    Indexamos toda la operación de TSC<br>
+    sobre un solo data substrate, y construimos<br>
+    encima <em>todo lo que el laboratorio necesita</em>.
+  </h2>
+
+  <div class="s-tesis-grid">
+    <svg class="s-tesis-svg" viewBox="0 0 700 480" preserveAspectRatio="xMidYMid meet" aria-label="Arquitectura unificada">
+      <!-- Substrate core -->
+      <ellipse cx="350" cy="240" rx="180" ry="44" fill="rgba(30,64,175,0.06)" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="350" y="238" text-anchor="middle" fill="var(--accent-deep)" style="font:600 14px 'JetBrains Mono',monospace;letter-spacing:0.2em">DATA SUBSTRATE</text>
+      <text x="350" y="256" text-anchor="middle" fill="var(--ink-mute)" style="font:500 11px 'JetBrains Mono',monospace;letter-spacing:0.14em">D1 · R2 · WORKERS ANALYTICS</text>
+
+      <!-- Nodes -->
+      <g stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.45">
+        <line x1="350" y1="240" x2="120" y2="100"/>
+        <line x1="350" y1="240" x2="120" y2="240"/>
+        <line x1="350" y1="240" x2="120" y2="380"/>
+        <line x1="350" y1="240" x2="580" y2="100"/>
+        <line x1="350" y1="240" x2="580" y2="240" stroke-width="1.6" opacity="0.95"/>
+        <line x1="350" y1="240" x2="580" y2="380"/>
+      </g>
+      <g>
+        <circle cx="120" cy="100" r="6" fill="var(--accent)"/>
+        <text x="106" y="86" text-anchor="end" fill="var(--ink)" style="font:500 13px 'Inter Tight',sans-serif">Operaciones</text>
+        <text x="106" y="102" text-anchor="end" fill="var(--ink-mute)" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">PORTAL · 01</text>
+        <circle cx="120" cy="240" r="6" fill="var(--accent)"/>
+        <text x="106" y="232" text-anchor="end" fill="var(--ink)" style="font:500 13px 'Inter Tight',sans-serif">BI + ciencia datos</text>
+        <text x="106" y="248" text-anchor="end" fill="var(--ink-mute)" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">PORTAL · 02</text>
+        <circle cx="120" cy="380" r="6" fill="var(--accent)"/>
+        <text x="106" y="372" text-anchor="end" fill="var(--ink)" style="font:500 13px 'Inter Tight',sans-serif">Talent / clientes</text>
+        <text x="106" y="388" text-anchor="end" fill="var(--ink-mute)" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">PORTAL · 03</text>
+        <circle cx="580" cy="100" r="6" fill="var(--accent)"/>
+        <text x="594" y="86" text-anchor="start" fill="var(--ink)" style="font:500 13px 'Inter Tight',sans-serif">5 agentes</text>
+        <text x="594" y="102" text-anchor="start" fill="var(--ink-mute)" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">CAPA AGÉNTICA · 05</text>
+        <circle cx="580" cy="240" r="7" fill="var(--accent)" stroke="var(--accent-deep)" stroke-width="1.6"/>
+        <text x="594" y="232" text-anchor="start" fill="var(--accent-deep)" style="font:600 14px 'Inter Tight',sans-serif">Distribución habilitada</text>
+        <text x="594" y="248" text-anchor="start" fill="var(--accent)" style="font:600 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">EXTENSIÓN B2B · 04</text>
+        <circle cx="580" cy="380" r="6" fill="var(--accent)"/>
+        <text x="594" y="372" text-anchor="start" fill="var(--ink)" style="font:500 13px 'Inter Tight',sans-serif">ERP + Vault</text>
+        <text x="594" y="388" text-anchor="start" fill="var(--ink-mute)" style="font:500 9px 'JetBrains Mono',monospace;letter-spacing:0.14em">CAPA OPERACIONAL · 06</text>
+      </g>
+    </svg>
+    <ul class="s-tesis-list">
+      <li><span>01</span><div><strong>Una sola fuente.</strong> Fórmulas, clientes, lotes, pagos, agentes — todo en el mismo store.</div></li>
+      <li><span>02</span><div><strong>Audit trail unificado.</strong> Cada cambio versionado y trazable. Sin reconciliar entre sistemas.</div></li>
+      <li><span>03</span><div><strong>Multi-tenant nativo.</strong> Cada cliente B2B y cada talent tiene su propio espacio aislado.</div></li>
+      <li><span>04</span><div><strong>Sin lock-in.</strong> Cloudflare-native, schemas SQL exportables, IP 100% TSC desde día uno.</div></li>
+      <li><span>05</span><div><strong>Mismo número en todas partes.</strong> El CFO y el chatbot DTC consultan el mismo SKU y la respuesta es idéntica.</div></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════ SLIDE 04 · 6 MÓDULOS ═══════════ -->
+<section class="slide muted slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">04 / 08 · CAPACIDAD</span>
+    <span class="meta-tag">SEIS MÓDULOS · UNA ARQUITECTURA</span>
+  </div>
+
+  <div class="slide-eyebrow">— LO QUE SE ENTREGA —</div>
+
+  <h2 class="slide-h2">Seis módulos sobre la misma base.</h2>
+
+  <div class="s-modules">
+    <div class="s-module">
+      <div class="s-module-num">01 · PORTAL INTERNO</div>
+      <div class="s-module-title">Operaciones internas</div>
+      <p class="s-module-prose">Cola de envasado, status de lotes, ERP de inventario, cargas a becarios. Una pantalla por persona.</p>
+    </div>
+    <div class="s-module">
+      <div class="s-module-num">02 · BI · DATA SCIENCE</div>
+      <div class="s-module-title">Business intelligence <em>· IA</em></div>
+      <p class="s-module-prose">Forecasting predictivo, detección de anomalías en lotes, cohort retention, queries en lenguaje natural.</p>
+    </div>
+    <div class="s-module">
+      <div class="s-module-num">03 · PORTAL EXTERNO</div>
+      <div class="s-module-title">Talent / clientes B2B</div>
+      <p class="s-module-prose">Cada cliente entra a su propio espacio: marca, fórmulas, hitos, documentos, conversación con TSC.</p>
+    </div>
+    <div class="s-module emph">
+      <div class="s-module-num">04 · EXTENSIÓN B2B</div>
+      <div class="s-module-title">Distribución habilitada <em>· crítico</em></div>
+      <p class="s-module-prose">Cualquier persona puede distribuir TSC con paneles ya construidos, comunicación, pagos, contratos firmables. El distribuidor sólo vende.</p>
+    </div>
+    <div class="s-module">
+      <div class="s-module-num">05 · CAPA AGÉNTICA</div>
+      <div class="s-module-title">Cinco agentes productivizados</div>
+      <p class="s-module-prose">DTC chatbot · B2B Lead Qualifier · Proveeduría · Compliance + Social · R&amp;D Scout sobre activos nuevos.</p>
+    </div>
+    <div class="s-module">
+      <div class="s-module-num">06 · CAPA OPERACIONAL</div>
+      <div class="s-module-title">ERP + Document Vault</div>
+      <p class="s-module-prose">Lot lifecycle, auto-descuento, draft de PO automático, Skydropx, archivo regulatorio bajo BPF cosméticos.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ SLIDE 05 · ROADMAP 12 MESES ═══════════ -->
+<section class="slide slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">05 / 08 · ROADMAP</span>
+    <span class="meta-tag">12 MESES · 6 FASES · OVERLAP CALENDARIO</span>
+  </div>
+
+  <div class="slide-eyebrow">— CÓMO SE ENTREGA —</div>
+
+  <h2 class="slide-h2">Doce meses, seis fases, un sistema en producción al cierre.</h2>
+
+  <div class="s-timeline">
+    <div class="s-tl-cell start">
+      <div class="s-tl-num">F0</div>
+      <div class="s-tl-title">Discovery</div>
+      <div class="s-tl-meta">3 semanas</div>
+      <p class="s-tl-prose">Modelo maestro, ER diagrams, schema, decisiones técnicas, roadmap mensual.</p>
+    </div>
+    <div class="s-tl-cell">
+      <div class="s-tl-num">F1</div>
+      <div class="s-tl-title">Foundation Digital</div>
+      <div class="s-tl-meta">2 meses</div>
+      <p class="s-tl-prose">Landing TSC LABS, dominio, identidad CF, auth multi-canal, base D1+R2.</p>
+    </div>
+    <div class="s-tl-cell">
+      <div class="s-tl-num">F2</div>
+      <div class="s-tl-title">Sales &amp; CRM</div>
+      <div class="s-tl-meta">1.5 meses</div>
+      <p class="s-tl-prose">Talent Portal cliente-facing + Portal interno + CRM + email automation + tracking CFDI.</p>
+    </div>
+    <div class="s-tl-cell">
+      <div class="s-tl-num">F3</div>
+      <div class="s-tl-title">ERP &amp; Operations</div>
+      <div class="s-tl-meta">2.5 meses</div>
+      <p class="s-tl-prose">Formula DB versionada, lot lifecycle, auto-descuento, supply chain, Document Vault.</p>
+    </div>
+    <div class="s-tl-cell">
+      <div class="s-tl-num">F4</div>
+      <div class="s-tl-title">BI + Queryable</div>
+      <div class="s-tl-meta">2 meses</div>
+      <p class="s-tl-prose">Dashboards, semantic data layer, NL→SQL via Claude, cohort + forecasting.</p>
+    </div>
+    <div class="s-tl-cell end">
+      <div class="s-tl-num">F5</div>
+      <div class="s-tl-title">Capa Agéntica</div>
+      <div class="s-tl-meta">5 meses · 5 olas</div>
+      <p class="s-tl-prose">DTC chatbot · B2B qualifier · Proveeduría · Compliance + Social · R&amp;D Scout.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ SLIDE 06 · MOAT (R&D + DISTRIBUCIÓN) ═══════════ -->
+<section class="slide dark slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">06 / 08 · DIFERENCIAL</span>
+    <span class="meta-tag">LO QUE NINGUNA AGENCIA TRAE</span>
+  </div>
+
+  <div class="slide-eyebrow">— DOS PIEZAS QUE LIBERAN EL TECHO —</div>
+
+  <h2 class="slide-h2" style="color:var(--bg)">
+    Dos piezas que <em>nadie más</em> trae empacadas.
+  </h2>
+
+  <div class="s-moat-grid">
+    <div class="s-moat-card">
+      <div class="s-moat-tag">OLA E · F5 · INCLUIDO</div>
+      <h3 class="s-moat-title">R&amp;D Scout · <em>inteligencia continua de activos</em></h3>
+      <p class="s-moat-prose">Vigila 24/7 papers, patentes y feeds de proveedores estratégicos (BASF, Croda, Lubrizol, Symrise, Givaudan, DSM-Firmenich). Cuando detecta un activo que vale la pena, entrega <strong>3 oportunidades evaluadas cada lunes</strong>: ficha técnica + mapeo de proveedores + brief de estrategia. Ninguna agencia, ningún ERP off-the-shelf trae este agente.</p>
+    </div>
+    <div class="s-moat-card">
+      <div class="s-moat-tag">MÓDULO · 04 · CRÍTICO</div>
+      <h3 class="s-moat-title">Distribución habilitada <em>· extensión B2B</em></h3>
+      <p class="s-moat-prose">Cualquier persona o socio comercial distribuye productos TSC con una facilidad que ningún competidor iguala — los paneles están construidos, la comunicación es directa, los pagos enlazados, los tratos y contratos firmables desde el portal. <strong>El distribuidor sólo tiene que vender; toda la operación detrás corre sola.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════ SLIDE 07 · INVERSIÓN ═══════════ -->
+<section class="slide muted slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">07 / 08 · INVERSIÓN</span>
+    <span class="meta-tag">SETUP COMPLETO · 12 MESES</span>
+  </div>
+
+  <div class="slide-eyebrow">— LO QUE CUESTA —</div>
+
+  <h2 class="slide-h2">Setup completo en doce meses.</h2>
+
+  <div class="s-inv-grid">
+    <div>
+      <div class="s-inv-num">$1.76<small>M MXN</small></div>
+      <div class="s-inv-label">F0 Discovery + F1-F5 · sistema en producción al cierre · IP 100% TSC.</div>
+    </div>
+    <ul class="s-inv-list">
+      <li><strong>F0 · Discovery</strong><span>$60K · 3 sem</span></li>
+      <li><strong>F1 · Foundation Digital</strong><span>$200K · 2 mo</span></li>
+      <li><strong>F2 · Sales &amp; CRM</strong><span>$240K · 1.5 mo</span></li>
+      <li><strong>F3 · ERP &amp; Operations</strong><span>$400K · 2.5 mo</span></li>
+      <li><strong>F4 · BI + Queryable</strong><span>$220K · 2 mo</span></li>
+      <li><strong>F5 · Capa Agéntica · 5 olas</strong><span>$640K · 5 mo</span></li>
+    </ul>
+  </div>
+
+  <div class="slide-foot">PAGOS 50% INICIO + 50% CIERRE CON HITOS VALIDADOS · NET 15 · POST-LAUNCH FUERA DE SCOPE · INFRA CF DIRECTA ~$200-400 USD/MES</div>
+</section>
+
+
+<!-- ═══════════ SLIDE 08 · CTA ═══════════ -->
+<section class="slide dark slide-enter">
+  <div class="meta-bar">
+    <span class="meta-num">08 / 08 · INVITACIÓN</span>
+    <span class="meta-tag">PRÓXIMO PASO</span>
+  </div>
+
+  <div class="s-cta-wrap">
+    <div class="s-cta-eyebrow">— TRES PASOS · SIETE DÍAS · UNA DÉCADA —</div>
+
+    <h1 class="s-cta-h1">
+      Desde la firma del work order F0<br>al kickoff <em>en siete días</em>.
+    </h1>
+
+    <p class="s-cta-deck">
+      Repaso completo · NDA mutuo y work order F1 redactados en 48 horas · firma electrónica · 50% inicio + 50% cierre con hitos validados · sin lock-in multi-año.
+    </p>
+
+    <a class="s-cta-btn" href="https://propuesta.tsc-labs.com.mx/" target="_blank">Ver propuesta completa →</a>
+    <a class="s-cta-btn-ghost" href="https://demo.tsc-labs.com.mx/" target="_blank">Demo del sistema</a>
+  </div>
+
+  <div class="slide-foot" style="text-align:center;margin-top:80px">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL · PARA TSC LABS PRINCIPALS ONLY</div>
+</section>
+
+
+<script>
+// IntersectionObserver reveals · per-slide
+(function(){
+  var slides = document.querySelectorAll('.slide-enter');
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced){
+    slides.forEach(function(s){ s.classList.add('is-in'); });
+    return;
+  }
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+    slides.forEach(function(s){ io.observe(s); });
+  } else {
+    slides.forEach(function(s){ s.classList.add('is-in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
