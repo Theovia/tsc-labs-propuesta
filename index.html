@@ -56,7 +56,171 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-weight:500;
 }
 
-/* === COVER === */
+/* === HERO · v2 (clean editorial) === */
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--bg);
+  padding:32px 56px 48px;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  gap:48px;
+  border-bottom:1px solid var(--rule-strong);
+}
+.hero-bar{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:32px;
+  align-items:center;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+}
+.hero-bar-firm{
+  display:flex;flex-direction:column;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:0.16em;
+}
+.hero-bar-firm strong{
+  font-size:11px;font-weight:600;
+  color:var(--accent-deep);
+  letter-spacing:0.22em;
+  margin-bottom:3px;
+}
+.hero-bar-firm small{
+  font-size:9.5px;font-weight:500;
+  color:var(--ink-mute);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+.hero-bar-rule{
+  height:1px;background:var(--rule);
+  width:100%;
+  align-self:end;
+  margin-bottom:6px;
+}
+.hero-bar-meta{
+  display:flex;gap:24px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.14em;
+  color:var(--ink-mute);font-weight:500;
+}
+.hero-bar-meta em{
+  font-style:normal;color:var(--ink-light);
+  font-weight:500;letter-spacing:0.18em;
+  margin-right:6px;
+}
+
+.hero-stage{
+  align-self:center;
+  max-width:1180px;
+  margin:0 auto;
+  width:100%;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.24em;font-weight:500;
+  color:var(--accent);
+  display:block;
+  margin-bottom:32px;
+  text-transform:uppercase;
+}
+.hero-headline{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:200;
+  font-size:clamp(40px, 6.4vw, 96px);
+  line-height:0.98;letter-spacing:-0.034em;
+  color:var(--ink);
+  margin:0 0 36px;
+  max-width:1140px;
+}
+.hero-headline em{
+  font-style:italic;font-weight:300;
+  color:var(--accent);
+}
+.hl-line{display:block}
+.hl-line-key{margin:6px 0}
+.hl-chip{
+  display:inline-block;
+  padding:0 18px 2px;
+  background:rgba(30,64,175,0.08);
+  border:1px solid var(--accent);
+  border-radius:6px;
+  font-style:normal;font-weight:300;
+  color:var(--accent-deep);
+  letter-spacing:-0.022em;
+}
+.hero-deck{
+  font-family:'Inter',sans-serif;
+  font-size:17px;line-height:1.65;
+  color:var(--ink-soft);
+  margin:0 0 40px;
+  max-width:760px;
+}
+.hero-deck strong{color:var(--ink);font-weight:600}
+.hero-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent-bright) 50%, transparent 100%);
+  margin:0 0 28px;
+  transform-origin:left center;
+  transform:scaleX(1);
+}
+.hero-ledger{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:32px;
+  align-items:end;
+}
+.hero-ledger-cell{
+  display:flex;flex-direction:column;gap:10px;
+  padding:14px 0 0;
+  border-top:2px solid var(--ink);
+}
+.hero-ledger-cell-emph{
+  border-top-color:var(--accent);
+}
+.hl-num{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px, 3vw, 44px);
+  line-height:1;letter-spacing:-0.025em;
+  color:var(--ink);
+}
+.hero-ledger-cell-emph .hl-num{color:var(--accent-deep)}
+.hl-num em{
+  font-style:normal;font-weight:300;
+  font-size:0.5em;
+  color:var(--ink-mute);
+  letter-spacing:0;
+  margin-left:4px;
+}
+.hl-lab{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+.hero-foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;
+  border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-mute);
+  text-transform:uppercase;
+}
+.hero-foot-mark{color:var(--accent);font-weight:600}
+
+@media (max-width:980px){
+  .hero{padding:28px 28px 36px;gap:32px;min-height:auto}
+  .hero-bar{grid-template-columns:1fr;gap:14px}
+  .hero-bar-rule{display:none}
+  .hero-bar-meta{flex-wrap:wrap;gap:12px}
+  .hero-headline{font-size:clamp(34px, 9vw, 64px);letter-spacing:-0.025em}
+  .hero-ledger{grid-template-columns:repeat(2, 1fr);gap:24px}
+  .hero-foot{flex-direction:column;gap:8px;text-align:center}
+}
+
+/* === COVER (legacy unused) === */
 .cover{
   min-height:100vh;
   background:var(--bg);
@@ -3243,67 +3407,66 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <body>
 
 <!-- COVER -->
-<header class="cover">
-  <div class="cover-top">
-    <div class="cover-top-mark">EIGEN ATLAS</div>
-    <div class="cover-top-meta">
-      <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
-      <span><strong>Filed</strong>2026.05.04</span>
-      <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
+<header class="hero">
+  <!-- TOP DRAFTING BAR -->
+  <div class="hero-bar">
+    <div class="hero-bar-firm">
+      <strong>EIGEN · ATLAS</strong>
+      <small>Architecture practice · Guadalajara · México</small>
+    </div>
+    <div class="hero-bar-rule" aria-hidden="true"></div>
+    <div class="hero-bar-meta">
+      <span><em>Propuesta</em> V2.0 · TSC LABS</span>
+      <span><em>Filed</em> 2026.05.04</span>
+      <span><em>Doc</em> EIGEN-PROP-TSC-2026/01</span>
     </div>
   </div>
 
-  <!-- Doc stamp top-right -->
-  <div class="cover-stamp" aria-hidden="true">
-    <strong>CONFIDENTIAL</strong>
-    <div class="stamp-rule"></div>
-    <span class="stamp-id">EIGEN-PROP-TSC-2026/01</span>
-    <span>FILED 2026.05.04</span>
-    <span>FOR PRINCIPALS ONLY</span>
-  </div>
+  <!-- HEADLINE STAGE -->
+  <div class="hero-stage">
+    <div class="hero-eyebrow">— PARA TSC LABS · CONFIDENCIAL · PARA SUS PRINCIPALES —</div>
 
-  <!-- Floating scientific annotations -->
-  <div class="cover-annotations" aria-hidden="true">
-    <div class="cover-annotation ann-1"><span class="ann-arrow">↳</span> ÚNICA FUENTE DE VERDAD</div>
-    <div class="cover-annotation ann-2"><span class="ann-arrow">↗</span> MULTI-TENANT DO</div>
-    <div class="cover-annotation ann-3"><span class="ann-arrow">↳</span> AUDIT TRAIL</div>
-    <div class="cover-annotation ann-4"><span class="ann-arrow">↗</span> AGENTES MULTI-TENANT</div>
-  </div>
+    <h1 class="hero-headline">
+      <span class="hl-line">Indexamos <em>toda</em></span>
+      <span class="hl-line">la operación de TSC LABS</span>
+      <span class="hl-line">sobre un solo</span>
+      <span class="hl-line hl-line-key"><span class="hl-chip">data substrate</span></span>
+      <span class="hl-line">y construimos encima</span>
+      <span class="hl-line"><em>todo</em> lo que el laboratorio necesita.</span>
+    </h1>
 
-  <div class="cover-center">
-    <div class="cover-copy">
-      <div class="cover-eyebrow">EIGEN · ATLAS / PROPUESTA · V2.0 · MAYO 2026</div>
-      <h1 class="cover-title"><em>TSC LABS</em> operando sobre un solo data substrate — laboratorio, marca, plataforma B2B y empresa <em data-scramble="queryable">queryable</em> en una sola arquitectura.</h1>
-      <p class="cover-subtitle">12 meses · 6 fases con ejecución paralela · una arquitectura unificada. F0 Discovery fija el modelo maestro las primeras 3 semanas; F1-F5 se ejecutan con overlap calendario para cerrar todo en 12 meses, dejando a TSC LABS operando sobre un solo data substrate con ERP, BI y capa agéntica activos.</p>
-      <p class="cover-subtitle cover-subtitle-emph">Al cierre de F5: D1 transaccional + R2 documental + Workers Analytics como data layer único. Cada servicio (Talent Portal, ERP, Operations registry, dashboards, agentes) lee y escribe sobre el mismo store. Una consulta del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número.</p>
+    <p class="hero-deck">
+      Sistema operativo digital de TSC LABS construido en <strong>doce meses</strong> sobre Cloudflare Workers · D1 · R2 · Durable Objects · Workers AI · Claude API. F0 Discovery fija el modelo maestro las primeras 3 semanas; F1-F5 entregan <strong>ERP, BI y capa agéntica de cinco olas en producción</strong>.
+    </p>
 
-      <!-- Cobalt hairline rule above stats -->
-      <div class="hero-rule-wrap" aria-hidden="true">
-        <svg viewBox="0 0 1080 1" preserveAspectRatio="none"><line class="hero-rule" x1="0" y1="0.5" x2="1080" y2="0.5"/></svg>
-        <div class="hero-rule-pulse"></div>
+    <div class="hero-rule" aria-hidden="true"></div>
+
+    <!-- LEDGER · 4 stats clean -->
+    <div class="hero-ledger">
+      <div class="hero-ledger-cell">
+        <span class="hl-num">$<span class="hl-num-val" data-count-to="1.76" data-count-decimals="2">0.00</span><em>M</em></span>
+        <span class="hl-lab">Setup completo · MXN</span>
       </div>
-
-      <div class="cover-headline-stats">
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-prefix">$</span><span class="cover-stat-value" data-count-to="1.76" data-count-decimals="2">0.00</span><em>M</em><span class="sm"> MXN</span></div>
-          <div class="cover-stat-label">Setup completo · 12 meses</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="12" data-count-decimals="0">0</span><em> mo</em></div>
-          <div class="cover-stat-label">Roadmap mensual</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num"><span class="cover-stat-value" data-count-to="10" data-count-decimals="0">0</span></div>
-          <div class="cover-stat-label">Entregas · productos digitales</div>
-        </div>
+      <div class="hero-ledger-cell">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="12" data-count-decimals="0">0</span><em> meses</em></span>
+        <span class="hl-lab">Roadmap mensual</span>
+      </div>
+      <div class="hero-ledger-cell">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="6" data-count-decimals="0">0</span><em> módulos</em></span>
+        <span class="hl-lab">F0 Discovery + F1-F5</span>
+      </div>
+      <div class="hero-ledger-cell hero-ledger-cell-emph">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="5" data-count-decimals="0">0</span><em> olas</em></span>
+        <span class="hl-lab">Capa agéntica · F5</span>
       </div>
     </div>
   </div>
 
-  <div class="cover-bottom">
+  <!-- BOTTOM STRIP -->
+  <div class="hero-foot">
     <span>Atlas Studios · GDL · MX</span>
-    <span class="cover-imprint-mark">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
-    <span>For TSC LABS &amp; principals only</span>
+    <span class="hero-foot-mark">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
+    <span>For TSC LABS principals only</span>
   </div>
 </header>
 
@@ -5972,147 +6135,72 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 </footer>
 
 <script>
-// === HERO ENTRANCE TIMELINE — monumental cinematic typography (entrance only, no scroll-tied effects, no smooth-scroll lib) ===
+// === HERO v2 · entrance timeline (clean editorial, no scroll-tied) ===
 (function(){
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
 
-  // Stat counter helper — runs always (even reduced/mobile we just snap to final)
-  function setStatsFinal(){
-    document.querySelectorAll('.cover-stat-value').forEach(function(el){
+  function setLedgerFinal(){
+    document.querySelectorAll('.hl-num-val').forEach(function(el){
       var target = parseFloat(el.getAttribute('data-count-to') || '0');
       var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
       el.textContent = target.toFixed(dec);
     });
   }
 
-  if (reduced || isMobile || typeof gsap === 'undefined'){
-    setStatsFinal();
-    // Make sure no opacity:0 leftovers if GSAP failed to load
-    var leftovers = document.querySelectorAll('.cover-title, .cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation');
-    leftovers.forEach(function(n){ n.style.opacity = 1; });
+  if (reduced || typeof gsap === 'undefined'){
+    setLedgerFinal();
+    document.querySelectorAll('.hero-bar, .hero-eyebrow, .hl-line, .hero-deck, .hero-rule, .hero-ledger-cell, .hero-foot').forEach(function(n){ n.style.opacity = 1; });
     return;
   }
 
-  // Register optional plugins
-  try {
-    if (window.SplitText) gsap.registerPlugin(SplitText);
-    if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
-    if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
-  } catch(e){}
-
-  // Pre-set initial states (avoid FOUC flicker)
-  gsap.set('.cover-eyebrow, .cover-subtitle, .cover-stamp, .cover-annotation, .cover-stat', { opacity: 0 });
-  gsap.set('.cover-title', { opacity: 1 });
-
-  // Word splitting — fallback if SplitText not loaded: wrap by whitespace manually
-  var titleEl = document.querySelector('.cover-title');
-  var words = [];
-  if (titleEl){
-    if (window.SplitText){
-      try {
-        var split = new SplitText(titleEl, { type: 'words', wordsClass: 'word' });
-        words = split.words;
-      } catch(e){ words = []; }
-    }
-    if (!words.length){
-      // Manual fallback: wrap each text node word in a .word span (preserve <em> children)
-      var manualWrap = function(node){
-        if (node.nodeType === 3){
-          var frag = document.createDocumentFragment();
-          var parts = node.nodeValue.split(/(\s+)/);
-          parts.forEach(function(p){
-            if (/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(p)); }
-            else if (p.length){
-              var sp = document.createElement('span');
-              sp.className = 'word';
-              sp.textContent = p;
-              frag.appendChild(sp);
-            }
-          });
-          node.parentNode.replaceChild(frag, node);
-        } else if (node.nodeType === 1){
-          // descend into element children (e.g. <em>) and wrap their text nodes
-          var kids = Array.prototype.slice.call(node.childNodes);
-          kids.forEach(manualWrap);
-        }
-      };
-      var children = Array.prototype.slice.call(titleEl.childNodes);
-      children.forEach(manualWrap);
-      words = titleEl.querySelectorAll('.word');
-    }
-  }
+  // Pre-set initial states
+  gsap.set(['.hero-bar', '.hero-eyebrow', '.hero-deck', '.hero-ledger-cell', '.hero-foot'], { opacity: 0 });
+  gsap.set('.hl-line', { opacity: 0, y: 40 });
+  gsap.set('.hero-rule', { scaleX: 0, transformOrigin: 'left center' });
 
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' }});
 
-  // Hairline cobalt rule draws in (uses DrawSVGPlugin if available, else fallback to scaleX)
-  if (window.DrawSVGPlugin){
-    tl.fromTo('.hero-rule', { drawSVG: '0%' }, { drawSVG: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.0);
-  } else {
-    var ruleEl = document.querySelector('.hero-rule-wrap svg');
-    if (ruleEl){
-      tl.fromTo(ruleEl, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.0);
-    }
-  }
-  // Pulse line above stats (delayed entrance)
-  tl.fromTo('.hero-rule-pulse', { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 1.2, ease: 'power2.inOut' }, 0.4);
+  // Top bar fades from above
+  tl.to('.hero-bar', { opacity: 1, duration: 0.8 }, 0.0)
+    .from('.hero-bar', { y: -12, duration: 0.8 }, 0.0);
 
-  // Eyebrow fade
-  tl.to('.cover-eyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0.2)
-    .from('.cover-eyebrow', { y: -8, duration: 0.7 }, 0.2);
+  // Eyebrow
+  tl.to('.hero-eyebrow', { opacity: 1, duration: 0.7 }, 0.4)
+    .from('.hero-eyebrow', { y: 8, duration: 0.7 }, 0.4);
 
-  // H1 word stagger (monumental entrance)
-  if (words && words.length){
-    tl.from(words, { opacity: 0, y: 40, duration: 0.95, stagger: 0.045 }, 0.4);
-  }
+  // Headline lines stagger
+  tl.to('.hl-line', { opacity: 1, y: 0, duration: 0.95, stagger: 0.10 }, 0.55);
 
-  // Body copy fade
-  tl.to('.cover-subtitle', { opacity: 1, y: 0, duration: 0.7, stagger: 0.08 }, '-=0.4')
-    .from('.cover-subtitle', { y: 20, duration: 0.7, stagger: 0.08 }, '-=1.1');
+  // Deck
+  tl.to('.hero-deck', { opacity: 1, duration: 0.7 }, 1.4)
+    .from('.hero-deck', { y: 14, duration: 0.7 }, 1.4);
 
-  // Stats fade in container
-  tl.to('.cover-stat', { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, '-=0.5')
-    .from('.cover-stat', { y: 14, duration: 0.6, stagger: 0.08 }, '-=1.0');
+  // Hairline rule draws in
+  tl.to('.hero-rule', { scaleX: 1, duration: 1.0, ease: 'power2.inOut' }, 1.6);
 
-  // Counter tweens (run inside the timeline so they sync with stats reveal)
-  document.querySelectorAll('.cover-stat-value').forEach(function(el, i){
+  // Ledger cells stagger
+  tl.to('.hero-ledger-cell', { opacity: 1, duration: 0.6, stagger: 0.10 }, 1.9)
+    .from('.hero-ledger-cell', { y: 16, duration: 0.6, stagger: 0.10 }, 1.9);
+
+  // Counter tweens
+  document.querySelectorAll('.hl-num-val').forEach(function(el, i){
     var target = parseFloat(el.getAttribute('data-count-to') || '0');
     var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
     var obj = { v: 0 };
     tl.to(obj, {
       v: target,
-      duration: dec === 0 ? 1.0 : 1.6,
+      duration: dec === 0 ? 0.9 : 1.4,
       ease: 'power2.out',
       onUpdate: function(){ el.textContent = obj.v.toFixed(dec); }
-    }, '-=0.5');
+    }, 2.0 + i * 0.10);
   });
 
-  // Doc stamp rotate-in (settles at -3deg via CSS)
-  tl.fromTo('.cover-stamp',
-    { opacity: 0, rotate: -8, scale: 0.95 },
-    { opacity: 1, rotate: -3, scale: 1, duration: 1.0, ease: 'power2.out' },
-    0.5);
+  // Foot strip
+  tl.to('.hero-foot', { opacity: 1, duration: 0.6 }, 2.6)
+    .from('.hero-foot', { y: 8, duration: 0.6 }, 2.6);
 
-  // Floating annotations stagger
-  tl.to('.cover-annotation', { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 }, 1.0)
-    .from('.cover-annotation', { y: 6, duration: 0.7, stagger: 0.12 }, 1.0);
-
-  // Optional ScrambleText on "queryable"
-  if (window.ScrambleTextPlugin){
-    var sc = document.querySelector('[data-scramble="queryable"]');
-    if (sc){
-      tl.to(sc, {
-        duration: 1.2,
-        scrambleText: { text: 'queryable', chars: 'lowerCase', revealDelay: 0.3, speed: 0.6 },
-        ease: 'none'
-      }, '-=0.4');
-    }
-  }
-
-  // Cleanup will-change after timeline complete
   tl.eventCallback('onComplete', function(){
-    if (window.DrawSVGPlugin) gsap.set('.hero-rule', { clearProps: 'drawSVG' });
-    gsap.set('.cover-title .word, .cover-eyebrow, .cover-subtitle, .cover-stat, .cover-stamp, .cover-annotation', { clearProps: 'transform,opacity,willChange' });
+    gsap.set(['.hl-line', '.hero-bar', '.hero-eyebrow', '.hero-deck', '.hero-ledger-cell', '.hero-foot'], { clearProps: 'transform,opacity,willChange' });
   });
 })();
 </script>
