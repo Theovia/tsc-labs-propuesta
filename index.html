@@ -6,7 +6,7 @@
 <title>Eigen Atlas · Propuesta V2.0 · TSC LABS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAFAF7;
@@ -56,728 +56,168 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-weight:500;
 }
 
-/* === HERO · MANIFESTO (kinetic typography · 6 actos pinned scroll-scrub) ===
-   Adapted from eigenatlas-portfolio/manifesto.html — gold standard validado
-   "lo más increíble que he visto" (Raul, 2026-04-30). Fraunces variable
-   serif (opsz/wght/SOFT/WONK) + 4-plugin GSAP master timeline:
-   ScrollTrigger pin+scrub + SplitText + ScrambleText + MorphSVG.
-   ============================================================ */
-.manifesto-cover{
-  --m-paper: var(--bg);
-  --m-ink: var(--ink);
-  --m-ink-2: rgba(10, 10, 10, 0.6);
-  --m-ink-3: rgba(10, 10, 10, 0.32);
-  --m-line: rgba(10, 10, 10, 0.12);
-  --m-coral: #C2410C;
-  --m-indigo: #1E40AF;
-  --m-amber: #B45309;
-  --m-gold: #A16207;
-  --m-teal: #0F766E;
-  --m-font-d: 'Fraunces', Georgia, serif;
-  --m-font-m: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
+/* === HERO · v2 (clean editorial) === */
+.hero{
   position:relative;
-  background:var(--m-paper);
-  color:var(--m-ink);
-  font-family:var(--m-font-d);
-}
-.manifesto-cover::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  background-image:
-    radial-gradient(ellipse at top right, rgba(194, 65, 12, 0.04), transparent 60%),
-    radial-gradient(ellipse at bottom left, rgba(10, 10, 10, 0.04), transparent 70%);
-}
-
-/* ============ MANIFESTO HUD (persistent) ============ */
-.m-hud{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:50;
-}
-.m-hud-tl{
-  position:absolute;
-  top:32px; left:40px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  font-family:var(--m-font-d);
-  font-size:22px;
-  letter-spacing:-0.025em;
-  color:var(--m-ink);
-}
-.m-brand-mark{
-  position:relative;
-  width:20px; height:20px;
-  flex-shrink:0;
-  display:inline-block;
-}
-.m-brand-mark::before,
-.m-brand-mark::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border:0.5px solid var(--m-ink);
-  border-radius:50%;
-}
-.m-brand-mark::after{
-  inset:5px;
-  background:var(--m-coral);
-  border:none;
-}
-.m-brand-name{
-  font-family:var(--m-font-d);
-  font-style:italic;
-  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
-  font-weight:300;
-  color:var(--m-ink);
-  letter-spacing:-0.03em;
-  line-height:1;
-}
-.m-feat{
-  font-family:var(--m-font-m);
-  font-size:9px;
-  letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:var(--m-ink-3);
-  font-weight:500;
-  position:relative;
-  top:1px;
-}
-.m-collab{
-  font-family:var(--m-font-d);
-  font-style:italic;
-  font-variation-settings:'opsz' 72, 'SOFT' 60, 'WONK' 0;
-  font-weight:400;
-  color:var(--m-coral);
-  letter-spacing:-0.025em;
-  line-height:1;
-}
-.m-hud-tr{
-  position:absolute;
-  top:36px; right:40px;
-  font-family:var(--m-font-m);
-  font-size:11px;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--m-ink-2);
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-.m-hud-tr .m-counter{
-  color:var(--m-ink);
-  font-weight:500;
-}
-.m-hud-progress{
-  position:absolute;
-  right:40px; top:50%;
-  transform:translateY(-50%);
-  width:1px; height:220px;
-  background:var(--m-line);
-}
-.m-hud-progress-fill{
-  position:absolute;
-  top:0; left:-1px;
-  width:3px; height:0%;
-  background:var(--m-coral);
-}
-.m-hud-progress-marks{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.m-hud-progress-marks span{
-  width:7px; height:1px;
-  background:var(--m-ink-3);
-  margin-left:-3px;
-}
-.m-hud-bl{
-  position:absolute;
-  bottom:36px; left:40px;
-  font-family:var(--m-font-m);
-  font-size:10px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--m-ink-3);
-}
-.m-hud-br{
-  position:absolute;
-  bottom:36px; right:40px;
-  font-family:var(--m-font-m);
-  font-size:10px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--m-ink-3);
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.m-hud-br .m-arrow{
-  display:inline-block;
-  animation:m-nudge 2.4s ease-in-out infinite;
-}
-@keyframes m-nudge{
-  0%,100%{ transform:translateY(0); }
-  50%{ transform:translateY(4px); }
-}
-
-/* ============ MANIFESTO STAGE ============ */
-.m-stage-wrap{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-  z-index:1;
-}
-.m-stage{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.m-act{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0 80px;
-  text-align:center;
-  opacity:0;
-  pointer-events:none;
-}
-.m-act.is-active{ opacity:1; }
-.m-act-heading{
-  font-family:var(--m-font-d);
-  font-weight:200;
-  line-height:0.92;
-  letter-spacing:-0.045em;
-  color:var(--m-ink);
-  will-change:transform, opacity;
-}
-
-/* ACT 1 — "tsc labs." massive lowercase Fraunces */
-.m-act-1 .m-act-heading{
-  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
-  font-weight:300;
-  font-size:clamp(64px, 14vw, 240px);
-  text-transform:lowercase;
-  letter-spacing:-0.06em;
-}
-.m-act-1 .m-accent-mark{
-  display:block;
-  font-family:var(--m-font-m);
-  font-size:11px;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  color:var(--m-coral);
-  margin-bottom:24px;
-  font-weight:500;
-}
-
-/* ACT 2 — "El stack cambia." */
-.m-act-2 .m-act-heading{
-  font-variation-settings:'opsz' 96, 'SOFT' 60, 'WONK' 0;
-  font-weight:300;
-  font-size:clamp(44px, 7.5vw, 130px);
-  line-height:1.05;
-}
-.m-act-2 .m-key{
-  font-style:italic;
-  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
-  color:var(--m-teal);
-  font-weight:300;
-}
-
-/* ACT 3 — "El substrate permanece." */
-.m-act-3 .m-act-heading{
-  font-variation-settings:'opsz' 96, 'SOFT' 30, 'WONK' 0;
-  font-weight:400;
-  font-size:clamp(44px, 7.5vw, 130px);
-  line-height:1.05;
-}
-.m-act-3 .m-key{
-  font-weight:600;
-  font-variation-settings:'opsz' 96, 'SOFT' 20, 'WONK' 0;
-  color:var(--m-ink);
-  background-image:linear-gradient(transparent 70%, var(--m-coral) 70%);
-  background-size:0% 100%;
-  background-repeat:no-repeat;
-}
-
-/* ACT 4 — "12 / meses a producción." */
-.m-act-4{
-  flex-direction:column;
-  gap:24px;
-}
-.m-act-4 .m-act-num{
-  font-family:var(--m-font-d);
-  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
-  font-weight:300;
-  font-size:clamp(140px, 26vw, 440px);
-  color:var(--m-amber);
-  line-height:0.85;
-  letter-spacing:-0.07em;
-}
-.m-act-4 .m-act-sub{
-  font-family:var(--m-font-d);
-  font-variation-settings:'opsz' 36, 'SOFT' 50, 'WONK' 0;
-  font-weight:300;
-  font-size:clamp(20px, 2.6vw, 38px);
-  letter-spacing:-0.02em;
-  color:var(--m-ink);
-}
-.m-act-4 .m-act-sub em{
-  font-style:italic;
-  color:var(--m-amber);
-}
-
-/* ACT 5 — "Un substrate. / Infinitos módulos." */
-.m-act-5{
-  flex-direction:column;
-  gap:20px;
-}
-.m-act-5 .m-line{
-  font-family:var(--m-font-d);
-  font-weight:300;
-  line-height:1;
-  letter-spacing:-0.04em;
-}
-.m-act-5 .m-line-1{
-  font-variation-settings:'opsz' 96, 'SOFT' 20, 'WONK' 0;
-  font-size:clamp(50px, 9vw, 160px);
-  color:var(--m-ink);
-}
-.m-act-5 .m-line-2{
-  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
-  font-style:italic;
-  font-size:clamp(46px, 8.5vw, 150px);
-  color:var(--m-indigo);
-}
-
-/* ACT 6 — "Para siempre queryable." finale */
-.m-act-6{
-  flex-direction:column;
-  gap:16px;
-}
-.m-act-6 .m-act-heading{
-  font-variation-settings:'opsz' 96, 'SOFT' 80, 'WONK' 1;
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(60px, 11vw, 200px);
-  line-height:1;
-  color:var(--m-ink);
-}
-.m-act-6 .m-underline-svg{
-  width:clamp(180px, 30vw, 460px);
-  height:36px;
-  overflow:visible;
-}
-.m-act-6 .m-underline-path{
-  stroke:var(--m-gold);
-  stroke-width:2;
-  fill:none;
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-  stroke-linecap:round;
-}
-
-/* ============ MORPHING SHAPE ============ */
-.m-shape-canvas{
-  position:absolute;
-  bottom:12vh;
-  left:50%;
-  transform:translateX(-50%);
-  width:56px;
-  height:56px;
-  z-index:4;
-  opacity:0;
-  pointer-events:none;
-}
-.m-shape-canvas svg{
-  width:100%;
-  height:100%;
-  overflow:visible;
-}
-.m-shape-path{
-  fill:none;
-  stroke:var(--m-ink);
-  stroke-width:1.5;
-}
-
-/* ============ MOBILE ============ */
-@media (max-width: 900px){
-  .m-hud-tl{ top:18px; left:20px; font-size:16px; gap:10px; }
-  .m-brand-mark{ width:16px; height:16px; }
-  .m-brand-mark::after{ inset:4px; }
-  .m-feat{ font-size:8px; letter-spacing:0.20em; }
-  .m-hud-tr{ top:22px; right:20px; gap:10px; font-size:9px; }
-  .m-hud-tr .m-meta-1{ display:none; }
-  .m-hud-progress{ display:none; }
-  .m-hud-bl, .m-hud-br{ left:20px; right:20px; bottom:20px; font-size:9px; }
-  .m-act{ padding:0 24px; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .manifesto-cover *,
-  .manifesto-cover *::before,
-  .manifesto-cover *::after{
-    animation-duration:0.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:0.01ms !important;
-  }
-  .m-act{ opacity:1 !important; }
-  .m-act:not(.m-act-1){ display:none; }
-}
-
-@media print{
-  .manifesto-cover{ min-height:auto; page-break-after:always; }
-  .m-hud-progress, .m-hud-br, .m-shape-canvas{ display:none !important; }
-  .m-stage-wrap{ height:auto; min-height:60vh; }
-  .m-act{ position:relative; opacity:1; padding:24px; page-break-inside:avoid; }
-  .m-act:not(.m-act-1){ display:none; }
-}
-.cover-cinema{
-  position:relative;
+  min-height:100vh;
   background:var(--bg);
-  overflow:hidden;
+  padding:32px 56px 48px;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  gap:48px;
   border-bottom:1px solid var(--rule-strong);
 }
-.cover-cinema .pin-stage{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  gap:28px;
-  padding:30px 56px 24px;
-  overflow:hidden;
-  z-index:1;
-}
-.cover-cinema .pin-stage > .hero-stage{
-  flex:1 1 auto;
-  min-height:0;
-}
-
-.fluid-canvas{
-  position:absolute;
-  inset:0;
-  width:100%;height:100%;
-  z-index:0;
-  pointer-events:none;
-  mix-blend-mode:multiply;
-  opacity:0.6;
-}
-
-.cinema-svg-defs{ position:absolute; width:0; height:0; overflow:hidden }
-
-.cinema-meta{
-  position:relative; z-index:5;
-  display:flex; justify-content:space-between; align-items:center;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px; letter-spacing:0.18em;
-  color:var(--ink-mute); text-transform:uppercase;
+.hero-bar{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:32px;
+  align-items:center;
   padding-bottom:14px;
   border-bottom:1px solid var(--rule);
 }
-.cinema-meta-mark{
-  display:flex; align-items:center; gap:10px;
-  color:var(--ink); font-weight:500;
-  font-family:'Inter Tight',sans-serif;
-  font-size:14px; letter-spacing:-0.005em; text-transform:none;
-}
-.cinema-meta-mark::before{
-  content:''; width:7px; height:7px; border-radius:50%;
-  background:#B5A48A;
-  box-shadow:0 0 14px #B5A48A, 0 0 4px #B5A48A;
-}
-.cinema-meta-cells{ display:flex; gap:30px; align-items:baseline }
-.cinema-meta-cells span{ display:flex; gap:8px }
-.cinema-meta-cells strong{ color:var(--ink); font-weight:500 }
-
-/* Lab HUD — instrument readout */
-.hud{
-  position:absolute;
-  top:84px; right:56px;
-  z-index:6;
-  display:grid; gap:11px;
+.hero-bar-firm{
+  display:flex;flex-direction:column;
   font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px; letter-spacing:0.14em;
+  letter-spacing:0.16em;
+}
+.hero-bar-firm strong{
+  font-size:11px;font-weight:600;
+  color:var(--accent-deep);
+  letter-spacing:0.22em;
+  margin-bottom:3px;
+}
+.hero-bar-firm small{
+  font-size:9.5px;font-weight:500;
+  color:var(--ink-mute);
+  letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--ink-mute);
-  pointer-events:none;
-  padding:18px 22px 18px;
-  background:rgba(252,252,248,0.78);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  border:1px solid rgba(46,46,54,0.18);
-  border-radius:2px;
-  min-width:248px;
-  box-shadow:0 1px 0 rgba(255,255,255,0.6) inset, 0 24px 60px -30px rgba(46,46,54,0.18);
 }
-.hud::before{
-  content:''; position:absolute; top:0; left:0; right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent 0%,#B5A48A 30%,#B5A48A 70%,transparent 100%);
-  opacity:0.85;
+.hero-bar-rule{
+  height:1px;background:var(--rule);
+  width:100%;
+  align-self:end;
+  margin-bottom:6px;
 }
-.hud-title{
-  display:flex; justify-content:space-between; align-items:center;
-  font-size:9px; letter-spacing:0.22em;
-  color:var(--ink); font-weight:600;
-  padding-bottom:8px;
-  border-bottom:1px dashed rgba(46,46,54,0.22);
-  margin-bottom:2px;
+.hero-bar-meta{
+  display:flex;gap:24px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.14em;
+  color:var(--ink-mute);font-weight:500;
 }
-.hud-title .live{
-  display:flex; align-items:center; gap:6px;
-  color:#B5A48A;
-  font-size:9px; font-weight:600;
+.hero-bar-meta em{
+  font-style:normal;color:var(--ink-light);
+  font-weight:500;letter-spacing:0.18em;
+  margin-right:6px;
 }
-.hud-title .live::before{
-  content:''; width:7px; height:7px; border-radius:50%;
-  background:#B5A48A;
-  animation:hudPulse 1.6s ease-in-out infinite;
-  box-shadow:0 0 10px #B5A48A;
-}
-@keyframes hudPulse{
-  0%,100%{ opacity:1; transform:scale(1) }
-  50%{ opacity:0.35; transform:scale(0.78) }
-}
-.hud-row{
-  display:flex; justify-content:space-between; align-items:baseline;
-  gap:18px;
-}
-.hud-row .label{ font-size:9px; color:var(--ink-mute); white-space:nowrap }
-.hud-row .value{
-  font-family:'Inter Tight',sans-serif;
-  font-size:14px; font-weight:500;
-  letter-spacing:-0.005em;
-  color:var(--ink);
-  text-transform:none;
-  font-variant-numeric:tabular-nums;
-}
-.hud-row .value em{
-  font-style:normal; font-size:10px;
-  color:var(--ink-mute); font-weight:400;
-  margin-left:4px;
-  text-transform:uppercase; letter-spacing:0.06em;
-}
-.hud-foot{
-  display:flex; justify-content:space-between; align-items:center;
-  padding-top:8px;
-  border-top:1px dashed rgba(46,46,54,0.22);
-  font-size:9px; letter-spacing:0.18em;
-  color:var(--ink-mute);
-}
-.hud-foot .ts{ color:var(--accent-deep); font-variant-numeric:tabular-nums }
 
-/* Hero stage center */
 .hero-stage{
-  position:relative; z-index:4;
-  display:flex; flex-direction:column;
-  justify-content:center;
-  padding:18px 0 24px;
+  align-self:center;
+  max-width:1180px;
+  margin:0 auto;
+  width:100%;
 }
 .hero-eyebrow{
   font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:11px; letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:var(--accent-deep);
-  font-weight:600;
-  margin-bottom:18px;
-  display:flex; align-items:center; gap:14px;
-  opacity:0;
-}
-.hero-eyebrow::before{
-  content:''; flex:0 0 24px; height:1px;
-  background:#B5A48A;
-}
-.hero-eyebrow::after{
-  content:''; flex:1 1 auto; height:1px;
-  background:linear-gradient(90deg, #B5A48A 0%, transparent 100%);
-  max-width:240px;
-}
-
-.hero-monument{
-  font-family:'Fraunces',Georgia,serif;
-  font-style:italic;
-  font-weight:300;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(120px, 22vw, 360px);
-  line-height:0.86;
-  letter-spacing:-0.04em;
-  color:var(--ink);
-  margin:0;
-  filter:url(#liquidDistort);
-  display:flex; flex-direction:column; gap:0;
-}
-.hero-monument .line{
+  font-size:11px;letter-spacing:0.24em;font-weight:500;
+  color:var(--accent);
   display:block;
-  overflow:hidden;
-  position:relative;
+  margin-bottom:32px;
+  text-transform:uppercase;
 }
-.hero-monument .line .char{
-  display:inline-block;
-  will-change:transform;
-}
-.hero-monument .line.line-2{
-  text-align:right;
-  color:#B5A48A;
-  font-weight:400;
-}
-.hero-monument .line.line-2::before{
-  content:'';
-  display:inline-block;
-  width:24vw; height:6px;
-  background:#B5A48A;
-  vertical-align:0.36em;
-  margin-right:30px;
-  opacity:0.92;
-}
-
-.hero-thesis{
-  margin-top:30px;
-  max-width:820px;
+.hero-headline{
   font-family:'Inter Tight',sans-serif;
-  font-weight:300;
-  font-size:clamp(18px, 1.55vw, 24px);
-  line-height:1.4;
-  letter-spacing:-0.005em;
-  color:var(--ink-soft);
-  opacity:0;
-}
-.hero-thesis em{
-  font-family:'Fraunces',Georgia,serif;
-  font-style:italic; font-weight:400;
-  font-variation-settings:"opsz" 36;
-  color:#B5A48A;
-  letter-spacing:0;
-}
-
-.hero-hairlines{
-  position:relative;
-  width:100%; height:1px;
-  z-index:3;
-  pointer-events:none;
-  overflow:visible;
-  margin-top:8px;
-}
-.hero-hairlines line{
-  stroke:#B5A48A;
-  stroke-width:1;
-  fill:none;
-  opacity:0.85;
-}
-
-.hero-stats{
-  position:relative; z-index:5;
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:0;
-  border-top:1px solid var(--rule-strong);
-  padding-top:20px;
-  margin-top:24px;
-}
-.hero-stat{
-  padding:0 28px 0 0;
-  border-right:1px solid var(--rule);
-  position:relative;
-  opacity:0;
-}
-.hero-stat:last-child{ border-right:none; padding-right:0 }
-.hero-stat-rule{ display:block; width:100%; height:1px; margin-bottom:14px }
-.hero-stat-rule line{ stroke:#B5A48A; stroke-width:1 }
-.hero-stat-num{
-  font-family:'Inter Tight',sans-serif;
-  font-weight:500;
-  font-size:42px;
-  line-height:1;
-  letter-spacing:-0.025em;
+  font-weight:200;
+  font-size:clamp(40px, 6.4vw, 96px);
+  line-height:0.98;letter-spacing:-0.034em;
   color:var(--ink);
-  margin-bottom:10px;
-  display:flex; align-items:baseline; gap:1px;
-  font-variant-numeric:tabular-nums;
+  margin:0 0 36px;
+  max-width:1140px;
 }
-.hero-stat-num .prefix{ font-size:22px; color:var(--ink-mute); font-weight:400; margin-right:3px }
-.hero-stat-num em{
-  font-style:italic;
-  font-family:'Fraunces',Georgia,serif;
-  font-variation-settings:"opsz" 36;
-  color:#B5A48A;
+.hero-headline em{
+  font-style:italic;font-weight:300;
+  color:var(--accent);
+}
+.hl-line{display:block}
+.hl-line-key{margin:6px 0}
+.hl-chip{
+  display:inline-block;
+  padding:0 18px 2px;
+  background:rgba(30,64,175,0.08);
+  border:1px solid var(--accent);
+  border-radius:6px;
+  font-style:normal;font-weight:300;
+  color:var(--accent-deep);
+  letter-spacing:-0.022em;
+}
+.hero-deck{
+  font-family:'Inter',sans-serif;
+  font-size:17px;line-height:1.65;
+  color:var(--ink-soft);
+  margin:0 0 40px;
+  max-width:760px;
+}
+.hero-deck strong{color:var(--ink);font-weight:600}
+.hero-rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg, var(--accent) 0%, var(--accent-bright) 50%, transparent 100%);
+  margin:0 0 28px;
+  transform-origin:left center;
+  transform:scaleX(1);
+}
+.hero-ledger{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:32px;
+  align-items:end;
+}
+.hero-ledger-cell{
+  display:flex;flex-direction:column;gap:10px;
+  padding:14px 0 0;
+  border-top:2px solid var(--ink);
+}
+.hero-ledger-cell-emph{
+  border-top-color:var(--accent);
+}
+.hl-num{
+  font-family:'Inter Tight',sans-serif;
   font-weight:300;
-  font-size:24px;
-  margin-left:6px;
+  font-size:clamp(28px, 3vw, 44px);
+  line-height:1;letter-spacing:-0.025em;
+  color:var(--ink);
 }
-.hero-stat-num .sm{
-  font-size:13px; color:var(--ink-mute); font-weight:400;
-  margin-left:6px; letter-spacing:0;
+.hero-ledger-cell-emph .hl-num{color:var(--accent-deep)}
+.hl-num em{
+  font-style:normal;font-weight:300;
+  font-size:0.5em;
+  color:var(--ink-mute);
+  letter-spacing:0;
+  margin-left:4px;
 }
-.hero-stat-label{
+.hl-lab{
   font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:10px;
-  letter-spacing:0.16em;
+  font-size:10px;letter-spacing:0.18em;font-weight:500;
   color:var(--ink-mute);
   text-transform:uppercase;
-  font-weight:500;
 }
-
-.cinema-foot{
-  position:relative; z-index:5;
-  display:flex; justify-content:space-between; align-items:center;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:9px;
-  letter-spacing:0.18em;
-  color:var(--ink-mute);
-  text-transform:uppercase;
+.hero-foot{
+  display:flex;justify-content:space-between;align-items:center;
   padding-top:14px;
   border-top:1px solid var(--rule);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;font-weight:500;
+  color:var(--ink-mute);
+  text-transform:uppercase;
 }
-.cinema-foot strong{
-  color:var(--ink);
-  font-family:'Inter Tight',sans-serif;
-  font-size:12px; font-weight:500;
-  letter-spacing:0; text-transform:none;
-}
-.cinema-foot .scroll-cue{
-  display:flex; align-items:center; gap:10px;
-  color:var(--accent-deep);
-}
-.cinema-foot .scroll-cue::after{
-  content:'↓'; display:inline-block;
-  animation:scrollCue 1.8s ease-in-out infinite;
-  color:#B5A48A;
-  font-size:14px;
-}
-@keyframes scrollCue{
-  0%,100%{ transform:translateY(0); opacity:0.7 }
-  50%{ transform:translateY(5px); opacity:1 }
-}
+.hero-foot-mark{color:var(--accent);font-weight:600}
 
-@media (prefers-reduced-motion: reduce){
-  .hud::before, .cinema-meta-mark::before{ animation:none }
-  .cinema-foot .scroll-cue::after{ animation:none }
-  .hero-monument{ filter:none }
-  .fluid-canvas{ display:none }
-}
-
-@media (max-width: 980px){
-  .cover-cinema .pin-stage{ height:auto; min-height:auto; padding:24px 24px 32px }
-  .hud{ display:none }
-  .hero-monument{ font-size:clamp(72px, 18vw, 140px) }
-  .hero-monument .line.line-2{ text-align:left }
-  .hero-monument .line.line-2::before{ display:none }
-  .hero-stats{ grid-template-columns:repeat(1,1fr); gap:18px }
-  .hero-stat{ padding:0 0 16px; border-right:none; border-bottom:1px solid var(--rule) }
-  .hero-stat:last-child{ border-bottom:none }
-  .cinema-meta-cells{ display:none }
-  .hero-thesis{ font-size:16px }
-  .cinema-foot{ flex-wrap:wrap; gap:8px; justify-content:center; text-align:center }
+@media (max-width:980px){
+  .hero{padding:28px 28px 36px;gap:32px;min-height:auto}
+  .hero-bar{grid-template-columns:1fr;gap:14px}
+  .hero-bar-rule{display:none}
+  .hero-bar-meta{flex-wrap:wrap;gap:12px}
+  .hero-headline{font-size:clamp(34px, 9vw, 64px);letter-spacing:-0.025em}
+  .hero-ledger{grid-template-columns:repeat(2, 1fr);gap:24px}
+  .hero-foot{flex-direction:column;gap:8px;text-align:center}
 }
 
 /* === COVER (legacy unused) === */
@@ -3963,93 +3403,70 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
 </head>
 <body>
 
 <!-- COVER -->
-<!-- COVER · CINEMA · MONUMENTAL HERO · mercury fluid + lab HUD + Fraunces italic -->
-<!-- COVER · MANIFESTO · 6 actos pinned scroll-scrub -->
-<header class="manifesto-cover">
-
-  <div class="m-hud">
-    <div class="m-hud-tl">
-      <span class="m-brand-mark" aria-hidden="true"></span>
-      <span class="m-brand-name">eigen atlas</span>
-      <span class="m-feat">feat.</span>
-      <span class="m-collab">tsc labs</span>
+<header class="hero">
+  <!-- TOP DRAFTING BAR -->
+  <div class="hero-bar">
+    <div class="hero-bar-firm">
+      <strong>EIGEN · ATLAS</strong>
+      <small>Architecture practice · Guadalajara · México</small>
     </div>
-    <div class="m-hud-tr">
-      <span class="m-meta-1">PROPUESTA · V2.0 · MMXXVI</span>
-      <span><span class="m-counter" id="m-counter">01</span> / 06</span>
-    </div>
-    <div class="m-hud-progress">
-      <div class="m-hud-progress-marks">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div class="m-hud-progress-fill" id="m-progress-fill"></div>
-    </div>
-    <div class="m-hud-bl">eigen-prop-tsc-2026/01 · confidencial · principals only</div>
-    <div class="m-hud-br" id="m-hud-br">
-      <span>scroll</span>
-      <span class="m-arrow">↓</span>
+    <div class="hero-bar-rule" aria-hidden="true"></div>
+    <div class="hero-bar-meta">
+      <span><em>Propuesta</em> V2.0 · TSC LABS</span>
+      <span><em>Filed</em> 2026.05.04</span>
+      <span><em>Doc</em> EIGEN-PROP-TSC-2026/01</span>
     </div>
   </div>
 
-  <div class="m-stage-wrap">
-    <div class="m-stage">
+  <!-- HEADLINE STAGE -->
+  <div class="hero-stage">
+    <div class="hero-eyebrow">— PARA TSC LABS · CONFIDENCIAL · PARA SUS PRINCIPALES —</div>
 
-      <!-- Act 1 — TSC LABS -->
-      <div class="m-act m-act-1 is-active">
-        <div>
-          <span class="m-accent-mark">manifiesto · 01—06</span>
-          <h1 class="m-act-heading"><span class="m-word">tsc labs.</span></h1>
-        </div>
+    <h1 class="hero-headline">
+      <span class="hl-line">Tu propio</span>
+      <span class="hl-line"><em>portal B2B</em>.</span>
+      <span class="hl-line">Tenant por cliente,</span>
+      <span class="hl-line hl-line-key"><span class="hl-chip">orden empresarial visible</span></span>
+      <span class="hl-line">ERP, agentes y dual-brand,</span>
+      <span class="hl-line">stack <em>tier-1</em> en doce meses.</span>
+    </h1>
+
+    <p class="hero-deck">
+      Sistema operacional propio para TSC LABS construido en <strong>doce meses</strong> sobre Cloudflare Workers · D1 · R2 · Durable Objects · Workers AI · Claude API. Cada cliente B2B recibe su propio tenant — mapea sus ventas, códigos e inventario en tiempo real desde TSC. <strong>Skin Club + TSC LABS escalan sobre la misma arquitectura.</strong> F5 entrega cinco olas de capa agéntica productivizada.
+    </p>
+
+    <div class="hero-rule" aria-hidden="true"></div>
+
+    <!-- LEDGER · 4 stats clean -->
+    <div class="hero-ledger">
+      <div class="hero-ledger-cell">
+        <span class="hl-num">$<span class="hl-num-val" data-count-to="1.76" data-count-decimals="2">0.00</span><em>M</em></span>
+        <span class="hl-lab">Setup completo · MXN</span>
       </div>
-
-      <!-- Act 2 — El stack cambia. -->
-      <div class="m-act m-act-2">
-        <h2 class="m-act-heading">
-          El <span class="m-key" id="m-act2-key">stack</span><br>cambia.
-        </h2>
+      <div class="hero-ledger-cell">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="12" data-count-decimals="0">0</span><em> meses</em></span>
+        <span class="hl-lab">Roadmap mensual</span>
       </div>
-
-      <!-- Act 3 — El substrate permanece. -->
-      <div class="m-act m-act-3">
-        <h2 class="m-act-heading">
-          El <span class="m-key" id="m-act3-key">substrate</span><br>permanece.
-        </h2>
+      <div class="hero-ledger-cell">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="6" data-count-decimals="0">0</span><em> módulos</em></span>
+        <span class="hl-lab">F0 Discovery + F1-F5</span>
       </div>
-
-      <!-- Act 4 — 12 meses a producción. -->
-      <div class="m-act m-act-4">
-        <span class="m-act-num" id="m-act4-num">12</span>
-        <span class="m-act-sub"><em>meses</em> a producción · F0–F5.</span>
+      <div class="hero-ledger-cell hero-ledger-cell-emph">
+        <span class="hl-num"><span class="hl-num-val" data-count-to="5" data-count-decimals="0">0</span><em> olas</em></span>
+        <span class="hl-lab">Capa agéntica · F5</span>
       </div>
-
-      <!-- Act 5 — Un substrate. Infinitos módulos. -->
-      <div class="m-act m-act-5">
-        <span class="m-line m-line-1">Un substrate.</span>
-        <span class="m-line m-line-2">Infinitos módulos.</span>
-      </div>
-
-      <!-- Act 6 — Para siempre queryable. -->
-      <div class="m-act m-act-6">
-        <h2 class="m-act-heading">Para siempre queryable.</h2>
-        <svg class="m-underline-svg" viewBox="0 0 460 36" preserveAspectRatio="none">
-          <path class="m-underline-path" d="M 4 22 C 80 4, 180 28, 240 14 S 380 28, 456 12" />
-        </svg>
-      </div>
-
     </div>
+  </div>
 
-    <!-- Morphing shape drifts between acts -->
-    <div class="m-shape-canvas" id="m-shape-canvas">
-      <svg viewBox="0 0 56 56">
-        <path class="m-shape-path" id="m-shape-path"
-              d="M 28 4 A 24 24 0 1 0 28 52 A 24 24 0 1 0 28 4 Z" />
-      </svg>
-    </div>
+  <!-- BOTTOM STRIP -->
+  <div class="hero-foot">
+    <span>Atlas Studios · GDL · MX</span>
+    <span class="hero-foot-mark">EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL</span>
+    <span>For TSC LABS principals only</span>
   </div>
 </header>
 
@@ -4063,7 +3480,70 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="section-deck">Seis módulos. Una arquitectura. Un solo equipo responsable.</p>
     </header>
 
-    <!-- Diagrama eliminado · usuario dijo "culero mal hecho" · entries list debajo carga la información -->
+    <!-- ARCHITECTURE DIAGRAM · light cobalt · GSAP draws on enter -->
+    <figure class="cdec-arch" aria-label="Arquitectura de capacidad">
+      <svg class="cdec-arch-svg" viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="cdec-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(30,64,175,0.0)"/>
+            <stop offset="50%" stop-color="rgba(30,64,175,0.55)"/>
+            <stop offset="100%" stop-color="rgba(30,64,175,0.0)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- 6 connector lines (drawn on enter) -->
+        <g class="cdec-arch-lines" stroke="var(--accent)" stroke-width="1.1" fill="none" opacity="0.55">
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="72"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="180"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="288"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="72"/>
+          <line class="cdec-arch-line cdec-arch-line-emph" x1="540" y1="180" x2="860" y2="180" stroke-width="1.6" opacity="0.95"/>
+          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="288"/>
+        </g>
+
+        <!-- Substrate core ellipse -->
+        <g class="cdec-arch-core">
+          <ellipse cx="540" cy="180" rx="160" ry="38" fill="rgba(30,64,175,0.06)" stroke="var(--accent)" stroke-width="1.2"/>
+          <text x="540" y="178" text-anchor="middle" fill="var(--accent-deep)" style="font:500 13px 'JetBrains Mono',monospace;letter-spacing:0.2em">DATA SUBSTRATE</text>
+          <text x="540" y="196" text-anchor="middle" fill="var(--ink-mute)" style="font:400 10.5px 'JetBrains Mono',monospace;letter-spacing:0.14em">D1 · R2 · WORKERS ANALYTICS</text>
+        </g>
+
+        <!-- 6 nodes -->
+        <g class="cdec-arch-nodes">
+          <!-- LEFT TOP · Operaciones -->
+          <circle cx="220" cy="72" r="5" fill="var(--accent)"/>
+          <text x="206" y="56" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Operaciones internas</text>
+          <text x="206" y="72" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 01</text>
+
+          <!-- LEFT MID · BI -->
+          <circle cx="220" cy="180" r="5" fill="var(--accent)"/>
+          <text x="206" y="170" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Business intelligence</text>
+          <text x="206" y="186" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 02 · IA + DATA SCIENCE</text>
+
+          <!-- LEFT BOTTOM · Talent -->
+          <circle cx="220" cy="288" r="5" fill="var(--accent)"/>
+          <text x="206" y="278" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Talent / clientes B2B</text>
+          <text x="206" y="294" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 03</text>
+
+          <!-- RIGHT TOP · Agentes -->
+          <circle cx="860" cy="72" r="5" fill="var(--accent)"/>
+          <text x="874" y="56" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Cinco agentes productivizados</text>
+          <text x="874" y="72" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA AGÉNTICA · 05</text>
+
+          <!-- RIGHT MID · Distribución (emphasis) -->
+          <circle cx="860" cy="180" r="6" fill="var(--accent)" stroke="var(--accent-deep)" stroke-width="1.5"/>
+          <text x="874" y="170" text-anchor="start" fill="var(--accent-deep)" style="font:600 13px 'Inter Tight',sans-serif">Distribución habilitada</text>
+          <text x="874" y="186" text-anchor="start" fill="var(--accent)" style="font:600 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">EXTENSIÓN B2B · 04</text>
+
+          <!-- RIGHT BOTTOM · ERP -->
+          <circle cx="860" cy="288" r="5" fill="var(--accent)"/>
+          <text x="874" y="278" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">ERP + Vault + supply chain</text>
+          <text x="874" y="294" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA OPERACIONAL · 06</text>
+        </g>
+
+      </svg>
+      <figcaption class="cdec-arch-cap">Substrate único · seis módulos sobre Cloudflare Workers · multi-tenant</figcaption>
+    </figure>
 
     <!-- 6 CAPABILITY ROWS · friendly horizontal blocks -->
     <div class="cdec-rows">
@@ -6732,223 +6212,74 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </footer>
 
-
 <script>
-// === MANIFESTO COVER · 6-act kinetic typography master timeline ===
-// Adapted from eigenatlas-portfolio/manifesto.html (gold standard 2026-04-30)
-// Stack: ScrollTrigger pin+scrub + SplitText + ScrambleText + MorphSVG
+// === HERO v2 · entrance timeline (clean editorial, no scroll-tied) ===
 (function(){
-  if (typeof gsap === 'undefined' || !document.querySelector('.manifesto-cover')) return;
-
-  try {
-    gsap.registerPlugin(ScrollTrigger);
-    if (window.SplitText) gsap.registerPlugin(SplitText);
-    if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
-    if (window.MorphSVGPlugin) gsap.registerPlugin(MorphSVGPlugin);
-  } catch(e){}
-
-  var counter = document.getElementById('m-counter');
-  var progressFill = document.getElementById('m-progress-fill');
-  var shapeCanvas = document.getElementById('m-shape-canvas');
-  var shapePath = document.getElementById('m-shape-path');
-
-  var SHAPE_CIRCLE   = 'M 28 4 A 24 24 0 1 0 28 52 A 24 24 0 1 0 28 4 Z';
-  var SHAPE_SQUARE   = 'M 4 4 L 52 4 L 52 52 L 4 52 Z';
-  var SHAPE_TRIANGLE = 'M 28 4 L 52 48 L 4 48 Z';
-  var SHAPE_DIAMOND  = 'M 28 4 L 52 28 L 28 52 L 4 28 Z';
-  var SHAPE_HEX      = 'M 28 4 L 50 16 L 50 40 L 28 52 L 6 40 L 6 16 Z';
-
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced){
-    var act1 = document.querySelector('.m-act-1');
-    if (act1) act1.classList.add('is-active');
+
+  function setLedgerFinal(){
+    document.querySelectorAll('.hl-num-val').forEach(function(el){
+      var target = parseFloat(el.getAttribute('data-count-to') || '0');
+      var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+      el.textContent = target.toFixed(dec);
+    });
+  }
+
+  if (reduced || typeof gsap === 'undefined'){
+    setLedgerFinal();
+    document.querySelectorAll('.hero-bar, .hero-eyebrow, .hl-line, .hero-deck, .hero-rule, .hero-ledger-cell, .hero-foot').forEach(function(n){ n.style.opacity = 1; });
     return;
   }
 
-  var run = function(){
-    if (!window.SplitText) return;
+  // Pre-set initial states
+  gsap.set(['.hero-bar', '.hero-eyebrow', '.hero-deck', '.hero-ledger-cell', '.hero-foot'], { opacity: 0 });
+  gsap.set('.hl-line', { opacity: 0, y: 40 });
+  gsap.set('.hero-rule', { scaleX: 0, transformOrigin: 'left center' });
 
-    var split1 = new SplitText('.m-act-1 .m-word', { type: 'chars' });
-    var split2 = new SplitText('.m-act-2 .m-act-heading', { type: 'chars,words' });
-    var split3 = new SplitText('.m-act-3 .m-act-heading', { type: 'chars,words' });
-    var split5_1 = new SplitText('.m-act-5 .m-line-1', { type: 'chars' });
-    var split5_2 = new SplitText('.m-act-5 .m-line-2', { type: 'chars' });
-    var split6 = new SplitText('.m-act-6 .m-act-heading', { type: 'chars' });
+  var tl = gsap.timeline({ defaults: { ease: 'power3.out' }});
 
-    gsap.set([split2.chars, split3.chars, split5_1.chars, split5_2.chars, split6.chars], {
-      opacity: 0, y: 30
-    });
-    gsap.set('.m-act-4 .m-act-num, .m-act-4 .m-act-sub', { opacity: 0, y: 30 });
-    gsap.set('.m-act-1 .m-accent-mark', { opacity: 0, y: 12 });
+  // Top bar fades from above
+  tl.to('.hero-bar', { opacity: 1, duration: 0.8 }, 0.0)
+    .from('.hero-bar', { y: -12, duration: 0.8 }, 0.0);
 
-    // Intro
-    var intro = gsap.timeline({ delay: 0.2 });
-    intro
-      .from('.m-hud-tl', { opacity: 0, y: -10, duration: 0.6, ease: 'power3.out' })
-      .from('.m-hud-tr', { opacity: 0, y: -10, duration: 0.6, ease: 'power3.out' }, '<')
-      .from('.m-hud-progress', { opacity: 0, scaleY: 0.4, transformOrigin: 'top center', duration: 0.7, ease: 'power3.out' }, '<0.1')
-      .from('.m-hud-bl, .m-hud-br', { opacity: 0, y: 10, duration: 0.5, ease: 'power3.out' }, '<')
-      .to('.m-act-1 .m-accent-mark', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-      .from(split1.chars, {
-        opacity: 0, y: 80, rotationZ: -8,
-        duration: 0.9, stagger: 0.04, ease: 'power3.out'
-      }, '-=0.3');
+  // Eyebrow
+  tl.to('.hero-eyebrow', { opacity: 1, duration: 0.7 }, 0.4)
+    .from('.hero-eyebrow', { y: 8, duration: 0.7 }, 0.4);
 
-    // Master scroll timeline (6 acts pinned, ~500% scroll)
-    var masterTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.manifesto-cover',
-        start: 'top top',
-        end: '+=500%',
-        pin: true,
-        scrub: 1.2,
-        anticipatePin: 1,
-        onUpdate: function(self){
-          if (progressFill) progressFill.style.height = (self.progress * 100) + '%';
-          var actIdx = Math.min(Math.floor(self.progress * 6) + 1, 6);
-          var padded = String(actIdx).padStart(2, '0');
-          if (counter && counter.textContent !== padded) counter.textContent = padded;
-        }
-      }
-    });
+  // Headline lines stagger
+  tl.to('.hl-line', { opacity: 1, y: 0, duration: 0.95, stagger: 0.10 }, 0.55);
 
-    masterTl.to(shapeCanvas, { opacity: 0.7, duration: 0.4 }, 0);
+  // Deck
+  tl.to('.hero-deck', { opacity: 1, duration: 0.7 }, 1.4)
+    .from('.hero-deck', { y: 14, duration: 0.7 }, 1.4);
 
-    var T1 = 0;
-    masterTl
-      .to(split1.chars, {
-        opacity: 0, y: -80, rotationZ: 6,
-        duration: 1, stagger: { each: 0.025, from: 'random' },
-        ease: 'power2.in'
-      }, T1)
-      .to('.m-act-1 .m-accent-mark', { opacity: 0, duration: 0.4 }, T1)
-      .set('.m-act-1', { className: 'm-act m-act-1' }, T1 + 0.99)
-      .set('.m-act-2', { className: 'm-act m-act-2 is-active' }, T1 + 1)
-      .to(split2.chars, {
-        opacity: 1, y: 0,
-        duration: 1.2, stagger: 0.025, ease: 'power3.out'
-      }, T1 + 1);
+  // Hairline rule draws in
+  tl.to('.hero-rule', { scaleX: 1, duration: 1.0, ease: 'power2.inOut' }, 1.6);
 
-    if (window.MorphSVGPlugin && shapePath){
-      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_SQUARE }, duration: 1.4, ease: 'power2.inOut' }, T1 + 0.4);
-    }
+  // Ledger cells stagger
+  tl.to('.hero-ledger-cell', { opacity: 1, duration: 0.6, stagger: 0.10 }, 1.9)
+    .from('.hero-ledger-cell', { y: 16, duration: 0.6, stagger: 0.10 }, 1.9);
 
-    var T2 = 2;
-    masterTl
-      .to('#m-act2-key', {
-        scrambleText: { text: 'substrate', chars: 'lowerCase', revealDelay: 0.15 },
-        duration: 1.4, ease: 'none'
-      }, T2)
-      .to(split2.chars, {
-        opacity: 0, y: -50,
-        duration: 0.7, stagger: { each: 0.015, from: 'end' },
-        ease: 'power2.in'
-      }, T2 + 1.5)
-      .set('.m-act-2', { className: 'm-act m-act-2' }, T2 + 2.19)
-      .set('.m-act-3', { className: 'm-act m-act-3 is-active' }, T2 + 2.2)
-      .to(split3.chars, {
-        opacity: 1, y: 0,
-        duration: 1.2, stagger: 0.022, ease: 'power3.out'
-      }, T2 + 2.2)
-      .to('.m-act-3 .m-key', {
-        backgroundSize: '100% 100%',
-        duration: 0.7, ease: 'power3.inOut'
-      }, T2 + 3.2);
+  // Counter tweens
+  document.querySelectorAll('.hl-num-val').forEach(function(el, i){
+    var target = parseFloat(el.getAttribute('data-count-to') || '0');
+    var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
+    var obj = { v: 0 };
+    tl.to(obj, {
+      v: target,
+      duration: dec === 0 ? 0.9 : 1.4,
+      ease: 'power2.out',
+      onUpdate: function(){ el.textContent = obj.v.toFixed(dec); }
+    }, 2.0 + i * 0.10);
+  });
 
-    if (window.MorphSVGPlugin && shapePath){
-      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_TRIANGLE }, duration: 1.6, ease: 'power2.inOut' }, T2 + 1);
-    }
+  // Foot strip
+  tl.to('.hero-foot', { opacity: 1, duration: 0.6 }, 2.6)
+    .from('.hero-foot', { y: 8, duration: 0.6 }, 2.6);
 
-    var T3 = 6;
-    masterTl
-      .to(split3.chars, {
-        opacity: 0, y: -60, rotationZ: -4,
-        duration: 0.8, stagger: { each: 0.02, from: 'random' },
-        ease: 'power2.in'
-      }, T3)
-      .set('.m-act-3', { className: 'm-act m-act-3' }, T3 + 0.99)
-      .set('.m-act-4', { className: 'm-act m-act-4 is-active' }, T3 + 1)
-      .fromTo('#m-act4-num',
-        { opacity: 0, y: 40, scale: 0.7 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power3.out' },
-        T3 + 1)
-      .to('#m-act4-num', {
-        scrambleText: { text: '12', chars: '0123456789', revealDelay: 0.3 },
-        duration: 1.6, ease: 'none'
-      }, T3 + 1)
-      .to('.m-act-4 .m-act-sub', {
-        opacity: 1, y: 0,
-        duration: 0.9, ease: 'power3.out'
-      }, T3 + 1.6);
-
-    if (window.MorphSVGPlugin && shapePath){
-      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_DIAMOND }, duration: 1.4, ease: 'power2.inOut' }, T3 + 0.6);
-    }
-
-    var T4 = 9;
-    masterTl
-      .to('.m-act-4 .m-act-num', { opacity: 0, y: -60, scale: 1.2, duration: 0.9, ease: 'power2.in' }, T4)
-      .to('.m-act-4 .m-act-sub', { opacity: 0, y: -30, duration: 0.7, ease: 'power2.in' }, T4)
-      .set('.m-act-4', { className: 'm-act m-act-4' }, T4 + 0.99)
-      .set('.m-act-5', { className: 'm-act m-act-5 is-active' }, T4 + 1)
-      .to(split5_1.chars, {
-        opacity: 1, y: 0,
-        duration: 1.0, stagger: 0.035, ease: 'power3.out'
-      }, T4 + 1)
-      .fromTo(split5_2.chars,
-        { opacity: 0, y: 50, x: 0 },
-        { opacity: 1, y: 0, duration: 1.1, stagger: { each: 0.04, from: 'random' }, ease: 'power3.out' },
-        T4 + 1.7);
-
-    if (window.MorphSVGPlugin && shapePath){
-      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_HEX }, duration: 1.4, ease: 'power2.inOut' }, T4 + 0.6);
-    }
-
-    var T5 = 12;
-    masterTl
-      .to(split5_1.chars, {
-        opacity: 0, y: -60,
-        duration: 0.7, stagger: { each: 0.018, from: 'end' },
-        ease: 'power2.in'
-      }, T5)
-      .to(split5_2.chars, {
-        opacity: 0, y: -50, rotationZ: -6,
-        duration: 0.8, stagger: { each: 0.02, from: 'random' },
-        ease: 'power2.in'
-      }, T5 + 0.1)
-      .set('.m-act-5', { className: 'm-act m-act-5' }, T5 + 0.99)
-      .set('.m-act-6', { className: 'm-act m-act-6 is-active' }, T5 + 1)
-      .fromTo(split6.chars,
-        { opacity: 0, y: 40, scale: 0.94 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.4, stagger: 0.045, ease: 'power4.out' },
-        T5 + 1)
-      .to('.m-underline-path', {
-        strokeDashoffset: 0,
-        duration: 1.6, ease: 'power3.inOut'
-      }, T5 + 1.8);
-
-    if (window.MorphSVGPlugin && shapePath){
-      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_CIRCLE }, duration: 1.6, ease: 'power2.inOut' }, T5 + 1);
-    }
-
-    masterTl.to(shapeCanvas, { opacity: 0, duration: 0.6 }, T5 + 2.4);
-
-    ScrollTrigger.create({
-      trigger: '.manifesto-cover',
-      start: 'top+=20vh top',
-      onEnter: function(){ gsap.to('#m-hud-br', { opacity: 0, duration: 0.4 }); },
-      onLeaveBack: function(){ gsap.to('#m-hud-br', { opacity: 1, duration: 0.4 }); }
-    });
-  };
-
-  if (document.fonts && document.fonts.ready){
-    document.fonts.ready.then(function(){
-      run();
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
-    });
-  } else {
-    run();
-  }
+  tl.eventCallback('onComplete', function(){
+    gsap.set(['.hl-line', '.hero-bar', '.hero-eyebrow', '.hero-deck', '.hero-ledger-cell', '.hero-foot'], { clearProps: 'transform,opacity,willChange' });
+  });
 })();
 </script>
 
