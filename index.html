@@ -2274,6 +2274,87 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .fases-intro strong{font-weight:600;color:var(--ink)}
 .fases-intro em{font-style:normal;color:var(--accent);font-weight:500}
 
+/* === R&D SCOUT MOAT BLOCK === */
+.rd-scout-frame{
+  margin-top:48px;
+  padding:56px 56px 64px;
+  background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  border:1px solid var(--rule-strong);
+  border-radius:2px;
+  position:relative;
+}
+.rd-scout-frame::before{
+  content:"";
+  position:absolute;top:0;left:0;width:100%;height:3px;
+  background:var(--accent);
+}
+.rd-scout-eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;
+  margin-bottom:18px;
+}
+.rd-scout-headline{
+  font-family:'Inter Tight',sans-serif;
+  font-size:clamp(28px, 3vw, 44px);
+  font-weight:300;
+  line-height:1.12;letter-spacing:-0.018em;
+  color:var(--ink);
+  margin:0 0 32px;
+}
+.rd-scout-headline em{font-style:italic;font-weight:400;color:var(--accent)}
+.rd-scout-prose p{
+  font-size:16px;line-height:1.7;color:var(--ink-soft);
+  margin:0 0 18px;max-width:780px;
+}
+.rd-scout-prose p strong{color:var(--ink);font-weight:600}
+.rd-scout-prose p em{font-style:italic;color:var(--ink)}
+.rd-scout-steps{
+  margin:18px 0 28px;padding-left:0;list-style:none;
+  display:grid;grid-template-columns:1fr;gap:14px;
+  max-width:820px;
+}
+.rd-scout-steps li{
+  font-size:15px;line-height:1.65;color:var(--ink-soft);
+  padding:18px 22px;
+  background:var(--bg);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--accent);
+  border-radius:2px;
+}
+.rd-scout-steps li strong{color:var(--ink);font-weight:600;display:block;margin-bottom:4px;font-size:14px;font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:0.04em;text-transform:uppercase}
+.rd-scout-emphasis{
+  margin-top:24px !important;
+  padding:24px 28px;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  background:var(--bg);
+  font-size:16px !important;
+  color:var(--ink) !important;
+  font-weight:500;
+}
+.rd-scout-stack{
+  margin-top:36px;
+  padding:22px 26px;
+  background:var(--ink);
+  color:var(--bg);
+  border-radius:2px;
+}
+.rd-scout-stack-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent-bright,var(--accent));
+  margin-bottom:10px;font-weight:500;
+}
+.rd-scout-stack-body{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12.5px;line-height:1.7;color:var(--bg);
+  letter-spacing:0.01em;
+}
+@media (max-width:760px){
+  .rd-scout-frame{padding:32px 22px 40px}
+  .rd-scout-headline{font-size:26px}
+}
+
 /* === LA INVITACIÓN === */
 .invitation-block{margin-top:80px;padding:48px 44px;background:var(--bg-3);border:1px solid var(--rule-strong);border-radius:2px;max-width:900px}
 .invitation-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.16em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;font-weight:500}
@@ -2661,7 +2742,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </div>
         <div class="tldr-card">
           <div class="tldr-tag">QUÉ SE ENTREGA · ALTO NIVEL</div>
-          <p class="tldr-prose">Sistema unificado sobre un solo data substrate: <strong>ERP propio + dashboards en vivo + Talent Portal multi-tenant + capa agéntica de 4 olas</strong> (DTC chatbot · B2B qualification · outbound multi-canal · compliance + R&amp;D research). Arquitectura formal documentada — ER diagrams, master schema, modelo maestro.</p>
+          <p class="tldr-prose">Sistema unificado sobre un solo data substrate: <strong>ERP propio + dashboards en vivo + Talent Portal multi-tenant + capa agéntica de 5 olas</strong> (DTC chatbot · B2B qualification · proveeduría · compliance + social · <strong>R&amp;D Scout permanente sobre activos nuevos del mercado</strong>). Arquitectura formal documentada — ER diagrams, master schema, modelo maestro.</p>
         </div>
         <div class="tldr-card">
           <div class="tldr-tag">CUÁNTO CUESTA</div>
@@ -3095,12 +3176,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </div>
         <div>
           <h3 class="phase-title">Capa <em>Agéntica</em></h3>
-          <p class="phase-meta-line">5 meses · 4 olas · DTC chatbot · Lead qualifier · Outbound agents · Compliance + R&amp;D</p>
-          <p class="phase-subtitle">Cuatro agentes productivizados sobre el mismo data substrate de F1-F4, con audit log y fallback a humano.</p>
+          <p class="phase-meta-line">5 meses · 5 olas · DTC chatbot · Lead qualifier · Proveeduría · Compliance + Social · R&amp;D Scout</p>
+          <p class="phase-subtitle">Cinco agentes productivizados sobre el mismo data substrate de F1-F4, con audit log y fallback a humano.</p>
         </div>
         <div class="phase-price">
           <div class="phase-price-num">$640<em>K</em></div>
-          <div class="phase-price-label">MXN · 5 MESES · 4 OLAS</div>
+          <div class="phase-price-label">MXN · 5 MESES · 5 OLAS</div>
         </div>
       </header>
       <div class="phase-body">
@@ -3110,11 +3191,12 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <p><strong>Ola B · B2B Lead Qualifier</strong> (1 mes). Agente que filtra los 30 leads/mes detenidos por saturación. Lee descripción del proyecto, capacidad mL, precio objetivo, marcas like/dislike — descarta cliente pequeño/incompatible, agenda con Diego/Kaori solo si fit real. <strong>Built sobre Workers + Claude API + MCP server</strong> (acceso a Calendly + CRM + checklist de fit criteria). Notifica vía WhatsApp Business cuando hay match. Reactiva el pipeline detenido y eleva el ticket promedio.</p>
           <p><strong>Ola C · Proveeduría Agent</strong> (1.5 meses · prioridad). Agente que automatiza el dolor #1 de Natalia/Kaori. Cuando F3 dispara draft de PO, el agente busca proveedores en su base + scrape competidores web, solicita cotizaciones por WhatsApp/email, agrega resultados en tabla comparable, entrega shortlist con recomendación. <strong>Built sobre Workers + Durable Object por orden de compra</strong> (preserva estado de cada solicitud) + Claude API para parsing de respuestas + MCP server para WhatsApp Cloud API + Resend SMTP. Natalia recibe 3 opciones evaluadas, no busca de cero.</p>
           <p><strong>Ola D · Compliance Monitor + Social Media</strong> (1.5 meses). Dos agentes en paralelo. <em>Compliance Monitor:</em> lee feeds COFEPRIS + actualizaciones NOMs, alerta a Diego si hay actualización relevante en &lt;24h. <strong>Built sobre Workers Cron Trigger + Claude API</strong> para evaluación de relevancia + R2 para archivo histórico. <em>Social Media Generator:</em> genera contenido scheduled para IG/TikTok/Facebook a partir de prompts del equipo, programación automática vía Buffer-like custom. <strong>Built sobre Workers + Workers AI (Llama 4) + Cloudflare Image Resizing</strong> + integraciones Meta Graph API + TikTok API.</p>
+          <p><strong>Ola E · R&amp;D Scout — Inteligencia de activos en tiempo real</strong> (incluida en F5). El agente que <strong>ningún integrador, ninguna agencia, ningún ERP off-the-shelf trae</strong>. Vigila continuamente fuentes de R&amp;D cosmético — papers, ferries de ingredientes (in-cosmetics, NYSCC), patentes, journals (J. Cosmet. Sci., IJCS), feeds de proveedores estratégicos (BASF, Croda, Lubrizol, Symrise, Givaudan, DSM-Firmenich). Cuando detecta un activo nuevo que <em>vale la pena considerar</em> para el portafolio TSC, ejecuta tres tareas en paralelo: <strong>(1)</strong> identifica proveedores que ya lo distribuyen en MX o pueden importarlo, <strong>(2)</strong> arma ficha técnica completa (claim científico · concentración recomendada · sinergias · regulación · costo estimado por kilo · MOQ), <strong>(3)</strong> redacta brief de estrategia: en qué fórmula base encaja, qué cliente B2B podría comprarlo, qué SKU del Skin Club podría reformularse. Cuando Diego, Kaori o Natalia abren el portal interno cada lunes, encuentran <em>3 oportunidades evaluadas</em> esperando decisión — no busquedas pendientes. <strong>Built sobre Workers Cron Trigger + Claude API + scraping orquestado + Durable Object por hilo de investigación + Workers KV</strong> para vocabulario controlado de keywords (configurable por los socios). Es la pieza que convierte el laboratorio en <em>scout permanente del mercado de activos</em>, sin sumar horas de trabajo humano.</p>
         </div>
         <div class="phase-side">
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-check"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4.5 8.4l2.4 2.2 4.6-5.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Entregables</div>
-            <div class="phase-block-body">4 agentes productivizados · DTC chatbot Skin Club escalado 5→50 msgs/mes · B2B qualifier procesando los 30 leads/mes detenidos · Proveeduría agent entregando shortlists a Natalia · Social media generation IG/TikTok/Facebook scheduled.</div>
+            <div class="phase-block-body">5 agentes productivizados · DTC chatbot Skin Club escalado 5→50 msgs/mes · B2B qualifier procesando los 30 leads/mes detenidos · Proveeduría agent entregando shortlists a Natalia · Social media generation IG/TikTok/Facebook scheduled · R&amp;D Scout entregando 3 oportunidades de activo evaluadas cada lunes.</div>
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-stack"><svg viewBox="0 0 16 16"><path d="M8 1.5L1.6 4.7 8 7.9l6.4-3.2L8 1.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 8l6.4 3.2L14.4 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1.6 11.3l6.4 3.2 6.4-3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>Stack</div>
@@ -3122,7 +3204,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </div>
           <div class="phase-block">
             <div class="phase-block-label"><span class="block-ico ico-bolt"><svg viewBox="0 0 16 16"><path d="M9.2 1.5L3.5 9.1h3.8l-.7 5.4 5.7-7.6H8.5l.7-5.4z" fill="currentColor"/></svg></span>Métricas de cierre</div>
-            <div class="phase-block-body">4 agentes en producción · pipeline B2B reactivado · DTC 24/7 · proveeduría con shortlists comparables · contenido social agendado.</div>
+            <div class="phase-block-body">5 agentes en producción · pipeline B2B reactivado · DTC 24/7 · proveeduría con shortlists comparables · contenido social agendado · scout R&amp;D activo sobre vocabulario configurable.</div>
           </div>
         </div>
       </div>
@@ -4981,6 +5063,43 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
 
       <p class="tp-caption">Mock representativo del Talent Portal en F2. Cada talent manager ve sólo su brand. Login via magic-link a Eigen Identity. Audit log persistente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- § XIVb · VENTAJA COMPETITIVA · R&D SCOUT -->
+<section class="section" id="rd-scout-moat">
+  <div class="section-frame">
+    <header class="section-header">
+      <div class="section-num">14b<small>VENTAJA COMPETITIVA · R&amp;D SCOUT</small></div>
+      <h2 class="section-title">El agente que <em>ningún integrador</em> trae a la mesa.</h2>
+      <p class="section-deck">De los cinco agentes de F5, uno es la pieza diferenciadora del sistema completo. No existe en Salesforce, no existe en Zoho One, no existe en HubSpot, no existe en ninguna agencia de transformación digital del mercado. Vive aquí.</p>
+    </header>
+
+    <div class="rd-scout-frame">
+      <div class="rd-scout-eyebrow">OLA E · F5 · INCLUIDO EN SETUP</div>
+      <h3 class="rd-scout-headline">R&amp;D Scout · <em>Inteligencia continua de activos cosméticos</em>.</h3>
+
+      <div class="rd-scout-prose">
+        <p><strong>Qué hace.</strong> Vigila 24/7 las fuentes donde nacen los activos nuevos del mercado cosmético: papers científicos, ferries de ingredientes (in-cosmetics, NYSCC), patentes, journals (J. Cosmet. Sci., IJCS, Skin Pharmacol.), feeds de los proveedores estratégicos del sector (BASF, Croda, Lubrizol, Symrise, Givaudan, DSM-Firmenich). El vocabulario que vigila lo configuran los socios — TSC le dice qué palabras importan, el agente nunca para de buscarlas.</p>
+
+        <p><strong>Cuando detecta un activo que vale la pena.</strong> Ejecuta tres tareas en paralelo, sin que nadie del equipo tenga que pedirlo:</p>
+
+        <ol class="rd-scout-steps">
+          <li><strong>Mapeo de proveedores</strong> · identifica qué proveedores ya lo distribuyen en MX o pueden importarlo, con MOQ, lead time y costo por kilo estimado.</li>
+          <li><strong>Ficha técnica completa</strong> · claim científico verificado, concentración recomendada, sinergias con otros activos del catálogo TSC, regulación aplicable, restricciones de uso.</li>
+          <li><strong>Brief de estrategia comercial</strong> · en qué fórmula base del catálogo TSC encaja, qué cliente B2B podría comprarlo, qué SKU del Skin Club podría reformularse, qué historia de marketing lo acompaña.</li>
+        </ol>
+
+        <p><strong>Qué encuentran los socios cada lunes.</strong> Tres oportunidades de activo evaluadas, listas para decisión. No búsquedas pendientes, no leads sin filtrar, no PDFs por leer. <em>Estrategias listas para estar al tiro con los nuevos productos que TSC puede sacar al mercado en tiempo real.</em></p>
+
+        <p class="rd-scout-emphasis">Esto convierte al laboratorio en scout permanente del mercado de activos sin sumar horas de trabajo humano. Es la pieza que ninguna agencia, ningún ERP, ningún integrador trae empacado — porque requiere arquitectura agéntica nativa sobre un data substrate propio. La traemos nosotros, viene incluida en F5.</p>
+      </div>
+
+      <div class="rd-scout-stack">
+        <div class="rd-scout-stack-tag">STACK · R&amp;D SCOUT</div>
+        <div class="rd-scout-stack-body">Workers Cron Trigger (vigilancia continua) · Claude API (parsing científico + ranking de relevancia) · scraping orquestado (papers · patentes · feeds proveedores) · Durable Object por hilo de investigación (preserva contexto entre ejecuciones) · Workers KV para vocabulario controlado configurable por los socios · R2 para archivo histórico de oportunidades evaluadas.</div>
+      </div>
     </div>
   </div>
 </section>
