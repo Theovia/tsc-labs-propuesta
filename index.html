@@ -2366,6 +2366,70 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   .capability-pitch-grid{grid-template-columns:1fr}
 }
 
+/* === BI EXTENSION CALLOUT (B2B MOAT) === */
+.bi-extension-callout{
+  margin-top:48px;
+  padding:48px 48px 52px;
+  background:var(--ink);
+  color:var(--bg);
+  border-radius:2px;
+  position:relative;
+  max-width:1180px;
+}
+.bi-extension-callout::before{
+  content:"";position:absolute;top:0;left:0;width:100%;height:3px;
+  background:var(--accent-bright,var(--accent));
+}
+.bi-extension-tag{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--accent-bright,var(--accent));font-weight:500;
+  margin-bottom:18px;
+}
+.bi-extension-headline{
+  font-family:'Inter Tight',sans-serif;
+  font-weight:300;
+  font-size:clamp(26px, 3vw, 42px);
+  line-height:1.12;letter-spacing:-0.018em;
+  color:var(--bg);
+  margin:0 0 28px;
+}
+.bi-extension-headline em{font-style:italic;font-weight:400;color:var(--accent-bright,var(--accent))}
+.bi-extension-body p{
+  font-size:16px;line-height:1.7;
+  color:rgba(250,250,247,0.82);
+  margin:0 0 16px;max-width:920px;
+}
+.bi-extension-body p strong{color:var(--bg);font-weight:600}
+.bi-extension-list{
+  list-style:none;padding:0;margin:18px 0 24px;
+  display:grid;grid-template-columns:repeat(2, 1fr);gap:14px;
+  max-width:1080px;
+}
+.bi-extension-list li{
+  font-size:14.5px;line-height:1.6;
+  color:rgba(250,250,247,0.82);
+  padding:18px 22px;
+  background:rgba(250,250,247,0.04);
+  border:1px solid rgba(250,250,247,0.10);
+  border-left:3px solid var(--accent-bright,var(--accent));
+  border-radius:2px;
+}
+.bi-extension-list li strong{color:var(--bg);font-weight:600}
+.bi-extension-close{
+  margin-top:20px !important;
+  padding:22px 26px;
+  border-top:1px solid rgba(250,250,247,0.14);
+  border-bottom:1px solid rgba(250,250,247,0.14);
+  font-size:16px !important;
+  color:var(--bg) !important;
+}
+.bi-extension-close em{font-style:italic;color:var(--accent-bright,var(--accent))}
+@media (max-width:760px){
+  .bi-extension-callout{padding:32px 22px 40px}
+  .bi-extension-list{grid-template-columns:1fr}
+}
+
 /* === R&D SCOUT MOAT BLOCK === */
 .rd-scout-frame{
   margin-top:48px;
@@ -3368,14 +3432,14 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   <div class="section-frame">
     <header class="section-header">
       <div class="section-num">05<small>BI · COMMAND CENTER</small></div>
-      <h2 class="section-title">Command center — la visión <em>año 5</em>.</h2>
-      <p class="section-deck">Lo que TSC LABS leerá cada mañana cuando F4 esté en producción y la operación tenga 5 años de data acumulada.</p>
+      <h2 class="section-title">Command center · <em>BI potenciado por IA + ciencia de datos</em>.</h2>
+      <p class="section-deck">No es un dashboard descriptivo más. Es la capa donde el sistema deja de sólo reportar y empieza a anticipar: forecasting de demanda, detección de anomalías en lotes, segmentación de clientes con clustering, recomendaciones de pricing, queries de negocio en lenguaje natural sobre la operación viva. <strong>Y la misma capa que TSC usa internamente, TSC la puede ofrecer a sus clientes B2B grandes</strong> — cada cliente recibe su propio sub-dashboard sobre el mismo substrate, con tracking, conversión y pipeline. Es el tipo de propuesta que cierra contratos de retainer mensual, no sólo órdenes de compra.</p>
     </header>
 
     <div class="bi-frame">
       <div class="bi-intro">
-        <h3>El dashboard que TSC LABS lee al <em>año 5</em>.</h3>
-        <p>Projection — desde la base actual de 13 clientes activos + 50 fórmulas: brand portfolio expandido, manufactura a escala, retail nacional consolidado, capa agéntica autónoma. Una vista, todo queryable directo contra D1 + R2 + Workers Analytics. <strong>[ MOCK · VISIÓN AÑO 5 — los números son escenarios de proyección, no estado actual ]</strong></p>
+        <h3>Lo que TSC LABS lee al <em>año 5</em> · y lo que TSC le da a sus clientes <em>desde el año 1</em>.</h3>
+        <p>El dashboard que ven los socios cada mañana. Modelos predictivos sobre 5 años de data acumulada (forecasting con Prophet/ARIMA, anomaly detection en lotes con isolation forest, cohort retention, NL→SQL via Claude API sobre D1 + R2 + Workers Analytics). Una vista, todo queryable. <strong>[ MOCK · VISIÓN AÑO 5 — los números son escenarios de proyección, no estado actual ]</strong></p>
       </div>
 
       <div class="bi-dashboard browser-frame">
@@ -4073,6 +4137,21 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
 
       <p class="bi-caption">Mock representativo del state target. Datos sintéticos. La versión real lee de D1 + R2 + Workers Analytics + integraciones de canal — cada KPI queryable en lenguaje natural sobre el semantic layer.</p>
+
+      <div class="bi-extension-callout">
+        <div class="bi-extension-tag">EXTENSIÓN B2B · MOAT COMERCIAL</div>
+        <h3 class="bi-extension-headline">El mismo dashboard, <em>empaquetado para tus clientes B2B grandes</em>.</h3>
+        <div class="bi-extension-body">
+          <p>El sistema multi-tenant permite que TSC ofrezca a cada cliente B2B grande su propia versión del dashboard — corriendo sobre el mismo substrate, con su data aislada por Durable Object. El cliente recibe su propio sub-dashboard con:</p>
+          <ul class="bi-extension-list">
+            <li><strong>Tracking de pipeline propio</strong> — sus fórmulas en desarrollo, sus lotes producidos, sus pagos.</li>
+            <li><strong>Funnel de conversión</strong> — desde brief hasta retail, qué SKUs convierten más.</li>
+            <li><strong>Forecasting predictivo</strong> — qué activos del catálogo TSC le conviene producir el próximo trimestre con base en su histórico de ventas.</li>
+            <li><strong>Recomendaciones de R&amp;D Scout</strong> — los activos nuevos del mercado filtrados por su segmento de marca.</li>
+          </ul>
+          <p class="bi-extension-close"><strong>El cierre comercial:</strong> ya no vas con un PDF de tarifa de fórmula a un Liverpool, Sephora o CVS. Vas con <em>"contrátanos como tu lab y te incluimos esta plataforma para que veas cada SKU, cada lote, cada predicción en tiempo real"</em>. Es el tipo de propuesta que justifica retainer mensual, no orden de compra puntual. Eso es lo que abre tratos grandes.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
