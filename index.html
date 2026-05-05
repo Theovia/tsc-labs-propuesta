@@ -2685,7 +2685,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
     <div class="cover-annotation ann-1"><span class="ann-arrow">↳</span> ÚNICA FUENTE DE VERDAD</div>
     <div class="cover-annotation ann-2"><span class="ann-arrow">↗</span> MULTI-TENANT DO</div>
     <div class="cover-annotation ann-3"><span class="ann-arrow">↳</span> AUDIT TRAIL</div>
-    <div class="cover-annotation ann-4"><span class="ann-arrow">↗</span> AGÉNTICO 24/7</div>
+    <div class="cover-annotation ann-4"><span class="ann-arrow">↗</span> AGENTES MULTI-TENANT</div>
   </div>
 
   <div class="cover-center">
@@ -2753,7 +2753,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </div>
         <div class="tldr-card">
           <div class="tldr-tag">QUÉ HACE RAUL</div>
-          <p class="tldr-prose">Funciona como <strong>CTO Fractional integrado al equipo TSC LABS</strong> los 12 meses de construcción. Estrategia + arquitectura técnica + dirección de roadmap + selección de talent técnico futuro. Combina expertise en negocios, transformación digital, business intelligence e inteligencia artificial.</p>
+          <p class="tldr-prose">Funciona como <strong>CTO Fractional integrado al equipo TSC LABS</strong> los 12 meses de construcción. Estrategia + arquitectura técnica + dirección de roadmap + selección de talent técnico futuro. Combina expertise en negocios, transformación digital, business intelligence y arquitectura agéntica multi-agente sobre Cloudflare Workers.</p>
         </div>
       </div>
     </div>
@@ -2804,7 +2804,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           </li>
         </ul>
 
-        <p>Eigen entra como <strong>dirección técnica con autoridad</strong>. La capa que falta no es una herramienta más; es la arquitectura que conecta Shopify, WhatsApp, META, Skydropx y la operación interna en un solo sistema. No hacemos envasado ni proveeduría — esos son procesos de TSC. Lo que sí hacemos: construimos el <em>sistema de coordinación</em> sobre esos procesos. Cola de envasado visible para becarios, agentes de IA que pre-cotizan con proveedores antes de que Natalia abra el chat, generación automatizada de contenido para redes que el equipo aprueba con un click. Eso libera capacidad para procesar los 30 leads/mes que hoy se quedan en cola. F1-F5 construye eso.</p>
+        <p>Eigen entra como <strong>dirección técnica con autoridad</strong>. La capa que falta no es una herramienta más; es la arquitectura que conecta Shopify, WhatsApp, META, Skydropx y la operación interna en un solo sistema. No hacemos envasado ni proveeduría — esos son procesos de TSC. Lo que sí hacemos: construimos el <em>sistema de coordinación</em> sobre esos procesos. Cola de envasado visible para becarios, un Proveeduría Agent (Workers + Durable Object por orden de compra + Claude API) que pre-cotiza con proveedores antes de que Natalia abra el chat, un Social Media Generator (Workers AI Llama 4 + Image Resizing) que prepara contenido para redes y el equipo aprueba con un click. Eso libera capacidad para procesar los 30 leads/mes que hoy se quedan en cola. F1-F5 construye eso.</p>
 
         <div class="diag-sign">
           <p class="diag-sign-name">Eigen Atlas Practice</p>
@@ -2877,7 +2877,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
           <li><strong>Arquitectura Cloudflare-native</strong> que mantiene todo lo anterior coherente: Durable Objects + Workers + R2 + D1 + Workers AI + MCP servers — un solo edge runtime, un solo audit trail, un solo modelo de costos.</li>
         </ol>
 
-        <p>F1-F5 reemplaza el stack distribuido con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal cliente-facing, portal interno operativo, ERP de inventario auto-descontante con forecast predictivo, dashboards de margen, agentes de IA — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
+        <p>F1-F5 reemplaza el stack distribuido con una arquitectura simple: un data substrate único (D1 transaccional + R2 documental + Workers Analytics) al que todos los servicios — Talent Portal cliente-facing, portal interno operativo, ERP de inventario auto-descontante con forecast predictivo, dashboards de margen, capa agéntica de Workers + Durable Objects + Claude API + MCP — leen y escriben. Audit trail unificado. Versionado en cada cambio.</p>
 
         <p>El efecto medible: una consulta de margen del CFO y una consulta del chatbot DTC sobre el mismo SKU regresan el mismo número. Sin reconciliación entre canales. Sin discrepancia entre dashboard y operación. El store es la fuente. Todos los servicios leen y escriben de ahí.</p>
 
@@ -3288,7 +3288,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <div class="bi-sidebar-item" data-label="Compliance" aria-label="Compliance">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
             </div>
-            <div class="bi-sidebar-item" data-label="AI Agents" aria-label="AI Agents">
+            <div class="bi-sidebar-item" data-label="Agentes" aria-label="Agentes">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
             </div>
             <div class="bi-sidebar-item" data-label="Catálogo" aria-label="Catálogo">
@@ -4228,7 +4228,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <td class="fin-yoy">06 entregas</td>
           </tr>
           <tr>
-            <td><div class="fin-line-label">Fase 05 · AI Agents · 4 olas<em>DTC chatbot · B2B qualifier · Proveeduría agent · Compliance + Social Media</em></div></td>
+            <td><div class="fin-line-label">Fase 05 · Capa agéntica · 5 olas<em>DTC chatbot · B2B qualifier · Proveeduría · Compliance + Social · R&amp;D Scout</em></div></td>
             <td class="right">$640K</td>
             <td class="right">5 mo</td>
             <td class="fin-line-pct">36.4%</td>
@@ -4327,7 +4327,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
             <li><strong>Estrategia de negocio</strong> · diagnóstico, modelo de operación, pricing, escalamiento</li>
             <li><strong>Transformación digital</strong> · desde data architecture hasta capa agéntica</li>
             <li><strong>Business intelligence</strong> · semantic data layers, dashboards, queries de negocio en lenguaje natural</li>
-            <li><strong>Inteligencia artificial</strong> · multi-agent frameworks, MCP servers, LLM gateway, agents productivizados</li>
+            <li><strong>Capa agéntica</strong> · multi-agent frameworks, MCP servers, LLM gateway, Durable Objects por sesión, Claude API + Workers AI</li>
             <li><strong>Compliance regulatorio</strong> · COFEPRIS, NOMs, IVA-compliant</li>
             <li><strong>Stack validado en producción</strong> · proyecto medical activo (Eigen Medical / Dr. Marcos), proyectos hospitality y pharma retail en construcción</li>
           </ul>
@@ -4350,7 +4350,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="gov-card">
         <div class="gov-tag">RAZÓN · III</div>
-        <h3 class="gov-title">AI agents framework <em>propietario</em></h3>
+        <h3 class="gov-title">Capa agéntica <em>multi-tenant nativa</em></h3>
         <p class="gov-prose">Multi-tenant. Durable Object por cliente, isolated state, MCP servers, escalamiento lineal sin re-arquitectura. La capa agéntica reutiliza este andamio en lugar de reinventarlo cada vez que se conecta un agente nuevo.</p>
       </div>
       <div class="gov-card">
@@ -4391,7 +4391,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
         </tr>
       </tbody>
     </table>
-    <p class="financials-note"><strong>Exclusiones SLA</strong>Estos compromisos cubren la capa que Eigen controla directamente: código, arquitectura, despliegue, monitoreo y respuesta. <strong>Quedan excluidos eventos fuera de control de Eigen</strong>: outages de Cloudflare (Workers, D1, R2, DNS), caídas de proveedores de IA (Anthropic Claude, OpenAI, Cloudflare Workers AI), APIs externas (Shopify, Meta, WhatsApp Cloud, Skydropx, Resend, Calendly), proveedores de pago, brechas de seguridad originadas en credenciales del cliente, fuerza mayor. En esos casos Eigen ejecuta failover documentado y comunicación inmediata, sin penalización contractual.</p>
+    <p class="financials-note"><strong>Exclusiones SLA</strong>Estos compromisos cubren la capa que Eigen controla directamente: código, arquitectura, despliegue, monitoreo y respuesta. <strong>Quedan excluidos eventos fuera de control de Eigen</strong>: outages de Cloudflare (Workers, D1, R2, DNS), caídas de proveedores LLM (Anthropic Claude, OpenAI, Cloudflare Workers AI), APIs externas (Shopify, Meta, WhatsApp Cloud, Skydropx, Resend, Calendly), proveedores de pago, brechas de seguridad originadas en credenciales del cliente, fuerza mayor. En esos casos Eigen ejecuta failover documentado y comunicación inmediata, sin penalización contractual.</p>
 
     <div class="dr-frame">
       <div class="dr-tag">BACKUP &amp; DISASTER RECOVERY</div>
@@ -4547,7 +4547,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">MCP (Model Context Protocol)</div>
-        <p class="glossary-def">Protocolo estándar para que agentes IA accedan a herramientas externas (DB, calendarios, APIs). Usado por agentes de outbound, compliance, R&amp;D.</p>
+        <p class="glossary-def">Protocolo estándar para que agentes basados en LLM accedan a herramientas externas (DB, calendarios, APIs). Usado por agentes de outbound, compliance, R&amp;D Scout.</p>
       </div>
       <div class="glossary-cell">
         <div class="glossary-term">Aviso de Funcionamiento</div>
