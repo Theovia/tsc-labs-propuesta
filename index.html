@@ -6,7 +6,7 @@
 <title>Eigen Atlas · Propuesta V2.0 · TSC LABS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#FAFAF7;
@@ -56,12 +56,347 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-weight:500;
 }
 
-/* === HERO · v2 (clean editorial) === */
-/* ============================================================
-   COVER CINEMA · monumental editorial · Fraunces italic + mercury fluid + lab HUD
-   Override of Hero v2 — stronger signature for premium cosmetic lab feel.
-   Tokens: champagne #B5A48A · mercury #8B8B95 · graphite #2E2E36 · ink/paper.
+/* === HERO · MANIFESTO (kinetic typography · 6 actos pinned scroll-scrub) ===
+   Adapted from eigenatlas-portfolio/manifesto.html — gold standard validado
+   "lo más increíble que he visto" (Raul, 2026-04-30). Fraunces variable
+   serif (opsz/wght/SOFT/WONK) + 4-plugin GSAP master timeline:
+   ScrollTrigger pin+scrub + SplitText + ScrambleText + MorphSVG.
    ============================================================ */
+.manifesto-cover{
+  --m-paper: var(--bg);
+  --m-ink: var(--ink);
+  --m-ink-2: rgba(10, 10, 10, 0.6);
+  --m-ink-3: rgba(10, 10, 10, 0.32);
+  --m-line: rgba(10, 10, 10, 0.12);
+  --m-coral: #C2410C;
+  --m-indigo: #1E40AF;
+  --m-amber: #B45309;
+  --m-gold: #A16207;
+  --m-teal: #0F766E;
+  --m-font-d: 'Fraunces', Georgia, serif;
+  --m-font-m: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
+  position:relative;
+  background:var(--m-paper);
+  color:var(--m-ink);
+  font-family:var(--m-font-d);
+}
+.manifesto-cover::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    radial-gradient(ellipse at top right, rgba(194, 65, 12, 0.04), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(10, 10, 10, 0.04), transparent 70%);
+}
+
+/* ============ MANIFESTO HUD (persistent) ============ */
+.m-hud{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:50;
+}
+.m-hud-tl{
+  position:absolute;
+  top:32px; left:40px;
+  font-family:var(--m-font-d);
+  font-variation-settings:'opsz' 144, 'SOFT' 50, 'WONK' 0;
+  font-weight:200;
+  font-size:22px;
+  letter-spacing:-0.025em;
+  color:var(--m-ink);
+}
+.m-hud-tl em{
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 0;
+  color:var(--m-coral);
+}
+.m-hud-tr{
+  position:absolute;
+  top:36px; right:40px;
+  font-family:var(--m-font-m);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--m-ink-2);
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.m-hud-tr .m-counter{
+  color:var(--m-ink);
+  font-weight:500;
+}
+.m-hud-progress{
+  position:absolute;
+  right:40px; top:50%;
+  transform:translateY(-50%);
+  width:1px; height:220px;
+  background:var(--m-line);
+}
+.m-hud-progress-fill{
+  position:absolute;
+  top:0; left:-1px;
+  width:3px; height:0%;
+  background:var(--m-coral);
+}
+.m-hud-progress-marks{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.m-hud-progress-marks span{
+  width:7px; height:1px;
+  background:var(--m-ink-3);
+  margin-left:-3px;
+}
+.m-hud-bl{
+  position:absolute;
+  bottom:36px; left:40px;
+  font-family:var(--m-font-m);
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--m-ink-3);
+}
+.m-hud-br{
+  position:absolute;
+  bottom:36px; right:40px;
+  font-family:var(--m-font-m);
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--m-ink-3);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.m-hud-br .m-arrow{
+  display:inline-block;
+  animation:m-nudge 2.4s ease-in-out infinite;
+}
+@keyframes m-nudge{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(4px); }
+}
+
+/* ============ MANIFESTO STAGE ============ */
+.m-stage-wrap{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  z-index:1;
+}
+.m-stage{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.m-act{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 80px;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+}
+.m-act.is-active{ opacity:1; }
+.m-act-heading{
+  font-family:var(--m-font-d);
+  font-weight:200;
+  line-height:0.92;
+  letter-spacing:-0.045em;
+  color:var(--m-ink);
+  will-change:transform, opacity;
+}
+
+/* ACT 1 — "tsc labs." massive lowercase Fraunces */
+.m-act-1 .m-act-heading{
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(64px, 14vw, 240px);
+  text-transform:lowercase;
+  letter-spacing:-0.06em;
+}
+.m-act-1 .m-accent-mark{
+  display:block;
+  font-family:var(--m-font-m);
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--m-coral);
+  margin-bottom:24px;
+  font-weight:500;
+}
+
+/* ACT 2 — "El stack cambia." */
+.m-act-2 .m-act-heading{
+  font-variation-settings:'opsz' 96, 'SOFT' 60, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(44px, 7.5vw, 130px);
+  line-height:1.05;
+}
+.m-act-2 .m-key{
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  color:var(--m-teal);
+  font-weight:300;
+}
+
+/* ACT 3 — "El substrate permanece." */
+.m-act-3 .m-act-heading{
+  font-variation-settings:'opsz' 96, 'SOFT' 30, 'WONK' 0;
+  font-weight:400;
+  font-size:clamp(44px, 7.5vw, 130px);
+  line-height:1.05;
+}
+.m-act-3 .m-key{
+  font-weight:600;
+  font-variation-settings:'opsz' 96, 'SOFT' 20, 'WONK' 0;
+  color:var(--m-ink);
+  background-image:linear-gradient(transparent 70%, var(--m-coral) 70%);
+  background-size:0% 100%;
+  background-repeat:no-repeat;
+}
+
+/* ACT 4 — "12 / meses a producción." */
+.m-act-4{
+  flex-direction:column;
+  gap:24px;
+}
+.m-act-4 .m-act-num{
+  font-family:var(--m-font-d);
+  font-variation-settings:'opsz' 144, 'SOFT' 30, 'WONK' 1;
+  font-weight:300;
+  font-size:clamp(140px, 26vw, 440px);
+  color:var(--m-amber);
+  line-height:0.85;
+  letter-spacing:-0.07em;
+}
+.m-act-4 .m-act-sub{
+  font-family:var(--m-font-d);
+  font-variation-settings:'opsz' 36, 'SOFT' 50, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(20px, 2.6vw, 38px);
+  letter-spacing:-0.02em;
+  color:var(--m-ink);
+}
+.m-act-4 .m-act-sub em{
+  font-style:italic;
+  color:var(--m-amber);
+}
+
+/* ACT 5 — "Un substrate. / Infinitos módulos." */
+.m-act-5{
+  flex-direction:column;
+  gap:20px;
+}
+.m-act-5 .m-line{
+  font-family:var(--m-font-d);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-0.04em;
+}
+.m-act-5 .m-line-1{
+  font-variation-settings:'opsz' 96, 'SOFT' 20, 'WONK' 0;
+  font-size:clamp(50px, 9vw, 160px);
+  color:var(--m-ink);
+}
+.m-act-5 .m-line-2{
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  font-style:italic;
+  font-size:clamp(46px, 8.5vw, 150px);
+  color:var(--m-indigo);
+}
+
+/* ACT 6 — "Para siempre queryable." finale */
+.m-act-6{
+  flex-direction:column;
+  gap:16px;
+}
+.m-act-6 .m-act-heading{
+  font-variation-settings:'opsz' 96, 'SOFT' 80, 'WONK' 1;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(60px, 11vw, 200px);
+  line-height:1;
+  color:var(--m-ink);
+}
+.m-act-6 .m-underline-svg{
+  width:clamp(180px, 30vw, 460px);
+  height:36px;
+  overflow:visible;
+}
+.m-act-6 .m-underline-path{
+  stroke:var(--m-gold);
+  stroke-width:2;
+  fill:none;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  stroke-linecap:round;
+}
+
+/* ============ MORPHING SHAPE ============ */
+.m-shape-canvas{
+  position:absolute;
+  bottom:12vh;
+  left:50%;
+  transform:translateX(-50%);
+  width:56px;
+  height:56px;
+  z-index:4;
+  opacity:0;
+  pointer-events:none;
+}
+.m-shape-canvas svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+.m-shape-path{
+  fill:none;
+  stroke:var(--m-ink);
+  stroke-width:1.5;
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 900px){
+  .m-hud-tl{ top:18px; left:20px; font-size:18px; }
+  .m-hud-tr{ top:22px; right:20px; gap:10px; font-size:9px; }
+  .m-hud-tr .m-meta-1{ display:none; }
+  .m-hud-progress{ display:none; }
+  .m-hud-bl, .m-hud-br{ left:20px; right:20px; bottom:20px; font-size:9px; }
+  .m-act{ padding:0 24px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .manifesto-cover *,
+  .manifesto-cover *::before,
+  .manifesto-cover *::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+  }
+  .m-act{ opacity:1 !important; }
+  .m-act:not(.m-act-1){ display:none; }
+}
+
+@media print{
+  .manifesto-cover{ min-height:auto; page-break-after:always; }
+  .m-hud-progress, .m-hud-br, .m-shape-canvas{ display:none !important; }
+  .m-stage-wrap{ height:auto; min-height:60vh; }
+  .m-act{ position:relative; opacity:1; padding:24px; page-break-inside:avoid; }
+  .m-act:not(.m-act-1){ display:none; }
+}
 .cover-cinema{
   position:relative;
   background:var(--bg);
@@ -3582,98 +3917,88 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js"></script>
 </head>
 <body>
 
 <!-- COVER -->
 <!-- COVER · CINEMA · MONUMENTAL HERO · mercury fluid + lab HUD + Fraunces italic -->
-<header class="cover-cinema">
+<!-- COVER · MANIFESTO · 6 actos pinned scroll-scrub -->
+<header class="manifesto-cover">
 
-  <!-- SVG filter defs (liquid distortion overlay on monumental h1) -->
-  <svg class="cinema-svg-defs" aria-hidden="true">
-    <defs>
-      <filter id="liquidDistort" x="-3%" y="-3%" width="106%" height="106%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="3" result="turb">
-          <animate attributeName="seed" values="3;9;3" dur="16s" repeatCount="indefinite"/>
-        </feTurbulence>
-        <feDisplacementMap in="SourceGraphic" in2="turb" scale="6" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
-
-  <!-- Mercury particle field (Canvas 2D, set up via JS at end of body) -->
-  <canvas class="fluid-canvas" aria-hidden="true"></canvas>
-
-  <div class="pin-stage">
-
-    <!-- Top metadata strip -->
-    <div class="cinema-meta">
-      <div class="cinema-meta-mark">EIGEN ATLAS</div>
-      <div class="cinema-meta-cells">
-        <span><strong>Propuesta</strong>V2.0 · TSC LABS</span>
-        <span><strong>Filed</strong>2026.05.04</span>
-        <span><strong>Doc</strong>EIGEN-PROP-TSC-2026/01</span>
+  <div class="m-hud">
+    <div class="m-hud-tl">eigen atlas <em>/ tsc labs</em></div>
+    <div class="m-hud-tr">
+      <span class="m-meta-1">PROPUESTA · V2.0 · MMXXVI</span>
+      <span><span class="m-counter" id="m-counter">01</span> / 06</span>
+    </div>
+    <div class="m-hud-progress">
+      <div class="m-hud-progress-marks">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
+      <div class="m-hud-progress-fill" id="m-progress-fill"></div>
+    </div>
+    <div class="m-hud-bl">eigen-prop-tsc-2026/01 · confidencial · principals only</div>
+    <div class="m-hud-br" id="m-hud-br">
+      <span>scroll</span>
+      <span class="m-arrow">↓</span>
+    </div>
+  </div>
+
+  <div class="m-stage-wrap">
+    <div class="m-stage">
+
+      <!-- Act 1 — TSC LABS -->
+      <div class="m-act m-act-1 is-active">
+        <div>
+          <span class="m-accent-mark">manifiesto · 01—06</span>
+          <h1 class="m-act-heading"><span class="m-word">tsc labs.</span></h1>
+        </div>
+      </div>
+
+      <!-- Act 2 — El stack cambia. -->
+      <div class="m-act m-act-2">
+        <h2 class="m-act-heading">
+          El <span class="m-key" id="m-act2-key">stack</span><br>cambia.
+        </h2>
+      </div>
+
+      <!-- Act 3 — El substrate permanece. -->
+      <div class="m-act m-act-3">
+        <h2 class="m-act-heading">
+          El <span class="m-key" id="m-act3-key">substrate</span><br>permanece.
+        </h2>
+      </div>
+
+      <!-- Act 4 — 12 meses a producción. -->
+      <div class="m-act m-act-4">
+        <span class="m-act-num" id="m-act4-num">12</span>
+        <span class="m-act-sub"><em>meses</em> a producción · F0–F5.</span>
+      </div>
+
+      <!-- Act 5 — Un substrate. Infinitos módulos. -->
+      <div class="m-act m-act-5">
+        <span class="m-line m-line-1">Un substrate.</span>
+        <span class="m-line m-line-2">Infinitos módulos.</span>
+      </div>
+
+      <!-- Act 6 — Para siempre queryable. -->
+      <div class="m-act m-act-6">
+        <h2 class="m-act-heading">Para siempre queryable.</h2>
+        <svg class="m-underline-svg" viewBox="0 0 460 36" preserveAspectRatio="none">
+          <path class="m-underline-path" d="M 4 22 C 80 4, 180 28, 240 14 S 380 28, 456 12" />
+        </svg>
+      </div>
+
     </div>
 
-    <!-- Lab HUD readout (RAF-driven) -->
-    <aside class="hud" aria-hidden="true">
-      <div class="hud-title">
-        <span>EMULSION · BATCH 047</span>
-        <span class="live">LIVE</span>
-      </div>
-      <div class="hud-row"><span class="label">TEMP</span><span class="value" data-hud="temp">65.4<em>°C</em></span></div>
-      <div class="hud-row"><span class="label">pH</span><span class="value" data-hud="ph">5.62</span></div>
-      <div class="hud-row"><span class="label">VISCOSITY</span><span class="value" data-hud="visc">1247<em>cP</em></span></div>
-      <div class="hud-row"><span class="label">RPM</span><span class="value" data-hud="rpm">340</span></div>
-      <div class="hud-row"><span class="label">THROUGHPUT</span><span class="value" data-hud="thr">28.4<em>k/mo</em></span></div>
-      <div class="hud-foot">
-        <span>SUBSTRATE · D1+R2</span>
-        <span class="ts" data-hud="ts">15:42:08</span>
-      </div>
-    </aside>
-
-    <!-- Center stage -->
-    <div class="hero-stage">
-      <div class="hero-eyebrow"><span data-eyebrow>LABORATORIO QUERYABLE · COSMETIC SUBSTRATE</span></div>
-      <h1 class="hero-monument" aria-label="TSC LABS">
-        <span class="line line-1">TSC</span>
-        <span class="line line-2">LABS</span>
-      </h1>
-      <p class="hero-thesis">Laboratorio, marca, plataforma B2B y empresa <em data-scramble="queryable">queryable</em> sobre un solo data substrate — F0–F5 cierran en doce meses con ERP, BI y capa agéntica operando.</p>
+    <!-- Morphing shape drifts between acts -->
+    <div class="m-shape-canvas" id="m-shape-canvas">
+      <svg viewBox="0 0 56 56">
+        <path class="m-shape-path" id="m-shape-path"
+              d="M 28 4 A 24 24 0 1 0 28 52 A 24 24 0 1 0 28 4 Z" />
+      </svg>
     </div>
-
-    <!-- Hairline rule above stats (DrawSVG target) -->
-    <svg class="hero-hairlines" viewBox="0 0 1440 1" preserveAspectRatio="none" aria-hidden="true">
-      <line class="hairline-a" x1="0" y1="0.5" x2="1440" y2="0.5"/>
-    </svg>
-
-    <!-- Stats row -->
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
-        <div class="hero-stat-num"><span class="prefix">$</span><span class="val" data-count-to="1.76" data-count-decimals="2">0.00</span><em>M</em><span class="sm">MXN</span></div>
-        <div class="hero-stat-label">SETUP COMPLETO</div>
-      </div>
-      <div class="hero-stat">
-        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
-        <div class="hero-stat-num"><span class="val" data-count-to="12" data-count-decimals="0">0</span><em>meses</em></div>
-        <div class="hero-stat-label">ROADMAP · F0–F5</div>
-      </div>
-      <div class="hero-stat">
-        <svg class="hero-stat-rule" viewBox="0 0 200 1" preserveAspectRatio="none"><line x1="0" y1="0.5" x2="200" y2="0.5"/></svg>
-        <div class="hero-stat-num"><span class="val" data-count-to="5" data-count-decimals="0">0</span><em>olas</em></div>
-        <div class="hero-stat-label">CAPA AGÉNTICA</div>
-      </div>
-    </div>
-
-    <!-- Bottom strip -->
-    <div class="cinema-foot">
-      <span><strong>Atlas Studios</strong> · GDL · MX</span>
-      <span>EIGEN-PROP-TSC-2026/01 · CONFIDENCIAL · PRINCIPALS ONLY</span>
-      <span class="scroll-cue">SCROLL · DIAGNÓSTICO</span>
-    </div>
-
   </div>
 </header>
 
@@ -3687,70 +4012,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
       <p class="section-deck">Seis módulos. Una arquitectura. Un solo equipo responsable.</p>
     </header>
 
-    <!-- ARCHITECTURE DIAGRAM · light cobalt · GSAP draws on enter -->
-    <figure class="cdec-arch" aria-label="Arquitectura de capacidad">
-      <svg class="cdec-arch-svg" viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="cdec-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(30,64,175,0.0)"/>
-            <stop offset="50%" stop-color="rgba(30,64,175,0.55)"/>
-            <stop offset="100%" stop-color="rgba(30,64,175,0.0)"/>
-          </linearGradient>
-        </defs>
-
-        <!-- 6 connector lines (drawn on enter) -->
-        <g class="cdec-arch-lines" stroke="var(--accent)" stroke-width="1.1" fill="none" opacity="0.55">
-          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="72"/>
-          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="180"/>
-          <line class="cdec-arch-line" x1="540" y1="180" x2="220" y2="288"/>
-          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="72"/>
-          <line class="cdec-arch-line cdec-arch-line-emph" x1="540" y1="180" x2="860" y2="180" stroke-width="1.6" opacity="0.95"/>
-          <line class="cdec-arch-line" x1="540" y1="180" x2="860" y2="288"/>
-        </g>
-
-        <!-- Substrate core ellipse -->
-        <g class="cdec-arch-core">
-          <ellipse cx="540" cy="180" rx="160" ry="38" fill="rgba(30,64,175,0.06)" stroke="var(--accent)" stroke-width="1.2"/>
-          <text x="540" y="178" text-anchor="middle" fill="var(--accent-deep)" style="font:500 13px 'JetBrains Mono',monospace;letter-spacing:0.2em">DATA SUBSTRATE</text>
-          <text x="540" y="196" text-anchor="middle" fill="var(--ink-mute)" style="font:400 10.5px 'JetBrains Mono',monospace;letter-spacing:0.14em">D1 · R2 · WORKERS ANALYTICS</text>
-        </g>
-
-        <!-- 6 nodes -->
-        <g class="cdec-arch-nodes">
-          <!-- LEFT TOP · Operaciones -->
-          <circle cx="220" cy="72" r="5" fill="var(--accent)"/>
-          <text x="206" y="56" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Operaciones internas</text>
-          <text x="206" y="72" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 01</text>
-
-          <!-- LEFT MID · BI -->
-          <circle cx="220" cy="180" r="5" fill="var(--accent)"/>
-          <text x="206" y="170" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Business intelligence</text>
-          <text x="206" y="186" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 02 · IA + DATA SCIENCE</text>
-
-          <!-- LEFT BOTTOM · Talent -->
-          <circle cx="220" cy="288" r="5" fill="var(--accent)"/>
-          <text x="206" y="278" text-anchor="end" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Talent / clientes B2B</text>
-          <text x="206" y="294" text-anchor="end" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">PORTAL · 03</text>
-
-          <!-- RIGHT TOP · Agentes -->
-          <circle cx="860" cy="72" r="5" fill="var(--accent)"/>
-          <text x="874" y="56" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">Cinco agentes productivizados</text>
-          <text x="874" y="72" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA AGÉNTICA · 05</text>
-
-          <!-- RIGHT MID · Distribución (emphasis) -->
-          <circle cx="860" cy="180" r="6" fill="var(--accent)" stroke="var(--accent-deep)" stroke-width="1.5"/>
-          <text x="874" y="170" text-anchor="start" fill="var(--accent-deep)" style="font:600 13px 'Inter Tight',sans-serif">Distribución habilitada</text>
-          <text x="874" y="186" text-anchor="start" fill="var(--accent)" style="font:600 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">EXTENSIÓN B2B · 04</text>
-
-          <!-- RIGHT BOTTOM · ERP -->
-          <circle cx="860" cy="288" r="5" fill="var(--accent)"/>
-          <text x="874" y="278" text-anchor="start" fill="var(--ink)" style="font:500 12.5px 'Inter Tight',sans-serif">ERP + Vault + supply chain</text>
-          <text x="874" y="294" text-anchor="start" fill="var(--ink-mute)" style="font:500 9.5px 'JetBrains Mono',monospace;letter-spacing:0.16em">CAPA OPERACIONAL · 06</text>
-        </g>
-
-      </svg>
-      <figcaption class="cdec-arch-cap">Substrate único · seis módulos sobre Cloudflare Workers · multi-tenant</figcaption>
-    </figure>
+    <!-- Diagrama eliminado · usuario dijo "culero mal hecho" · entries list debajo carga la información -->
 
     <!-- 6 CAPABILITY ROWS · friendly horizontal blocks -->
     <div class="cdec-rows">
@@ -6419,165 +6681,220 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   </div>
 </footer>
 
+
 <script>
-// === COVER CINEMA · MASTER TIMELINE · entrance + scroll-scrub + scramble cycle ===
+// === MANIFESTO COVER · 6-act kinetic typography master timeline ===
+// Adapted from eigenatlas-portfolio/manifesto.html (gold standard 2026-04-30)
+// Stack: ScrollTrigger pin+scrub + SplitText + ScrambleText + MorphSVG
 (function(){
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function statsSnap(){
-    document.querySelectorAll('.hero-stat .val').forEach(function(el){
-      var t = parseFloat(el.getAttribute('data-count-to') || '0');
-      var d = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
-      el.textContent = t.toFixed(d);
-    });
-  }
-  function showAll(){
-    document.querySelectorAll('.hero-eyebrow, .hero-thesis, .hero-stat, .cinema-meta, .cinema-foot, .hud').forEach(function(n){
-      n.style.opacity = 1;
-    });
-  }
-
-  if (typeof gsap === 'undefined'){
-    statsSnap(); showAll();
-    return;
-  }
+  if (typeof gsap === 'undefined' || !document.querySelector('.manifesto-cover')) return;
 
   try {
-    if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
     if (window.SplitText) gsap.registerPlugin(SplitText);
-    if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
     if (window.ScrambleTextPlugin) gsap.registerPlugin(ScrambleTextPlugin);
+    if (window.MorphSVGPlugin) gsap.registerPlugin(MorphSVGPlugin);
   } catch(e){}
 
+  var counter = document.getElementById('m-counter');
+  var progressFill = document.getElementById('m-progress-fill');
+  var shapeCanvas = document.getElementById('m-shape-canvas');
+  var shapePath = document.getElementById('m-shape-path');
+
+  var SHAPE_CIRCLE   = 'M 28 4 A 24 24 0 1 0 28 52 A 24 24 0 1 0 28 4 Z';
+  var SHAPE_SQUARE   = 'M 4 4 L 52 4 L 52 52 L 4 52 Z';
+  var SHAPE_TRIANGLE = 'M 28 4 L 52 48 L 4 48 Z';
+  var SHAPE_DIAMOND  = 'M 28 4 L 52 28 L 28 52 L 4 28 Z';
+  var SHAPE_HEX      = 'M 28 4 L 50 16 L 50 40 L 28 52 L 6 40 L 6 16 Z';
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced){
-    statsSnap(); showAll();
+    var act1 = document.querySelector('.m-act-1');
+    if (act1) act1.classList.add('is-active');
     return;
   }
 
-  // Wait for fonts so Fraunces metrics are correct before splitting chars
   var run = function(){
-    // ---- char split for monumental h1 ----
-    var monumentLines = document.querySelectorAll('.hero-monument .line');
-    var allChars = [];
-    monumentLines.forEach(function(line){
-      var text = line.textContent;
-      line.textContent = '';
-      text.split('').forEach(function(ch){
-        var sp = document.createElement('span');
-        sp.className = 'char';
-        sp.textContent = ch === ' ' ? ' ' : ch;
-        line.appendChild(sp);
-        allChars.push(sp);
-      });
+    if (!window.SplitText) return;
+
+    var split1 = new SplitText('.m-act-1 .m-word', { type: 'chars' });
+    var split2 = new SplitText('.m-act-2 .m-act-heading', { type: 'chars,words' });
+    var split3 = new SplitText('.m-act-3 .m-act-heading', { type: 'chars,words' });
+    var split5_1 = new SplitText('.m-act-5 .m-line-1', { type: 'chars' });
+    var split5_2 = new SplitText('.m-act-5 .m-line-2', { type: 'chars' });
+    var split6 = new SplitText('.m-act-6 .m-act-heading', { type: 'chars' });
+
+    gsap.set([split2.chars, split3.chars, split5_1.chars, split5_2.chars, split6.chars], {
+      opacity: 0, y: 30
+    });
+    gsap.set('.m-act-4 .m-act-num, .m-act-4 .m-act-sub', { opacity: 0, y: 30 });
+    gsap.set('.m-act-1 .m-accent-mark', { opacity: 0, y: 12 });
+
+    // Intro
+    var intro = gsap.timeline({ delay: 0.2 });
+    intro
+      .from('.m-hud-tl', { opacity: 0, y: -10, duration: 0.6, ease: 'power3.out' })
+      .from('.m-hud-tr', { opacity: 0, y: -10, duration: 0.6, ease: 'power3.out' }, '<')
+      .from('.m-hud-progress', { opacity: 0, scaleY: 0.4, transformOrigin: 'top center', duration: 0.7, ease: 'power3.out' }, '<0.1')
+      .from('.m-hud-bl, .m-hud-br', { opacity: 0, y: 10, duration: 0.5, ease: 'power3.out' }, '<')
+      .to('.m-act-1 .m-accent-mark', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .from(split1.chars, {
+        opacity: 0, y: 80, rotationZ: -8,
+        duration: 0.9, stagger: 0.04, ease: 'power3.out'
+      }, '-=0.3');
+
+    // Master scroll timeline (6 acts pinned, ~500% scroll)
+    var masterTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.manifesto-cover',
+        start: 'top top',
+        end: '+=500%',
+        pin: true,
+        scrub: 1.2,
+        anticipatePin: 1,
+        onUpdate: function(self){
+          if (progressFill) progressFill.style.height = (self.progress * 100) + '%';
+          var actIdx = Math.min(Math.floor(self.progress * 6) + 1, 6);
+          var padded = String(actIdx).padStart(2, '0');
+          if (counter && counter.textContent !== padded) counter.textContent = padded;
+        }
+      }
     });
 
-    // ---- initial states ----
-    gsap.set(allChars, { yPercent: 115, opacity: 0 });
-    gsap.set('.hero-eyebrow', { opacity: 0, y: -10 });
-    gsap.set('.hero-thesis', { opacity: 0, y: 18 });
-    gsap.set('.hero-stat', { opacity: 0, y: 22 });
-    gsap.set('.cinema-meta', { opacity: 0, y: -10 });
-    gsap.set('.cinema-foot', { opacity: 0, y: 10 });
-    gsap.set('.hud', { opacity: 0, x: 24 });
+    masterTl.to(shapeCanvas, { opacity: 0.7, duration: 0.4 }, 0);
 
-    // ---- ENTRANCE TIMELINE ----
-    var tl = gsap.timeline({ defaults: { ease: 'power3.out' }});
+    var T1 = 0;
+    masterTl
+      .to(split1.chars, {
+        opacity: 0, y: -80, rotationZ: 6,
+        duration: 1, stagger: { each: 0.025, from: 'random' },
+        ease: 'power2.in'
+      }, T1)
+      .to('.m-act-1 .m-accent-mark', { opacity: 0, duration: 0.4 }, T1)
+      .set('.m-act-1', { className: 'm-act m-act-1' }, T1 + 0.99)
+      .set('.m-act-2', { className: 'm-act m-act-2 is-active' }, T1 + 1)
+      .to(split2.chars, {
+        opacity: 1, y: 0,
+        duration: 1.2, stagger: 0.025, ease: 'power3.out'
+      }, T1 + 1);
 
-    tl.to('.cinema-meta', { opacity: 1, y: 0, duration: 0.7 }, 0);
-
-    if (window.DrawSVGPlugin){
-      tl.fromTo('.hero-hairlines line.hairline-a',
-        { drawSVG: '50% 50%' },
-        { drawSVG: '0% 100%', duration: 1.5, ease: 'power3.inOut' },
-        0.15);
-      tl.fromTo('.hero-stat-rule line',
-        { drawSVG: '0%' },
-        { drawSVG: '100%', duration: 1.0, ease: 'power2.inOut', stagger: 0.14 },
-        0.7);
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_SQUARE }, duration: 1.4, ease: 'power2.inOut' }, T1 + 0.4);
     }
 
-    tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.65 }, 0.35);
+    var T2 = 2;
+    masterTl
+      .to('#m-act2-key', {
+        scrambleText: { text: 'substrate', chars: 'lowerCase', revealDelay: 0.15 },
+        duration: 1.4, ease: 'none'
+      }, T2)
+      .to(split2.chars, {
+        opacity: 0, y: -50,
+        duration: 0.7, stagger: { each: 0.015, from: 'end' },
+        ease: 'power2.in'
+      }, T2 + 1.5)
+      .set('.m-act-2', { className: 'm-act m-act-2' }, T2 + 2.19)
+      .set('.m-act-3', { className: 'm-act m-act-3 is-active' }, T2 + 2.2)
+      .to(split3.chars, {
+        opacity: 1, y: 0,
+        duration: 1.2, stagger: 0.022, ease: 'power3.out'
+      }, T2 + 2.2)
+      .to('.m-act-3 .m-key', {
+        backgroundSize: '100% 100%',
+        duration: 0.7, ease: 'power3.inOut'
+      }, T2 + 3.2);
 
-    tl.to(allChars, {
-      yPercent: 0,
-      opacity: 1,
-      duration: 1.15,
-      ease: 'expo.out',
-      stagger: 0.045
-    }, 0.5);
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_TRIANGLE }, duration: 1.6, ease: 'power2.inOut' }, T2 + 1);
+    }
 
-    tl.to('.hero-thesis', { opacity: 1, y: 0, duration: 0.85 }, 1.05);
-    tl.to('.hud', { opacity: 1, x: 0, duration: 0.9, ease: 'power2.out' }, 0.85);
-    tl.to('.hero-stat', { opacity: 1, y: 0, duration: 0.75, stagger: 0.11 }, 1.25);
+    var T3 = 6;
+    masterTl
+      .to(split3.chars, {
+        opacity: 0, y: -60, rotationZ: -4,
+        duration: 0.8, stagger: { each: 0.02, from: 'random' },
+        ease: 'power2.in'
+      }, T3)
+      .set('.m-act-3', { className: 'm-act m-act-3' }, T3 + 0.99)
+      .set('.m-act-4', { className: 'm-act m-act-4 is-active' }, T3 + 1)
+      .fromTo('#m-act4-num',
+        { opacity: 0, y: 40, scale: 0.7 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power3.out' },
+        T3 + 1)
+      .to('#m-act4-num', {
+        scrambleText: { text: '12', chars: '0123456789', revealDelay: 0.3 },
+        duration: 1.6, ease: 'none'
+      }, T3 + 1)
+      .to('.m-act-4 .m-act-sub', {
+        opacity: 1, y: 0,
+        duration: 0.9, ease: 'power3.out'
+      }, T3 + 1.6);
 
-    document.querySelectorAll('.hero-stat .val').forEach(function(el){
-      var target = parseFloat(el.getAttribute('data-count-to') || '0');
-      var dec = parseInt(el.getAttribute('data-count-decimals') || '0', 10);
-      var obj = { v: 0 };
-      tl.to(obj, {
-        v: target,
-        duration: dec === 0 ? 0.95 : 1.4,
-        ease: 'power2.out',
-        onUpdate: function(){ el.textContent = obj.v.toFixed(dec); }
-      }, 1.35);
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_DIAMOND }, duration: 1.4, ease: 'power2.inOut' }, T3 + 0.6);
+    }
+
+    var T4 = 9;
+    masterTl
+      .to('.m-act-4 .m-act-num', { opacity: 0, y: -60, scale: 1.2, duration: 0.9, ease: 'power2.in' }, T4)
+      .to('.m-act-4 .m-act-sub', { opacity: 0, y: -30, duration: 0.7, ease: 'power2.in' }, T4)
+      .set('.m-act-4', { className: 'm-act m-act-4' }, T4 + 0.99)
+      .set('.m-act-5', { className: 'm-act m-act-5 is-active' }, T4 + 1)
+      .to(split5_1.chars, {
+        opacity: 1, y: 0,
+        duration: 1.0, stagger: 0.035, ease: 'power3.out'
+      }, T4 + 1)
+      .fromTo(split5_2.chars,
+        { opacity: 0, y: 50, x: 0 },
+        { opacity: 1, y: 0, duration: 1.1, stagger: { each: 0.04, from: 'random' }, ease: 'power3.out' },
+        T4 + 1.7);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_HEX }, duration: 1.4, ease: 'power2.inOut' }, T4 + 0.6);
+    }
+
+    var T5 = 12;
+    masterTl
+      .to(split5_1.chars, {
+        opacity: 0, y: -60,
+        duration: 0.7, stagger: { each: 0.018, from: 'end' },
+        ease: 'power2.in'
+      }, T5)
+      .to(split5_2.chars, {
+        opacity: 0, y: -50, rotationZ: -6,
+        duration: 0.8, stagger: { each: 0.02, from: 'random' },
+        ease: 'power2.in'
+      }, T5 + 0.1)
+      .set('.m-act-5', { className: 'm-act m-act-5' }, T5 + 0.99)
+      .set('.m-act-6', { className: 'm-act m-act-6 is-active' }, T5 + 1)
+      .fromTo(split6.chars,
+        { opacity: 0, y: 40, scale: 0.94 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.4, stagger: 0.045, ease: 'power4.out' },
+        T5 + 1)
+      .to('.m-underline-path', {
+        strokeDashoffset: 0,
+        duration: 1.6, ease: 'power3.inOut'
+      }, T5 + 1.8);
+
+    if (window.MorphSVGPlugin && shapePath){
+      masterTl.to(shapePath, { morphSVG: { shape: SHAPE_CIRCLE }, duration: 1.6, ease: 'power2.inOut' }, T5 + 1);
+    }
+
+    masterTl.to(shapeCanvas, { opacity: 0, duration: 0.6 }, T5 + 2.4);
+
+    ScrollTrigger.create({
+      trigger: '.manifesto-cover',
+      start: 'top+=20vh top',
+      onEnter: function(){ gsap.to('#m-hud-br', { opacity: 0, duration: 0.4 }); },
+      onLeaveBack: function(){ gsap.to('#m-hud-br', { opacity: 1, duration: 0.4 }); }
     });
-
-    tl.to('.cinema-foot', { opacity: 1, y: 0, duration: 0.6 }, 1.6);
-
-    if (window.ScrambleTextPlugin){
-      var qEl = document.querySelector('.hero-thesis [data-scramble="queryable"]');
-      if (qEl){
-        tl.to(qEl, {
-          duration: 1.0,
-          scrambleText: { text: 'queryable', chars: 'lowerCase', revealDelay: 0.25, speed: 0.6 },
-          ease: 'none'
-        }, 1.15);
-      }
-
-      var ebTarget = document.querySelector('[data-eyebrow]');
-      if (ebTarget){
-        var phrases = [
-          'LABORATORIO QUERYABLE · COSMETIC SUBSTRATE',
-          'QUERYABLE LABORATORY · UNIFIED SUBSTRATE',
-          'PLATAFORMA UNIFICADA · MULTI-TENANT',
-          'AGENTIC RUNTIME · 24/7 OPERATIONS'
-        ];
-        var idx = 0;
-        function scrambleNext(){
-          idx = (idx + 1) % phrases.length;
-          gsap.to(ebTarget, {
-            duration: 1.5,
-            scrambleText: { text: phrases[idx], chars: 'upperAndLowerCase', revealDelay: 0.4, speed: 0.45 },
-            ease: 'none',
-            onComplete: function(){ gsap.delayedCall(3.8, scrambleNext); }
-          });
-        }
-        gsap.delayedCall(2.8, scrambleNext);
-      }
-    }
-
-    // ---- SCROLL-SCRUB · subtle hero exit on scroll ----
-    if (window.ScrollTrigger){
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: '.cover-cinema',
-          start: 'top top',
-          end: '+=85%',
-          scrub: 1.0
-        }
-      })
-      .to('.hero-monument', { y: -80, scale: 0.94, ease: 'none' }, 0)
-      .to('.hud', { y: -40, opacity: 0.25, ease: 'none' }, 0)
-      .to('.hero-thesis', { opacity: 0.35, y: -20, ease: 'none' }, 0.15)
-      .to('.fluid-canvas', { opacity: 0.18, ease: 'none' }, 0)
-      .to('.hero-stat', { opacity: 0.45, y: -10, ease: 'none', stagger: 0.05 }, 0.2);
-
-      window.addEventListener('resize', function(){ ScrollTrigger.refresh(); });
-    }
   };
 
   if (document.fonts && document.fonts.ready){
-    document.fonts.ready.then(run);
+    document.fonts.ready.then(function(){
+      run();
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    });
   } else {
     run();
   }
@@ -6672,201 +6989,5 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   }
 })();
 </script>
-
-<script>
-// === COVER CINEMA · MERCURY PARTICLE FIELD (Canvas 2D, cursor-reactive) ===
-(function(){
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var canvas = document.querySelector('.fluid-canvas');
-  if (!canvas || reduced) return;
-
-  var ctx = canvas.getContext('2d', { alpha: true });
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
-  var W = 0, H = 0;
-  function resize(){
-    var parent = canvas.parentElement;
-    var rect = parent.getBoundingClientRect();
-    W = Math.max(rect.width, 1);
-    H = Math.max(rect.height, 1);
-    canvas.width = Math.floor(W * DPR);
-    canvas.height = Math.floor(H * DPR);
-    canvas.style.width = W + 'px';
-    canvas.style.height = H + 'px';
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  var COUNT = Math.min(2400, Math.max(800, Math.floor((W * H) / 1200)));
-
-  // Perlin-style value noise (small inline impl)
-  var perm = new Uint8Array(512);
-  (function(){
-    var p = [];
-    for (var i = 0; i < 256; i++) p.push(i);
-    for (var i = 255; i > 0; i--){
-      var j = Math.floor(Math.random() * (i + 1));
-      var tt = p[i]; p[i] = p[j]; p[j] = tt;
-    }
-    for (var i = 0; i < 512; i++) perm[i] = p[i & 255];
-  })();
-  function fade(t){ return t*t*t*(t*(t*6-15)+10); }
-  function lerp(a,b,t){ return a + t*(b-a); }
-  function grad(h,x,y){
-    var v = (h & 1) === 0 ? x : -x;
-    var u = (h & 2) === 0 ? y : -y;
-    return v + u;
-  }
-  function pnoise(x,y){
-    var X = Math.floor(x) & 255;
-    var Y = Math.floor(y) & 255;
-    var xf = x - Math.floor(x);
-    var yf = y - Math.floor(y);
-    var u = fade(xf), v = fade(yf);
-    var aa = perm[perm[X] + Y];
-    var ab = perm[perm[X] + Y + 1];
-    var ba = perm[perm[X + 1] + Y];
-    var bb = perm[perm[X + 1] + Y + 1];
-    var x1 = lerp(grad(aa, xf, yf),     grad(ba, xf - 1, yf),     u);
-    var x2 = lerp(grad(ab, xf, yf - 1), grad(bb, xf - 1, yf - 1), u);
-    return (lerp(x1, x2, v) + 1) * 0.5;
-  }
-
-  var particles = new Array(COUNT);
-  for (var i = 0; i < COUNT; i++){
-    particles[i] = {
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: 0, vy: 0,
-      r: 0.55 + Math.random() * 1.5,
-      shade: Math.floor(Math.random() * 4)
-    };
-  }
-
-  var mouse = { x: -9999, y: -9999, active: false };
-  var smooth = { x: -9999, y: -9999 };
-  function setMouse(e){
-    var rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-    mouse.active = true;
-  }
-  var host = canvas.parentElement;
-  host.addEventListener('pointermove', setMouse);
-  host.addEventListener('pointerleave', function(){ mouse.active = false });
-
-  // palette: platinum · mercury · champagne · graphite
-  var col = [
-    'rgba(140,140,150,',
-    'rgba(180,180,190,',
-    'rgba(181,164,138,',
-    'rgba(92,92,102,'
-  ];
-
-  var t = 0;
-  var raf = 0;
-  function frame(){
-    t += 0.0035;
-    ctx.clearRect(0, 0, W, H);
-
-    smooth.x += (mouse.x - smooth.x) * 0.08;
-    smooth.y += (mouse.y - smooth.y) * 0.08;
-
-    ctx.globalCompositeOperation = 'multiply';
-
-    for (var i = 0; i < COUNT; i++){
-      var p = particles[i];
-
-      var n = pnoise(p.x * 0.0028 + t, p.y * 0.0028 - t);
-      var ang = n * Math.PI * 2;
-      p.vx += Math.cos(ang) * 0.085;
-      p.vy += Math.sin(ang) * 0.085;
-
-      if (mouse.active){
-        var dx = smooth.x - p.x;
-        var dy = smooth.y - p.y;
-        var d2 = dx*dx + dy*dy;
-        if (d2 < 40000){
-          var d = Math.sqrt(d2) + 0.001;
-          var f = 1 - d / 200;
-          p.vx += (-dy / d) * f * 1.5 + (dx / d) * f * 0.35;
-          p.vy += ( dx / d) * f * 1.5 + (dy / d) * f * 0.35;
-        }
-      }
-
-      p.vx *= 0.92;
-      p.vy *= 0.92;
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < -10) p.x = W + 10;
-      else if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10;
-      else if (p.y > H + 10) p.y = -10;
-
-      var alpha = 0.10 + (i % 8) / 100;
-      ctx.fillStyle = col[p.shade] + alpha + ')';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    raf = requestAnimationFrame(frame);
-  }
-  raf = requestAnimationFrame(frame);
-
-  document.addEventListener('visibilitychange', function(){
-    if (document.hidden){ cancelAnimationFrame(raf); }
-    else { raf = requestAnimationFrame(frame); }
-  });
-})();
-</script>
-
-<script>
-// === COVER CINEMA · LAB HUD · running instrument values ===
-(function(){
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) return;
-
-  var hud = {
-    temp: { el: document.querySelector('[data-hud="temp"]'), base: 65.4, drift: 1.2, dec: 1, unit: '°C' },
-    ph:   { el: document.querySelector('[data-hud="ph"]'),   base: 5.62, drift: 0.06, dec: 2, unit: '' },
-    visc: { el: document.querySelector('[data-hud="visc"]'), base: 1247, drift: 28,   dec: 0, unit: 'cP' },
-    rpm:  { el: document.querySelector('[data-hud="rpm"]'),  base: 340,  drift: 16,   dec: 0, unit: '' },
-    thr:  { el: document.querySelector('[data-hud="thr"]'),  base: 28.4, drift: 0.5,  dec: 1, unit: 'k/mo' }
-  };
-  var ts = document.querySelector('[data-hud="ts"]');
-
-  function pad(n){ return n < 10 ? '0' + n : '' + n; }
-  function rand(){ return Math.random() * 2 - 1; }
-
-  var last = 0;
-  var raf = 0;
-  function tick(now){
-    if (now - last > 280){
-      Object.keys(hud).forEach(function(k){
-        var h = hud[k];
-        if (!h.el) return;
-        var v = h.base + rand() * h.drift * 0.55;
-        var txt = h.dec === 0 ? Math.round(v).toString() : v.toFixed(h.dec);
-        h.el.innerHTML = txt + (h.unit ? '<em>' + h.unit + '</em>' : '');
-      });
-      if (ts){
-        var d = new Date();
-        ts.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-      }
-      last = now;
-    }
-    raf = requestAnimationFrame(tick);
-  }
-  raf = requestAnimationFrame(tick);
-
-  document.addEventListener('visibilitychange', function(){
-    if (document.hidden){ cancelAnimationFrame(raf); }
-    else { last = 0; raf = requestAnimationFrame(tick); }
-  });
-})();
-</script>
-
 </body>
 </html>
