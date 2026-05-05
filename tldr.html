@@ -327,6 +327,24 @@ body::before{
 
 /* ---- ACT 2 · PROMESA CORE (4 stat rows) ---- */
 .act-2{ flex-direction:column; gap:14px; max-width:1280px; width:100% }
+.act-2 .act-2-header{
+  font-family:var(--f-d);
+  font-variation-settings:'opsz' 96, 'SOFT' 50, 'WONK' 0;
+  font-weight:300;
+  font-size:clamp(36px, 5vw, 80px);
+  line-height:1;
+  letter-spacing:-0.04em;
+  color:var(--ink);
+  margin-bottom:18px;
+  align-self:center;
+  text-align:center;
+}
+.act-2 .act-2-header em{
+  font-style:italic;
+  font-variation-settings:'opsz' 72, 'SOFT' 80, 'WONK' 1;
+  color:var(--coral);
+  font-weight:400;
+}
 .act-2 .stat-row{
   display:flex;
   align-items:baseline;
@@ -830,14 +848,15 @@ body::before{
     <!-- ACT 1 · BRAND -->
     <div class="act act-1 is-active">
       <div>
-        <span class="accent-mark" data-eyebrow>tl;dr · ocho actos · cinco minutos</span>
+        <span class="accent-mark" data-eyebrow>manifiesto enterprise · cinco minutos · ocho actos</span>
         <h1 class="act-heading"><span class="word">tsc labs.</span></h1>
-        <p class="thesis-line">laboratorio cosmético · biotec · jalisco · mmxxvi</p>
+        <p class="thesis-line">stack tier-1 · cloudflare · claude api · workers ai · 12 meses · mxn 1.76m</p>
       </div>
     </div>
 
     <!-- ACT 2 · PROMESA CORE · Portal B2B = orden empresarial visible + tenant por cliente + dual-brand -->
     <div class="act act-2">
+      <h2 class="act-2-header">Lo que <em>obtienes</em>.</h2>
       <div class="stat-row">
         <span class="stat-num"><em id="stat-1">1</em></span>
         <span class="stat-label">Portal B2B propio · cómo entregan, con qué specs, con qué línea de calidad — todo documentado y demostrable</span>
@@ -854,7 +873,7 @@ body::before{
         <span class="stat-num"><em id="stat-4">2</em></span>
         <span class="stat-label">Marcas escalando juntas · TSC LABS + Skin Club · misma arquitectura</span>
       </div>
-      <div class="stat-closer">TSC se vuelve la plataforma sobre la cual sus clientes operan · sticky por diseño.</div>
+      <div class="stat-closer">TSC se vuelve la plataforma sobre la cual sus clientes operan · stack enterprise-grade · cloudflare-native · sticky por diseño.</div>
     </div>
 
     <!-- ACT 3 · TESIS · Una arquitectura · mil estrategias -->
@@ -1233,7 +1252,7 @@ body::before{
 
     // Initial states
     gsap.set([split2.chars, split3a.chars, split3b.chars, split6.chars, split8.chars], { opacity:0, y:30 });
-    gsap.set('.act-2 .stat-num em, .act-2 .stat-closer', { opacity:0, y:30 });
+    gsap.set('.act-2 .act-2-header, .act-2 .stat-num em, .act-2 .stat-closer', { opacity:0, y:30 });
     gsap.set('.act-4 #act4-num, .act-4 .modulo, .act-4 .closer', { opacity:0, y:30 });
     gsap.set('.act-5 #act5-num, .act-5 .act-sub, .act-5 .timeline-svg', { opacity:0, y:30 });
     gsap.set('.act-6 .agente-label', { opacity:0 });
@@ -1288,16 +1307,18 @@ body::before{
       .to('.act-1 .accent-mark, .act-1 .thesis-line', { opacity:0, duration:0.4 }, T1)
       .set('.act-1', { className:'act act-1' }, T1+0.99)
       .set('.act-2', { className:'act act-2 is-active' }, T1+1)
+      // Header "Lo que obtienes" reveals first
+      .to('.act-2 .act-2-header', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+0.95)
       // Stat numbers count up + scramble
-      .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.14, ease:'power3.out' }, T1+1)
-      .to('#stat-1', { scrambleText:{ text:'1', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.1)
-      .to('#stat-2', { scrambleText:{ text:'N', chars:'0123456789N', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.25)
-      .to('#stat-3', { scrambleText:{ text:'5–10', chars:'0123456789–', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.4)
-      .to('#stat-4', { scrambleText:{ text:'2', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.55)
+      .to('.act-2 .stat-num em', { opacity:1, y:0, duration:0.6, stagger:0.14, ease:'power3.out' }, T1+1.15)
+      .to('#stat-1', { scrambleText:{ text:'1', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.25)
+      .to('#stat-2', { scrambleText:{ text:'N', chars:'0123456789N', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.4)
+      .to('#stat-3', { scrambleText:{ text:'5–10', chars:'0123456789–', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.55)
+      .to('#stat-4', { scrambleText:{ text:'2', chars:'0123456789', revealDelay:0.2 }, duration:1.0, ease:'none' }, T1+1.7)
       .to(split2.chars, {
         opacity:1, y:0, duration:0.7, stagger:0.005, ease:'power3.out'
       }, T1+1.2)
-      .to('.act-2 .stat-closer', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+2.1);
+      .to('.act-2 .stat-closer', { opacity:1, y:0, duration:0.7, ease:'power3.out' }, T1+2.3);
 
     if (window.MorphSVGPlugin && shapePath){
       masterTl.to(shapePath, { morphSVG:{ shape:SHAPES.square }, duration:1.4, ease:'power2.inOut' }, T1+0.4);
@@ -1306,7 +1327,7 @@ body::before{
     // ---------- T2 · Act 2 → Act 3 (tesis bilingüe) ----------
     var T2 = 3;
     masterTl
-      .to('.act-2 .stat-num em, .act-2 .stat-label, .act-2 .stat-closer', {
+      .to('.act-2 .act-2-header, .act-2 .stat-num em, .act-2 .stat-label, .act-2 .stat-closer', {
         opacity:0, y:-40, duration:0.7, stagger:0.04, ease:'power2.in'
       }, T2)
       .set('.act-2', { className:'act act-2' }, T2+0.79)
