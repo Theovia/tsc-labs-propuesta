@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eigen Atlas · TSC LABS · Versión Ahorita</title>
+<title>Eigen Atlas · TSC LABS · Sistema · Versión Ahorita</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,6 +11,7 @@
 :root{
   --bg:#FAFAF7;
   --bg-2:#F2F2EE;
+  --bg-3:#E8E8E2;
   --ink:#0A0A0A;
   --ink-soft:#2A2A2A;
   --ink-mute:#6E6E70;
@@ -38,7 +39,8 @@ body{
 a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .2s,color .2s}
 a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 
-.wrap{max-width:760px;margin:0 auto;padding:0 32px}
+.wrap{max-width:880px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:760px;margin:0 auto;padding:0 32px}
 
 .eyebrow{
   font-family:'JetBrains Mono',ui-monospace,monospace;
@@ -64,7 +66,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
 .head-bar a:hover{border-bottom-color:var(--accent)}
 
 /* HERO */
-.hero{padding:80px 0 100px}
+.hero{padding:80px 0 80px}
 .hero-eyebrow{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;letter-spacing:0.22em;
@@ -89,7 +91,7 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   line-height:1.65;
   color:var(--ink-soft);
   margin-bottom:36px;
-  max-width:660px;
+  max-width:680px;
 }
 .hero-deck strong{color:var(--ink);font-weight:600}
 .hero-rule{
@@ -123,59 +125,128 @@ a:hover{border-bottom-color:var(--accent);color:var(--accent-bright)}
   font-size:18px;line-height:1.65;
   color:var(--ink-soft);
   margin-bottom:48px;
-  max-width:640px;
+  max-width:680px;
 }
 
-/* VALOR · 6 cards */
-.valor{
-  margin-top:48px;
-  display:flex;flex-direction:column;
-  gap:0;
+/* HUB-AND-SPOKE DIAGRAM */
+.hub-frame{
+  margin:48px auto 0;
+  max-width:780px;
+  background:var(--bg);
+  padding:24px 0;
 }
-.valor-card{
-  position:relative;
-  padding:48px 0 48px 60px;
-  border-bottom:1px solid var(--rule);
+.hub-svg{
+  width:100%;
+  height:auto;
+  display:block;
+  max-height:680px;
 }
-.valor-card:last-child{border-bottom:none}
-.valor-num{
-  position:absolute;
-  left:0;top:54px;
-  font-family:'Inter Tight',sans-serif;
-  font-style:italic;font-weight:200;
-  font-size:38px;line-height:1;
+.hub-cap{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.18em;
+  color:var(--ink-mute);text-transform:uppercase;
+  font-weight:500;
+  text-align:center;
+  margin-top:24px;
+}
+
+/* APP BLOCK · uno por aplicación */
+.app{
+  padding:96px 0;
+  border-top:1px solid var(--rule);
+}
+.app-num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:0.22em;
+  color:var(--accent);text-transform:uppercase;
+  font-weight:600;
+  margin-bottom:18px;
+  display:block;
+}
+.app-icon{
+  width:72px;height:72px;
+  margin-bottom:28px;
   color:var(--accent);
-  letter-spacing:-0.03em;
 }
-.valor-card h3{
+.app-icon svg{width:100%;height:100%;display:block}
+.app-name{
   font-family:'Inter Tight',sans-serif;
   font-weight:300;
-  font-size:clamp(24px,3.2vw,32px);
-  line-height:1.18;
-  letter-spacing:-0.025em;
+  font-size:clamp(36px,5.6vw,60px);
+  line-height:1.02;
+  letter-spacing:-0.034em;
   color:var(--ink);
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
-.valor-card h3 em{font-style:italic;color:var(--accent);font-weight:400}
-.valor-card p{
+.app-name em{font-style:italic;color:var(--accent);font-weight:400}
+.app-tagline{
+  font-family:'Inter Tight',sans-serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(20px,2.6vw,26px);
+  line-height:1.35;
+  color:var(--ink-soft);
+  margin-bottom:32px;
+  max-width:680px;
+}
+.app-prose{
   font-family:'Inter',sans-serif;
   font-size:17px;line-height:1.7;
   color:var(--ink-soft);
   margin-bottom:14px;
+  max-width:680px;
 }
-.valor-card p:last-child{margin-bottom:0}
-.valor-card strong{color:var(--ink);font-weight:600}
-.valor-example{
-  margin-top:22px;
-  padding:20px 22px;
+.app-prose strong{color:var(--ink);font-weight:600}
+.app-example{
+  margin-top:28px;
+  padding:24px 26px;
   background:var(--bg-2);
   border-left:2px solid var(--accent);
   font-family:'Inter',sans-serif;
-  font-size:15.5px;line-height:1.6;
+  font-size:15.5px;line-height:1.65;
   color:var(--ink-soft);
-  font-style:italic;
+  max-width:680px;
 }
-.valor-example strong{color:var(--accent-deep);font-style:normal;font-weight:600}
+.app-example strong{color:var(--accent-deep);font-weight:600}
+.app-example em{font-style:italic;color:var(--ink)}
+.app-users{
+  margin-top:32px;
+  display:flex;flex-wrap:wrap;gap:8px;
+  align-items:center;
+}
+.app-users-label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.16em;
+  color:var(--ink-mute);text-transform:uppercase;
+  font-weight:500;
+  margin-right:8px;
+}
+.app-pill{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10px;letter-spacing:0.14em;
+  color:var(--accent-deep);text-transform:uppercase;
+  font-weight:600;
+  padding:5px 10px;
+  border:1px solid var(--accent);
+  border-radius:2px;
+  background:var(--bg);
+}
+
+/* CONNECTION NOTE */
+.connect-frame{
+  margin-top:48px;
+  padding:32px 30px;
+  border:1px dashed var(--accent);
+  background:var(--bg-2);
+  max-width:780px;
+}
+.connect-frame .eyebrow{margin-bottom:14px;color:var(--accent-deep)}
+.connect-frame p{
+  font-family:'Inter',sans-serif;
+  font-size:16px;line-height:1.65;
+  color:var(--ink-soft);
+}
+.connect-frame strong{color:var(--ink);font-weight:600}
 
 /* PRICING · 2 cards */
 .pricing-grid{
@@ -479,23 +550,24 @@ footer{
 /* MOBILE */
 @media(max-width:720px){
   body{font-size:17px}
-  .wrap{padding:0 22px}
+  .wrap, .wrap-narrow{padding:0 22px}
   .head-bar{padding:18px 22px;font-size:9.5px;gap:8px}
-  .hero{padding:56px 0 72px}
+  .hero{padding:56px 0 56px}
   .hero h1{font-size:32px}
   .hero-deck{font-size:16.5px}
   .sec{padding:56px 0}
   .sec h2{font-size:26px}
   .sec-deck{font-size:16.5px}
-  .valor-card{padding:36px 0;padding-left:0}
-  .valor-num{position:static;display:block;margin-bottom:14px;font-size:30px}
-  .valor-card h3{font-size:22px}
-  .valor-card p{font-size:16px}
-  .valor-example{font-size:14.5px;padding:16px 18px}
+  .app{padding:64px 0}
+  .app-icon{width:56px;height:56px;margin-bottom:22px}
+  .app-name{font-size:30px}
+  .app-tagline{font-size:18px}
+  .app-prose{font-size:16px}
+  .app-example{font-size:14.5px;padding:20px 22px}
   .pricing-grid{grid-template-columns:1fr;gap:18px}
   .pricing-card{padding:28px 22px}
   .pricing-num{font-size:38px}
-  .escalator-frame{padding:24px 20px}
+  .escalator-frame, .connect-frame{padding:24px 20px}
   .fases-row{grid-template-columns:1fr;gap:6px}
   .fases-when{text-align:left}
   .paso{grid-template-columns:50px 1fr;gap:16px}
@@ -513,81 +585,271 @@ footer{
 
 <!-- TOP DRAFTING BAR -->
 <div class="head-bar">
-  <span><strong>EIGEN · ATLAS</strong> &nbsp;·&nbsp; TSC LABS &nbsp;·&nbsp; Versión Ahorita</span>
+  <span><strong>EIGEN · ATLAS</strong> &nbsp;·&nbsp; TSC LABS &nbsp;·&nbsp; Sistema · Versión Ahorita</span>
   <a href="/">propuesta técnica completa →</a>
 </div>
 
-<div class="wrap">
+<div class="wrap-narrow">
 
 <!-- HERO -->
 <section class="hero">
   <span class="hero-eyebrow">— PARA TSC LABS · KAORI · NATALIA · DIEGO —</span>
   <h1>
-    Operar el laboratorio<br>
-    <em>como una sola aplicación.</em><br>
-    Una pantalla para tu equipo.<br>
-    Un portal por cada cliente.<br>
-    Skin Club y TSC sobre lo mismo.
+    Diez aplicaciones.<br>
+    <em>Un solo cerebro.</em><br>
+    El sistema operativo<br>
+    de TSC LABS.
   </h1>
   <p class="hero-deck">
-    Construimos el sistema digital completo de TSC LABS: pantalla de operación interna para Diego, Kaori, Natalia y los becarios entrantes; portal individual para cada uno de tus clientes B2B; inventario que se descuenta solo con cada lote producido; asistentes que cotizan con proveedores y responden a clientes finales 24/7. <strong>Skin Club y TSC LABS corren sobre el mismo sistema.</strong>
+    Te entregamos diez aplicaciones que operan sobre la misma información del laboratorio. Cada una resuelve algo concreto: una para el equipo interno, una para los clientes B2B, una para el inventario, una para producción, otras para los asistentes que trabajan 24/7. <strong>Todas conectadas al mismo cerebro — sin Sheets paralelos, sin información duplicada, sin que nadie capture nada dos veces.</strong>
   </p>
   <div class="hero-rule"></div>
   <div class="hero-meta">
-    Versión simplificada · Pensada para arrancar ahorita · Filed 2026.05.05
+    Versión simplificada · Pensada para arrancar ahorita · Filed 2026.05.06
   </div>
 </section>
 
-<!-- LOS 6 VALORES -->
+</div>
+
+<!-- HUB AND SPOKE DIAGRAM -->
+<div class="wrap">
+<section class="sec" style="border-top:1px solid var(--rule)">
+  <span class="eyebrow">Cómo se ve el sistema</span>
+  <h2>Un cerebro central. <em>Diez aplicaciones encima.</em></h2>
+  <p class="sec-deck">El centro guarda toda la información del laboratorio: fórmulas, lotes, clientes, inventario, comunicaciones. Cada aplicación lee y escribe del mismo lugar — por eso nada se duplica y todo está siempre al día.</p>
+
+  <div class="hub-frame">
+    <svg class="hub-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama del sistema · cerebro central + 10 aplicaciones">
+      <defs>
+        <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1E40AF" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#1E40AF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Glow halo -->
+      <circle cx="400" cy="400" r="180" fill="url(#hub-glow)"/>
+
+      <!-- Spokes (lines from center to each app) -->
+      <g stroke="#1E40AF" stroke-width="1" opacity="0.45" fill="none">
+        <line x1="400" y1="400" x2="400" y2="120"/>
+        <line x1="400" y1="400" x2="565" y2="174"/>
+        <line x1="400" y1="400" x2="666" y2="313"/>
+        <line x1="400" y1="400" x2="666" y2="487"/>
+        <line x1="400" y1="400" x2="565" y2="626"/>
+        <line x1="400" y1="400" x2="400" y2="680"/>
+        <line x1="400" y1="400" x2="235" y2="626"/>
+        <line x1="400" y1="400" x2="134" y2="487"/>
+        <line x1="400" y1="400" x2="134" y2="313"/>
+        <line x1="400" y1="400" x2="235" y2="174"/>
+      </g>
+
+      <!-- Center · cerebro -->
+      <ellipse cx="400" cy="400" rx="118" ry="56" fill="#0A0A0A" stroke="#1E40AF" stroke-width="1.5"/>
+      <text x="400" y="395" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#FAFAF7" letter-spacing="2.6" font-weight="600">CEREBRO</text>
+      <text x="400" y="415" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#FAFAF7" letter-spacing="1.8" opacity="0.7">OPERACIÓN TSC</text>
+
+      <!-- 10 nodes around -->
+      <!-- 01 Operaciones · top -->
+      <g>
+        <rect x="332" y="78" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="400" y="98" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">01</text>
+        <text x="400" y="113" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Operaciones</text>
+      </g>
+
+      <!-- 02 Cliente B2B · 36° -->
+      <g>
+        <rect x="497" y="138" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="565" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">02</text>
+        <text x="565" y="173" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Cliente B2B</text>
+      </g>
+
+      <!-- 03 Inventario · 72° -->
+      <g>
+        <rect x="598" y="277" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="666" y="297" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">03</text>
+        <text x="666" y="312" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Inventario</text>
+      </g>
+
+      <!-- 04 Producción · 108° -->
+      <g>
+        <rect x="598" y="451" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="666" y="471" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">04</text>
+        <text x="666" y="486" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Producción</text>
+      </g>
+
+      <!-- 05 Proveeduría · 144° -->
+      <g>
+        <rect x="497" y="590" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="565" y="610" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">05</text>
+        <text x="565" y="625" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Proveeduría</text>
+      </g>
+
+      <!-- 06 Skin Club · bottom -->
+      <g>
+        <rect x="332" y="650" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="400" y="670" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">06</text>
+        <text x="400" y="685" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Skin Club</text>
+      </g>
+
+      <!-- 07 R&D Scout · 216° -->
+      <g>
+        <rect x="167" y="590" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="235" y="610" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">07</text>
+        <text x="235" y="625" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">R&amp;D Scout</text>
+      </g>
+
+      <!-- 08 Fórmulas · 252° -->
+      <g>
+        <rect x="66" y="451" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="134" y="471" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">08</text>
+        <text x="134" y="486" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Fórmulas</text>
+      </g>
+
+      <!-- 09 Comunicaciones · 288° -->
+      <g>
+        <rect x="66" y="277" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="134" y="297" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">09</text>
+        <text x="134" y="312" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Comunicaciones</text>
+      </g>
+
+      <!-- 10 Tablero · 324° -->
+      <g>
+        <rect x="167" y="138" width="136" height="44" rx="2" fill="#FAFAF7" stroke="#0A0A0A" stroke-width="1.2"/>
+        <text x="235" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1E40AF" letter-spacing="1.2" font-weight="600">10</text>
+        <text x="235" y="173" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" fill="#0A0A0A" font-weight="500">Tablero</text>
+      </g>
+    </svg>
+    <div class="hub-cap">Centro = información viva del laboratorio · Spokes = aplicaciones que leen y escriben del centro</div>
+  </div>
+</section>
+</div>
+
+<!-- LAS 10 APLICACIONES -->
+<div class="wrap-narrow">
+
+<!-- 01 Operaciones -->
+<section class="app">
+  <span class="app-num">App 01</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+  <h2 class="app-name"><em>Operaciones.</em></h2>
+  <p class="app-tagline">Una sola pantalla del laboratorio. Todo lo que está pasando, ahorita.</p>
+  <p class="app-prose">Diego, Kaori, Natalia y los becarios entrantes abren esta aplicación al inicio del día y ven todo en una vista: cola de envasado priorizada, lotes en producción, pedidos en curso, alertas operativas, becarios asignados a qué tarea. <strong>Sin tener que cruzar tres herramientas para entender qué está pasando.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Lunes 9am. Diego abre Operaciones desde su celular. Ve <em>"3 lotes en producción · 2 en envasado · 1 en etiquetado · 1 entregado el viernes · cuello de botella esta semana: etiquetado · 2 becarios disponibles para asignar"</em>. Decide en 60 segundos qué priorizar.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Diego</span><span class="app-pill">Kaori</span><span class="app-pill">Natalia</span><span class="app-pill">Becarios</span></div>
+</section>
+
+<!-- 02 Cliente B2B -->
+<section class="app">
+  <span class="app-num">App 02</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg></div>
+  <h2 class="app-name"><em>Cliente B2B.</em></h2>
+  <p class="app-tagline">Cada cliente tiene su propio espacio. Sin email back-and-forth.</p>
+  <p class="app-prose">Cada cliente B2B (Aurora, otra agencia, otro talent manager) entra a su portal con un link mágico — sin contraseñas. Ve el progreso de su producto, adjunta documentos, paga, recibe factura, conversa con el equipo TSC. <strong>Sólo ve su marca, sus fórmulas, sus hitos. Cero acceso cruzado entre clientes.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Aurora entra a su portal el martes. Ve <em>"Tu suero hidratante · etiquetando · ETA 3 días · factura del 50% restante: pagar"</em>. Paga con un click, sube imagen de inspiración para próximo proyecto, deja un mensaje al equipo. Sin escribir email.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Cliente B2B</span><span class="app-pill">Kaori</span><span class="app-pill">Diego</span></div>
+</section>
+
+<!-- 03 Inventario -->
+<section class="app">
+  <span class="app-num">App 03</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+  <h2 class="app-name"><em>Inventario.</em></h2>
+  <p class="app-tagline">Se descuenta solo. Te avisa antes de quedarte sin algo.</p>
+  <p class="app-prose">Cada vez que TSC produce un lote, Inventario descuenta automáticamente las materias primas y los envases consumidos. Sin Sheet paralelo. Sin reconciliación al final del día. Además, lee el ritmo de producción y proyecta cuándo cada insumo va a cruzar el umbral mínimo — y te avisa hoy con la cantidad exacta a pedir y el proveedor histórico que ya conoces.</p>
+  <div class="app-example"><strong>Ejemplo:</strong> Quedan 1,200 frascos amber. Producen un lote que usa 800. Inventario sabe que quedan 400. Tres días después dispara alerta: <em>"Frascos amber bajan a threshold en 12 días. Sugerencia: pedir 2,000 unidades hoy con tu proveedor histórico. ETA típico 8 días."</em> Natalia revisa, firma con un click.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Natalia</span><span class="app-pill">Diego</span></div>
+</section>
+
+<!-- 04 Producción -->
+<section class="app">
+  <span class="app-num">App 04</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="3 12 7 12 9 5 13 19 15 12 21 12"/></svg></div>
+  <h2 class="app-name"><em>Producción.</em></h2>
+  <p class="app-tagline">Status en vivo de cada lote. De principio a fin.</p>
+  <p class="app-prose">En cualquier momento preguntas <em>"¿dónde está el lote 887?"</em> y recibes respuesta en menos de dos segundos: en producción → envasando → etiquetando → en camino al cliente → entregado. Los becarios entrantes ven la cola que les toca trabajar sin preguntar a Diego. Diego ve el cuello de botella en vivo, no al final de la semana.</p>
+  <div class="app-example"><strong>Ejemplo:</strong> Cliente B2B pregunta por su pedido. Kaori abre Producción desde el celular, ve <em>"Lote 887 · etiquetando · ETA cliente 3 días"</em>. Responde en 30 segundos sin levantarse de su silla.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Diego</span><span class="app-pill">Kaori</span><span class="app-pill">Becarios</span></div>
+</section>
+
+<!-- 05 Proveeduría -->
+<section class="app">
+  <span class="app-num">App 05</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h13l3 4v6h-2"/><circle cx="6" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M3 7v10h2"/><path d="M8 17h7"/></svg></div>
+  <h2 class="app-name"><em>Proveeduría.</em></h2>
+  <p class="app-tagline">Asistente que cotiza por Natalia. Le entrega la decisión, no la búsqueda.</p>
+  <p class="app-prose">Cuando Inventario dispara una orden de compra, Proveeduría busca proveedores en su base + en la web, solicita cotizaciones por WhatsApp y email, agrega los resultados en una tabla comparable, y entrega una shortlist con recomendación a Natalia. <strong>Natalia recibe 3 opciones evaluadas con precio, ETA y términos. Decide. No busca de cero.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Inventario dispara alerta de frascos amber. Proveeduría arranca: pide cotización a 4 proveedores, espera respuestas, agrega resultados. Lunes Natalia recibe <em>"Opción A · proveedor histórico · $X · ETA 8d · Opción B · alternativa · $0.85X · ETA 12d · recomendación: A"</em>. Firma 1 click.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Natalia</span></div>
+</section>
+
+<!-- 06 Skin Club -->
+<section class="app">
+  <span class="app-num">App 06</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+  <h2 class="app-name"><em>Skin Club.</em></h2>
+  <p class="app-tagline">Asistente que atiende a clientes finales 24 / 7.</p>
+  <p class="app-prose">Skin Club tiene un asistente que responde a clientes finales del Shopify a cualquier hora. Recomienda fórmula según tipo de piel, da seguimiento post-compra, recupera carritos abandonados, contesta preguntas frecuentes. <strong>Cuando la consulta requiere criterio humano, escala a Diego o Kaori automáticamente.</strong> Hoy Diego responde ~5 mensajes/mes manualmente — el asistente escala el volumen sin costo lineal en su tiempo.</p>
+  <div class="app-example"><strong>Ejemplo:</strong> Clienta final escribe a Skin Club a las 11pm preguntando qué sérum es mejor para piel mixta con tendencia acneica. El asistente responde con recomendación específica, link al producto, y código de descuento si carrito está abandonado. Si la pregunta es sobre alergia o reacción → escala a Diego con todo el contexto.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Cliente final</span><span class="app-pill">Diego (escalación)</span></div>
+</section>
+
+<!-- 07 R&D Scout -->
+<section class="app">
+  <span class="app-num">App 07</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+  <h2 class="app-name"><em>R&amp;D Scout.</em></h2>
+  <p class="app-tagline">Investigador trabajando 24 / 7 sobre activos cosméticos nuevos.</p>
+  <p class="app-prose">R&amp;D Scout vigila continuamente fuentes científicas — papers cosméticos, patentes, journals (J. Cosmet. Sci., IJCS), feeds de proveedores estratégicos (BASF, Croda, Lubrizol, Symrise, Givaudan, DSM-Firmenich). Cuando detecta un activo nuevo que vale la pena considerar para el portafolio TSC, identifica proveedores que lo distribuyen en México, calcula costo por kilo, y arma una ficha técnica + brief de estrategia comercial. <strong>Cada lunes 9am, los socios encuentran tres oportunidades evaluadas listas para decidir.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Lunes 9am llegan tres tarjetas al portal interno. La primera dice <em>"Bakuchiol al 1% · proveedor MX disponible · costo ~$X/kg · MOQ 2kg · encaja en fórmula base 12 · cliente Aurora podría reformular su sérum nocturno"</em>. Diego, Kaori, Natalia deciden si entra al portafolio.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Diego</span><span class="app-pill">Kaori</span><span class="app-pill">Natalia</span></div>
+</section>
+
+<!-- 08 Fórmulas -->
+<section class="app">
+  <span class="app-num">App 08</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3v8.5a4 4 0 0 1-4 4 4 4 0 0 1-2-7.5"/><path d="M15 3v8.5a4 4 0 0 0 4 4 4 4 0 0 0 2-7.5"/><line x1="9" y1="3" x2="15" y2="3"/><line x1="6" y1="21" x2="18" y2="21"/></svg></div>
+  <h2 class="app-name"><em>Fórmulas.</em></h2>
+  <p class="app-tagline">Tus 50 fórmulas vivas. Versionadas. Comparables. Validadas.</p>
+  <p class="app-prose">Tus 50 fórmulas migran de Google Sheets a esta aplicación. Quedan organizadas, versionadas (cada cambio queda registrado), comparables (ves dos versiones lado a lado en segundos), y validadas (el sistema chequea concentración + sinergias + cumplimiento NOM-141 antes de guardar). <strong>Cuando un cliente pide variante, arrancas de la fórmula base con un click. R&amp;D pasa de semanas a días.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Lead pide variante de tu suero hidratante con vitamina C al 10%. Diego abre Fórmulas, duplica la base, agrega el activo, el sistema valida concentración + sinergias + regulación NOM-141 antes de guardar. Cotización lista para enviar al cliente en 2 horas, no en 2 semanas.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Diego</span><span class="app-pill">Equipo R&amp;D</span></div>
+</section>
+
+<!-- 09 Comunicaciones -->
+<section class="app">
+  <span class="app-num">App 09</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
+  <h2 class="app-name"><em>Comunicaciones.</em></h2>
+  <p class="app-tagline">Mensajes y correos que disparan solos en cada hito.</p>
+  <p class="app-prose">Cada hito en la operación dispara la comunicación correspondiente sin que tu equipo lo coordine. Cliente B2B confirma proyecto → email de bienvenida con próximos pasos. Lote sale a envasado → email a cliente con ETA. PO firmada con proveedor → email a Natalia + entrada en calendario. <strong>Los procesos avanzan solos. Kaori deja de ser la operadora de la bandeja de entrada.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Aurora confirma proyecto el martes en la tarde. Sin que Kaori toque nada: email de bienvenida sale, factura de anticipo se genera y se manda, Diego recibe ping para arrancar R&amp;D, calendario interno se llena con los hitos del proyecto. Kaori se entera el miércoles por la mañana al abrir el dashboard.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Todo el equipo</span><span class="app-pill">Cliente B2B</span></div>
+</section>
+
+<!-- 10 Tablero -->
+<section class="app">
+  <span class="app-num">App 10</span>
+  <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+  <h2 class="app-name"><em>Tablero.</em></h2>
+  <p class="app-tagline">KPIs en vivo del negocio. Para los tres socios.</p>
+  <p class="app-prose">El tablero ejecutivo donde los tres socios ven el negocio cada mañana: margen real por SKU, pipeline B2B (cuántos leads activos, en qué etapa), retention y MRR de Skin Club, capacidad operativa del mes, performance de cada asistente IA, costos vs revenue por canal. <strong>No es Excel ni Power BI genérico — es un tablero diseñado específicamente para un laboratorio cosmético en escalamiento.</strong></p>
+  <div class="app-example"><strong>Ejemplo:</strong> Diego abre Tablero. Ve <em>"Skin Club $X MRR este mes · pipeline B2B 5 leads activos (3 en cotización, 2 en negociación) · capacidad este mes 18,000 productos · margen Suero Vit C 42% · alerta: revenue Skin Club +18% vs mes anterior"</em>. Decide qué priorizar en la junta de socios.</div>
+  <div class="app-users"><span class="app-users-label">Usado por</span><span class="app-pill">Diego</span><span class="app-pill">Kaori</span><span class="app-pill">Natalia</span></div>
+</section>
+
+</div>
+
+<!-- HOW THEY CONNECT -->
+<div class="wrap-narrow">
 <section class="sec">
-  <span class="eyebrow">Lo que vas a poder hacer</span>
-  <h2>Seis cosas concretas <em>que hoy no se pueden</em>.</h2>
-  <p class="sec-deck">El sistema que construimos te da estas seis capacidades operando todos los días, sobre la misma pantalla, con la misma información. No promesas — capacidades concretas con ejemplo claro de cómo se ven en tu día a día.</p>
+  <span class="eyebrow">Cómo se conectan</span>
+  <h2>Diez aplicaciones, <em>una sola fuente de verdad</em>.</h2>
+  <p class="sec-deck">Las diez aplicaciones leen y escriben del mismo cerebro. Cuando Inventario descuenta materias primas, Producción lo ve. Cuando Producción cambia status de un lote, Cliente B2B lo ve. Cuando R&amp;D Scout entrega una oportunidad, Fórmulas la registra como candidata. Sin duplicación, sin reconciliación, sin discrepancia entre canales.</p>
 
-  <div class="valor">
-
-    <article class="valor-card">
-      <span class="valor-num">01</span>
-      <h3>Tu inventario se descuenta <em>solo</em>.</h3>
-      <p>Cada vez que TSC produce un lote, el sistema descuenta automáticamente las materias primas y los envases que se usaron. Sin Sheet paralelo. Sin reconciliación al final del día. Sin que nadie capture nada manualmente.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> Quedan 1,200 frascos amber en bodega. Producen un lote que usa 800. El sistema sabe que quedan 400 — sin que Natalia abra un Excel ni envíe un mensaje preguntando cuántos hay.</div>
-    </article>
-
-    <article class="valor-card">
-      <span class="valor-num">02</span>
-      <h3>El sistema te avisa <em>antes</em> de quedarte sin algo.</h3>
-      <p>El sistema lee el ritmo actual de producción y proyecta cuándo cada insumo va a cruzar el umbral mínimo. Cuando detecta que vas a quedarte sin algo dentro del plazo en que tarda en llegar el reabasto, te avisa hoy con la cantidad exacta a pedir y el proveedor histórico que ya conoces.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> "Frascos amber bajan a threshold en 12 días. Sugerencia: pedir 2,000 unidades hoy con tu proveedor histórico. ETA típico 8 días." Natalia revisa, firma con un click, la PO sale al instante.</div>
-    </article>
-
-    <article class="valor-card">
-      <span class="valor-num">03</span>
-      <h3>Cada lote tiene status <em>en vivo</em>.</h3>
-      <p>En cualquier momento preguntas <em>"¿dónde está el lote 887?"</em> y recibes respuesta en menos de dos segundos: en producción / envasando / etiquetando / en camino al cliente / entregado. Los becarios entrantes ven la cola que les toca trabajar sin preguntar a Diego. Diego ve el cuello de botella en vivo, no al final de la semana.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> Cliente B2B pregunta por su pedido. Kaori abre el sistema desde el celular, ve "Lote 887 · etiquetando · ETA cliente 3 días". Responde en 30 segundos sin levantarse de su silla.</div>
-    </article>
-
-    <article class="valor-card">
-      <span class="valor-num">04</span>
-      <h3>Un investigador trabajando <em>24/7</em> sobre activos nuevos del mercado.</h3>
-      <p>Cada lunes encuentras tres oportunidades de activo cosmético evaluadas por el sistema: un péptido recién publicado en un journal científico, una patente que sale, un ingrediente nuevo que anuncia un proveedor estratégico (BASF, Croda, Lubrizol, Symrise, Givaudan, DSM-Firmenich). El sistema lo lee, evalúa relevancia para tu portafolio, busca proveedores que lo distribuyen en México, calcula costo por kilo, y entrega una ficha lista para decisión.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> Lunes 9am llegan tres tarjetas al portal interno. La primera dice: "Bakuchiol al 1% · proveedor MX disponible · costo ~$X/kg · MOQ 2kg · encaja en fórmula base 12 · cliente Aurora podría reformular su sérum nocturno." Diego, Kaori, Natalia deciden si entra al portafolio.</div>
-    </article>
-
-    <article class="valor-card">
-      <span class="valor-num">05</span>
-      <h3>Acelera tu ciclo de <em>formulación y reformulación</em>.</h3>
-      <p>Tus 50 fórmulas vivas, organizadas, versionadas dentro del sistema. Cuando un cliente pide <em>"como ésta pero con vitamina C al 10%"</em>, arrancas de la fórmula base con un click. Cada cambio queda registrado y rastreable. Comparas dos versiones lado a lado en segundos. R&D pasa de semanas a días.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> Lead pide variante de tu suero hidratante con niacinamida. Diego abre la fórmula base, agrega el activo, el sistema valida concentración + sinergias + regulación NOM-141 antes de guardar. Cotización lista para enviar al cliente en 2 horas, no en 2 semanas.</div>
-    </article>
-
-    <article class="valor-card">
-      <span class="valor-num">06</span>
-      <h3>Correos y mensajes automáticos <em>en cada paso</em>.</h3>
-      <p>Cada hito en la operación dispara la comunicación correspondiente sin que tu equipo lo coordine. Cliente B2B confirma proyecto → email de bienvenida con próximos pasos. Lote sale a envasado → email a cliente con ETA. PO firmada con proveedor → email a Natalia + entrada en calendario. Los procesos avanzan solos, sin que Kaori esté revisando bandejas todo el día.</p>
-      <div class="valor-example"><strong>Ejemplo:</strong> Aurora confirma proyecto el martes en la tarde. Sin que Kaori toque nada: email de bienvenida sale, factura de anticipo se genera y se manda, Diego recibe ping para arrancar R&D, calendario interno se llena con los hitos del proyecto. Kaori se entera el miércoles por la mañana al abrir el dashboard.</div>
-    </article>
-
+  <div class="connect-frame">
+    <span class="eyebrow">Ejemplo de cadena de evento</span>
+    <p>Aurora confirma su proyecto en <strong>Cliente B2B</strong> → <strong>Comunicaciones</strong> dispara email de bienvenida + factura → <strong>Producción</strong> abre lote nuevo en stage "planeación" → <strong>Inventario</strong> calcula materias primas necesarias y proyecta posibles agotamientos → <strong>Tablero</strong> actualiza pipeline B2B y revenue proyectado → Diego, Kaori, Natalia ven el cambio en tiempo real desde sus respectivas pantallas. <strong>Una acción, todas las consecuencias coordinadas. Sin que nadie capture nada manualmente.</strong></p>
   </div>
 </section>
 
@@ -600,7 +862,7 @@ footer{
   <div class="pricing-grid">
     <div class="pricing-card dark">
       <span class="pricing-tag">Fase 01 · Build &amp; Delivery</span>
-      <h3 class="pricing-title">Construcción del sistema completo</h3>
+      <h3 class="pricing-title">Construcción de las diez aplicaciones</h3>
       <div class="pricing-num">$98K<em>MXN/mes</em></div>
       <p class="pricing-detail"><strong>18 meses · burn mensual atado a entregables.</strong> Total acumulado del setup: $1.76M MXN. Si TSC capitaliza o alcanza milestone de revenue durante el build, el balance restante se acelera y la fase puede cerrar antes.</p>
     </div>
@@ -609,7 +871,7 @@ footer{
       <span class="pricing-tag">Fase 02 · Iguala continua</span>
       <h3 class="pricing-title">Soporte + dirección técnica</h3>
       <div class="pricing-num">$35K<em>MXN/mes</em></div>
-      <p class="pricing-detail"><strong>Desde mes 19 · cancelable mes a mes con 30 días de notificación.</strong> Cubre hosting, soporte técnico, dirección continuada, optimización de los asistentes IA, reportes mensuales, iteración del sistema con uso real.</p>
+      <p class="pricing-detail"><strong>Desde mes 19 · cancelable mes a mes con 30 días de notificación.</strong> Cubre hosting, soporte técnico, dirección continuada, optimización de los asistentes, reportes mensuales, iteración del sistema con uso real.</p>
     </div>
   </div>
 
@@ -623,12 +885,12 @@ footer{
 <section class="sec">
   <span class="eyebrow">Cuánto tiempo</span>
   <h2>Dos fases. <em>Sin tiempos vagos.</em></h2>
-  <p class="sec-deck">El sistema completo entra a producción de forma incremental durante el build y queda operando bajo cuenta de TSC al cierre. Después corre solo, con Eigen como soporte continuo y dirección técnica.</p>
+  <p class="sec-deck">Las diez aplicaciones se entregan de forma incremental durante el build. Al cierre, todo el sistema queda en producción bajo cuenta de TSC. Después corre solo, con Eigen como soporte continuo y dirección técnica.</p>
 
   <ul class="fases-list">
     <li class="fases-row">
       <div class="fases-num">Fase 01</div>
-      <div class="fases-name">Build &amp; Delivery del sistema completo<span>Discovery + cinco fases acumulativas: digital base, ventas y portal cliente, operaciones tracking, business intelligence, asistentes IA. El sistema queda en producción al cierre, transferido a la cuenta de TSC LABS.</span></div>
+      <div class="fases-name">Build &amp; Delivery del sistema completo<span>Las diez aplicaciones entregadas de forma incremental, sobre el mismo cerebro central. Cliente B2B + Operaciones primero, luego Inventario + Producción + Comunicaciones, después Tablero + Fórmulas, finalmente los asistentes (Skin Club, Proveeduría, R&amp;D Scout). El sistema queda transferido a la cuenta de TSC LABS al cierre.</span></div>
       <div class="fases-when">Meses<em>1 — 18</em></div>
     </li>
     <li class="fases-row">
@@ -647,7 +909,7 @@ footer{
     <div class="founder-name">Raúl Chío León</div>
     <div class="founder-role">Fundador · Eigen Atlas · CTO Fractional para TSC LABS</div>
     <p>Ingeniero biotecnólogo de formación con maestría en Inteligencia Artificial Aplicada por el Tecnológico de Monterrey. <strong>El mismo background biotec ITESM que Diego, Kaori y Natalia.</strong> Diseño y escribo cada línea de código que entrego. No subcontrato, no ensamblo herramientas de terceros con cinta adhesiva — construyo.</p>
-    <p>Antes de proponer arquitectura entiendo el negocio: dónde se pierde el dinero, qué libera capacidad, qué bloqueo es real. Por eso esta propuesta empieza hablando de envasado, etiquetado y proveeduría — no de tecnología. <strong>El sistema sólo importa si mueve la aguja del laboratorio.</strong></p>
+    <p>Antes de proponer arquitectura entiendo el negocio: dónde se pierde el dinero, qué libera capacidad, qué bloqueo es real. Por eso esta propuesta empieza hablando de las aplicaciones que vas a usar — no de la tecnología que las hace funcionar. <strong>El sistema sólo importa si mueve la aguja del laboratorio.</strong></p>
     <div class="founder-wordmark">eigenatlas</div>
   </div>
 </section>
@@ -663,7 +925,7 @@ footer{
       <div class="paso-num">01</div>
       <div class="paso-body">
         <h4>Reunión de calibración · 60 minutos</h4>
-        <p>Repasamos juntos esta propuesta. Ajustes de scope, prioridades del primer trimestre, preguntas técnicas, validación de calendario. Sin costo, sin compromiso.</p>
+        <p>Repasamos juntos esta propuesta. Ajustes de scope, prioridades del primer trimestre, qué aplicaciones entregar primero, validación de calendario. Sin costo, sin compromiso.</p>
       </div>
       <div class="paso-when">Día 0</div>
     </article>
@@ -672,7 +934,7 @@ footer{
       <div class="paso-num">02</div>
       <div class="paso-body">
         <h4>NDA + work order de la primera fase</h4>
-        <p>NDA mutuo y work order de Fase 01 (Discovery + Foundation Digital) redactados en 48 horas. Firma electrónica. Sin lock-in multi-año.</p>
+        <p>NDA mutuo y work order de Fase 01 redactados en 48 horas. Firma electrónica. Sin lock-in multi-año.</p>
       </div>
       <div class="paso-when">5 días hábiles</div>
     </article>
@@ -681,7 +943,7 @@ footer{
       <div class="paso-num">03</div>
       <div class="paso-body">
         <h4>Kickoff · Discovery arranca</h4>
-        <p>Siete días después de la firma. Sprint 0 = setup de cuentas, accesos, repos. Discovery arranca con auditoría completa de la operación actual + mapeo del modelo maestro.</p>
+        <p>Siete días después de la firma. Sprint 0 = setup de cuentas, accesos, repos. Discovery arranca con auditoría completa de la operación actual + mapeo del cerebro central al que se conectarán las diez aplicaciones.</p>
       </div>
       <div class="paso-when">7 días post-firma</div>
     </article>
@@ -718,7 +980,7 @@ footer{
 </div>
 
 <footer>
-  Eigen Atlas · Versión Ahorita · TSC LABS · 2026.05.05<br>
+  Eigen Atlas · Versión Ahorita · TSC LABS · 2026.05.06<br>
   EIGEN-PROP-TSC-2026/01-AHORITA · CONFIDENCIAL
 </footer>
 
