@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@200;300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <style>
 :root{
   --bg:#FAFAF7;
@@ -1018,6 +1021,68 @@ footer{
   .tecnica-link{padding:24px 20px;margin-top:48px}
   footer{padding:32px 22px;margin-top:56px}
 }
+
+/* === ANIMATION HELPERS === */
+@keyframes pulseRing{
+  0%{box-shadow:0 0 0 4px rgba(37,99,235,0.18)}
+  50%{box-shadow:0 0 0 8px rgba(37,99,235,0.05)}
+  100%{box-shadow:0 0 0 4px rgba(37,99,235,0.18)}
+}
+.m-tl-stage.active::before{animation:pulseRing 2.4s ease-in-out infinite}
+
+@keyframes breath{
+  0%,100%{opacity:1}
+  50%{opacity:0.55}
+}
+.m-status-pill.live{animation:breath 1.8s ease-in-out infinite}
+
+@keyframes blink{
+  0%,49%{opacity:1}
+  50%,100%{opacity:0}
+}
+.cursor-blink{
+  display:inline-block;
+  width:6px;height:14px;
+  background:var(--bg);
+  margin-left:4px;
+  vertical-align:middle;
+  animation:blink 0.9s step-end infinite;
+}
+
+@keyframes amberPulse{
+  0%,100%{background-color:rgba(180,83,9,0.08)}
+  50%{background-color:rgba(180,83,9,0.16)}
+}
+.m-alert.live{animation:amberPulse 2.6s ease-in-out infinite}
+
+@keyframes liveDot{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.4);opacity:0.6}
+}
+.live-dot{
+  display:inline-block;
+  width:6px;height:6px;
+  background:var(--ok);
+  border-radius:50%;
+  margin-right:6px;
+  animation:liveDot 1.6s ease-in-out infinite;
+}
+.live-dot.warn{background:var(--warn)}
+.live-dot.info{background:var(--accent)}
+
+/* Card lift on hover (interactive feel) */
+.mockup{transition:transform .4s ease, box-shadow .4s ease}
+.mockup:hover{
+  transform:translateY(-3px);
+  box-shadow:0 1px 0 rgba(10,10,10,0.04), 0 18px 40px -16px rgba(10,10,10,0.18);
+}
+
+/* Initial states for GSAP (so no FOUC) */
+.gsap-fade{opacity:0}
+@media(prefers-reduced-motion:reduce){
+  .gsap-fade{opacity:1}
+  .m-tl-stage.active::before, .m-status-pill.live, .m-alert.live, .live-dot{animation:none}
+}
 </style>
 </head>
 <body>
@@ -1228,7 +1293,7 @@ footer{
       <div class="mockup-url">tsc.eigenatlas.app / operaciones</div>
     </div>
     <div class="m-topnav">
-      <div class="m-topnav-brand">OPERACIONES</div>
+      <div class="m-topnav-brand"><span class="live-dot"></span>OPERACIONES</div>
       <div class="m-topnav-crumb"><strong>Lunes 6 mayo</strong> · 9:14am</div>
       <div class="m-topnav-user">D</div>
     </div>
@@ -1242,7 +1307,7 @@ footer{
     </div>
     <div class="m-section">
       <div class="m-h">Atención requerida</div>
-      <div class="m-alert">
+      <div class="m-alert live">
         <div class="m-alert-tag">Cuello</div>
         <div><strong>Etiquetado se está atrasando.</strong> Lotes 887 y 891 esperan. Becario asignado: ninguno. Sugerencia: asignar a Mariana o Luis (libres).</div>
       </div>
@@ -1791,6 +1856,297 @@ footer{
   Eigen Atlas · Versión Ahorita · TSC LABS · 2026.05.06<br>
   EIGEN-PROP-TSC-2026/01-AHORITA · CONFIDENCIAL
 </footer>
+
+<script>
+(function(){
+  if (typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  // === HERO entrance ===
+  gsap.from('.hero-eyebrow, .hero h1, .hero-deck, .hero-meta', {
+    opacity: 0,
+    y: 22,
+    duration: 0.9,
+    stagger: 0.12,
+    ease: 'power2.out',
+    delay: 0.2
+  });
+
+  // === STORYBOARD scenes ===
+  gsap.utils.toArray('.scene').forEach(scene => {
+    const time = scene.querySelector('.scene-time');
+    const text = scene.querySelector('.scene-text');
+    const mock = scene.querySelector('.scene-mock');
+    gsap.set([time, text, mock].filter(Boolean), { opacity: 0 });
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: scene, start: 'top 82%', once: true }
+    });
+    if (time) tl.to(time, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 0);
+    if (text) tl.to(text, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.1);
+    if (mock) tl.to(mock, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.25);
+    [time, text, mock].filter(Boolean).forEach(el => gsap.set(el, { y: 14 }));
+  });
+
+  // === ANTES/DESPUÉS rows ===
+  gsap.utils.toArray('.ad-row').forEach((row, i) => {
+    gsap.from(row, {
+      opacity: 0,
+      x: -16,
+      duration: 0.5,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: row, start: 'top 88%', once: true }
+    });
+  });
+
+  // === MOCKUP frames reveal ===
+  gsap.utils.toArray('.mockup').forEach(mock => {
+    gsap.from(mock, {
+      opacity: 0,
+      y: 50,
+      scale: 0.97,
+      duration: 0.95,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: mock, start: 'top 85%', once: true }
+    });
+  });
+
+  // === COUNTER · stat numbers count up ===
+  function setupCounter(el){
+    const raw = el.textContent.trim();
+    const m = raw.match(/^(\d+(?:\.\d+)?)/);
+    if (!m) return;
+    const target = parseFloat(m[1]);
+    const decimals = (m[1].split('.')[1] || '').length;
+    const rest = raw.slice(m[0].length);
+    el.innerHTML = '<span class="cnt">0</span>' + rest;
+    const span = el.querySelector('.cnt');
+    const obj = { v: 0 };
+    gsap.to(obj, {
+      v: target,
+      duration: 1.5,
+      ease: 'power2.out',
+      onUpdate: () => { span.textContent = obj.v.toFixed(decimals); },
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+    });
+  }
+  document.querySelectorAll('.m-stat-num, .m-kpi-num').forEach(setupCounter);
+
+  // === TIMELINE stages reveal one by one ===
+  gsap.utils.toArray('.m-timeline').forEach(timeline => {
+    const stages = timeline.querySelectorAll('.m-tl-stage');
+    gsap.from(stages, {
+      opacity: 0,
+      y: 8,
+      duration: 0.4,
+      stagger: 0.18,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: timeline, start: 'top 85%', once: true }
+    });
+  });
+
+  // === KANBAN cards stagger ===
+  gsap.utils.toArray('.m-kanban').forEach(kanban => {
+    const cols = kanban.querySelectorAll('.m-col');
+    const cards = kanban.querySelectorAll('.m-card');
+    gsap.from(cols, {
+      opacity: 0,
+      y: 14,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: kanban, start: 'top 85%', once: true }
+    });
+    gsap.from(cards, {
+      opacity: 0,
+      y: 8,
+      scale: 0.94,
+      duration: 0.5,
+      stagger: 0.06,
+      ease: 'back.out(1.5)',
+      scrollTrigger: { trigger: kanban, start: 'top 80%', once: true },
+      delay: 0.4
+    });
+  });
+
+  // === COMPARE proveeduría cards ===
+  gsap.utils.toArray('.m-compare').forEach(compare => {
+    const cards = compare.querySelectorAll('.m-compare-card');
+    gsap.from(cards, {
+      opacity: 0,
+      y: 24,
+      duration: 0.65,
+      stagger: 0.18,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: compare, start: 'top 85%', once: true }
+    });
+  });
+
+  // === CHAT bubbles type in sequence ===
+  gsap.utils.toArray('.m-chat').forEach(chat => {
+    const items = Array.from(chat.children);
+    gsap.set(items, { opacity: 0, y: 12 });
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: chat, start: 'top 80%', once: true }
+    });
+    items.forEach((item, i) => {
+      tl.to(item, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, i * 0.55);
+    });
+  });
+
+  // === R&D opportunity cards ===
+  gsap.utils.toArray('.m-opp-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.m-opp');
+    gsap.from(cards, {
+      opacity: 0,
+      y: 24,
+      duration: 0.6,
+      stagger: 0.18,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+    });
+  });
+
+  // === FÓRMULAS · ingredients fade in line by line ===
+  gsap.utils.toArray('.m-ingr-list').forEach(list => {
+    const lines = list.querySelectorAll('div');
+    gsap.from(lines, {
+      opacity: 0,
+      x: -12,
+      duration: 0.4,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: list, start: 'top 85%', once: true }
+    });
+  });
+
+  // === FÓRMULAS · validation pills check off ===
+  gsap.utils.toArray('.m-validate').forEach(val => {
+    const pills = val.querySelectorAll('.m-status-pill');
+    gsap.from(pills, {
+      opacity: 0,
+      scale: 0.6,
+      duration: 0.45,
+      stagger: 0.18,
+      ease: 'back.out(1.8)',
+      scrollTrigger: { trigger: val, start: 'top 85%', once: true }
+    });
+  });
+
+  // === COMUNICACIONES cadena de eventos · firing one by one ===
+  gsap.utils.toArray('.m-comm').forEach(comm => {
+    const items = comm.querySelectorAll('.m-comm-item');
+    gsap.from(items, {
+      opacity: 0,
+      x: -20,
+      duration: 0.5,
+      stagger: 0.32,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: comm, start: 'top 80%', once: true }
+    });
+  });
+
+  // === KPI mini bars · draw up ===
+  gsap.utils.toArray('.m-bar-mini').forEach(bar => {
+    const spans = bar.querySelectorAll('span');
+    gsap.from(spans, {
+      scaleY: 0,
+      transformOrigin: 'bottom',
+      duration: 0.7,
+      stagger: 0.06,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: bar, start: 'top 85%', once: true }
+    });
+  });
+
+  // === KPI cards stagger ===
+  gsap.utils.toArray('.m-kpi-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.m-kpi');
+    gsap.from(cards, {
+      opacity: 0,
+      y: 18,
+      duration: 0.55,
+      stagger: 0.14,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: grid, start: 'top 85%', once: true }
+    });
+  });
+
+  // === STAT cards row reveal ===
+  gsap.utils.toArray('.m-stats').forEach(stats => {
+    const cards = stats.querySelectorAll('.m-stat');
+    gsap.from(cards, {
+      opacity: 0,
+      y: 18,
+      duration: 0.5,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: stats, start: 'top 85%', once: true }
+    });
+  });
+
+  // === LIST rows reveal ===
+  gsap.utils.toArray('.m-list').forEach(list => {
+    const rows = list.querySelectorAll('.m-list-row');
+    gsap.from(rows, {
+      opacity: 0,
+      x: -12,
+      duration: 0.45,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: list, start: 'top 85%', once: true }
+    });
+  });
+
+  // === ALERTS slide in ===
+  gsap.utils.toArray('.m-alert').forEach(alert => {
+    gsap.from(alert, {
+      opacity: 0,
+      x: -16,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: alert, start: 'top 85%', once: true }
+    });
+  });
+
+  // === APP TITLES reveal ===
+  gsap.utils.toArray('.app-block').forEach(block => {
+    const num = block.querySelector('.app-num');
+    const title = block.querySelector('.app-title');
+    const tagline = block.querySelector('.app-tagline');
+    gsap.from([num, title, tagline].filter(Boolean), {
+      opacity: 0,
+      y: 22,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: block, start: 'top 80%', once: true }
+    });
+  });
+
+  // === SECTION headers reveal ===
+  gsap.utils.toArray('.sec').forEach(sec => {
+    const eyebrow = sec.querySelector('.eyebrow');
+    const h2 = sec.querySelector('h2');
+    const deck = sec.querySelector('.sec-deck');
+    gsap.from([eyebrow, h2, deck].filter(Boolean), {
+      opacity: 0,
+      y: 22,
+      duration: 0.7,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: sec, start: 'top 82%', once: true }
+    });
+  });
+
+  // === SCROLLTRIGGER refresh after fonts load ===
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }
+})();
+</script>
 
 </body>
 </html>
