@@ -249,14 +249,6 @@ a:hover{color:var(--ink);border-bottom-color:var(--ink)}
   text-align:right;
   padding-right:8px;
 }
-.scene-time::before{
-  content:'T+';
-  color:var(--clay-deep);
-  font-weight:600;
-  font-size:11px;
-  margin-right:2px;
-  letter-spacing:0.1em;
-}
 .scene-body{display:flex;flex-direction:column;gap:14px;padding-left:14px}
 .scene-text{
   font-family:'IBM Plex Sans',sans-serif;
@@ -340,13 +332,11 @@ a:hover{color:var(--ink);border-bottom-color:var(--ink)}
   color:var(--ink-mute);
 }
 .tbl-hoy::before{
-  content:'Δt';
-  font-family:'IBM Plex Mono',ui-monospace,monospace;
-  font-size:9.5px;
+  content:'×';
   color:var(--warn);
-  font-weight:600;
+  font-weight:700;
   margin-right:8px;
-  letter-spacing:0.1em;
+  font-size:13px;
 }
 .tbl-con{
   font-family:'IBM Plex Sans',sans-serif;
@@ -414,19 +404,6 @@ a:hover{color:var(--ink);border-bottom-color:var(--ink)}
   overflow:hidden;
   box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 12px 32px -8px rgba(0,0,0,0.18);
   position:relative;
-}
-.mockup::before{
-  content:attr(data-fig);
-  position:absolute;
-  top:-26px;
-  left:0;
-  font-family:'IBM Plex Mono',ui-monospace,monospace;
-  font-size:9.5px;
-  letter-spacing:0.18em;
-  color:var(--clay-deep);
-  text-transform:uppercase;
-  font-weight:600;
-  z-index:2;
 }
 .mockup-chrome{
   padding:11px 14px;
@@ -1482,7 +1459,7 @@ footer .col-r{text-align:right}
 
 <!-- === COVER SHEET === -->
 <section class="cover">
-  <div class="cover-num">§ 0.0 — Portada · Manual de operación</div>
+  <div class="cover-num">Manual de operación · TSC LABS</div>
   <h1 class="cover-title">Lo que TSC LABS va a usar todos los días, <em>aplicación por aplicación</em>.</h1>
   <p class="cover-sub">Diez aplicaciones operando sobre un sólo cerebro de información del laboratorio.</p>
   <p class="cover-deck">No es propuesta técnica. Es el documento donde Diego, Kaori y Natalia ven exactamente qué le aparecerá a su equipo en la pantalla cada vez que abran el sistema. Cada una de las diez aplicaciones, con su mockup real y un caso de uso concreto del día a día.</p>
@@ -1506,7 +1483,7 @@ footer .col-r{text-align:right}
 <!-- === § 1.0 STORYBOARD · LAB LOG === -->
 <div class="wrap-narrow">
 <section class="sec">
-  <div class="sec-num">§ 1.0 — Lunes en el laboratorio · log operativo</div>
+  <div class="sec-num">Lunes en el laboratorio</div>
   <h2>Un día normal <em>con el sistema operando</em>.</h2>
   <p class="sec-deck">Así se vería un lunes cualquiera de TSC LABS, hora por hora, con las diez aplicaciones funcionando juntas. Cada escena es algo que hoy toma horas o no se hace, y que con el sistema toma segundos.</p>
 
@@ -1574,7 +1551,7 @@ footer .col-r{text-align:right}
 <!-- === § 2.0 TABLE COMPARATIVA === -->
 <div class="wrap">
 <section class="sec">
-  <div class="sec-num">§ 2.0 — Comparativo · antes / después</div>
+  <div class="sec-num">Antes / después</div>
   <h2>Doce tareas reales. <em>Cómo cambia cada una.</em></h2>
   <p class="sec-deck">Lo que hoy toma horas, días o semanas — y lo que toma con el sistema. Sin teoría. Tareas concretas del día a día de TSC LABS.</p>
 
@@ -1664,14 +1641,14 @@ footer .col-r{text-align:right}
 <!-- === § 3.0 CATÁLOGO DE APLICACIONES === -->
 <div class="wrap-narrow">
 <section class="sec" style="border-bottom:none;padding-bottom:32px">
-  <div class="sec-num">§ 3.0 — Catálogo de aplicaciones</div>
+  <div class="sec-num">Catálogo de aplicaciones</div>
   <h2>Esto es lo que verán <em>en cada pantalla</em>.</h2>
   <p class="sec-deck">Cada aplicación con su mockup técnico — el bosquejo de lo que tu equipo verá cuando entre. No es captura de pantalla porque el sistema todavía no existe; es el wireframe que vamos a construir, con los datos del laboratorio reales.</p>
 </section>
 
 <!-- 01 OPERACIONES -->
 <section class="app-block">
-  <span class="app-num">§ 3.01 · Aplicación 01</span>
+  <span class="app-num">Aplicación 01 / 10</span>
   <h2 class="app-title"><em>Operaciones.</em></h2>
   <p class="app-tagline">La pantalla que abren Diego, Kaori, Natalia y los becarios al inicio del día. <strong>Todo lo que está pasando en el laboratorio, en una sola vista.</strong></p>
 
@@ -1712,7 +1689,7 @@ footer .col-r{text-align:right}
 
 <!-- 02 CLIENTE B2B -->
 <section class="app-block">
-  <span class="app-num">§ 3.02 · Aplicación 02</span>
+  <span class="app-num">Aplicación 02 / 10</span>
   <h2 class="app-title"><em>Cliente B2B.</em></h2>
   <p class="app-tagline">El portal que ve cada cliente externo cuando entra a su espacio. <strong>Sin email back-and-forth. Sin perder el hilo del proyecto.</strong></p>
 
@@ -1758,7 +1735,7 @@ footer .col-r{text-align:right}
 
 <!-- 03 INVENTARIO -->
 <section class="app-block">
-  <span class="app-num">§ 3.03 · Aplicación 03</span>
+  <span class="app-num">Aplicación 03 / 10</span>
   <h2 class="app-title"><em>Inventario.</em></h2>
   <p class="app-tagline">Materias primas y envases que se descuentan solos con cada lote producido. <strong>Alertas predictivas antes de quedarte sin algo.</strong></p>
 
@@ -1800,7 +1777,7 @@ footer .col-r{text-align:right}
 
 <!-- 04 PRODUCCIÓN -->
 <section class="app-block">
-  <span class="app-num">§ 3.04 · Aplicación 04</span>
+  <span class="app-num">Aplicación 04 / 10</span>
   <h2 class="app-title"><em>Producción.</em></h2>
   <p class="app-tagline">Cada lote con status en vivo. De producción a entrega final. <strong>Becarios y socios ven dónde está cada lote sin preguntar.</strong></p>
 
@@ -1843,7 +1820,7 @@ footer .col-r{text-align:right}
 
 <!-- 05 PROVEEDURÍA -->
 <section class="app-block">
-  <span class="app-num">§ 3.05 · Aplicación 05</span>
+  <span class="app-num">Aplicación 05 / 10</span>
   <h2 class="app-title"><em>Proveeduría.</em></h2>
   <p class="app-tagline">El asistente cotiza por Natalia. Le entrega tres opciones evaluadas, no la búsqueda. <strong>Natalia decide y firma.</strong></p>
 
@@ -1883,7 +1860,7 @@ footer .col-r{text-align:right}
 
 <!-- 06 SKIN CLUB -->
 <section class="app-block">
-  <span class="app-num">§ 3.06 · Aplicación 06</span>
+  <span class="app-num">Aplicación 06 / 10</span>
   <h2 class="app-title"><em>Skin Club.</em></h2>
   <p class="app-tagline">El asistente atiende a clientes finales 24 / 7. Recomienda fórmula, recupera carritos abandonados, escala a humano cuando hace falta.</p>
 
@@ -1921,7 +1898,7 @@ footer .col-r{text-align:right}
 
 <!-- 07 R&D SCOUT -->
 <section class="app-block">
-  <span class="app-num">§ 3.07 · Aplicación 07</span>
+  <span class="app-num">Aplicación 07 / 10</span>
   <h2 class="app-title"><em>R&amp;D Scout.</em></h2>
   <p class="app-tagline">Cada lunes 9am, tres oportunidades de activo cosmético evaluadas. <strong>Decisión sobre el portafolio en 10 minutos.</strong></p>
 
@@ -1971,7 +1948,7 @@ footer .col-r{text-align:right}
 
 <!-- 08 FÓRMULAS -->
 <section class="app-block">
-  <span class="app-num">§ 3.08 · Aplicación 08</span>
+  <span class="app-num">Aplicación 08 / 10</span>
   <h2 class="app-title"><em>Fórmulas.</em></h2>
   <p class="app-tagline">Tus 50 fórmulas vivas, versionadas, comparables. <strong>Validación de NOM-141 antes de guardar. R&amp;D pasa de semanas a días.</strong></p>
 
@@ -2022,7 +1999,7 @@ footer .col-r{text-align:right}
 
 <!-- 09 COMUNICACIONES -->
 <section class="app-block">
-  <span class="app-num">§ 3.09 · Aplicación 09</span>
+  <span class="app-num">Aplicación 09 / 10</span>
   <h2 class="app-title"><em>Comunicaciones.</em></h2>
   <p class="app-tagline">Cada hito de la operación dispara el mensaje correspondiente. <strong>Kaori deja de ser la operadora de la bandeja de entrada.</strong></p>
 
@@ -2084,7 +2061,7 @@ footer .col-r{text-align:right}
 
 <!-- 10 TABLERO -->
 <section class="app-block">
-  <span class="app-num">§ 3.10 · Aplicación 10</span>
+  <span class="app-num">Aplicación 10 / 10</span>
   <h2 class="app-title"><em>Tablero.</em></h2>
   <p class="app-tagline">El dashboard ejecutivo donde los tres socios ven el negocio cada mañana. <strong>KPIs en vivo del laboratorio.</strong></p>
 
@@ -2147,7 +2124,7 @@ footer .col-r{text-align:right}
 <!-- === § 4.0 MODELO ECONÓMICO === -->
 <div class="wrap-narrow">
 <section class="sec">
-  <div class="sec-num">§ 4.0 — Modelo económico · aliado tecnológico</div>
+  <div class="sec-num">Modelo económico</div>
   <h2>El costo real son <em>$1.76M MXN</em>.<br>Yo cubro la mitad.</h2>
   <p class="sec-deck">Es lo que cobraría a cualquier otro cliente por construir las diez aplicaciones y entregar el sistema operando. El plan se da con margen de doce meses de trabajo para asegurar hasta los detalles finales — el sistema puede operar mucho antes. Mi propuesta para TSC LABS es distinta del estándar.</p>
 
@@ -2167,19 +2144,19 @@ footer .col-r{text-align:right}
   </div>
 
   <div class="note-frame">
-    <div class="note-tag">§ 4.1 — Iguala mensual · la que TSC pueda hoy</div>
+    <div class="note-tag">Iguala mensual · la que TSC pueda hoy</div>
     <p>Empezamos con la <strong>iguala mensual que TSC LABS considere que puede pagar en este momento de la empresa</strong>. Sin número rígido. Mis sistemas van a potenciar la operación; entro no sólo a construir sino como aliado tecnológico real. Cuando la economía del laboratorio se solidifique — más clientes B2B, Skin Club escalando, una ronda formal — la iguala se ajusta apropiadamente al valor de mercado y se cubre el balance pendiente. <strong>Así no nos limitamos a esperar el momento perfecto para empezar a construir juntos.</strong></p>
   </div>
 
   <div class="note-frame" style="margin-top:18px">
-    <div class="note-tag">§ 4.2 — Una consideración a cambio</div>
+    <div class="note-tag">Una consideración a cambio</div>
     <p>Lo único que pido como reciprocidad: una <strong>consideración mayor a la habitual en referidos</strong> cuando yo traiga contratos grandes a TSC LABS. Nada complicado — solo un porcentaje superior al que normalmente le darían a cualquier otro referido. Sin presión, sólo para tenerlo en consideración como parte del modelo de aliado.</p>
   </div>
 </section>
 
 <!-- === § 5.0 AUTOR === -->
 <section class="sec">
-  <div class="sec-num">§ 5.0 — Autor</div>
+  <div class="sec-num">Autor</div>
   <div class="author-block">
     <div class="author-name">Raúl Chío León</div>
     <div class="author-role">Fundador · Eigen Atlas · CTO Fractional para TSC LABS</div>
@@ -2192,7 +2169,7 @@ footer .col-r{text-align:right}
 
 <!-- === § 6.0 PROCEDIMIENTO === -->
 <section class="sec">
-  <div class="sec-num">§ 6.0 — Procedimiento · cómo arrancamos</div>
+  <div class="sec-num">Cómo arrancamos</div>
   <h2>Tres pasos. <em>Siete días al kickoff.</em></h2>
   <p class="sec-deck">Sin renegociación posterior, sin sorpresas, sin diluir el calendario.</p>
 
@@ -2225,7 +2202,7 @@ footer .col-r{text-align:right}
 
   <!-- === § 7.0 CONTACTO === -->
   <div class="contact">
-    <div class="contact-num">§ 7.0 — Contacto</div>
+    <div class="contact-num">Contacto</div>
     <h3>Tres canales abiertos.</h3>
     <div class="contact-grid">
       <div class="contact-cell"><span class="contact-cell-label">Email</span><a href="mailto:rc@eigenatlas.com">rc@eigenatlas.com</a></div>
@@ -2236,7 +2213,7 @@ footer .col-r{text-align:right}
 
   <!-- TÉCNICA REFERENCE -->
   <div class="tecnica-link">
-    <span class="tag">§ 8.0 — Referencia · documento técnico extendido</span>
+    <span class="tag">Documento técnico extendido</span>
     <h4>Propuesta técnica completa.</h4>
     <p>Arquitectura del sistema, las cinco fases en detalle, business intelligence command center, SLA contractual, disaster recovery, propiedad intelectual, glosario técnico. Para quien quiera entender la maquinaria por dentro.</p>
     <a href="/" class="cta-link">Ver propuesta técnica completa →</a>
