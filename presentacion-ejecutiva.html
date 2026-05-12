@@ -28,7 +28,7 @@
   --radius:8px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--paper);
@@ -81,7 +81,6 @@ a{color:inherit}
 }
 .slide{
   min-height:100vh;
-  scroll-snap-align:start;
   padding:92px 64px 52px;
   display:flex;
   flex-direction:column;
@@ -859,7 +858,6 @@ li:before{
 
 <script>
 const progress = document.getElementById("progress");
-const slides = [...document.querySelectorAll(".slide")];
 function updateProgress(){
   const max = document.documentElement.scrollHeight - innerHeight;
   const ratio = max > 0 ? scrollY / max : 0;
@@ -867,20 +865,6 @@ function updateProgress(){
 }
 addEventListener("scroll", updateProgress, {passive:true});
 addEventListener("resize", updateProgress);
-addEventListener("keydown", event => {
-  if (!["ArrowDown","ArrowRight","PageDown","ArrowUp","ArrowLeft","PageUp","Home","End"].includes(event.key)) return;
-  const current = slides.reduce((best, slide, index) => {
-    const distance = Math.abs(slide.getBoundingClientRect().top);
-    return distance < best.distance ? {index, distance} : best;
-  }, {index:0, distance:Infinity}).index;
-  let next = current;
-  if (["ArrowDown","ArrowRight","PageDown"].includes(event.key)) next = Math.min(slides.length - 1, current + 1);
-  if (["ArrowUp","ArrowLeft","PageUp"].includes(event.key)) next = Math.max(0, current - 1);
-  if (event.key === "Home") next = 0;
-  if (event.key === "End") next = slides.length - 1;
-  event.preventDefault();
-  slides[next].scrollIntoView({behavior:"smooth", block:"start"});
-});
 updateProgress();
 </script>
 </body>
