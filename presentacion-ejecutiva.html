@@ -234,6 +234,10 @@ li:before{
   min-height:92px;
 }
 .route-table > div:nth-child(4n){border-right:0}
+.route-table.compact > div{
+  min-height:72px;
+  padding:14px 16px;
+}
 .route-table .head{
   min-height:auto;
   background:var(--forest);
@@ -560,14 +564,15 @@ li:before{
   <section class="slide dark" id="s01">
     <div class="kicker">01 · Objetivo</div>
     <h1 class="headline">Nuevas capacidades tecnológicas para <em>TSC LABS</em>.</h1>
-    <p class="subhead">Construir la base digital que el laboratorio necesita para operar con datos confiables: arquitectura de datos, ERP por lotes, agentes operativos y tableros de decisión.</p>
+    <p class="subhead">Construir la base digital que el laboratorio necesita para operar con datos confiables: arquitectura de datos, ERP por lotes, agentes operativos, portal de negocio para creators y tableros de decisión.</p>
     <div class="meta-row">
       <span class="pill">arquitectura de datos</span>
       <span class="pill">ERP de materias primas</span>
       <span class="pill">descuento por lote</span>
       <span class="pill">agentes operativos</span>
+      <span class="pill">creator commerce</span>
     </div>
-    <div class="slide-num">01 / 11</div>
+    <div class="slide-num">01 / 12</div>
   </section>
 
   <section class="slide" id="s02">
@@ -594,7 +599,7 @@ li:before{
       <div class="statement-label">Implicación</div>
       <p class="statement-copy">Antes de automatizar, TSC necesita una estructura confiable para saber qué existe, qué se consumió, quién lo aprobó y qué decisión sigue.</p>
     </div>
-    <div class="slide-num">02 / 11</div>
+    <div class="slide-num">02 / 12</div>
   </section>
 
   <section class="slide blue" id="s03">
@@ -605,8 +610,9 @@ li:before{
       <div><span class="route-name">Data substrate</span><small>D1 · R2 · audit log</small></div><div>Fuente de verdad para fórmulas, insumos, lotes, clientes y documentos</div><div>Modelo maestro + migración inicial</div><div>Una fórmula y un lote se pueden consultar sin abrir Sheets</div>
       <div><span class="route-name">ERP por lote</span><small>Inventario + producción</small></div><div>Descontar materias primas al registrar producción, con merma y trazabilidad</div><div>Release 01: lotes + consumo de insumos</div><div>Lote 887 descuenta ingredientes y deja movimiento auditable</div>
       <div><span class="route-name">Agentes operativos</span><small>IA con aprobación humana</small></div><div>Preparar cotizaciones, responder dudas, vigilar activos y ordenar seguimiento</div><div>Proveeduría Agent + R&amp;D Scout piloto</div><div>El agente prepara trabajo; Natalia/Diego aprueban la decisión</div>
+      <div><span class="route-name">Creator business layer</span><small>Portal + códigos + atribución</small></div><div>Ofrecer a influencers una capa digital para lanzar, medir y vender sus líneas de skincare</div><div>Portal de negocio + motor de códigos piloto</div><div>Un creator ve ventas, códigos, pedidos, hitos y siguientes acciones en su portal</div>
     </div>
-    <div class="slide-num">03 / 11</div>
+    <div class="slide-num">03 / 12</div>
   </section>
 
   <section class="slide tight" id="s04">
@@ -629,11 +635,11 @@ li:before{
         <div class="app-cell ai"><div class="app-tag">AGENT 02</div><strong>Skin Club</strong></div>
         <div class="app-cell ai"><div class="app-tag">AGENT 03</div><strong>R&amp;D Scout</strong></div>
         <div class="app-cell ai"><div class="app-tag">AGENT 04</div><strong>B2B seguimiento</strong></div>
-        <div class="app-cell"><div class="app-tag">OPS 01</div><strong>Comunicaciones</strong></div>
-        <div class="app-cell"><div class="app-tag">BI 01</div><strong>Tablero ejecutivo</strong></div>
+        <div class="app-cell"><div class="app-tag">CREATOR 01</div><strong>Portal de negocio</strong></div>
+        <div class="app-cell"><div class="app-tag">CREATOR 02</div><strong>Códigos + atribución</strong></div>
       </div>
     </div>
-    <div class="slide-num">04 / 11</div>
+    <div class="slide-num">04 / 12</div>
   </section>
 
   <section class="slide" id="s05">
@@ -652,8 +658,8 @@ li:before{
       </article>
       <article class="moment">
         <time>A03</time>
-        <strong>B2B Qualification</strong>
-        <p>Ordena leads, identifica fit, recopila brief, estima complejidad y deja el siguiente paso listo para Diego/Kaori.</p>
+        <strong>Creator Launch Agent</strong>
+        <p>Convierte un brief de influencer en checklist: fórmula base, empaque, claims, códigos, landing y calendario de lanzamiento.</p>
       </article>
       <article class="moment">
         <time>A04</time>
@@ -665,7 +671,7 @@ li:before{
       <div class="statement-label">Criterio de utilidad</div>
       <p class="statement-copy">Los agentes no sustituyen decisiones: preparan contexto, comparan opciones, documentan evidencia y escalan aprobación humana.</p>
     </div>
-    <div class="slide-num">05 / 11</div>
+    <div class="slide-num">05 / 12</div>
   </section>
 
   <section class="slide tight" id="s06">
@@ -712,7 +718,7 @@ li:before{
         </section>
       </div>
     </div>
-    <div class="slide-num">06 / 11</div>
+    <div class="slide-num">06 / 12</div>
   </section>
 
   <section class="slide dark" id="s07">
@@ -739,37 +745,57 @@ li:before{
         <p>La regla de implementación: automatizar búsqueda, comparación y preparación; mantener aprobación humana en compras, formulación, cumplimiento y cambios con impacto financiero.</p>
       </aside>
     </div>
-    <div class="slide-num">07 / 11</div>
+    <div class="slide-num">07 / 12</div>
   </section>
 
-  <section class="slide tight" id="s08">
-    <div class="kicker">08 · Roadmap</div>
+  <section class="slide blue" id="s08">
+    <div class="kicker">08 · Creator commerce</div>
+    <h2 class="headline small">TSC como laboratorio tecnológico para marcas de influencers.</h2>
+    <p class="subhead">Eigen agrega la capa digital para que TSC fabrique el producto y también habilite el negocio: portal, referidos, atribución y seguimiento comercial.</p>
+    <div class="route-table compact">
+      <div class="head">Capa</div><div class="head">Qué brinda TSC al creator</div><div class="head">Qué opera Eigen</div><div class="head">Resultado</div>
+      <div><span class="route-name">Portal de negocio</span><small>Creator / manager / TSC</small></div><div>Proyecto, fórmulas, lotes, documentos, hitos y pedidos</div><div>Auth, permisos, timeline, conversación y status ERP</div><div>Una operación visible para cada marca</div>
+      <div><span class="route-name">Códigos de referido</span><small>Ventas digitales</small></div><div>Códigos por creator, campaña, SKU, canal o drop</div><div>Tracking, atribución, reportes y export para liquidación</div><div>Demanda medible por producto y canal</div>
+      <div><span class="route-name">Launch infrastructure</span><small>Tráfico + conversión</small></div><div>Landing, waitlist, bundles, UTM, pixelado y reportes</div><div>Plantillas, analítica, ecommerce y dashboard</div><div>Lanzamiento comercial listo desde día uno</div>
+      <div><span class="route-name">Agentic support</span><small>Post-lanzamiento</small></div><div>Dudas, pedido, inventario, recomendaciones y escalación</div><div>Agentes conectados al ERP y reglas aprobadas</div><div>Menos carga manual cuando llega tráfico</div>
+    </div>
+    <div class="meta-row">
+      <span class="pill">maquila biotecnológica</span>
+      <span class="pill">portal por marca</span>
+      <span class="pill">referidos + atribución</span>
+      <span class="pill">operación post-lanzamiento</span>
+    </div>
+    <div class="slide-num">08 / 12</div>
+  </section>
+
+  <section class="slide tight" id="s09">
+    <div class="kicker">09 · Roadmap</div>
     <h2 class="headline small">Roadmap por capacidades tecnológicas.</h2>
     <div class="timeline">
       <article class="phase"><div class="phase-code">F0</div><h3>Modelo maestro</h3><p>Entidades, relaciones, fuentes, roles, permisos, datos iniciales y criterios del ERP piloto.</p><time>3 semanas</time></article>
       <article class="phase"><div class="phase-code">F1</div><h3>Data substrate</h3><p>D1, R2, auth, audit log, migración controlada de fórmulas e inventario base.</p><time>2 meses</time></article>
       <article class="phase"><div class="phase-code">F2</div><h3>ERP lote</h3><p>Fórmula versionada, batch record, consumo de materia prima, merma y reorden.</p><time>1.5 meses</time></article>
       <article class="phase"><div class="phase-code">F3</div><h3>Portal operativo</h3><p>Cola diaria, responsables, clientes B2B, documentos y comunicación por hito.</p><time>2.5 meses</time></article>
-      <article class="phase"><div class="phase-code">F4</div><h3>Agentes</h3><p>Proveeduría, B2B qualification, Skin Club support, R&amp;D Scout y compliance/social.</p><time>2 meses</time></article>
-      <article class="phase"><div class="phase-code">F5</div><h3>BI + handoff</h3><p>Tablero ejecutivo, métricas de margen, forecast, runbooks y transferencia técnica.</p><time>5 meses</time></article>
+      <article class="phase"><div class="phase-code">F4</div><h3>Agentes + commerce</h3><p>Proveeduría, R&amp;D Scout, creator launch, códigos de referido y portal de negocio.</p><time>2 meses</time></article>
+      <article class="phase"><div class="phase-code">F5</div><h3>BI + handoff</h3><p>Tablero ejecutivo, margen, atribución de ventas, forecast, runbooks y transferencia técnica.</p><time>5 meses</time></article>
     </div>
     <div class="release-strip">
       <div class="release"><strong>Día 30</strong><span>Modelo maestro + primer flujo de lote definido</span></div>
       <div class="release"><strong>Día 60</strong><span>Descuento de insumos en lote piloto</span></div>
-      <div class="release"><strong>Día 90</strong><span>Proveeduría Agent + R&amp;D Scout piloto</span></div>
+      <div class="release"><strong>Día 90</strong><span>Proveeduría Agent + creator portal piloto</span></div>
       <div class="release"><strong>Mes 12</strong><span>Sistema transferible, documentado y operando</span></div>
     </div>
-    <div class="slide-num">08 / 11</div>
+    <div class="slide-num">09 / 12</div>
   </section>
 
-  <section class="slide" id="s09">
-    <div class="kicker">09 · Economía</div>
+  <section class="slide" id="s10">
+    <div class="kicker">10 · Economía</div>
     <h2 class="headline small">Valor de referencia y arranque de buena fe.</h2>
     <div class="money">
       <article class="price">
         <div class="price-label">VALOR DE CONSTRUCCIÓN</div>
         <div class="price-num">$1.76<small>M MXN</small></div>
-        <p>Referencia del build completo: arquitectura de datos, ERP, agentes operativos, tableros, documentación, handoff y operación inicial durante doce meses.</p>
+        <p>Referencia del build completo: arquitectura de datos, ERP, agentes operativos, creator commerce, tableros, documentación, handoff y operación inicial durante doce meses.</p>
       </article>
       <article class="price alt">
         <div class="price-label">ARRANQUE PROPUESTO</div>
@@ -781,11 +807,11 @@ li:before{
       <div class="statement-label">Decisión inmediata</div>
       <p class="statement-copy">No se necesita cerrar todo el contrato de 12 meses para empezar; se necesita autorizar F0, validar el modelo maestro y definir el ERP piloto por lote.</p>
     </div>
-    <div class="slide-num">09 / 11</div>
+    <div class="slide-num">10 / 12</div>
   </section>
 
-  <section class="slide dark" id="s10">
-    <div class="kicker">10 · Riesgos y mitigación</div>
+  <section class="slide dark" id="s11">
+    <div class="kicker">11 · Riesgos y mitigación</div>
     <h2 class="headline small">Riesgos principales y controles propuestos.</h2>
     <div class="risk-grid">
       <article class="risk"><b>Dependencia de Eigen</b><p>Mitigación: repo, runbooks, diagramas, transferencia contractual y contactos de respaldo.</p></article>
@@ -793,22 +819,23 @@ li:before{
       <article class="risk"><b>Zoho vivo</b><p>Mitigación: auditoría, modo lectura primero y toggles reversibles.</p></article>
       <article class="risk"><b>Cambio para clientes B2B</b><p>Mitigación: migración gradual, portal coexistiendo con email y primer piloto friendly.</p></article>
       <article class="risk"><b>Cumplimiento</b><p>Mitigación: NOM versionada, responsable humano y bloqueo de auto-aprobación ante cambios.</p></article>
+      <article class="risk"><b>Atribución comercial</b><p>Mitigación: códigos, UTMs y reportes como fuente operativa; liquidación final validada por TSC/contabilidad.</p></article>
     </div>
     <div class="statement">
       <div class="statement-label">Regla de gobierno</div>
       <p class="statement-copy">Cada riesgo debe tener dueño, señal temprana, mitigación documentada y decisión explícita antes de pasar a la siguiente fase.</p>
     </div>
-    <div class="slide-num">10 / 11</div>
+    <div class="slide-num">11 / 12</div>
   </section>
 
-  <section class="slide" id="s11">
-    <div class="kicker">11 · Siguientes pasos</div>
+  <section class="slide" id="s12">
+    <div class="kicker">12 · Siguientes pasos</div>
     <h2 class="headline small">Decisiones para iniciar F0 con alcance acotado.</h2>
     <div class="close-grid">
       <article class="step">
         <div class="step-num">01</div>
         <h3>Priorizar alcance inicial</h3>
-        <p>60 minutos con Diego, Kaori y Natalia para validar ERP piloto, fuentes de datos y límites de scope.</p>
+        <p>60 minutos con Diego, Kaori y Natalia para validar ERP piloto, creator portal, fuentes de datos y límites de scope.</p>
       </article>
       <article class="step">
         <div class="step-num">02</div>
@@ -818,7 +845,7 @@ li:before{
       <article class="step">
         <div class="step-num">03</div>
         <h3>Iniciar discovery</h3>
-        <p>Accesos, auditoría de operación, entrevistas, master schema y primer sprint de ERP/inventario.</p>
+        <p>Accesos, auditoría de operación, entrevistas, master schema y primer sprint de ERP/inventario + creator commerce.</p>
       </article>
     </div>
     <div class="contact">
@@ -826,7 +853,7 @@ li:before{
       <a href="https://wa.me/523314397921">WhatsApp · 33 1439 7921</a>
       <a href="./propuesta-tecnica.html">Propuesta técnica completa</a>
     </div>
-    <div class="slide-num">11 / 11</div>
+    <div class="slide-num">12 / 12</div>
   </section>
 </main>
 
